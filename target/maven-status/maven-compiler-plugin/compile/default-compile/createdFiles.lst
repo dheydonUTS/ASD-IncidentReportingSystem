@@ -1,5 +1,8 @@
 com\mycompany\asd_incident_reporting_system\resources\JavaEE8Resource.class
+model\DummyIncident.class
+model\ticket.class
 controller\AnalyticsServlet.class
 com\mycompany\asd_incident_reporting_system\JAXRSConfiguration.class
 model\DummyVenue.class
-model\DummyIncident.class
+model\Incident.class
+model\User.class
