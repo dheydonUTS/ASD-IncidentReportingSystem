@@ -44,7 +44,7 @@ public class IncidentServlet extends HttpServlet {
        
        Incident incident = new Incident(venue,type,date,time,desc,reporter,offender);
        session.setAttribute("incident", incident);
-       request.getRequestDispatcher("viewIncident.jsp").include(request,response);
+       request.getRequestDispatcher("ViewIncident.jsp").include(request,response);
    }
 
 }

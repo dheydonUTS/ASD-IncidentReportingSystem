@@ -38,7 +38,7 @@
                     <label for="reporter">Your Email:</label>
                     <input type="text" name="reporter" ><br><br>
                     <label for="offender">Offender Details:</label>
-                    <input type="text" name="Offender" ><br><br>
+                    <input type="text" name="offender" ><br><br>
                     
                         
                     </div><br>

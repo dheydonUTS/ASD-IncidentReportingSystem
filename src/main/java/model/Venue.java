@@ -22,6 +22,11 @@ public class Venue {
         this.lon = lon;
     }
 
+    @Override
+    public String toString() {
+        return "Venue{" + "name=" + name + '}';
+    }
+
     public int getId() {
         return id;
     }
