@@ -9,7 +9,7 @@ import java.util.Date;
 
 /**
  *
- * @author joeda
+ * @author joe
  */
 public class DummyIncident {
     private int id;

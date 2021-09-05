@@ -7,7 +7,7 @@ package model;
 
 /**
  *
- * @author joeda
+ * @author joe
  */
 public class DummyVenue {
     private int id;

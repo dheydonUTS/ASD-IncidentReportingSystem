@@ -20,8 +20,9 @@ import model.DummyVenue;
 
 /**
  *
- * @author joeda
+ * @author joe
  */
+
 public class AnalyticsServlet extends HttpServlet {
         private static final long serialVersionUID = 1L;
 
@@ -32,10 +33,8 @@ protected void doGet(HttpServletRequest request,
     {
         
         LinkedList<DummyIncident> IncidentList = dummyData();
-        HashMap<String, Integer> IncidentTypeCount = incidentTypeCount(IncidentList);
-        
-        
-        request.setAttribute("IncidentTypeCount", IncidentTypeCount);
+        request.setAttribute("IncidentTypeCount", incidentTypeCount(IncidentList));
+        request.setAttribute("VenueIncidentCount", venueIncidentCount(IncidentList));
         request.getRequestDispatcher("analytics.jsp").include(request, response);
     }
 
@@ -50,6 +49,8 @@ protected void doGet(HttpServletRequest request,
         DummyList.push(new DummyIncident(par, "Fall", new Date(), "Someone fell", "Robert", "James"));
         DummyList.push(new DummyIncident(war, "Fall", new Date(), "Someone also fell", "Melinda", "Tom"));
         DummyList.push(new DummyIncident(bon, "Robbery", new Date(), "Someone robbed a store", "Robert", "Brendan"));
+        DummyList.push(new DummyIncident(bon, "Crash", new Date(), "Someone crashed", "Susie", "Ned"));
+        DummyList.push(new DummyIncident(bon, "Shoplift", new Date(), "Another steal", "Ahmed", "Alex"));
 
         return DummyList;
     }
