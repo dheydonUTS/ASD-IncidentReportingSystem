@@ -6,7 +6,8 @@
 package model;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  *
@@ -14,18 +15,19 @@ import java.util.Date;
  */
 public class Incident implements Serializable {
     private int id;
-    private DummyVenue venue;
+    private Venue venue;
     private String type;
-    private Date date;
+    private LocalDate date;
+    private LocalTime time;
     private String description;
     private String reporter;
     private String offender;
 
-    public Incident(int id, DummyVenue venue, String type, Date date, String description, String reporter, String offender) {
-        this.id = id;
+    public Incident(Venue venue, String type, LocalDate date, LocalTime time, String description, String reporter, String offender) {
         this.venue = venue;
         this.type = type;
         this.date = date;
+        this.time = time;
         this.description = description;
         this.reporter = reporter;
         this.offender = offender;
@@ -42,11 +44,11 @@ public class Incident implements Serializable {
         this.id = id;
     }
 
-    public DummyVenue getVenue() {
+    public Venue getVenue() {
         return venue;
     }
 
-    public void setVenue(DummyVenue venue) {
+    public void setVenue(Venue venue) {
         this.venue = venue;
     }
 
@@ -58,14 +60,24 @@ public class Incident implements Serializable {
         this.type = type;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
+    public LocalTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalTime time) {
+        this.time = time;
+    }
+
+    
+    
     public String getDescription() {
         return description;
     }
