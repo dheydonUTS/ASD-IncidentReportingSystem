@@ -1,3 +1,5 @@
+<%@page import="java.util.Map"%>
+<%@page import="java.util.LinkedList"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="model.DummyIncident"%>
 <%@page import="model.DummyVenue"%>
@@ -8,7 +10,16 @@
 <head>
 <title>Incident Reporting System</title>
 <%
-    
+   HashMap<String, Integer> IncidentTypes = new HashMap();
+   for (DummyIncident incident : (LinkedList<DummyIncident>) request.getAttribute("incidents")){
+    if(IncidentTypes.containsKey(incident.getType())){
+        System.out.println(incident.getType());
+        IncidentTypes.put(incident.getType(), IncidentTypes.get(incident.getType()) + 1);
+    }
+    else{
+        IncidentTypes.put(incident.getType(), 1);
+    }
+    }
     %>
  <!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -27,20 +38,27 @@
 
         // Create the data table.
         var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Topping');
-        data.addColumn('number', 'Slices');
+        data.addColumn('string', 'Incident Type');
+        data.addColumn('number', 'Occurances');
         data.addRows([
-          ['Mushrooms', 3],
+            <% 
+                for(Map.Entry<String, Integer> entry : IncidentTypes.entrySet()) {
+                    System.out.println("['" + entry.getKey() + "', "+ entry.getValue() + "],");
+            }
+            %>
+
+
+            /*['Mushrooms', 3],
           ['Onions', 1],
           ['Olives', 1],
           ['Zucchini', 1],
-          ['Pepperoni', 2]
+          ['Pepperoni', 2]*/
         ]);
 
         // Set chart options
-        var options = {'title':'How Much Pizza I Ate Last Night',
-                       'width':400,
-                       'height':300};
+        var options = {'title':'Incidents',
+                       'width':800,
+                       'height':500};
 
         // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
