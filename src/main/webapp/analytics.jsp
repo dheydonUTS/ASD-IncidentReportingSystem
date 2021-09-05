@@ -9,18 +9,6 @@
 <html>
 <head>
 <title>Incident Reporting System</title>
-<%
-   HashMap<String, Integer> IncidentTypes = new HashMap();
-   for (DummyIncident incident : (LinkedList<DummyIncident>) request.getAttribute("incidents")){
-    if(IncidentTypes.containsKey(incident.getType())){
-        System.out.println(incident.getType());
-        IncidentTypes.put(incident.getType(), IncidentTypes.get(incident.getType()) + 1);
-    }
-    else{
-        IncidentTypes.put(incident.getType(), 1);
-    }
-    }
-    %>
  <!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
@@ -41,11 +29,10 @@
         data.addColumn('string', 'Incident Type');
         data.addColumn('number', 'Occurances');
         data.addRows([
-            <% 
-                for(Map.Entry<String, Integer> entry : IncidentTypes.entrySet()) {
-                    System.out.println("['" + entry.getKey() + "', "+ entry.getValue() + "],");
-            }
-            %>
+        <c:forEach var="IncidentType" items="${IncidentTypeCount}">
+            ['${IncidentType.key}', ${IncidentType.value} ], 
+        </c:forEach>
+
 
 
             /*['Mushrooms', 3],
@@ -78,7 +65,7 @@
 		<h1 class="card-header">Analytics</h1>
 		<div class="card-body">
 			<h5 class="card-title">Incident Types</h5>
-                            <div id="chart_div"></div>
+                            <div id="chart_div" style="margin: auto;"></div>
 
 			
 		</div>

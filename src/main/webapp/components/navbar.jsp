@@ -24,7 +24,7 @@
 						id="navbarDropdownMenuLink" role="button"
 						data-bs-toggle="dropdown" aria-expanded="false"> Reports </a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-							<li><a class="dropdown-item" href="#">Graphs, Maps and
+							<li><a class="dropdown-item" href="Analytics">Graphs, Maps and
 									Analytics</a></li>
 							<li><a class="dropdown-item" href="#">General Report
 									Generation</a></li>
