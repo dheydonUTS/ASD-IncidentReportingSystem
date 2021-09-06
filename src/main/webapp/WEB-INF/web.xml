@@ -12,6 +12,10 @@
         <servlet-name>GeneralReportsServlet</servlet-name>
         <servlet-class>controller.GeneralReportsServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>OffenderReportServlet</servlet-name>
+        <servlet-class>controller.OffenderReportServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AnalyticsServlet</servlet-name>
         <url-pattern>/Analytics</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>GeneralReportsServlet</servlet-name>
         <url-pattern>/GeneralReports</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OffenderReportServlet</servlet-name>
+        <url-pattern>/OffenderReport</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -21,9 +21,21 @@ public class Offender {
         this.surname = surname;
         this.gender = gender;
         this.incidents = incidents;
+        this.id = "1000001";
     }
+    
+    public Offender(String id, String firstName, String surname, String gender){
+        this.id = id;
+        this.firstName = firstName;
+        this.surname = surname;
+        this.gender = gender;
+    }
+    
     public String getID(){
         return this.id;
+    }
+    public void setID(String id){
+        this.id = id;
     }
     public String getFirstName(){
         return this.firstName;

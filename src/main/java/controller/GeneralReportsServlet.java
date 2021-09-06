@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.DummyIncident;
 import model.DummyVenue;
+import model.Offender;
 
 /**
  *
@@ -33,5 +34,4 @@ protected void doGet(HttpServletRequest request,
         request.getRequestDispatcher("genReports.jsp").include(request, response);
     }
 
-    
     }
