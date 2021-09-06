@@ -26,7 +26,7 @@
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 							<li><a class="dropdown-item" href="Analytics">Graphs, Maps and
 									Analytics</a></li>
-							<li><a class="dropdown-item" href="#">General Report
+							<li><a class="dropdown-item" href="GeneralReports">General Report
 									Generation</a></li>
 							<li><a class="dropdown-item" href="#">Incident Report
 									Generation</a></li>
@@ -46,14 +46,14 @@
 						</ul></li>
 					<li class="nav-item"><a class="nav-link" href="#">Issue
 							Warning</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Anon Tip
+					<li class="nav-item"><a class="nav-link" href="AnonReport.jsp">Anon Tip
 							Off</a></li>
 
 				</ul>
 				<ul class="navbar-nav">
 					<a class="btn btn-outline-secondary" style="margin-right: 10px"
-						href="#">Login</a>
-					<a class="btn btn-info" href="#">Register</a>
+						href="Login.jsp">Login</a>
+					<a class="btn btn-info" href="Register.jsp">Register</a>
 			</div>
 		</div>
 	</nav>

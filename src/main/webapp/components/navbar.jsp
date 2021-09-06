@@ -46,14 +46,14 @@
 						</ul></li>
 					<li class="nav-item"><a class="nav-link" href="#">Issue
 							Warning</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Anon Tip
+					<li class="nav-item"><a class="nav-link" href="AnonReport.jsp">Anon Tip
 							Off</a></li>
 
 				</ul>
 				<ul class="navbar-nav">
 					<a class="btn btn-outline-secondary" style="margin-right: 10px"
-						href="#">Login</a>
-					<a class="btn btn-info" href="#">Register</a>
+						href="Login.jsp">Login</a>
+					<a class="btn btn-info" href="Register.jsp">Register</a>
 			</div>
 		</div>
 	</nav>
