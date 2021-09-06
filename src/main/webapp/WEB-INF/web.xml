@@ -8,6 +8,10 @@
         <servlet-name>IncidentServlet</servlet-name>
         <servlet-class>controller.IncidentServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GeneralReportsServlet</servlet-name>
+        <servlet-class>controller.GeneralReportsServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AnalyticsServlet</servlet-name>
         <url-pattern>/Analytics</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>IncidentServlet</servlet-name>
         <url-pattern>/IncidentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GeneralReportsServlet</servlet-name>
+        <url-pattern>/GeneralReports</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
