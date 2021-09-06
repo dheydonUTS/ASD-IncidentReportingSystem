@@ -22,3 +22,17 @@ img {
     padding-bottom: 10px;
             
 }
+
+.venue-img {
+    width: 100px;
+    height: 250px;
+}
+
+.delete-btn {
+    margin-top: 20px;
+}
+
+
+.chooseimg-btn {
+    text-align: center;
+}
