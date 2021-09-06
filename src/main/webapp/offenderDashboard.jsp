@@ -19,101 +19,11 @@
                         <div class="row">
                             <div class="offender-card col-lg-4">
                             <div class="card col-lg-4" style="width: 18rem;">
-                                <img src="..." class="card-img-top" alt="...">
+                                <img src="https://thumbs.dreamstime.com/z/funny-cartoon-mugshot-illustration-68310548.jpg" class="card-img-top" alt="...">
                                 <div class="card-body">
-                                    <h5 class="card-title">Name</h5>
-                                    <p class="card-text">Venue:</p>
-                                    <p class="card-text">Status: </p>
-                                    <a href="./offender.jsp" class="btn btn-primary">View Offender</a>
-                                </div>
-                            </div>
-                                </div>
-                            
-                            <div class="offender-card col-lg-4">
-                            <div class="card col-lg-4" style="width: 18rem;">
-                                <img src="..." class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Name</h5>
-                                    <p class="card-text">Venue:</p>
-                                    <p class="card-text">Status: </p>
-                                    <a href="./offender.jsp" class="btn btn-primary">View Offender</a>
-                                </div>
-                            </div>
-                                </div>
-                            
-                            <div class="offender-card col-lg-4">
-                            <div class="card col-lg-4" style="width: 18rem;">
-                                <img src="..." class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Name</h5>
-                                    <p class="card-text">Venue:</p>
-                                    <p class="card-text">Status: </p>
-                                    <a href="./offender.jsp" class="btn btn-primary">View Offender</a>
-                                </div>
-                            </div>
-                                </div>
-                            
-                        </div>
-                        
-                        <div class="row">
-                            <div class="offender-card col-lg-4">
-                            <div class="card col-lg-4" style="width: 18rem;">
-                                <img src="..." class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Name</h5>
-                                    <p class="card-text">Venue:</p>
-                                    <p class="card-text">Status: </p>
-                                    <a href="./offender.jsp" class="btn btn-primary">View Offender</a>
-                                </div>
-                            </div>
-                                </div>
-                            
-                            <div class="offender-card col-lg-4">
-                            <div class="card col-lg-4" style="width: 18rem;">
-                                <img src="..." class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Name</h5>
-                                    <p class="card-text">Venue:</p>
-                                    <p class="card-text">Status: </p>
-                                    <a href="./offender.jsp" class="btn btn-primary">View Offender</a>
-                                </div>
-                            </div>
-                                </div>
-                            
-                            <div class="offender-card col-lg-4">
-                            <div class="card col-lg-4" style="width: 18rem;">
-                                <img src="..." class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Name</h5>
-                                    <p class="card-text">Venue:</p>
-                                    <p class="card-text">Status: </p>
-                                    <a href="./offender.jsp" class="btn btn-primary">View Offender</a>
-                                </div>
-                            </div>
-                                </div>
-                            
-                        </div>
-                        
-                        <div class="row">
-                            <div class="offender-card col-lg-4">
-                            <div class="card col-lg-4" style="width: 18rem;">
-                                <img src="..." class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Name</h5>
-                                    <p class="card-text">Venue:</p>
-                                    <p class="card-text">Status: </p>
-                                    <a href="./offender.jsp" class="btn btn-primary">View Offender</a>
-                                </div>
-                            </div>
-                                </div>
-                            
-                            <div class="offender-card col-lg-4">
-                            <div class="card col-lg-4" style="width: 18rem;">
-                                <img src="..." class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Name</h5>
-                                    <p class="card-text">Venue:</p>
-                                    <p class="card-text">Status: </p>
+                                    <h5 class="card-title">John Smith</h5>
+                                    <p class="card-text">Venue: Bondi</p>
+                                    <p class="card-text">Status: Banned </p>
                                     <a href="./offender.jsp" class="btn btn-primary">View Offender</a>
                                 </div>
                             </div>
@@ -123,9 +33,99 @@
                             <div class="card col-lg-4" style="width: 18rem;">
                                 <img src="https://thumbs.dreamstime.com/z/funny-cartoon-mugshot-illustration-68310548.jpg" class="card-img-top" alt="...">
                                 <div class="card-body">
-                                    <h5 class="card-title">Name</h5>
-                                    <p class="card-text">Venue:</p>
-                                    <p class="card-text">Status: </p>
+                                    <h5 class="card-title">Tobey Mcguire</h5>
+                                    <p class="card-text">Venue: Warringah</p>
+                                    <p class="card-text">Status: Not Banned </p>
+                                    <a href="./offender.jsp" class="btn btn-primary">View Offender</a>
+                                </div>
+                            </div>
+                                </div>
+                            
+                            <div class="offender-card col-lg-4">
+                            <div class="card col-lg-4" style="width: 18rem;">
+                                <img src="https://thumbs.dreamstime.com/z/funny-cartoon-mugshot-illustration-68310548.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">John Evans</h5>
+                                    <p class="card-text">Venue: Parramatta</p>
+                                    <p class="card-text">Status: Not Banned </p>
+                                    <a href="./offender.jsp" class="btn btn-primary">View Offender</a>
+                                </div>
+                            </div>
+                                </div>
+                            
+                        </div>
+                        
+                        <div class="row">
+                            <div class="offender-card col-lg-4">
+                            <div class="card col-lg-4" style="width: 18rem;">
+                                <img src="https://thumbs.dreamstime.com/z/funny-cartoon-mugshot-illustration-68310548.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Luke Shaw</h5>
+                                    <p class="card-text">Venue: Warringah</p>
+                                    <p class="card-text">Status: Banned </p>
+                                    <a href="./offender.jsp" class="btn btn-primary">View Offender</a>
+                                </div>
+                            </div>
+                                </div>
+                            
+                            <div class="offender-card col-lg-4">
+                            <div class="card col-lg-4" style="width: 18rem;">
+                                <img src="https://thumbs.dreamstime.com/z/funny-cartoon-mugshot-illustration-68310548.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Michael Gray</h5>
+                                    <p class="card-text">Venue: Bondi</p>
+                                    <p class="card-text">Status: Banned </p>
+                                    <a href="./offender.jsp" class="btn btn-primary">View Offender</a>
+                                </div>
+                            </div>
+                                </div>
+                            
+                            <div class="offender-card col-lg-4">
+                            <div class="card col-lg-4" style="width: 18rem;">
+                                <img src="https://thumbs.dreamstime.com/z/funny-cartoon-mugshot-illustration-68310548.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Scott Morrison</h5>
+                                    <p class="card-text">Venue: Warringah</p>
+                                    <p class="card-text">Status: Banned </p>
+                                    <a href="./offender.jsp" class="btn btn-primary">View Offender</a>
+                                </div>
+                            </div>
+                                </div>
+                            
+                        </div>
+                        
+                        <div class="row">
+                            <div class="offender-card col-lg-4">
+                            <div class="card col-lg-4" style="width: 18rem;">
+                                <img src="https://thumbs.dreamstime.com/z/funny-cartoon-mugshot-illustration-68310548.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Harry Kane</h5>
+                                    <p class="card-text">Venue: Bondi</p>
+                                    <p class="card-text">Status: Not Banned </p>
+                                    <a href="./offender.jsp" class="btn btn-primary">View Offender</a>
+                                </div>
+                            </div>
+                                </div>
+                            
+                            <div class="offender-card col-lg-4">
+                            <div class="card col-lg-4" style="width: 18rem;">
+                                <img src="https://thumbs.dreamstime.com/z/funny-cartoon-mugshot-illustration-68310548.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Jackson Grealish</h5>
+                                    <p class="card-text">Venue: Bondi</p>
+                                    <p class="card-text">Status:Banned</p>
+                                    <a href="./offender.jsp" class="btn btn-primary">View Offender</a>
+                                </div>
+                            </div>
+                                </div>
+                            
+                            <div class="offender-card col-lg-4">
+                            <div class="card col-lg-4" style="width: 18rem;">
+                                <img src="https://thumbs.dreamstime.com/z/funny-cartoon-mugshot-illustration-68310548.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Joe Gomez</h5>
+                                    <p class="card-text">Venue: Parramatta</p>
+                                    <p class="card-text">Status: Not Banned </p>
                                     <a href="./offender.jsp" class="btn btn-primary">View Offender</a>
                                 </div>
                             </div>

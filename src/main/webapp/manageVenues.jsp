@@ -54,7 +54,7 @@
                                 </div>
                             </div>
                                 </div>
-                            <a href="./addVenue.jsp" class="btn btn-secondary">Add New Venue</a>
+                            <a href="./addVenue.jsp" class="btn btn-dark">Add New Venue</a>
                         </div>   
                     </div>
                 </div>

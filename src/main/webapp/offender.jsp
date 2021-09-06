@@ -22,8 +22,10 @@
 	<div class="card" style="margin-top:2rem;">
 		<h1 class="card-header">Offender</h1>
 		<div class="card-body">
-			<h5 class="card-title">Name</h5>
+			<h5 class="card-title">John Smith</h5>
                         <img src="https://thumbs.dreamstime.com/z/funny-cartoon-mugshot-illustration-68310548.jpg" class="card-img-top offenderImg" alt="..." style="width: 500px; height: 500px; padding-bottom: 50px">
+                        <p class="card-text">Age: 28 </p>
+                        <p class="card-text">Gender: Male </p>
 			<p class="card-text">Incidents: Tried shoplifting in JB HI FI store as well as MYER store. Harassed Security when asked about stolen property</p>
                         <p class="card-text">Venue: Bondi </p>
                         <p class="card-text">Status: Banned</p>
