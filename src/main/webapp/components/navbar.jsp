@@ -28,9 +28,9 @@
 									Analytics</a></li>
 							<li><a class="dropdown-item" href="#">General Report
 									Generation</a></li>
-							<li><a class="dropdown-item" href="#">Incident Report
+							<li><a class="dropdown-item" href="IncidentList.jsp">Incident Report
 									Generation</a></li>
-							<li><a class="dropdown-item" href="#">Venue Report
+							<li><a class="dropdown-item" href="VenueList.jsp">Venue Report
 									Generation</a></li>
 
 						</ul></li>
