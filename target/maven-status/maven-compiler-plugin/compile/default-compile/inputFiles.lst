@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 D:\University\Advanced Software Dev\ASD-IncidentReportingSystem\src\main\java\controller\IncidentServlet.java
 D:\University\Advanced Software Dev\ASD-IncidentReportingSystem\src\main\java\model\DummyIncident.java
 D:\University\Advanced Software Dev\ASD-IncidentReportingSystem\src\main\java\model\DummyVenue.java
@@ -8,3 +9,15 @@ D:\University\Advanced Software Dev\ASD-IncidentReportingSystem\src\main\java\co
 D:\University\Advanced Software Dev\ASD-IncidentReportingSystem\src\main\java\model\ticket.java
 D:\University\Advanced Software Dev\ASD-IncidentReportingSystem\src\main\java\com\mycompany\asd_incident_reporting_system\resources\JavaEE8Resource.java
 D:\University\Advanced Software Dev\ASD-IncidentReportingSystem\src\main\java\model\User.java
+=======
+C:\Users\dheydon\Documents\UNI\GitHub\ASD-IncidentReportingSystem\src\main\java\model\Incident.java
+C:\Users\dheydon\Documents\UNI\GitHub\ASD-IncidentReportingSystem\src\main\java\com\mycompany\asd_incident_reporting_system\JAXRSConfiguration.java
+C:\Users\dheydon\Documents\UNI\GitHub\ASD-IncidentReportingSystem\src\main\java\model\DummyIncident.java
+C:\Users\dheydon\Documents\UNI\GitHub\ASD-IncidentReportingSystem\src\main\java\model\User.java
+C:\Users\dheydon\Documents\UNI\GitHub\ASD-IncidentReportingSystem\src\main\java\controller\IncidentServlet.java
+C:\Users\dheydon\Documents\UNI\GitHub\ASD-IncidentReportingSystem\src\main\java\controller\AnalyticsServlet.java
+C:\Users\dheydon\Documents\UNI\GitHub\ASD-IncidentReportingSystem\src\main\java\com\mycompany\asd_incident_reporting_system\resources\JavaEE8Resource.java
+C:\Users\dheydon\Documents\UNI\GitHub\ASD-IncidentReportingSystem\src\main\java\model\Venue.java
+C:\Users\dheydon\Documents\UNI\GitHub\ASD-IncidentReportingSystem\src\main\java\model\DummyVenue.java
+C:\Users\dheydon\Documents\UNI\GitHub\ASD-IncidentReportingSystem\src\main\java\model\ticket.java
+>>>>>>> main
