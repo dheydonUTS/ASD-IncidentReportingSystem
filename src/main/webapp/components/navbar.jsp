@@ -17,11 +17,8 @@
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="index.jsp">Home</a></li>
-<<<<<<< HEAD
 					<li class="nav-item"><a class="nav-link" href="#">Report
-=======
 					<li class="nav-item"><a class="nav-link" href="incident.jsp">Report
->>>>>>> origin/main
 							Incident</a></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#"
@@ -30,11 +27,8 @@
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 							<li><a class="dropdown-item" href="Analytics">Graphs, Maps and
 									Analytics</a></li>
-<<<<<<< HEAD
 							<li><a class="dropdown-item" href="#">General Report
-=======
 							<li><a class="dropdown-item" href="GeneralReports">General Report
->>>>>>> origin/main
 									Generation</a></li>
 							<li><a class="dropdown-item" href="#">Incident Report
 									Generation</a></li>
@@ -42,14 +36,14 @@
 									Generation</a></li>
 
 						</ul></li>
-					<li class="nav-item"><a class="nav-link" href="#">Offender
+					<li class="nav-item"><a class="nav-link" href="offenderDashboard.jsp">Offender
 							Dashboard</a></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#"
 						id="navbarDropdownMenuLink" role="button"
 						data-bs-toggle="dropdown" aria-expanded="false"> Venues </a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-							<li><a class="dropdown-item" href="#">Manage Venues</a></li>
+							<li><a class="dropdown-item" href="manageVenues.jsp">Manage Venues</a></li>
 							<li><a class="dropdown-item" href="#">View Venue Info</a></li>
 						</ul></li>
 					<li class="nav-item"><a class="nav-link" href="#">Issue
