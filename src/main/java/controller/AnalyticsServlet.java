@@ -33,11 +33,14 @@ protected void doGet(HttpServletRequest request,
             throws ServletException, IOException
     {
         
+
         LinkedList<Incident> IncidentList = dummyData();
+        
         request.setAttribute("IncidentTypeCount", incidentTypeCount(IncidentList));
         request.setAttribute("VenueIncidentCount", venueIncidentCount(IncidentList));
         request.getRequestDispatcher("analytics.jsp").include(request, response);
     }
+
 
     public LinkedList<Incident> dummyData() {
         LinkedList<Incident> DummyList = new LinkedList();
@@ -56,7 +59,9 @@ protected void doGet(HttpServletRequest request,
         return DummyList;
     }
     
+
     public HashMap<String, Integer> incidentTypeCount(LinkedList<Incident> IncidentList) {
+        
         HashMap<String, Integer> IncidentCount = new HashMap();
         IncidentList.forEach(incident -> {
             if (IncidentCount.containsKey(incident.getType())) {
@@ -68,8 +73,10 @@ protected void doGet(HttpServletRequest request,
         return IncidentCount;
     }
     
+
     public HashMap<Venue, Integer> venueIncidentCount(LinkedList<Incident> IncidentList){
         HashMap<Venue, Integer> VenueIncidentCount = new HashMap();
+        
         IncidentList.forEach(incident -> {
             if(VenueIncidentCount.containsKey(incident.getVenue())) {
                 VenueIncidentCount.put(incident.getVenue(), VenueIncidentCount.get(incident.getVenue()) + 1);
