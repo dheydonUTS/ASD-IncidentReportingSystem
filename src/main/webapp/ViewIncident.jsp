@@ -4,7 +4,6 @@
     Author     : dheydon
 --%>
 
-
 <%@page import="model.Venue"%>
 <%@page import="model.Incident"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -66,5 +65,10 @@ Venue venue = (Venue)session.getAttribute("venue"); // Get venue from incident i
             </div>
          </div>
       </div>
+<<<<<<< HEAD
+=======
+        
+           
+>>>>>>> main
     </body>
 </html>

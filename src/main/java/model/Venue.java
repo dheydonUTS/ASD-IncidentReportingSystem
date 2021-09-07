@@ -80,7 +80,7 @@ public class Venue {
     public void setLon(double lon) {
         this.lon = lon;
     }
-    
+
 
     public void setSuburb(String suburb){
         this.suburb = suburb;
