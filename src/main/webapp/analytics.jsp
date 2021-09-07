@@ -1,8 +1,8 @@
 <%@page import="java.util.Map"%>
 <%@page import="java.util.LinkedList"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="model.DummyIncident"%>
-<%@page import="model.DummyVenue"%>
+<%@page import="model.Incident"%>
+<%@page import="model.Venue"%>
 <%@page import="java.util.HashMap"%>
 <!DOCTYPE html>
 <html>
