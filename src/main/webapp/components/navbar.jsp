@@ -26,7 +26,7 @@
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 							<li><a class="dropdown-item" href="Analytics">Graphs, Maps and
 									Analytics</a></li>
-							<li><a class="dropdown-item" href="#">General Report
+							<li><a class="dropdown-item" href="GeneralReports">General Report
 									Generation</a></li>
 							<li><a class="dropdown-item" href="IncidentList.jsp">Incident Report
 									Generation</a></li>
