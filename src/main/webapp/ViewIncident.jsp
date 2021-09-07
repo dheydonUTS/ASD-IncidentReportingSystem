@@ -10,7 +10,7 @@
 
 <%
 Incident incident = (Incident)session.getAttribute("incident");
-Venue venue = (Venue)session.getAttribute("venue");
+Venue venue = (Venue)session.getAttribute("venue"); // Get venue from incident in future
 %>
 <!DOCTYPE html>
 <html>
