@@ -4,7 +4,6 @@
 <%@page import="model.DummyIncident"%>
 <%@page import="model.DummyVenue"%>
 <%@page import="java.util.HashMap"%>
-<<<<<<< HEAD
 
 <!DOCTYPE html>
 <html>
@@ -109,7 +108,6 @@ zoom: 9
  
 </script>
 </body>
-=======
 <!DOCTYPE html>
 <html>
    <head>
@@ -208,5 +206,4 @@ zoom: 9
          
       </script>
    </body>
->>>>>>> origin/main
 </html>
