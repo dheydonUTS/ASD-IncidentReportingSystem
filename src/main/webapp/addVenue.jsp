@@ -35,7 +35,7 @@
                                <input class="form-control"type="text" name="desc" >
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label" for="desc">Llongitude:</label>
+                            <label class="col-sm-2 col-form-label" for="desc">Longitude:</label>
                                <input class="form-control"type="text" name="desc" >
                         </div>
                         <div class="form-group row">
