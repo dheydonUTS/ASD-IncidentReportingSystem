@@ -48,7 +48,6 @@
         <servlet-name>IncidentTypeReportServlet</servlet-name>
         <url-pattern>/IncidentTypeReport</url-pattern>
     </servlet-mapping>
-    
     <session-config>
         <session-timeout>
             30

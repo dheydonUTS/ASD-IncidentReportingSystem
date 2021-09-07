@@ -19,7 +19,6 @@ public class Venue {
     private String suburb;
     private String address;
     private LinkedList<Incident> incidents;
-    
 
     public Venue(int id, String name, double lat, double lon) {
         this.id = id;
@@ -27,6 +26,7 @@ public class Venue {
         this.lat = lat;
         this.lon = lon;
     }
+
     
     public Venue(int id, String name, String suburb, String address, LinkedList<Incident> incidents) {
         this.id = id;
@@ -42,6 +42,7 @@ public class Venue {
         this.suburb = suburb;
         this.address = address;
     }
+
 
     @Override
     public String toString() {
@@ -80,6 +81,7 @@ public class Venue {
         this.lon = lon;
     }
     
+
     public void setSuburb(String suburb){
         this.suburb = suburb;
     }
@@ -101,5 +103,6 @@ public class Venue {
         this.incidents = incidents;
     }
 }
+
 
 

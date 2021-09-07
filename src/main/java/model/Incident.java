@@ -33,6 +33,7 @@ public class Incident implements Serializable {
         this.reporter = reporter;
         this.offender = offender;
     }
+
     
     public Incident(String type, String description, String reporter, String offender){
         this.type = type;

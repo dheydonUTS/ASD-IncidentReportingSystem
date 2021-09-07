@@ -5,6 +5,7 @@
  */
 package model;
 
+
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -44,18 +45,21 @@ public class Offender {
     public String getFirstName(){
         return this.firstName;
     }
+
     public void setFirstName(String firstName){
         this.firstName = firstName;
     }
     public String getSurname(){
         return this.surname;
     }
+
     public void setSurname(String surname){
         this.surname = surname;
     }
     public String getGender(){
         return this.gender;
     }
+
     public void setGender(String gender){
         this.firstName = gender;
     }

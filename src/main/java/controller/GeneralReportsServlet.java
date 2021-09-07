@@ -21,7 +21,7 @@ import model.Offender;
 
 /**
  *
- * @author joe
+ * @author adam
  */
 
 public class GeneralReportsServlet extends HttpServlet {
