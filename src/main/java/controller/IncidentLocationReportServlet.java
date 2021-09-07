@@ -18,7 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.DummyIncident;
 import model.DummyVenue;
-import model.Offender;
+import model.Incident;
+import model.Venue;
 
 /**
  *
@@ -32,20 +33,40 @@ protected void doGet(HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException
     {
-        LinkedList<Offender> OffenderList = dummyData();
-        request.setAttribute("offenders", OffenderList);
-        request.getRequestDispatcher("offenderReport.jsp").include(request, response);
+        LinkedList<Venue> venueList = dummyData();
+        request.setAttribute("venueList", venueList);
+        request.getRequestDispatcher("locationReport.jsp").include(request, response);
     }
     
-    public LinkedList<Offender> dummyData(){
-        LinkedList<Offender> DummyList = new LinkedList();
+    public LinkedList<Venue> dummyData(){
+        LinkedList<Venue> DummyList = new LinkedList();
+        LinkedList<Incident> rrInc = new LinkedList();  
+        LinkedList<Incident> wmInc = new LinkedList();
+        LinkedList<Incident> mmInc = new LinkedList();
+        LinkedList<Incident> ewInc = new LinkedList();
+        LinkedList<Incident> bjInc = new LinkedList();
         
-        DummyList.push(new Offender("10001", "Adam", "McCaffery", "Male"));
-        DummyList.push(new Offender("10002", "Dom", "Heydon", "Male"));
-        DummyList.push(new Offender("10003", "Arun", "Mohindra", "Male"));
-        DummyList.push(new Offender("10004", "Christian", "Lopez", "Male"));
-        DummyList.push(new Offender("10005", "Joe", "Drew", "Male"));
-        DummyList.push(new Offender("10006", "Zwe", "Htin Aung", "Male"));
+        
+        
+        rrInc.push(new Incident("Shoplift", "Stole something", "Jeff", "Adam"));
+        rrInc.push(new Incident("Arson", "Lit something on fire", "Jeff", "Adam"));
+        
+        wmInc.push(new Incident("Arson", "Lit something on fire", "Jeff", "Adam"));
+        wmInc.push(new Incident("Public Urination", "Peed on a Lady", "Jeff", "Adam"));
+        mmInc.push(new Incident("Arson", "Lit something on fire", "Jeff", "Adam"));
+        ewInc.push(new Incident("Arson", "Lit something on fire", "Jeff", "Adam"));
+        bjInc.push(new Incident("Broke the Escalators", "Jammed a trolly in the escalator", "Jeff", "Adam"));
+        bjInc.push(new Incident("Arson", "Lit something on fire", "Jeff", "Adam"));
+        bjInc.push(new Incident("Public Urination", "Peed on a Lady", "Jeff", "Adam"));
+        bjInc.push(new Incident("Shoplift", "Stole something", "Jeff", "Adam"));
+        
+        
+        
+        DummyList.push(new Venue(1, "Royal Randwick", "Randwick", "Belmore Rd" ,rrInc));
+        DummyList.push(new Venue(2, "Waringah Mall", "Waringah", "Pitwater Rd", wmInc));
+        DummyList.push(new Venue(3, "Marickville Metro", "Marickville", "Sidmore Rd", mmInc));
+        DummyList.push(new Venue(4, "Eastgardens Westfield", "Eastgardens", "Bunnerong Road ", ewInc));
+        DummyList.push(new Venue(5, "Bondi Junction Westfield", "Bondi Junction", "Oxford St", bjInc));
         
         return DummyList;
     }

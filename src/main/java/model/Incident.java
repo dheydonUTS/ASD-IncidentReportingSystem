@@ -8,6 +8,7 @@ package model;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import model.Offender;
 
 /**
  *
@@ -28,6 +29,13 @@ public class Incident implements Serializable {
         this.type = type;
         this.date = date;
         this.time = time;
+        this.description = description;
+        this.reporter = reporter;
+        this.offender = offender;
+    }
+    
+    public Incident(String type, String description, String reporter, String offender){
+        this.type = type;
         this.description = description;
         this.reporter = reporter;
         this.offender = offender;

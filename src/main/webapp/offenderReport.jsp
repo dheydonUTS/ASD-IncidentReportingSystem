@@ -30,6 +30,9 @@
                             <td><b>First Name</b></td>
                             <td><b>Surname</b></td>
                             <td><b>Gender</b></td>
+                            <td><b>No. of Offences</b></td>
+                            <td><b>Last Date of Offence</b></td>
+                            <td><b>Banned?</b></td>
                             <td><b>More Info</b></td>
                         </tr>
                         
@@ -41,6 +44,9 @@
                             <td><c:out value="${offender.firstName}" /></td>
                             <td><c:out value="${offender.surname}" /></td>
                             <td><c:out value="${offender.gender}" /></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                             <td><a href="#">View</a></td>
                         </tr>
                     </c:forEach>
