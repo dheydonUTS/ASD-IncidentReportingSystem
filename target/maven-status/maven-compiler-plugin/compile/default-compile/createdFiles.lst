@@ -14,4 +14,3 @@ model/User.class
 model/DummyIncident.class
 com/mycompany/asd_incident_reporting_system/JAXRSConfiguration.class
 controller/OffenderReportServlet.class
-
