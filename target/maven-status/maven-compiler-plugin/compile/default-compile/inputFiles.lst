@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 D:\University\Advanced Software Dev\main\src\main\java\model\ticket.java
 D:\University\Advanced Software Dev\main\src\main\java\controller\AnalyticsServlet.java
 D:\University\Advanced Software Dev\main\src\main\java\controller\IncidentServlet.java
@@ -10,3 +11,20 @@ D:\University\Advanced Software Dev\main\src\main\java\model\Offender.java
 D:\University\Advanced Software Dev\main\src\main\java\model\Incident.java
 D:\University\Advanced Software Dev\main\src\main\java\model\DummyVenue.java
 D:\University\Advanced Software Dev\main\src\main\java\model\Venue.java
+=======
+/Users/adam/Documents/work/uts/asd/ASD-IncidentReportingSystem/src/main/java/controller/OffenderReportServlet.java
+/Users/adam/Documents/work/uts/asd/ASD-IncidentReportingSystem/src/main/java/model/DummyIncident.java
+/Users/adam/Documents/work/uts/asd/ASD-IncidentReportingSystem/src/main/java/model/Offender.java
+/Users/adam/Documents/work/uts/asd/ASD-IncidentReportingSystem/src/main/java/model/Incident.java
+/Users/adam/Documents/work/uts/asd/ASD-IncidentReportingSystem/src/main/java/com/mycompany/asd_incident_reporting_system/JAXRSConfiguration.java
+/Users/adam/Documents/work/uts/asd/ASD-IncidentReportingSystem/src/main/java/controller/IncidentTypeReportServlet.java
+/Users/adam/Documents/work/uts/asd/ASD-IncidentReportingSystem/src/main/java/controller/IncidentLocationReportServlet.java
+/Users/adam/Documents/work/uts/asd/ASD-IncidentReportingSystem/src/main/java/model/ticket.java
+/Users/adam/Documents/work/uts/asd/ASD-IncidentReportingSystem/src/main/java/model/Venue.java
+/Users/adam/Documents/work/uts/asd/ASD-IncidentReportingSystem/src/main/java/model/User.java
+/Users/adam/Documents/work/uts/asd/ASD-IncidentReportingSystem/src/main/java/com/mycompany/asd_incident_reporting_system/resources/JavaEE8Resource.java
+/Users/adam/Documents/work/uts/asd/ASD-IncidentReportingSystem/src/main/java/controller/GeneralReportsServlet.java
+/Users/adam/Documents/work/uts/asd/ASD-IncidentReportingSystem/src/main/java/model/DummyVenue.java
+/Users/adam/Documents/work/uts/asd/ASD-IncidentReportingSystem/src/main/java/controller/AnalyticsServlet.java
+/Users/adam/Documents/work/uts/asd/ASD-IncidentReportingSystem/src/main/java/controller/IncidentServlet.java
+>>>>>>> main

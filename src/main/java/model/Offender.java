@@ -5,6 +5,11 @@
  */
 package model;
 
+
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+
 /**
  *
  * @author adam
@@ -14,36 +19,51 @@ public class Offender {
     private String firstName;
     private String surname;
     private String gender;
-    private Incident[] incidents;
+    private LinkedList<Incident> incidents;
     
-    public Offender(String firstName, String surname, String gender, Incident[] incidents){
+    public Offender(String firstName, String surname, String gender, LinkedList<Incident> incidents){
         this.firstName = firstName;
         this.surname = surname;
         this.gender = gender;
         this.incidents = incidents;
+        this.id = "1000001";
     }
+    
+    public Offender(String id, String firstName, String surname, String gender){
+        this.id = id;
+        this.firstName = firstName;
+        this.surname = surname;
+        this.gender = gender;
+    }
+    
     public String getID(){
         return this.id;
+    }
+    public void setID(String id){
+        this.id = id;
     }
     public String getFirstName(){
         return this.firstName;
     }
-    public void setFirstName(String firstNameT){
-        this.firstName = firstNameT;
+
+    public void setFirstName(String firstName){
+        this.firstName = firstName;
     }
     public String getSurname(){
         return this.surname;
     }
-    public void setSurname(String surnameT){
-        this.surname = surnameT;
+
+    public void setSurname(String surname){
+        this.surname = surname;
     }
     public String getGender(){
         return this.gender;
     }
-    public void setGender(String genderT){
-        this.firstName = genderT;
+
+    public void setGender(String gender){
+        this.firstName = gender;
     }
-    public Incident[] getIncidents(String id){
+    public LinkedList<Incident> getIncidents(String id){
         return this.incidents;
     }
     
