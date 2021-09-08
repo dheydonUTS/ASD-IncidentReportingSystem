@@ -32,7 +32,7 @@ public class IncidentServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)   
             throws ServletException, IOException {       
        HttpSession session = request.getSession();  
-       Venue currentVenue = new Venue(1,"Rhodes",12,12); // Fix to add current venue (get from session)
+       Venue currentVenue = new Venue(1,request.getParameter("venueName"),12,12); // Fix to add current venue (get from session)
        String type = request.getParameter("type");
        LocalDate date = LocalDate.parse(request.getParameter("date"));
        LocalTime time = LocalTime.parse(request.getParameter("time"));

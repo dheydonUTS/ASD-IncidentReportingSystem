@@ -12,7 +12,7 @@ import java.time.*;
  *
  * @author dom_h
  */
-public class Ticket implements Serializable {
+public class Ticket implements Serializable{
     private int ticketId;
     private User assignedUser; 
     private Incident incident;

@@ -62,8 +62,8 @@ Venue venue = (Venue)session.getAttribute("venue"); // Get venue from incident i
         </table>
                   </div>
                                 <div>
-                    <form action="ticket.jsp" method="post">
-                        <input type="submit" value="Submit" class="btn btn-primary">
+                    <form action="Ticket.jsp" method="post">
+                        <input type="submit" value="View Ticket" class="btn btn-primary">
                     </form>
                 </div>
                </div>
