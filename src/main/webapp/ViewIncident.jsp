@@ -65,10 +65,5 @@ Venue venue = (Venue)session.getAttribute("venue"); // Get venue from incident i
             </div>
          </div>
       </div>
-<<<<<<< HEAD
-=======
-        
-           
->>>>>>> main
     </body>
 </html>
