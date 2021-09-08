@@ -23,6 +23,7 @@ public class Incident implements Serializable {
     private String description;
     private String reporter;
     private String offender;
+    private Ticket ticket;
 
     public Incident(Venue venue, String type, LocalDate date, LocalTime time, String description, String reporter, String offender) {
         this.venue = venue;
@@ -32,6 +33,7 @@ public class Incident implements Serializable {
         this.description = description;
         this.reporter = reporter;
         this.offender = offender;
+        ticket = new Ticket(1,this,this.time);
     }
 
     
@@ -44,7 +46,15 @@ public class Incident implements Serializable {
 
     public Incident() {
     }
-    
+
+    public Ticket getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(Ticket ticket) {
+        this.ticket = ticket;
+    }
+       
     public int getId() {
         return id;
     }

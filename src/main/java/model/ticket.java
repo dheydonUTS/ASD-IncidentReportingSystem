@@ -12,7 +12,7 @@ import java.time.*;
  *
  * @author dom_h
  */
-public class ticket implements Serializable {
+public class Ticket implements Serializable {
     private int ticketId;
     private User assignedUser; 
     private Incident incident;
@@ -21,17 +21,15 @@ public class ticket implements Serializable {
     private String status;
     private int priority;
 
-    public ticket(int ticketId, User assignedUser, Incident incident, LocalTime createdTime, LocalTime closedTime, String status, int priority) {
+    public Ticket(int ticketId,  Incident incident, LocalTime createdTime) {
         this.ticketId = ticketId;
-        this.assignedUser = assignedUser;
         this.incident = incident;
         this.createdTime = createdTime;
-        this.closedTime = closedTime;
-        this.status = status;
-        this.priority = priority;
+        this.status = "Open";
+        this.priority = 1;
     }
 
-    public ticket() {
+    public Ticket() {
     }
 
     public int getTicketId() {
