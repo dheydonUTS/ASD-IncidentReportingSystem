@@ -1,22 +1,23 @@
 <%-- 
-    Document   : ViewIncident
-    Created on : Sep 5, 2021, 6:53:07 PM
-    Author     : dheydon
+    Document   : Ticket
+    Created on : 08/09/2021, 1:35:31 PM
+    Author     : dom_h
 --%>
 
+<%@page import="model.Ticket"%>
 <%@page import="model.Venue"%>
 <%@page import="model.Incident"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <%
 Incident incident = (Incident)session.getAttribute("incident");
 Venue venue = (Venue)session.getAttribute("venue"); // Get venue from incident in future
+Ticket ticket = incident.getTicket();
 %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>View Incident</title>
+        <title>View Ticket</title>
     </head>
     <body>
         <jsp:include page="components/navbar.jsp"/>
@@ -24,11 +25,23 @@ Venue venue = (Venue)session.getAttribute("venue"); // Get venue from incident i
          <div class="col-md-2 col-sm-0"></div>
          <div class="col-md-8 col-sm-12">
             <div class="card" style="margin-top:2rem;">
-               <h1 class="card-header">View Report</h1>
+               <h1 class="card-header">View Ticket</h1>
                <div class="card-body">
                   <h5 class="card-title">Details:</h5>
                   <div>
                       <table class="table">
+                          <tr>
+                    <td>Ticket ID:</td>
+					<td><%=ticket.getTicketId()%></td>
+				</tr>
+                            <tr>
+                    <td>Status:</td>
+					<td><%=ticket.getStatus()%></td>
+				</tr>
+                                                            <tr>
+                    <td>Ticket Opened:</td>
+					<td><%=ticket.getCreatedTime()%></td>
+				</tr>
                 <tr>
                     <td>Venue</td>
 					<td><%=venue.getName()%></td>
@@ -59,13 +72,8 @@ Venue venue = (Venue)session.getAttribute("venue"); // Get venue from incident i
                     <td>Offender Details</td>
                     <td><%=incident.getOffender()%></td>
                 </tr>            
-        </table>
+                </table>
                   </div>
-                                <div>
-                    <form action="Ticket.jsp" method="post">
-                        <input type="submit" value="View Ticket" class="btn btn-primary">
-                    </form>
-                </div>
                </div>
             </div>
          </div>

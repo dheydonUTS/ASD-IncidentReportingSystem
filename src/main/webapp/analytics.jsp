@@ -6,61 +6,61 @@
 <%@page import="java.util.HashMap"%>
 <!DOCTYPE html>
 <html>
-   <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-      <link href="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.css" rel="stylesheet">
-      <script src="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.js"></script>
-      <style>
-         body { margin: 0; padding: 0; }
-         #map { height: 400px; width: 100%; }
-      </style>
-      <title>Incident Reporting System</title>
-      <!--Load the AJAX API-->
-      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-      <script type="text/javascript">
-         //#map { position: absolute; top: 0; bottom: 0; width: 100%; }
-         
-               // Load the Visualization API and the corechart package.
-               google.charts.load('current', {'packages':['corechart']});
-         
-               // Set a callback to run when the Google Visualization API is loaded.
-               google.charts.setOnLoadCallback(drawChart);
-         
-               // Callback that creates and populates a data table,
-               // instantiates the pie chart, passes in the data and
-               // draws it.
-               function drawChart() {
-         
-                 // Create the data table.
-                 var data = new google.visualization.DataTable();
-                 data.addColumn('string', 'Incident Type');
-                 data.addColumn('number', 'Occurances');
-                 data.addRows([
-                 <c:forEach var="IncidentType" items="${IncidentTypeCount}">
-                     ['${IncidentType.key}', ${IncidentType.value} ], 
-                 </c:forEach>
-         
-         
-         
-                     /*['Mushrooms', 3],
-                   ['Onions', 1],
-                   ['Olives', 1],
-                   ['Zucchini', 1],
-                   ['Pepperoni', 2]*/
-                 ]);
-         
-                 // Set chart options
-                 var options = {'title':'Incidents',
-                                'width':800,
-                                'height':500};
-         
-                 // Instantiate and draw our chart, passing in some options.
-                 var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-                 chart.draw(data, options);
-               }
-             
-      </script>
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.js"></script>
+<style>
+body { margin: 0; padding: 0; }
+#map { height: 400px; width: 100%; }
+</style>
+<title>Incident Reporting System</title>
+ <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+//#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Incident Type');
+        data.addColumn('number', 'Occurances');
+        data.addRows([
+        <c:forEach var="IncidentType" items="${IncidentTypeCount}">
+            ['${IncidentType.key}', ${IncidentType.value} ], 
+        </c:forEach>
+
+
+
+            /*['Mushrooms', 3],
+          ['Onions', 1],
+          ['Olives', 1],
+          ['Zucchini', 1],
+          ['Pepperoni', 2]*/
+        ]);
+
+        // Set chart options
+        var options = {'title':'Incidents',
+                       'width':800,
+                       'height':500};
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+
+</script>
    </head>
    <body>
       <!-- Include the following page for Navbar and Global Style Imports -->

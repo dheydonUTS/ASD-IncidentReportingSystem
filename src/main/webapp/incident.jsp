@@ -24,6 +24,15 @@
                         <h5 class="card-title">Make a report</h5>
                         <form action="IncidentServlet" method="post">
                            <div class="form-group">
+                               <div class="form-group row">
+                              <label class="col-sm-2 col-form-label" for="venueName">Venue:</label>
+                              <select class="form-control" name="venueName" id="type">
+                                 <option value="Rhodes">Rhodes</option>
+                                 <option value="Meadowbank">Meadowbank</option>
+                                 <option value="Broadway">Broadway</option>
+                                 <option value="Macquarie Park">Macquarie Park</option>
+                              </select>
+                              </div>
                               <div class="form-group row">
                               <label class="col-sm-2 col-form-label" for="type">Incident Type:</label>
                               <select class="form-control" name="type" id="type">
