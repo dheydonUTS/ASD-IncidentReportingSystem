@@ -26,46 +26,28 @@ import javax.activation.*;
 public class TestEmailServlet extends HttpServlet {
        public void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-      /*
-      // Recipient's email ID needs to be mentioned.
-      String to = "joe.drew@yahoo.com.au";
- 
-      // Sender's email ID needs to be mentioned
-      String from = "abcd@gmail.com";
- 
-      // Assuming you are sending email from localhost
-      String host = "localhost";
- 
-      // Get system properties
-      Properties properties = System.getProperties();
- 
-      // Setup mail server
-      properties.setProperty("mail.smtp.host", host);
- 
-      // Get the default Session object.
-      Session session = Session.getDefaultInstance(properties);
-      */
-      
-      // Recipient's email ID needs to be mentioned.
-        String to = "joe.drew@yahoo.com.au ";
 
-        // Sender's email ID needs to be mentioned
-        String from = "incidentrs@gmail.com";
-
-        // Assuming you are sending email from through gmails smtp
-        String host = "smtp.gmail.com";
-
-        // Get system properties
-        Properties properties = System.getProperties();
-
-        // Setup mail server
-        properties.put("mail.smtp.host", host);
-        properties.put("mail.smtp.port", "465");
-        properties.put("mail.smtp.ssl.enable", "true");
-        properties.put("mail.smtp.auth", "true");
-
+String  d_email = "incidentrs@gmail.com",
+            d_uname = "Incident Report System",
+            d_password = "IncidentRS!1",
+            d_host = "smtp.gmail.com",
+            d_port  = "465",
+            m_to = "joe.drew@yahoo.com.au",
+            m_subject = "Hi Joe. Test Java Mail.",
+            m_text = "Hi Joe! Testing from Java Mail";
+    Properties props = new Properties();
+    props.put("mail.smtp.user", d_email);
+    props.put("mail.smtp.host", d_host);
+    props.put("mail.smtp.port", d_port);
+    props.put("mail.smtp.starttls.enable","true");
+    props.put("mail.smtp.debug", "true");
+    props.put("mail.smtp.auth", "true");
+    props.put("mail.smtp.socketFactory.port", d_port);
+    props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+    props.put("mail.smtp.socketFactory.fallback", "false");
+    
         // Get the Session object.// and pass username and password
-        Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
+        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
 
             protected PasswordAuthentication getPasswordAuthentication() {
 
@@ -86,10 +68,10 @@ public class TestEmailServlet extends HttpServlet {
          MimeMessage message = new MimeMessage(session);
          
          // Set From: header field of the header.
-         message.setFrom(new InternetAddress(from));
+         message.setFrom(new InternetAddress(d_email));
          
          // Set To: header field of the header.
-         message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+         message.addRecipient(Message.RecipientType.TO, new InternetAddress(m_to));
          
          // Set Subject: header field
          message.setSubject("This is the Subject Line!");
@@ -98,7 +80,13 @@ public class TestEmailServlet extends HttpServlet {
          message.setText("This is actual message");
          
          // Send message
-         Transport.send(message);
+Transport transport = session.getTransport("smtps");
+            transport.connect(d_host, Integer.valueOf(d_port), d_uname, d_password);
+            transport.sendMessage(message, message.getAllRecipients());
+            transport.close();
+
+
+
          String title = "Send Email";
          String res = "Sent message successfully....";
          String docType =
@@ -112,7 +100,9 @@ public class TestEmailServlet extends HttpServlet {
                   "<p align = \"center\">" + res + "</p>\n" +
                "</body></html>"
          );
-      } catch (MessagingException mex) {
+      }catch (AddressException e) {
+            e.printStackTrace();
+        } catch (MessagingException mex) {
          mex.printStackTrace();
       }
    }
