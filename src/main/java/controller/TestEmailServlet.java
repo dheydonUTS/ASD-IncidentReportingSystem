@@ -16,6 +16,10 @@ import java.util.logging.Logger;
 import javax.mail.*;
 import javax.mail.internet.*;
 import javax.activation.*;
+import org.apache.commons.mail.*;
+import org.apache.commons.mail.DefaultAuthenticator;
+import org.apache.commons.mail.Email;
+import org.apache.commons.mail.SimpleEmail;
 
 /**
  *
@@ -36,14 +40,14 @@ public class TestEmailServlet extends HttpServlet {
         MailSSLSocketFactory sf;
            try {
                sf = new MailSSLSocketFactory();
-               sf.setTrustAllHosts(true); 
+               sf.setTrustAllHosts(true);
                 prop.put("mail.smtp.ssl.trust", "*");
                 prop.put("mail.smtp.ssl.socketFactory", sf);
            } catch (GeneralSecurityException ex) {
                Logger.getLogger(TestEmailServlet.class.getName()).log(Level.SEVERE, null, ex);
            }
 
-        
+
         Session session = Session.getInstance(prop,
                 new javax.mail.Authenticator() {
                     protected PasswordAuthentication getPasswordAuthentication() {

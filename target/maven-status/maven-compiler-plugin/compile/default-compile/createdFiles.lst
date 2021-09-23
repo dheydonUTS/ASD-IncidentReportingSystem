@@ -6,7 +6,6 @@ controller\TestEmailServlet.class
 com\mycompany\asd_incident_reporting_system\resources\JavaEE8Resource.class
 controller\IncidentLocationReportServlet.class
 controller\IncidentServlet.class
-controller\TestEmailServlet$1.class
 model\Offender.class
 model\Ticket.class
 model\Venue.class
