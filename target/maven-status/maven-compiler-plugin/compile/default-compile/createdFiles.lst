@@ -14,4 +14,5 @@ controller\AnalyticsServlet.class
 com\mycompany\asd_incident_reporting_system\JAXRSConfiguration.class
 model\DummyVenue.class
 model\User.class
+controller\EmailServlet.class
 controller\GeneralReportsServlet.class
