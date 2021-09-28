@@ -26,8 +26,9 @@ CREATE TABLE "Offender" (
 	offender_id INT NOT NULL GENERATED ALWAYS AS IDENTITY(START WITH 1, INCREMENT BY 1),	
 	first_name VARCHAR(50),
 	last_name VARCHAR(50),
+        gender VARCHAR(50),
         email VARCHAR(50),
-        phone INT,
+        phone VARCHAR(50),
 	is_banned BOOLEAN,
 	PRIMARY KEY (offender_id)
 );
