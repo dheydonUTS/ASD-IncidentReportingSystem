@@ -27,6 +27,13 @@ public class Venue {
         this.lon = lon;
     }
 
+    public Venue(int id, String name, double lat, double lon, String address) {
+        this.id = id;
+        this.name = name;
+        this.lat = lat;
+        this.lon = lon;
+        this.address = address;
+    }
     
     public Venue(int id, String name, String suburb, String address, LinkedList<Incident> incidents) {
         this.id = id;
