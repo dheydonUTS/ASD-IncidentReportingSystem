@@ -15,7 +15,6 @@ import java.time.LocalTime;
 import java.util.LinkedList;
 import model.Incident;
 import model.Offender;
-import model.Ticket;
 import model.User;
 import model.Venue;
 
@@ -25,27 +24,27 @@ import model.Venue;
  */
 public class DBManager {
     private final Statement st;
-    
+
     public DBManager(Connection con) throws SQLException{
         st = con.createStatement(); //Execute statements in the connected database via object con
     }
-    
+
     /*----------------- User -----------------*/
-    
+
     // !! Havent tested !!
     // Return venue object with id, returns null if not found
     public User getUser(int id) throws SQLException {
         ResultSet result = st.executeQuery("SELECT * FROM \"Venue\" WHERE VENUE_ID = "+id+";");
-        User user = new User();
+        User user = new User("email","password");
         if(result.next()){
-            // Retrieve user attributes          
+            // Retrieve user attributes
         }
         System.out.println(user.toString());
         return user;
     }
-    
+
     /*-----------------Venue -----------------*/
-    
+
     // !! Havent tested !!
     // Return venue object with id, returns null if not found
     public Venue getVenue(int id) throws SQLException {
@@ -61,9 +60,9 @@ public class DBManager {
         System.out.println(venue.toString());
         return venue;
     }
-    
+
     /*----------------- Offender -----------------*/
-    
+
     //!! Havent tested !!
     //Return offender object with id, returns null if not found
     public Offender getOffender(int id) throws SQLException{
@@ -81,33 +80,9 @@ public class DBManager {
         System.out.println(offender.toString());
         return offender;
     }
-    
-    /*----------------- Ticket -----------------*/
-    
-    //!! Havent tested !!
-    //Return ticket object with id, returns null if not found
-    public Ticket getTicket(int id) throws SQLException{
-        ResultSet result = st.executeQuery("SELECT * FROM \"Ticket\" WHERE TICKET_ID = "+id+";");
-        Ticket ticket = new Ticket();
-        if(result.next()){
-            ticket.setTicketId(result.getInt("OFFENDER_ID"));
-            int userId = result.getInt("ASSIGNED_USER");
-            //ticket.setAssignedUser(getUser(userId)); Need to finish getUser() method!
-            ticket.setAssignedUser(new User()); // Placeholder blank attribute for now
-            int incidentId = result.getInt("INCIDENT_ID");
-            //ticket.setIncident(getIncident(incidentId)); Need to finish getIncident() method!
-            ticket.setIncident(new Incident()); // Placeholder blank attribute for now
-            ticket.setCreatedTime(result.getTime("CREATED_TIME").toLocalTime());
-            ticket.setClosedTime(result.getTime("CLOSED_TIME").toLocalTime());
-            ticket.setStatus(result.getString("STATUS"));
-            ticket.setPriority(result.getInt("PRIORITY"));
-        }
-        System.out.println(ticket.toString());
-        return ticket;
-    }
-    
-    /*-----------------Incident Reporting-----------------*/
-    
+
+        /*-----------------Incident Reporting-----------------*/
+
     // !! Not complete !!
     //Read all incidents from Incident table in Database
     public LinkedList<Incident> getIncidentList() throws SQLException{

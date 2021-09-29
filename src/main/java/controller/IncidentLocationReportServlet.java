@@ -8,6 +8,8 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Array;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -19,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.DummyIncident;
 import model.DummyVenue;
 import model.Incident;
+import model.User;
 import model.Venue;
 
 /**
@@ -45,12 +48,13 @@ protected void doGet(HttpServletRequest request,
         LinkedList<Incident> mmInc = new LinkedList();
         LinkedList<Incident> ewInc = new LinkedList();
         LinkedList<Incident> bjInc = new LinkedList();
+        User AssignedUser = new User("assignedUserEmail","Password");
+        Venue war = new Venue(1, "Warringah", -33.754350, 151.266890);
         
         
         
-        rrInc.push(new Incident("Shoplift", "Stole something", "Jeff", "Adam"));
-        rrInc.push(new Incident("Arson", "Lit something on fire", "Jeff", "Adam"));
-        
+        rrInc.push(new Incident(war, "Shoplift", LocalDate.now(), LocalTime.now(), "Stole something", "Jeff", "Rachel",AssignedUser,LocalTime.now(),1));
+        /*
         wmInc.push(new Incident("Arson", "Lit something on fire", "Jeff", "Adam"));
         wmInc.push(new Incident("Public Urination", "Peed on a Lady", "Jeff", "Adam"));
         mmInc.push(new Incident("Arson", "Lit something on fire", "Jeff", "Adam"));
@@ -58,7 +62,7 @@ protected void doGet(HttpServletRequest request,
         bjInc.push(new Incident("Broke the Escalators", "Jammed a trolly in the escalator", "Jeff", "Adam"));
         bjInc.push(new Incident("Arson", "Lit something on fire", "Jeff", "Adam"));
         bjInc.push(new Incident("Public Urination", "Peed on a Lady", "Jeff", "Adam"));
-        bjInc.push(new Incident("Shoplift", "Stole something", "Jeff", "Adam"));
+        bjInc.push(new Incident("Shoplift", "Stole something", "Jeff", "Adam"));*/
         
         
         

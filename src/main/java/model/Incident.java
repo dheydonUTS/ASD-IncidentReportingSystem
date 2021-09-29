@@ -23,9 +23,15 @@ public class Incident implements Serializable {
     private String description;
     private String reporter;
     private String offender;
-    private Ticket ticket;
+// Ticketing System Variables
+    private User assignedUser; 
+    private LocalTime createdTime;
+    private LocalTime closedTime;
+    private String status;
+    private int priority;
 
-    public Incident(Venue venue, String type, LocalDate date, LocalTime time, String description, String reporter, String offender) {
+    public Incident(int id, Venue venue, String type, LocalDate date, LocalTime time, String description, String reporter, String offender,  User assignedUser, LocalTime createdTime, LocalTime closedTime,  int priority) {
+        this.id = id;
         this.venue = venue;
         this.type = type;
         this.date = date;
@@ -33,28 +39,32 @@ public class Incident implements Serializable {
         this.description = description;
         this.reporter = reporter;
         this.offender = offender;
-        ticket = new Ticket(1,this,this.time);
+        this.assignedUser = assignedUser;
+        this.createdTime = createdTime;
+        this.closedTime = closedTime;
+        this.status = status;
+        this.priority = priority;
     }
 
-    
-    public Incident(String type, String description, String reporter, String offender){
+    public Incident(Venue venue, String type, LocalDate date, LocalTime time, String description, String reporter, String offender, User assignedUser, LocalTime createdTime,  int priority) {
+        this.venue = venue;
         this.type = type;
+        this.date = date;
+        this.time = time;
         this.description = description;
         this.reporter = reporter;
         this.offender = offender;
+        this.assignedUser = assignedUser;
+        this.createdTime = createdTime;
+        this.status = "open";
+        this.priority = priority;
     }
 
     public Incident() {
     }
-
-    public Ticket getTicket() {
-        return ticket;
-    }
-
-    public void setTicket(Ticket ticket) {
-        this.ticket = ticket;
-    }
-       
+ 
+    
+    
     public int getId() {
         return id;
     }
@@ -95,8 +105,6 @@ public class Incident implements Serializable {
         this.time = time;
     }
 
-    
-    
     public String getDescription() {
         return description;
     }
@@ -120,6 +128,47 @@ public class Incident implements Serializable {
     public void setOffender(String offender) {
         this.offender = offender;
     }
+
+    public User getAssignedUser() {
+        return assignedUser;
+    }
+
+    public void setAssignedUser(User assignedUser) {
+        this.assignedUser = assignedUser;
+    }
+
+    public LocalTime getCreatedTime() {
+        return createdTime;
+    }
+
+    public void setCreatedTime(LocalTime createdTime) {
+        this.createdTime = createdTime;
+    }
+
+    public LocalTime getClosedTime() {
+        return closedTime;
+    }
+
+    public void setClosedTime(LocalTime closedTime) {
+        this.closedTime = closedTime;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
     
     
+
 }
