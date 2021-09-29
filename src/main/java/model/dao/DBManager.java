@@ -15,7 +15,6 @@ import java.time.LocalTime;
 import java.util.LinkedList;
 import model.Incident;
 import model.Offender;
-import model.Ticket;
 import model.User;
 import model.Venue;
 
@@ -82,31 +81,7 @@ public class DBManager {
         return offender;
     }
 
-    /*----------------- Ticket -----------------*/
-
-    //!! Havent tested !!
-    //Return ticket object with id, returns null if not found
-    public Ticket getTicket(int id) throws SQLException{
-        ResultSet result = st.executeQuery("SELECT * FROM \"Ticket\" WHERE TICKET_ID = "+id+";");
-        Ticket ticket = new Ticket();
-        if(result.next()){
-            ticket.setTicketId(result.getInt("OFFENDER_ID"));
-            int userId = result.getInt("ASSIGNED_USER");
-            //ticket.setAssignedUser(getUser(userId)); Need to finish getUser() method!
-            ticket.setAssignedUser(new User("email","password")); // Placeholder blank attribute for now
-            int incidentId = result.getInt("INCIDENT_ID");
-            //ticket.setIncident(getIncident(incidentId)); Need to finish getIncident() method!
-            ticket.setIncident(new Incident()); // Placeholder blank attribute for now
-            ticket.setCreatedTime(result.getTime("CREATED_TIME").toLocalTime());
-            ticket.setClosedTime(result.getTime("CLOSED_TIME").toLocalTime());
-            ticket.setStatus(result.getString("STATUS"));
-            ticket.setPriority(result.getInt("PRIORITY"));
-        }
-        System.out.println(ticket.toString());
-        return ticket;
-    }
-
-    /*-----------------Incident Reporting-----------------*/
+        /*-----------------Incident Reporting-----------------*/
 
     // !! Not complete !!
     //Read all incidents from Incident table in Database

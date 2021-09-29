@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Incident;
+import model.User;
 import model.Venue;
 
 /**
@@ -40,9 +41,10 @@ public class IncidentServlet extends HttpServlet {
        String reporter = request.getParameter("reporter");
        String offender = request.getParameter("offender");
        Venue venue = currentVenue;
+       User assignUser = new User("assignedUserEmail","password");
        // Add some validation
        
-       Incident incident = new Incident(venue,type,date,time,desc,reporter,offender);
+       Incident incident = new Incident(venue,type,date,time,desc,reporter,offender,assignUser,LocalTime.now(),1);
        session.setAttribute("incident", incident);
        session.setAttribute("venue", venue);
        request.getRequestDispatcher("ViewIncident.jsp").include(request,response);

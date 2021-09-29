@@ -4,14 +4,12 @@
     Author     : dom_h
 --%>
 
-<%@page import="model.Ticket"%>
 <%@page import="model.Venue"%>
 <%@page import="model.Incident"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
 Incident incident = (Incident)session.getAttribute("incident");
 Venue venue = (Venue)session.getAttribute("venue"); // Get venue from incident in future
-Ticket ticket = incident.getTicket();
 %>
 <!DOCTYPE html>
 <html>
@@ -32,15 +30,15 @@ Ticket ticket = incident.getTicket();
                       <table class="table">
                           <tr>
                     <td>Ticket ID:</td>
-					<td><%=ticket.getTicketId()%></td>
+					<td><%=incident.getId()%></td>
 				</tr>
                             <tr>
                     <td>Status:</td>
-					<td><%=ticket.getStatus()%></td>
+					<td><%=incident.getStatus()%></td>
 				</tr>
                                                             <tr>
                     <td>Ticket Opened:</td>
-					<td><%=ticket.getCreatedTime()%></td>
+					<td><%=incident.getCreatedTime()%></td>
 				</tr>
                 <tr>
                     <td>Venue</td>

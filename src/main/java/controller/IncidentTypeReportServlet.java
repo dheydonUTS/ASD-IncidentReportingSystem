@@ -8,6 +8,8 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Array;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -20,6 +22,8 @@ import model.DummyIncident;
 import model.DummyVenue;
 import model.Offender;
 import model.Incident;
+import model.User;
+import model.Venue;
 
 /**
  *
@@ -41,16 +45,16 @@ protected void doGet(HttpServletRequest request,
     
     public LinkedList<Incident> dummyData(){
         LinkedList<Incident> DummyList = new LinkedList();
-        
+        User AssignedUser = new User("assignedUserEmail","Password");
+        Venue war = new Venue(1, "Warringah", -33.754350, 151.266890);
                 
-        DummyList.push(new Incident("Arson", "Lit something on fire", "Jeff", "Adam"));
-        DummyList.push(new Incident("Public Urination", "Peed on a Lady", "Jeff", "Adam"));
+        DummyList.push(new Incident(war, "Shoplift", LocalDate.now(), LocalTime.now(), "Stole something", "Jeff", "Rachel",AssignedUser,LocalTime.now(),1));/*
         DummyList.push(new Incident("Arson", "Lit something on fire", "Jeff", "Adam"));
         DummyList.push(new Incident("Arson", "Lit something on fire", "Jeff", "Adam"));
         DummyList.push(new Incident("Broke the Escalators", "Jammed a trolly in the escalator", "Jeff", "Adam"));
         DummyList.push(new Incident("Arson", "Lit something on fire", "Jeff", "Adam"));
         DummyList.push(new Incident("Public Urination", "Peed on a Lady", "Jeff", "Adam"));
-        DummyList.push(new Incident("Shoplift", "Stole something", "Jeff", "Adam"));
+        DummyList.push(new Incident("Shoplift", "Stole something", "Jeff", "Adam"));*/
         
         return DummyList;
     }
