@@ -19,8 +19,6 @@ body { margin: 0; padding: 0; }
  <!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-//#map { position: absolute; top: 0; bottom: 0; width: 100%; }
-
       // Load the Visualization API and the corechart package.
       google.charts.load('current', {'packages':['corechart']});
 
