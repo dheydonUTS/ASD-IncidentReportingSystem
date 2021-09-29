@@ -11,10 +11,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.LinkedList;
 import model.Incident;
+import model.Offender;
 import model.Venue;
 
 /**
@@ -33,32 +33,56 @@ public class DBManager {
     // !! Havent tested !!
     // Return venue object with id, returns null if not found
     public Venue getVenue(int id) throws SQLException {
-        ResultSet result = st.executeQuery("SELECT * FROM \"Venue\" WHERE VENUE_ID = "+id+"");
+        ResultSet result = st.executeQuery("SELECT * FROM \"Venue\" WHERE VENUE_ID = "+id+";");
+        Venue venue = new Venue();
         if(result.next()){
-            int venueId = result.getInt("VENUE_ID");
-            String name = result.getString("VENUE_NAME");
-            String address = result.getString("VENUE_ADDRESS");
-            double lat = result.getDouble("VENUE_LAT");
-            double lon = result.getDouble("VENUE_LON");
-            return new Venue(venueId, name, lat, lon, address);
+            venue.setID(result.getInt("VENUE_ID"));
+            venue.setName(result.getString("VENUE_NAME"));
+            venue.setAddress(result.getString("VENUE_ADDRESS"));
+            venue.setLat(result.getDouble("VENUE_LAT"));
+            venue.setLon(result.getDouble("VENUE_LON"));
         }
-        return null;
+        return venue;
+    }
+    
+    /*----------------- Offender -----------------*/
+    
+    //!! Havent tested !!
+    //Return offender object with id, returns null if not found
+    public Offender getOffender(int id) throws SQLException{
+        ResultSet result = st.executeQuery("SELECT * FROM \"Offender\";");
+        Offender offender = new Offender();
+        if(result.next()){
+            offender.setID(result.getString("OFFENDER_ID"));
+            offender.setFirstName(result.getString("FIRST_NAME"));
+            offender.setSurname(result.getString("LAST_NAME"));
+            offender.setEmail(result.getString("EMAIL"));
+            offender.setPhone(result.getString("PHONE"));
+            offender.setPhone(result.getString("PHONE"));
+            offender.setGender(result.getString("GENDER"));
+        }
+        return offender;
     }
     
     /*-----------------Incident Reporting-----------------*/
     
-    // !! Havent tested !!
+    // !! Not complete !!
     //Read all incidents from Incident table in Database
     public LinkedList<Incident> getIncidentList() throws SQLException{
-        ResultSet result = st.executeQuery("SELECT * FROM INCIDENTRS.\"Incident\"");
+        LinkedList<Incident> incidents = new LinkedList<>();
+        ResultSet result = st.executeQuery("SELECT * FROM INCIDENTRS.\"Incident\";");
         while(result.next()){
-            int incidentId = result.getInt("INCIDENT_ID");
+            Incident incident = new Incident();
+            incident.setId(result.getInt("INCIDENT_ID"));
             int venueId = result.getInt("VENUE_ID"); // Have to retrieve object
-            String type = result.getString("TYPE");
-            String description = result.getString("DESCRIPTION");
+            incident.setVenue(getVenue(venueId));
+            incident.setType(result.getString("TYPE"));
+            incident.setDescription(result.getString("DESCRIPTION"));
             Date date = result.getDate("DATE");
+            incident.setDate(date.toLocalDate());
             Time time = result.getTime("TIME");
-            String reporter = result.getString("REPORTER");
+            incident.setTime(time.toLocalTime());
+            incident.setReporter(result.getString("REPORTER"));
             int offenderId = result.getInt("OFFENDER_ID");
             // Have to retrieve object, Incident uses string "offenderName"
             int ticketId = result.getInt("TICKET_ID"); // Have to retrieve object
