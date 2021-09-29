@@ -36,7 +36,7 @@ public class DBManager {
     // Return venue object with id, returns null if not found
     public User getUser(int id) throws SQLException {
         ResultSet result = st.executeQuery("SELECT * FROM \"Venue\" WHERE VENUE_ID = "+id+";");
-        User user = new User();
+        User user = new User("email","password");
         if(result.next()){
             // Retrieve user attributes          
         }
@@ -93,7 +93,7 @@ public class DBManager {
             ticket.setTicketId(result.getInt("OFFENDER_ID"));
             int userId = result.getInt("ASSIGNED_USER");
             //ticket.setAssignedUser(getUser(userId)); Need to finish getUser() method!
-            ticket.setAssignedUser(new User()); // Placeholder blank attribute for now
+            ticket.setAssignedUser(new User("email","password")); // Placeholder blank attribute for now
             int incidentId = result.getInt("INCIDENT_ID");
             //ticket.setIncident(getIncident(incidentId)); Need to finish getIncident() method!
             ticket.setIncident(new Incident()); // Placeholder blank attribute for now
