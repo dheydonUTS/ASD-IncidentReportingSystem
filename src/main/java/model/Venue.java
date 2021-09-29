@@ -5,16 +5,27 @@
  */
 package model;
 
+import java.io.Serializable;
+import java.util.LinkedList;
+
 /**
  *
  * @author dom_h
  */
-public class Venue {
+public class Venue implements Serializable{
     private int id;
     private String name;
     private double lat;
     private double lon;
+    private String suburb;
+    private String address;
+    private LinkedList<Incident> incidents;
 
+    public Venue() {
+    }
+
+    
+    
     public Venue(int id, String name, double lat, double lon) {
         this.id = id;
         this.name = name;
@@ -22,16 +33,40 @@ public class Venue {
         this.lon = lon;
     }
 
+    public Venue(int id, String name, double lat, double lon, String address) {
+        this.id = id;
+        this.name = name;
+        this.lat = lat;
+        this.lon = lon;
+        this.address = address;
+    }
+    
+    public Venue(int id, String name, String suburb, String address, LinkedList<Incident> incidents) {
+        this.id = id;
+        this.name = name;
+        this.suburb = suburb;
+        this.address = address;
+        this.incidents = incidents;
+    }
+    
+    public Venue(int id, String name, String suburb, String address) {
+        this.id = id;
+        this.name = name;
+        this.suburb = suburb;
+        this.address = address;
+    }
+
+
     @Override
     public String toString() {
         return "Venue{" + "name=" + name + '}';
     }
 
-    public int getId() {
+    public int getID() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setID(int id) {
         this.id = id;
     }
 
@@ -58,6 +93,29 @@ public class Venue {
     public void setLon(double lon) {
         this.lon = lon;
     }
+
+
+    public void setSuburb(String suburb){
+        this.suburb = suburb;
+    }
+    public String getSuburb(){
+        return suburb;
+    }
     
+    public void setAddress(String address){
+        this.address = address;
+    }
     
+    public String getAddress(){
+        return address;
+    }
+    public LinkedList<Incident> getIncidents() {
+        return incidents;
+    }
+    public void setIncidents(LinkedList<Incident> incidents) {
+        this.incidents = incidents;
+    }
 }
+
+
+

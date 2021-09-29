@@ -7,6 +7,22 @@
     <servlet>
         <servlet-name>IncidentServlet</servlet-name>
         <servlet-class>controller.IncidentServlet</servlet-class>
+	</servlet>
+    <servlet>
+        <servlet-name>GeneralReportsServlet</servlet-name>
+        <servlet-class>controller.GeneralReportsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OffenderReportServlet</servlet-name>
+        <servlet-class>controller.OffenderReportServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>IncidentLocationReportServlet</servlet-name>
+        <servlet-class>controller.IncidentLocationReportServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>IncidentTypeReportServlet</servlet-name>
+        <servlet-class>controller.IncidentTypeReportServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AnalyticsServlet</servlet-name>
@@ -15,7 +31,24 @@
     <servlet-mapping>
         <servlet-name>IncidentServlet</servlet-name>
         <url-pattern>/IncidentServlet</url-pattern>
+	</servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GeneralReportsServlet</servlet-name>
+        <url-pattern>/GeneralReports</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OffenderReportServlet</servlet-name>
+        <url-pattern>/OffenderReport</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IncidentLocationReportServlet</servlet-name>
+        <url-pattern>/IncidentLocationReport</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IncidentTypeReportServlet</servlet-name>
+        <url-pattern>/IncidentTypeReport</url-pattern>
+    </servlet-mapping>
+
     <session-config>
         <session-timeout>
             30
