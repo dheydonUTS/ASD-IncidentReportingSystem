@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Incident;
+import model.User;
 import model.Venue;
 
 /**
@@ -47,14 +48,16 @@ protected void doGet(HttpServletRequest request,
         Venue war = new Venue(1, "Warringah", -33.754350, 151.266890);
         Venue bon = new Venue(2, "Bondi", -33.8923427, 151.2508617);
         Venue par = new Venue(3, "Parramatta", -33.817805, 151.0020877);
+        // GET RID OF THIS ONLY HERE SO IT BUILDS
+        User AssignedUser = new User("assignedUserEmail","Password");
 
-        DummyList.push(new Incident(war, "Shoplift", LocalDate.now(), LocalTime.now(), "Stole something", "Jeff", "Rachel"));
-        DummyList.push(new Incident(bon, "Shoplift", LocalDate.now(), LocalTime.now(), "Stole something again", "Caitlin", "Rachel"));
-        DummyList.push(new Incident(par, "Fall", LocalDate.now(), LocalTime.now(), "Someone fell", "Robert", "James"));
-        DummyList.push(new Incident(war, "Fall", LocalDate.now(), LocalTime.now(), "Someone also fell", "Melinda", "Tom"));
-        DummyList.push(new Incident(bon, "Robbery", LocalDate.now(), LocalTime.now(), "Someone robbed a store", "Robert", "Brendan"));
-        DummyList.push(new Incident(bon, "Crash", LocalDate.now(), LocalTime.now(), "Someone crashed", "Susie", "Ned"));
-        DummyList.push(new Incident(bon, "Shoplift", LocalDate.now(), LocalTime.now(), "Another steal", "Ahmed", "Alex"));
+        DummyList.push(new Incident(war, "Shoplift", LocalDate.now(), LocalTime.now(), "Stole something", "Jeff", "Rachel",AssignedUser,LocalTime.now(),1));
+        DummyList.push(new Incident(bon, "Shoplift", LocalDate.now(), LocalTime.now(), "Stole something again", "Caitlin", "Rachel",AssignedUser,LocalTime.now(),1));
+        DummyList.push(new Incident(par, "Fall", LocalDate.now(), LocalTime.now(), "Someone fell", "Robert", "James",AssignedUser,LocalTime.now(),1));
+        DummyList.push(new Incident(war, "Fall", LocalDate.now(), LocalTime.now(), "Someone also fell", "Melinda", "Tom",AssignedUser,LocalTime.now(),1));
+        DummyList.push(new Incident(bon, "Robbery", LocalDate.now(), LocalTime.now(), "Someone robbed a store", "Robert", "Brendan",AssignedUser,LocalTime.now(),1));
+        DummyList.push(new Incident(bon, "Crash", LocalDate.now(), LocalTime.now(), "Someone crashed", "Susie", "Ned",AssignedUser,LocalTime.now(),1));
+        DummyList.push(new Incident(bon, "Shoplift", LocalDate.now(), LocalTime.now(), "Another steal", "Ahmed", "Alex",AssignedUser,LocalTime.now(),1));
 
         return DummyList;
     }
