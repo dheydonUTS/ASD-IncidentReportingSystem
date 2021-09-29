@@ -17,12 +17,6 @@
                     <form>
                         <div class="card-body">
                             <h5 class="card-title">Offender Type</h5>
-                            <!--<div class="btn-group" role="group">
-                                <input type="radio" class="btn-check" name="offenderType" id="new" value="new" autocomplete="off" checked>
-                                <label class="btn btn-outline-primary" for="new">New</label>
-                                <input type="radio" class="btn-check" name="offenderType" id="existing" value="existing" autocomplete="off">
-                                <label class="btn btn-outline-primary" for="existing">Existing</label>
-                            </div>-->
                             <div class="btn-group" role="group">
                                 <button type="button" class="btn btn-outline-primary" onclick="toggleView('new')">New</button>
                                 <button type="button" class="btn btn-outline-primary" onclick="toggleView('existing')">Existing</button>
