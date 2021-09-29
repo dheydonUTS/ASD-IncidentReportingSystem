@@ -8,9 +8,7 @@
  * Created: 29/09/2021
  */
 
-DROP TABLE "Message";
 DROP TABLE "Incident";
-DROP TABLE "Ticket";
 DROP TABLE "Offender";
 DROP TABLE "Venue";
 DROP TABLE "User";

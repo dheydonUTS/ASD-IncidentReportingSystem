@@ -33,18 +33,6 @@ CREATE TABLE "Offender" (
 	PRIMARY KEY (offender_id)
 );
 
-CREATE TABLE "Ticket" (
-ticket_id INT NOT NULL GENERATED ALWAYS AS IDENTITY(START WITH 1, INCREMENT BY 1),
-	assigned_user INT,
-	incident_id INT,
-	created_time TIMESTAMP NOT NULL,
-	closed_time TIMESTAMP,
-	status VARCHAR(20),
-	priority INT,
-	PRIMARY KEY (ticket_id),
-	FOREIGN KEY (assigned_user) REFERENCES "User"(user_id)
-);
-
 CREATE TABLE "Incident" (
 	incident_id INT NOT NULL GENERATED ALWAYS AS IDENTITY(START WITH 1, INCREMENT BY 1),
 	venue_id INT NOT NULL,
@@ -54,20 +42,11 @@ CREATE TABLE "Incident" (
 	time TIME,
 	reporter VARCHAR(50),
 	offender_id INT,
-	ticket_id INT,
+	assigned_user INT,
+	ticket_created_time TIMESTAMP NOT NULL,
+	ticket_closed_time TIMESTAMP,
+	status VARCHAR(20),
+	priority INT,
 	PRIMARY KEY (incident_id),
 	FOREIGN KEY (venue_id) REFERENCES "Venue"(venue_id),
-	FOREIGN KEY (offender_id) REFERENCES "Offender" (offender_id),
-	FOREIGN KEY (ticket_id) REFERENCES "Ticket" (ticket_id)
-);
-
-CREATE TABLE "Message" (
-	message_id INT NOT NULL GENERATED ALWAYS AS IDENTITY(START WITH 1, INCREMENT BY 1),
-	content VARCHAR(255),
-	incident_id INT,
-	offender_id INT,
-	PRIMARY KEY (message_id),
-	FOREIGN KEY (incident_id) REFERENCES "Incident" (incident_id),
-	FOREIGN KEY (offender_id) REFERENCES "Offender" (offender_id)
-);
-
+	FOREIGN KEY (offender_id) REFERENCES "Offender" (offender_id));
