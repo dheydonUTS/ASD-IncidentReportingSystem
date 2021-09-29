@@ -16,10 +16,7 @@ import java.util.logging.Logger;
 import javax.mail.*;
 import javax.mail.internet.*;
 import javax.activation.*;
-import org.apache.commons.mail.*;
-import org.apache.commons.mail.DefaultAuthenticator;
-import org.apache.commons.mail.Email;
-import org.apache.commons.mail.SimpleEmail;
+
 
 /**
  *
