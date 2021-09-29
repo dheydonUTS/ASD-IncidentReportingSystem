@@ -47,26 +47,30 @@ Brookvale NSW 2100',
 INSERT INTO "Offender"(
 first_name,
 last_name,
+gender,
 email,
 phone,
 is_banned)
 VALUES(
 'Josh',
 'Green',
+'Male',
 'off@ender.com',
-0412345678,
+'0412345678',
 TRUE),
 (
 'Emily',
-'Green',
+'Green', 
+'Female',
 'not@ender.com',
-0412245678,
+'0412245678',
 FALSE),
 (
 'Zoe',
 'Green',
+'Female',
 'test@ender.com',
-0412098765,
+'0412098765',
 TRUE);
 
 /* NOTE: MISSING INCIDENT ID, CLOSED TIME FIELDS */

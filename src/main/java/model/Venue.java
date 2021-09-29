@@ -5,13 +5,14 @@
  */
 package model;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 
 /**
  *
  * @author dom_h
  */
-public class Venue {
+public class Venue implements Serializable{
     private int id;
     private String name;
     private double lat;
@@ -20,6 +21,11 @@ public class Venue {
     private String address;
     private LinkedList<Incident> incidents;
 
+    public Venue() {
+    }
+
+    
+    
     public Venue(int id, String name, double lat, double lon) {
         this.id = id;
         this.name = name;
@@ -27,6 +33,13 @@ public class Venue {
         this.lon = lon;
     }
 
+    public Venue(int id, String name, double lat, double lon, String address) {
+        this.id = id;
+        this.name = name;
+        this.lat = lat;
+        this.lon = lon;
+        this.address = address;
+    }
     
     public Venue(int id, String name, String suburb, String address, LinkedList<Incident> incidents) {
         this.id = id;

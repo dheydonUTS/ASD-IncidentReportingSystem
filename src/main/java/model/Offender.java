@@ -6,6 +6,7 @@
 package model;
 
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -14,11 +15,14 @@ import java.util.Map;
  *
  * @author adam
  */
-public class Offender {
+public class Offender implements Serializable{
     private String id;
     private String firstName;
     private String surname;
+    private String email;
+    private String phone;
     private String gender;
+    private boolean isBanned;
     private LinkedList<Incident> incidents;
     
     public Offender(String firstName, String surname, String gender, LinkedList<Incident> incidents){
@@ -35,6 +39,35 @@ public class Offender {
         this.surname = surname;
         this.gender = gender;
     }
+
+    public Offender() {
+    }
+
+    public boolean isIsBanned() {
+        return isBanned;
+    }
+
+    public void setIsBanned(boolean isBanned) {
+        this.isBanned = isBanned;
+    }
+    
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+    
+    
     
     public String getID(){
         return this.id;
