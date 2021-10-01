@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
-import java.time.LocalTime;
 import java.util.LinkedList;
 import model.Incident;
 import model.Offender;
@@ -86,8 +85,7 @@ public class DBManager {
     // !! Not complete !!
     //Read all incidents from Incident table in Database
     public LinkedList<Incident> getIncidentList() throws SQLException{
-        LinkedList<Incident> incidents = new LinkedList<>();
-        ResultSet result = st.executeQuery("SELECT * FROM INCIDENTRS.\"Incident\";");
+        LinkedList<Incident> incidents = new LinkedList<>();ResultSet result = st.executeQuery("SELECT * FROM INCIDENTRS.\"Incident\";");
         while(result.next()){
             Incident incident = new Incident();
             incident.setId(result.getInt("INCIDENT_ID"));
@@ -100,8 +98,37 @@ public class DBManager {
             incident.setReporter(result.getString("REPORTER"));
             int offenderId = result.getInt("OFFENDER_ID");
             // Have to retrieve object, Incident uses string "offenderName"
-            int ticketId = result.getInt("TICKET_ID"); // Have to retrieve object
+            int userId = result.getInt("ASSIGNED_USER");
+            incident.setAssignedUser(getUser(userId));
+            incident.setCreatedTime(result.getTime("TICKET_CREATED_TIME").toLocalTime());
+            incident.setClosedTime(result.getTime("TICKET_CLOSED_TIME").toLocalTime());
+            incident.setStatus(result.getString("STATUS"));
+            incident.setPriority(result.getInt("PRIORITY"));
         }
         return null;
+    }
+    
+    public Incident getIncident(int id) throws SQLException{
+        Incident incident = new Incident();
+        ResultSet result = st.executeQuery("SELECT * FROM \"Incident\" WHERE INCIDENT_ID = "+id+";");
+        if(result.next()){
+            incident.setId(result.getInt("INCIDENT_ID"));
+            int venueId = result.getInt("VENUE_ID"); // Have to retrieve object
+            incident.setVenue(getVenue(venueId));
+            incident.setType(result.getString("TYPE"));
+            incident.setDescription(result.getString("DESCRIPTION"));
+            incident.setDate(result.getDate("DATE").toLocalDate());
+            incident.setTime(result.getTime("TIME").toLocalTime());
+            incident.setReporter(result.getString("REPORTER"));
+            int offenderId = result.getInt("OFFENDER_ID");
+            // Have to retrieve object, Incident uses string "offenderName"
+            int userId = result.getInt("ASSIGNED_USER");
+            incident.setAssignedUser(getUser(userId));
+            incident.setCreatedTime(result.getTime("TICKET_CREATED_TIME").toLocalTime());
+            incident.setClosedTime(result.getTime("TICKET_CLOSED_TIME").toLocalTime());
+            incident.setStatus(result.getString("STATUS"));
+            incident.setPriority(result.getInt("PRIORITY"));
+        }
+        return incident;
     }
 }
