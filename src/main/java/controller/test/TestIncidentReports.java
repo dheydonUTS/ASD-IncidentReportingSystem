@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package controller.test;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -16,6 +16,7 @@ import model.dao.DBManager;
  * @author vince
  */
 public class TestIncidentReports {
+
     private DBConnector connector;
     private Connection conn;
     private DBManager manager;
@@ -25,12 +26,18 @@ public class TestIncidentReports {
         conn = connector.connection();
         manager = new DBManager(conn);
     }
-    
+
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
-        System.out.println(new TestIncidentReports().testGetIncident(1).toString());
+        int incident = 0;
+
+        TestIncidentReports test = new TestIncidentReports();
+        System.out.println("TestIncidentReports running!");
+        incident = test.testGetIncident(1);
+        System.out.println("In code: " + incident);
+
     }
-    
-    public Incident testGetIncident(int id) throws SQLException{
-        return manager.getIncident(id);
+
+    public int testGetIncident(int id) throws SQLException {
+        return manager.getIncidentId(id);
     }
 }

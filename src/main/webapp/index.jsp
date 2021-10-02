@@ -17,6 +17,6 @@
         <p>Prototype R0</p>
     </div>
 </div>
-
+<jsp:include page="/ConnServlet" flush="true" />
 </body>
 </html>
