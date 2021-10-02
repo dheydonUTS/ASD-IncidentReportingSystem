@@ -32,7 +32,6 @@ public class IssueWarning extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.getRequestDispatcher("issuewarning.jsp").include(request, response);
-
     }
 
     @Override
@@ -43,9 +42,6 @@ public class IssueWarning extends HttpServlet {
         String email = request.getParameter("email");
         int phone = Integer.parseInt(request.getParameter("phone"));
         Boolean is_banned = Boolean.parseBoolean(request.getParameter("is_banned"));
-        // manager.addOffender(first_name, last_name, email, phone, is_banned);
-        
-
     }
 
 }
