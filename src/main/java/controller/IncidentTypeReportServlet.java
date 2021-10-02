@@ -18,8 +18,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.DummyIncident;
-import model.DummyVenue;
 import model.Offender;
 import model.Incident;
 import model.User;
