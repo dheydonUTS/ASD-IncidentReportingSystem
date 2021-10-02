@@ -62,22 +62,22 @@ public class DBManager {
 
     /*----------------- Offender -----------------*/
 
-    //!! Havent tested !!
-    //Return offender object with id, returns null if not found
+
+    //Return Offender Object, alternatively null if not found
     public Offender getOffender(int id) throws SQLException{
         ResultSet result = st.executeQuery("SELECT * FROM \"Offender\" WHERE OFFENDER_ID = "+id+"");
-        Offender offender = new Offender();
         while(result.next()){
-            offender.setID(result.getString("OFFENDER_ID"));
-            offender.setFirstName(result.getString("FIRST_NAME"));
-            offender.setLastName(result.getString("LAST_NAME"));
-            offender.setEmail(result.getString("EMAIL"));
-            offender.setPhone(result.getString("PHONE"));
-            offender.setPhone(result.getString("PHONE"));
-            offender.setGender(result.getString("GENDER"));
+            return new Offender(
+            result.getInt("OFFENDER_ID"),
+            result.getString("FIRST_NAME"),
+            result.getString("LAST_NAME"),
+            result.getString("EMAIL"),
+            result.getString("PHONE"),
+            result.getString("GENDER"),
+            result.getBoolean("ISBANNED")
+            );
         }
-        System.out.println(offender.toString());
-        return offender;
+        return null;
     }
 
         /*-----------------Incident Reporting-----------------*/

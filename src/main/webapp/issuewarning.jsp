@@ -58,7 +58,7 @@
                                 <br>
                                 <select class="form-select">
                                 <c:forEach var="Offender" items="${Offenders}">
-                                    <option value="${Offender.id}">${Offender.firstName} ${Offender.surname}</option>
+                                    <option value="${Offender.id}">${Offender.firstName} ${Offender.lastName}</option>
                                 </c:forEach>
                                 </select>
                             </div>
