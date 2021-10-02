@@ -27,22 +27,26 @@
                                 <br>
                                 <div class="mb-3">
                                     <label for="firstName" class="form-label">First Name</label>
-                                    <input type="text" class="form-control" id="first_name">
+                                    <input type="text" class="form-control" id="first_name" name="first_name">
                                 </div>
                                 <div class="mb-3">
                                     <label for="lastName" class="form-label">Last Name</label>
-                                    <input type="text" class="form-control" id="last_name">
+                                    <input type="text" class="form-control" id="last_name" name="last_name">
+                                </div>
+                                                                <div class="mb-3">
+                                    <label for="gender" class="form-label">Gender</label>
+                                    <input type="text" class="form-control" id="gender" name="gender">
                                 </div>
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email (if known)</label>
-                                    <input type="email" class="form-control" id="email">
+                                    <input type="email" class="form-control" id="email" name="email">
                                 </div>
                                 <div class="mb-3">
                                     <label for="phone" class="form-label">Phone Number (if known)</label>
-                                    <input type="text" class="form-control" id="phone">
+                                    <input type="text" class="form-control" id="phone" name="phone">
                                 </div>
                                 <div class="mb-3 form-check">
-                                    <input type="checkbox" class="form-check-input" id="is_banned">
+                                    <input type="checkbox" class="form-check-input" id="is_banned" name="is_banned">
                                     <label class="form-check-label" for="is_banned">Banned?</label>
                                 </div>
                             </div>
