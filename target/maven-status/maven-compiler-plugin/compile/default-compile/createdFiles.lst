@@ -1,3 +1,5 @@
+controller\IssueWarning.class
+controller\LoginServlet.class
 controller\IncidentTypeReportServlet.class
 model\dao\DB.class
 model\dao\DBConnector.class
@@ -11,10 +13,10 @@ controller\IncidentLocationReportServlet.class
 controller\IncidentServlet.class
 controller\TestEmailServlet$1.class
 model\Offender.class
-model\Ticket.class
 model\Venue.class
 controller\AnalyticsServlet.class
 com\mycompany\asd_incident_reporting_system\JAXRSConfiguration.class
+controller\RegisterServlet.class
 model\DummyVenue.class
 model\User.class
 controller\EmailServlet.class

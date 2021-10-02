@@ -42,6 +42,23 @@ public class DBManager {
         System.out.println(user.toString());
         return user;
     }
+    
+    public void createUser(String email, String password) throws SQLException {
+        st.executeUpdate("INSERT INTO INCIDENTRS.\"USER\" VALUES ("+email+", "+password+")");
+    }
+    
+    public User findUser(String email, String password) throws SQLException {
+        ResultSet result = st.executeQuery("SELECT * FROM INCIDENTRS.USERS WHERE EMAIL='" + email + "' AND PASSWORD='" + password + "'");
+        User user = new User("email","password");
+        if(result.next()){
+            String currEmail = result.getString(1);
+            String currPassword = result.getString(2);
+            if (currEmail.equals(email) && currPassword.equals(password)) {
+                //Obtain user details to return a new user
+            }
+        }
+        return user;
+    }
 
     /*-----------------Venue -----------------*/
 
