@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.dao.DBConnector;
 import model.dao.DBManager;
 
 /**
@@ -26,11 +27,34 @@ public class IssueWarning extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private DBManager manager;
+    private DBConnector conn;
 
-
+    /**
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        try {
+            conn = new DBConnector();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(IssueWarning.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(IssueWarning.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            manager = new DBManager(conn.connection());
+            //LinkedList<Offenders> offenders = manager.getOffenders();
+        } catch (SQLException ex) {
+            Logger.getLogger(IssueWarning.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         request.getRequestDispatcher("issuewarning.jsp").include(request, response);
 
     }
