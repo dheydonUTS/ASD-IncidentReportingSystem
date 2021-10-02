@@ -21,3 +21,9 @@ VALUES
 (1,'Fall', 'Elderly lady shoved in back', CURRENT_DATE, CURRENT_TIME, 'Jeff',1,1,CURRENT_TIMESTAMP,'resolved',1),
 (2,'Shoplift', 'Stole a fridge', CURRENT_DATE, CURRENT_TIME, 'Naomi',2,2,CURRENT_TIMESTAMP,'in progress',5),
 (3,'Robbery', 'Stole money', CURRENT_DATE, CURRENT_TIME, 'Ben',3,2,CURRENT_TIMESTAMP, 'created', 3);
+
+INSERT INTO "Warning"(venue_id,description,offender_id)
+VALUES
+(1,'Stop stealing',1),
+(2,'Stop smoking', 1),
+(3,'Avoid leaving your tools lying around', 3);

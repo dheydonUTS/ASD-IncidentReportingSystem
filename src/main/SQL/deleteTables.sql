@@ -12,3 +12,4 @@ DROP TABLE "Incident";
 DROP TABLE "Offender";
 DROP TABLE "Venue";
 DROP TABLE "User";
+DROP TABLE "Warning";
