@@ -70,7 +70,7 @@ public class DBManager {
         while(result.next()){
             offender.setID(result.getString("OFFENDER_ID"));
             offender.setFirstName(result.getString("FIRST_NAME"));
-            offender.setSurname(result.getString("LAST_NAME"));
+            offender.setLastName(result.getString("LAST_NAME"));
             offender.setEmail(result.getString("EMAIL"));
             offender.setPhone(result.getString("PHONE"));
             offender.setPhone(result.getString("PHONE"));

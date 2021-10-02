@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="model.Venue"%>
+<%@page import="model.Offender"%>
 
 <!DOCTYPE html>
 <html>
@@ -55,10 +57,9 @@
                             <div id="existingOffender" style="display: none;">
                                 <br>
                                 <select class="form-select">
-                                    <option selected>Choose an offender</option>
-                                    <option value="1">Jeff Bezos</option>
-                                    <option value="2">Jon Leg</option>
-                                    <option value="3">Michael Test</option>
+                                <c:forEach var="Offender" items="${Offenders}">
+                                    <option value="${Offender.id}">${Offender.firstName} ${Offender.surname}</option>
+                                </c:forEach>
                                 </select>
                             </div>
 
