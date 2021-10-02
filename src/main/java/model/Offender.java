@@ -39,6 +39,16 @@ public class Offender implements Serializable{
         this.surname = surname;
         this.gender = gender;
     }
+    
+     public Offender(String id, String firstName, String surname, String gender, String email, String phone, Boolean isBanned){
+        this.id = id;
+        this.firstName = firstName;
+        this.surname = surname;
+        this.gender = gender;
+        this.email = email;
+        this.phone = phone;
+        this.isBanned = isBanned;
+    }
 
     public Offender() {
     }
