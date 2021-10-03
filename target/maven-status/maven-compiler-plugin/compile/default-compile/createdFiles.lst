@@ -1,0 +1,6 @@
+com\mycompany\asd_incident_reporting_system\resources\JavaEE8Resource.class
+controller\IncidentTypeReportServlet.class
+model\dao\DB.class
+model\Venue.class
+model\Incident.class
+model\User.class
