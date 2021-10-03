@@ -58,7 +58,8 @@
 						href="Login.jsp">Login</a>
 					<a class="btn btn-info" href="Register.jsp">Register</a>
                                <%} else {%>
-                                    <a class="btn btn-outline-secondary" style="margin-right: 10px"
+                               <li class="nav-item"><a class="nav-link" href="Account.jsp">User: <%= user.getEmail() %></a></li>    
+                               <a class="btn btn-outline-secondary" style="margin-right: 10px"
 						href="Logout.jsp">Logout</a>
 					<a class="btn btn-info" href="Register.jsp">Register</a>
                                <%}%>

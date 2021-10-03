@@ -40,6 +40,10 @@
         <servlet-name>IncidentListServlet</servlet-name>
         <servlet-class>controller.IncidentListServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>editAccountServlet</servlet-name>
+        <servlet-class>controller.editAccountServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AnalyticsServlet</servlet-name>
         <url-pattern>/Analytics</url-pattern>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>IncidentListServlet</servlet-name>
         <url-pattern>/IncidentListServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>editAccountServlet</servlet-name>
+        <url-pattern>/editAccountServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

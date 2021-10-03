@@ -52,7 +52,7 @@ public class DBManager {
     public User findUser(String email, String password) throws SQLException {
         String fetch = "SELECT * FROM INCIDENTRS.\"User\" WHERE EMAIL='" + email + "' AND PASSWORD='" + password + "'";
         ResultSet result = st.executeQuery(fetch);
-        User user = new User("email","password");
+        User user = new User(email, password);
         if(result.next()){
             String currEmail = result.getString(2);
             String currPassword = result.getString(5);
@@ -61,6 +61,14 @@ public class DBManager {
             }
         }
         return null;
+    }
+    
+    public void deleteUser(String email) throws SQLException {
+        st.executeUpdate("DELETE FROM INCIDENTRS.\"User\" WHERE EMAIL = '" + email + "'");
+    }
+    
+    public void updateUser(String newEmail, String newPassword, String oldEmail) throws SQLException {
+        st.executeUpdate("UPDATE INCIDENTRS.\"User\" SET EMAIL= '" + newEmail + "', PASSWORD='"+newPassword+"' WHERE EMAIL='"+oldEmail+"'");
     }
 
     /*-----------------Venue -----------------*/
