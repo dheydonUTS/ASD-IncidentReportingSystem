@@ -16,7 +16,7 @@
             <div class="col-md-8 col-sm-12">
                 <div class="card" style="margin-top:2rem;">
                     <h1 class="card-header">Issue Warning</h1>
-                    <form method="POST" action="IssueWarning">
+                    <form method="POST" action="IssueWarning" id="warning_form">
                         <div class="card-body">
                             <h5 class="card-title">Offender Type</h5>
                             <div class="btn-group" role="group">
@@ -76,13 +76,46 @@
                                     <option value="${Venue.id}">${Venue.name}</option>
                                 </c:forEach>
                             </select>
-                            <input type="submit">
+                            <a href="javascript:void()"
+							onclick="sendWarning(); "
+							class="btn btn-primary">Submit</a>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
+        
+        	<!-- Modal -->
+	<div class="modal" id="sending" tabindex="-1" role="dialog"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title" id="exampleModalLabel">Submitting Warning</h2>
+				</div>
+				<div class="modal-body">
+					<div class="text-center">
+
+						<div class="spinner-border spinner-border-lg text-info" style="width: 5rem; height: 5rem;"
+							role="status">
+						</div>
+
+					</div>
+					<br>
+					<p>Please don't navigate away. We are sending an email to the offender.</p>
+				</div>
+
+			</div>
+		</div>
+	</div>
+                
         <script>
+            function sendWarning() {
+                var myModal = new bootstrap.Modal(document.getElementById('sending'), {});
+                myModal.show();
+                document.getElementById('warning_form').submit();
+            }
+            
             function toggleView(view) {
                 var newOffender = document.getElementById("newOffender");
                 var existingOffender = document.getElementById("existingOffender");
