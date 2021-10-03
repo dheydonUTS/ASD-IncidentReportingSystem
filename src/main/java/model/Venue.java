@@ -55,6 +55,14 @@ public class Venue implements Serializable{
         this.suburb = suburb;
         this.address = address;
     }
+    
+    public Venue(int id, String name, String address, double lat, double lon) {
+        this.id = id;
+        this.name = name; 
+        this.address = address;
+        this.lat = lat;
+        this.lon = lon;
+    }
 
 
     @Override
