@@ -166,9 +166,30 @@ public class DBManager {
 
 
         /*-----------------Incident Reporting-----------------*/
-
+/*
+    public LinkedList<Incident> getIncidents() throws SQLExcpetion {
+        LinkedList<Incident> incidents = new LinkedList();
+        ResultSet result = st.executeQuery("SELECT * FROM \"Incident\"");
+        while(result.next()){
+            incidents.push(new Incident (
+            result.getInt("INCIDENT_ID"),
+            getVenue(result.getInt("VENUE_ID")),
+            result.getString("TYPE")),
+                    
+            result.getString("FIRST_NAME"),
+            result.getString("LAST_NAME"),
+            result.getString("EMAIL"),
+            result.getString("PHONE"),
+            result.getString("GENDER"),
+            result.getBoolean("IS_BANNED")
+            ));
+        }
+        return offenders;
+    }    */
+        
     // !! Not complete !!
     //Read all incidents from Incident table in Database
+        
     public LinkedList<Incident> getIncidentList() throws SQLException{
         LinkedList<Incident> incidentList = new LinkedList<>();ResultSet result = st.executeQuery("SELECT * FROM INCIDENTRS.\"Incident\"");
         while(result.next()){
