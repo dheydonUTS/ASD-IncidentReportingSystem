@@ -8,6 +8,7 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Offender;
 import model.Venue;
+import model.Warning;
 import model.dao.DBConnector;
 import model.dao.DBManager;
 
@@ -69,17 +71,19 @@ public class IssueWarningServlet extends HttpServlet {
             } catch (SQLException ex) {
                 Logger.getLogger(IssueWarningServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-        
+        }        
         //Create Warning
         String description = request.getParameter("description");
         int venueID = Integer.parseInt(request.getParameter("venue_id"));
         try {
-            manager.addWarning(venueID,description,offenderID);
+            Warning warning = manager.addWarning(venueID,description,offenderID);
+            request.setAttribute("emailType", "warning");
+            request.setAttribute("Warning", warning);
         } catch (SQLException ex) {
             Logger.getLogger(IssueWarningServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        //Finally Dispatch to EmailServlet
+        request.getRequestDispatcher("EmailServlet").include(request, response);
         }
         
 
