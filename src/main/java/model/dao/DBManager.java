@@ -72,7 +72,7 @@ public class DBManager {
             result.getString("EMAIL"),
             result.getString("PHONE"),
             result.getString("GENDER"),
-            result.getBoolean("ISBANNED")
+            result.getBoolean("IS_BANNED")
             );
         }
         return null;
@@ -90,7 +90,7 @@ public class DBManager {
             result.getString("EMAIL"),
             result.getString("PHONE"),
             result.getString("GENDER"),
-            result.getBoolean("ISBANNED")
+            result.getBoolean("IS_BANNED")
             ));
         }
         return offenders;

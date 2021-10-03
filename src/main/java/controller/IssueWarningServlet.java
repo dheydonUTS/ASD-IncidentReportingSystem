@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Offender;
+import model.dao.DBConnector;
 import model.dao.DBManager;
 
 /**
@@ -27,6 +28,7 @@ import model.dao.DBManager;
 public class IssueWarningServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
+    private DBConnector conn;
     private DBManager manager;
 
 
@@ -35,10 +37,14 @@ public class IssueWarningServlet extends HttpServlet {
             throws ServletException, IOException {
         LinkedList<Offender> offenders = new LinkedList();
         try {
+            conn = new DBConnector();
+            manager = new DBManager(conn.connection());
             offenders = manager.getOffenders();
-        } catch (SQLException ex) {
+            conn.closeConnection();
+            manager = null;
+        } catch (Exception ex) {
             Logger.getLogger(IssueWarningServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } 
         request.setAttribute("Offenders", offenders);
         request.getRequestDispatcher("issuewarning.jsp").include(request, response);
     }
