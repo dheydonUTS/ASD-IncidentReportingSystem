@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Array;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.HashMap;
@@ -46,7 +47,7 @@ protected void doGet(HttpServletRequest request,
         User AssignedUser = new User("assignedUserEmail","Password");
         Venue war = new Venue(1, "Warringah", -33.754350, 151.266890);
                 
-        DummyList.push(new Incident(war, "Shoplift", LocalDate.now(), LocalTime.now(), "Stole something", "Jeff", "Rachel",AssignedUser,LocalTime.now(),1));/*
+        DummyList.push(new Incident(war, "Shoplift", "Stole something", "Jeff", "Rachel",AssignedUser,LocalDateTime.now(),1));/*
         DummyList.push(new Incident("Arson", "Lit something on fire", "Jeff", "Adam"));
         DummyList.push(new Incident("Arson", "Lit something on fire", "Jeff", "Adam"));
         DummyList.push(new Incident("Broke the Escalators", "Jammed a trolly in the escalator", "Jeff", "Adam"));

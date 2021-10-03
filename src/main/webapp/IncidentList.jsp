@@ -42,7 +42,7 @@
                 <%for(Incident incident: incidentList){%>
                 <tr>
                     <td><%out.print(incident.getId());%></td>
-                    <td>Venue <%out.print(incident.getVenue().getID());%></td>
+                    <td>Venue <%out.print(incident.getVenue().getId());%></td>
                     <td><button type="button" class="btn btn-dark" onclick="window.location.href='IncidentDetails.jsp'">Details</button></td>
                 </tr>
                 <%}%>

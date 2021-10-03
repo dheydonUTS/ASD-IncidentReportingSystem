@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.Set;
@@ -44,7 +45,7 @@ public class IncidentServlet extends HttpServlet {
        User assignUser = new User("assignedUserEmail","password");
        // Add some validation
        
-       Incident incident = new Incident(venue,type,date,time,desc,reporter,offender,assignUser,LocalTime.now(),1);
+       Incident incident = new Incident(venue,type,desc,reporter,offender,assignUser,LocalDateTime.now(),1);
        session.setAttribute("incident", incident);
        session.setAttribute("venue", venue);
        request.getRequestDispatcher("ViewIncident.jsp").include(request,response);

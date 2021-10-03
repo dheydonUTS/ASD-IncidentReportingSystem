@@ -1,3 +1,4 @@
+model\dao\testDBManager.class
 controller\EmailServlet$1.class
 model\dao\DBConnector.class
 controller\test\TestIncidentReports.class

@@ -12,6 +12,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import model.Incident;
@@ -47,7 +51,29 @@ public class DBManager {
         System.out.println(user.toString());
         return user;
     }
-
+    
+    
+    
+    /*----------------- Incident Creation  -----------------*/
+    /* --- Create --- */
+    public void addIncident(int venueid, String type, LocalDate date,
+            LocalTime time, String description, int reporterId, int offenderId,
+            int assignedUserId, LocalDateTime createdTime,  int priority) 
+            throws SQLException{
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formatDateTime = createdTime.format(formatter);
+        st.executeUpdate("INSERT INTO \"Incident\"(venue_id,type,description,reporter_id,offender_id,assigned_user, ticket_created_time,status,priority)\n" +
+"VALUES\n" +
+"("+venueid+",'"+type+"', '"+description+"', "+reporterId+","+offenderId+","+assignedUserId+",'"+formatDateTime+"','open',"+priority+")");
+    }
+    /* --- Read --- */
+    public Incident getCreatedIncident(int id) throws SQLException{
+    return new Incident() ;
+    }
+    /* --- Update --- */
+    
+    /* --- Delete --- */
+    
     /*-----------------Venue -----------------*/
 
     // !! Havent tested !!
@@ -199,15 +225,13 @@ public class DBManager {
             incident.setVenue(getVenue(venueId));
             incident.setType(result.getString("TYPE"));
             incident.setDescription(result.getString("DESCRIPTION"));
-            incident.setDate(result.getDate("DATE").toLocalDate());
-            incident.setTime(result.getTime("TIME").toLocalTime());
             incident.setReporter(result.getString("REPORTER"));
             int offenderId = result.getInt("OFFENDER_ID");
             // Have to retrieve object, Incident uses string "offenderName"
             int userId = result.getInt("ASSIGNED_USER");
             incident.setAssignedUser(getUser(userId));
-            incident.setCreatedTime(result.getTime("TICKET_CREATED_TIME").toLocalTime());
-            incident.setClosedTime(result.getTime("TICKET_CLOSED_TIME").toLocalTime());
+            incident.setCreatedTime(result.getTimestamp("TICKET_CREATED_TIME").toLocalDateTime());
+            incident.setClosedTime(result.getTimestamp("TICKET_CLOSED_TIME").toLocalDateTime());
             incident.setStatus(result.getString("STATUS"));
             incident.setPriority(result.getInt("PRIORITY"));
             incidentList.add(incident);
@@ -224,15 +248,13 @@ public class DBManager {
             incident.setVenue(getVenue(venueId));
             incident.setType(result.getString("TYPE"));
             incident.setDescription(result.getString("DESCRIPTION"));
-            incident.setDate(result.getDate("DATE").toLocalDate());
-            incident.setTime(result.getTime("TIME").toLocalTime());
             incident.setReporter(result.getString("REPORTER"));
             int offenderId = result.getInt("OFFENDER_ID");
             // Have to retrieve object, Incident uses string "offenderName"
             int userId = result.getInt("ASSIGNED_USER");
             incident.setAssignedUser(getUser(userId));
-            incident.setCreatedTime(result.getTime("TICKET_CREATED_TIME").toLocalTime());
-            incident.setClosedTime(result.getTime("TICKET_CLOSED_TIME").toLocalTime());
+            incident.setCreatedTime(result.getTimestamp("TICKET_CREATED_TIME").toLocalDateTime());
+            incident.setClosedTime(result.getTimestamp("TICKET_CLOSED_TIME").toLocalDateTime());
             incident.setStatus(result.getString("STATUS"));
             incident.setPriority(result.getInt("PRIORITY"));
         }

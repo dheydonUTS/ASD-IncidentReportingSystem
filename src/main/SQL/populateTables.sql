@@ -16,11 +16,11 @@ VALUES
 ('Emily','Green', 'Female','not@ender.com','0412245678',FALSE),
 ('Zoe','Green','Female','test@ender.com','0412098765',TRUE);
 
-INSERT INTO "Incident"(venue_id,type,description,date,time,reporter,offender_id,assigned_user, ticket_created_time,status,priority)
+INSERT INTO "Incident"(venue_id,type,description,reporter_id,offender_id,assigned_user, ticket_created_time,status,priority)
 VALUES
-(1,'Fall', 'Elderly lady shoved in back', CURRENT_DATE, CURRENT_TIME, 'Jeff',1,1,CURRENT_TIMESTAMP,'resolved',1),
-(2,'Shoplift', 'Stole a fridge', CURRENT_DATE, CURRENT_TIME, 'Naomi',2,2,CURRENT_TIMESTAMP,'in progress',5),
-(3,'Robbery', 'Stole money', CURRENT_DATE, CURRENT_TIME, 'Ben',3,2,CURRENT_TIMESTAMP, 'created', 3);
+(1,'Fall', 'Elderly lady shoved in back', 1,1,1,CURRENT_TIMESTAMP,'resolved',1),
+(2,'Shoplift', 'Stole a fridge',   2,2,2,CURRENT_TIMESTAMP,'in progress',5),
+(3,'Robbery', 'Stole money',   3,3,2,CURRENT_TIMESTAMP, 'created', 3);
 
 INSERT INTO "Warning"(venue_id,description,offender_id)
 VALUES
