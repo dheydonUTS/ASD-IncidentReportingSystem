@@ -27,39 +27,7 @@ public class DBManager {
     public DBManager(Connection con) throws SQLException{
         st = con.createStatement(); //Execute statements in the connected database via object con
     }
-
-    /*----------------- User -----------------*/
-
-    // !! Havent tested !!
-    // Return venue object with id, returns null if not found
-    public User getUser(int id) throws SQLException {
-        ResultSet result = st.executeQuery("SELECT * FROM \"Venue\" WHERE VENUE_ID = "+id+"");
-        User user = new User("email","password");
-        while(result.next()){
-            // Retrieve user attributes
-        }
-        System.out.println(user.toString());
-        return user;
-    }
-
-    /*-----------------Venue -----------------*/
-
-    // !! Havent tested !!
-    // Return venue object with id, returns null if not found
-    public Venue getVenue(int id) throws SQLException {
-        ResultSet result = st.executeQuery("SELECT * FROM \"Venue\" WHERE VENUE_ID = "+id+"");
-        Venue venue = new Venue();
-        while(result.next()){
-            venue.setID(result.getInt("VENUE_ID"));
-            venue.setName(result.getString("VENUE_NAME"));
-            venue.setAddress(result.getString("VENUE_ADDRESS"));
-            venue.setLat(result.getDouble("VENUE_LAT"));
-            venue.setLon(result.getDouble("VENUE_LON"));
-        }
-        System.out.println(venue.toString());
-        return venue;
-    }
-
+    
     /*----------------- Offender -----------------*/
     //Return Offender Object, alternatively null if not found
     public Offender getOffender(int id) throws SQLException{
@@ -94,6 +62,38 @@ public class DBManager {
             ));
         }
         return offenders;
+    }
+        
+    /*----------------- Venue -----------------*/
+   
+        public Venue getVenue(int id) throws SQLException {
+        ResultSet result = st.executeQuery("SELECT * FROM \"Venue\" WHERE VENUE_ID = "+id+"");
+        Venue venue = new Venue();
+        while(result.next()){
+            venue.setID(result.getInt("VENUE_ID"));
+            venue.setName(result.getString("VENUE_NAME"));
+            venue.setAddress(result.getString("VENUE_ADDRESS"));
+            venue.setLat(result.getDouble("VENUE_LAT"));
+            venue.setLon(result.getDouble("VENUE_LON"));
+        }
+        System.out.println(venue.toString());
+        return venue;
+    }
+        
+        
+
+    /*----------------- User -----------------*/
+
+    // !! Havent tested !!
+    // Return venue object with id, returns null if not found
+    public User getUser(int id) throws SQLException {
+        ResultSet result = st.executeQuery("SELECT * FROM \"Venue\" WHERE VENUE_ID = "+id+"");
+        User user = new User("email","password");
+        while(result.next()){
+            // Retrieve user attributes
+        }
+        System.out.println(user.toString());
+        return user;
     }
 
         /*-----------------Incident Reporting-----------------*/
