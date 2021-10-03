@@ -1,8 +1,9 @@
-model\dao\testDBManager.class
 controller\EmailServlet$1.class
 model\dao\DBConnector.class
 controller\test\TestIncidentReports.class
+model\dao\testDBManager.class
 controller\OffenderReportServlet.class
+controller\IncidentDetailServlet.class
 model\dao\DBManager.class
 controller\IncidentLocationReportServlet.class
 controller\IssueWarningServlet.class
