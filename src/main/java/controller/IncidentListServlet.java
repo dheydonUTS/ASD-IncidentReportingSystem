@@ -26,17 +26,18 @@ import model.dao.DBManager;
 public class IncidentListServlet extends HttpServlet {
     
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)  // Loads the list of incidents from the database
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         DBManager manager = (DBManager)session.getAttribute("manager");
+        
         LinkedList<Incident> incidentList = null;
         try{
-            incidentList = manager.getIncidentList();
+            incidentList = manager.getIncidentList(); // Loads the list of incidents
         }catch(SQLException e){
             Logger.getLogger(IncidentListServlet.class.getName()).log(Level.SEVERE, null, e);
         }
-        session.setAttribute("incidentList", incidentList);
-        request.getRequestDispatcher("IncidentList.jsp").forward(request, response);
+        session.setAttribute("incidentList", incidentList); // Set list of incidents into session
+        request.getRequestDispatcher("IncidentList.jsp").forward(request, response); // Dispatch request and response to webpage
     }
 }
