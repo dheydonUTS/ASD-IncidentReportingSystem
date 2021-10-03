@@ -50,16 +50,16 @@ public class DBManager {
     // Return venue object with id, returns null if not found
     public Venue getVenue(int id) throws SQLException {
         ResultSet result = st.executeQuery("SELECT * FROM \"Venue\" WHERE VENUE_ID = "+id+"");
-        Venue venue = new Venue();
         while(result.next()){
-            venue.setID(result.getInt("VENUE_ID"));
-            venue.setName(result.getString("VENUE_NAME"));
-            venue.setAddress(result.getString("VENUE_ADDRESS"));
-            venue.setLat(result.getDouble("VENUE_LAT"));
-            venue.setLon(result.getDouble("VENUE_LON"));
+            return new Venue(
+            result.getInt("VENUE_ID"),
+            result.getString("VENUE_NAME"),
+            result.getString("VENUE_ADDRESS"),
+            result.getDouble("VENUE_LAT"),
+            result.getDouble("VENUE_LON")        
+            );
         }
-        System.out.println(venue.toString());
-        return venue;
+        return null;
     }
     
     // List all of the venues
