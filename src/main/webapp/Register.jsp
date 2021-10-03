@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<script type="text/javascript" src="js/script.js"></script>
 <!DOCTYPE html>
 <html>
     <head>
@@ -24,7 +25,15 @@
                                 <div class="card-body">
                                     <div class="mb-3">
                                         <label for="email">Email Address:</label>
-                                        <input type="text" name="email" placeholder="john.smith@email.com"><br><br>
+                                        <input type="email" name="email" placeholder="john.smith@email.com"><br><br>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="fname">First Name:</label>
+                                        <input type="text" name="fname"><br><br>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="lname">Last Name:</label>
+                                        <input type="text" name="lname"><br><br>
                                     </div>
                                     <div class="mb-3">
                                         <label for="password">Password:</label>

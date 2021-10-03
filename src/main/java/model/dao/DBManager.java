@@ -44,21 +44,23 @@ public class DBManager {
         return user;
     }
     
-    public void createUser(String email, String password) throws SQLException {
-        st.executeUpdate("INSERT INTO INCIDENTRS.\"USER\" VALUES ("+email+", "+password+")");
+    public void createUser(String email, String password, String fname, String lname) throws SQLException {
+        st.executeUpdate("INSERT INTO INCIDENTRS.\"User\" (EMAIL, \"FIRST_NAME\", \"LAST_NAME\", PASSWORD, IS_STAFF) " 
+                + "VALUES ('"+email+"', '"+fname+"', '"+lname+"', '"+password+"', 'false')");
     }
     
     public User findUser(String email, String password) throws SQLException {
-        ResultSet result = st.executeQuery("SELECT * FROM INCIDENTRS.USERS WHERE EMAIL='" + email + "' AND PASSWORD='" + password + "'");
+        String fetch = "SELECT * FROM INCIDENTRS.\"User\" WHERE EMAIL='" + email + "' AND PASSWORD='" + password + "'";
+        ResultSet result = st.executeQuery(fetch);
         User user = new User("email","password");
         if(result.next()){
-            String currEmail = result.getString(1);
-            String currPassword = result.getString(2);
+            String currEmail = result.getString(2);
+            String currPassword = result.getString(5);
             if (currEmail.equals(email) && currPassword.equals(password)) {
-                //Obtain user details to return a new user
+                return user;
             }
         }
-        return user;
+        return null;
     }
 
     /*-----------------Venue -----------------*/
