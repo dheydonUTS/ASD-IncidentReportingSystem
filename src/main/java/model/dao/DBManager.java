@@ -78,6 +78,7 @@ public class DBManager {
         return null;
     }
     
+    //Return all recorded offenders
         public LinkedList<Offender> getOffenders() throws SQLException{
         LinkedList<Offender> offenders = new LinkedList();
         ResultSet result = st.executeQuery("SELECT * FROM \"Offender\"");
