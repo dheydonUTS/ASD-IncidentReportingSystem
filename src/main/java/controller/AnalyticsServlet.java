@@ -72,6 +72,7 @@ protected void doGet(HttpServletRequest request,
         DummyList.push(new Incident(bon, "Crash",  "Someone crashed", "Susie", "Ned",AssignedUser,LocalDateTime.now(),1));
         DummyList.push(new Incident(bon, "Shoplift",  "Another steal", "Ahmed", "Alex",AssignedUser,LocalDateTime.now(),1));
 */
+/*
         return DummyList;
     }
     */
