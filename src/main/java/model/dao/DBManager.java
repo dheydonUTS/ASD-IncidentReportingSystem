@@ -61,8 +61,6 @@ public class DBManager {
     }
 
     /*----------------- Offender -----------------*/
-
-
     //Return Offender Object, alternatively null if not found
     public Offender getOffender(int id) throws SQLException{
         ResultSet result = st.executeQuery("SELECT * FROM \"Offender\" WHERE OFFENDER_ID = "+id+"");
@@ -78,6 +76,23 @@ public class DBManager {
             );
         }
         return null;
+    }
+    
+        public LinkedList<Offender> getOffenders() throws SQLException{
+        LinkedList<Offender> offenders = new LinkedList();
+        ResultSet result = st.executeQuery("SELECT * FROM \"Offender\"");
+        while(result.next()){
+            offenders.push(new Offender(
+            result.getInt("OFFENDER_ID"),
+            result.getString("FIRST_NAME"),
+            result.getString("LAST_NAME"),
+            result.getString("EMAIL"),
+            result.getString("PHONE"),
+            result.getString("GENDER"),
+            result.getBoolean("ISBANNED")
+            ));
+        }
+        return offenders;
     }
 
         /*-----------------Incident Reporting-----------------*/
