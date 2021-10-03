@@ -63,10 +63,10 @@ public class DBManager {
     }
     
     // List all of the venues
-    public ArrayList<Venue> listVenues() throws SQLException {
+    public LinkedList<Venue> getVenues() throws SQLException {
         String query = "SELECT * FROM INCIDENTRS.\"Venue\"";
         ResultSet rs = st.executeQuery(query);
-        ArrayList<Venue> venues = new ArrayList();
+        LinkedList<Venue> venues = new LinkedList();
         
         while (rs.next()) {
             int venueID = rs.getInt(1);
@@ -74,8 +74,7 @@ public class DBManager {
             String venueAddress = rs.getString(3);
             Double venueLat = rs.getDouble(4);
             Double venueLon = rs.getDouble(5);
-            
-            venues.add(new Venue(venueID, venueName, venueAddress, venueLat, venueLon));
+            venues.push(new Venue(venueID, venueName, venueAddress, venueLat, venueLon));
         }
         return venues;
     }
