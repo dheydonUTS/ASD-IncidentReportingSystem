@@ -42,11 +42,11 @@ public class Venue implements Serializable{
         return "Venue{" + "name=" + name + '}';
     }
 
-    public int getID() {
+    public int getId() {
         return id;
     }
 
-    public void setID(int id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -74,27 +74,15 @@ public class Venue implements Serializable{
         this.lon = lon;
     }
 
-
-    public void setSuburb(String suburb){
-        this.suburb = suburb;
-    }
-    public String getSuburb(){
-        return suburb;
-    }
-    
-    public void setAddress(String address){
-        this.address = address;
-    }
-    
-    public String getAddress(){
+    public String getAddress() {
         return address;
     }
-    public LinkedList<Incident> getIncidents() {
-        return incidents;
+
+    public void setAddress(String address) {
+        this.address = address;
     }
-    public void setIncidents(LinkedList<Incident> incidents) {
-        this.incidents = incidents;
-    }
+
+    
 }
 
 
