@@ -29,6 +29,7 @@ public class DBManager {
         st = con.createStatement(); //Execute statements in the connected database via object con
     }
 
+
     /*----------------- User -----------------*/
 
     // !! Havent tested !!
@@ -108,6 +109,7 @@ public class DBManager {
    
    // Check User
 
+
     /*----------------- Offender -----------------*/
     //Return Offender Object, alternatively null if not found
     public Offender getOffender(int id) throws SQLException{
@@ -120,12 +122,13 @@ public class DBManager {
             result.getString("EMAIL"),
             result.getString("PHONE"),
             result.getString("GENDER"),
-            result.getBoolean("ISBANNED")
+            result.getBoolean("IS_BANNED")
             );
         }
         return null;
     }
     
+    //Return all recorded offenders
         public LinkedList<Offender> getOffenders() throws SQLException{
         LinkedList<Offender> offenders = new LinkedList();
         ResultSet result = st.executeQuery("SELECT * FROM \"Offender\"");
@@ -137,30 +140,13 @@ public class DBManager {
             result.getString("EMAIL"),
             result.getString("PHONE"),
             result.getString("GENDER"),
-            result.getBoolean("ISBANNED")
+            result.getBoolean("IS_BANNED")
             ));
         }
         return offenders;
     }
+
     
-    // List all of the offenders
-    public ArrayList<Offender> listOffenders() throws SQLException {
-        String query = "SELECT * FROM INCIDENTRS.\"Offender\"";
-        ResultSet rs = st.executeQuery(query);
-        ArrayList<Offender> offenders = new ArrayList();
-        
-        while (rs.next()) {
-            String offenderID = rs.getString(1);
-            String firstName = rs.getString(2);
-            String lastName = rs.getString(3); 
-            String gender = rs.getString(4);
-            String email = rs.getString(5);
-            String phone = rs.getString(6);
-            Boolean isBanned = rs.getBoolean(7);
-            
-            offenders.add(new Offender(offenderID, firstName, lastName, gender, email, phone, isBanned));
-        }
-        return offenders;
     }
 
         /*-----------------Incident Reporting-----------------*/
