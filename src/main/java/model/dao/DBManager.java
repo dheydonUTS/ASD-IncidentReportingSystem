@@ -7,6 +7,7 @@ package model.dao;
 
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -21,6 +22,7 @@ import model.Incident;
 import model.Offender;
 import model.User;
 import model.Venue;
+import model.Warning;
 
 /**
  *
@@ -28,8 +30,10 @@ import model.Venue;
  */
 public class DBManager {
     private final Statement st;
+    private final Connection con;
 
     public DBManager(Connection con) throws SQLException{
+        this.con = con;
         st = con.createStatement(); //Execute statements in the connected database via object con
     }
 
@@ -170,14 +174,48 @@ public class DBManager {
         }
         return offenders;
     }
+        
+        public Offender addOffender(String firstName, String lastName, String email, String phone, String gender, boolean isBanned) throws SQLException {
+        String sql = "INSERT INTO INCIDENTRS.\"Offender\"(first_name,last_name,gender,email,phone,is_banned) "
+                + "VALUES ('" + firstName + "','" + lastName + "', '" + gender + "', '" + email + "', '" + phone + "'," + isBanned + ")";
+        String[] returnId = {"offender_id"};
+        PreparedStatement stmtInsert = con.prepareStatement(sql, returnId);
+        int affectedRows = stmtInsert.executeUpdate();
+        try (ResultSet rs = stmtInsert.getGeneratedKeys()) {
+            if (rs.next()) {
+                return (getOffender(rs.getInt(1)));
+            }
+            rs.close();
+        }
+        return null;
+    }
 
-    
-    
 
         /*-----------------Incident Reporting-----------------*/
-
+/*
+    public LinkedList<Incident> getIncidents() throws SQLExcpetion {
+        LinkedList<Incident> incidents = new LinkedList();
+        ResultSet result = st.executeQuery("SELECT * FROM \"Incident\"");
+        while(result.next()){
+            incidents.push(new Incident (
+            result.getInt("INCIDENT_ID"),
+            getVenue(result.getInt("VENUE_ID")),
+            result.getString("TYPE")),
+                    
+            result.getString("FIRST_NAME"),
+            result.getString("LAST_NAME"),
+            result.getString("EMAIL"),
+            result.getString("PHONE"),
+            result.getString("GENDER"),
+            result.getBoolean("IS_BANNED")
+            ));
+        }
+        return offenders;
+    }    */
+        
     // !! Not complete !!
     //Read all incidents from Incident table in Database
+        
     public LinkedList<Incident> getIncidentList() throws SQLException{
         LinkedList<Incident> incidentList = new LinkedList<>();ResultSet result = st.executeQuery("SELECT * FROM INCIDENTRS.\"Incident\"");
         while(result.next()){
@@ -232,4 +270,36 @@ public class DBManager {
         }
         return incidentId;
     }
-}
+
+
+        /*-----------------Warning-----------------*/
+
+        public Warning addWarning(int venue_id, String description, int offender_id) throws SQLException {
+        String sql = "INSERT INTO INCIDENTRS.\"Warning\"(venue_id, description, offender_id) "
+                + "VALUES (" + venue_id + ",'" + description + "', " + offender_id + ")";
+        String[] returnId = {"warning_id"};
+        PreparedStatement stmtInsert = con.prepareStatement(sql, returnId);
+        int affectedRows = stmtInsert.executeUpdate();
+        try (ResultSet rs = stmtInsert.getGeneratedKeys()) {
+            if (rs.next()) {
+                return (getWarning(rs.getInt(1)));
+            }
+            rs.close();
+        }
+        return null;
+        }
+        
+        public Warning getWarning(int id) throws SQLException{
+        ResultSet result = st.executeQuery("SELECT * FROM \"Warning\" WHERE WARNING_ID = "+id+"");
+        while(result.next()){
+            return new Warning(
+            result.getInt("WARNING_ID"),
+            result.getInt("VENUE_ID"),
+            result.getString("DESCRIPTION"),
+            result.getInt("OFFENDER_ID")
+            );
+        }
+        return null;
+        }
+        
+        }

@@ -5,13 +5,13 @@ package model;
  * @author joe
  */
 public class Warning {
-    private int warning_id;
+    private int id;
     private int venue_id;
     private String description;
     private int offender_id;
 
-    public Warning(int warning_id, int venue_id, String description, int offender_id) {
-        this.warning_id = warning_id;
+    public Warning(int id, int venue_id, String description, int offender_id) {
+        this.id = id;
         this.venue_id = venue_id;
         this.description = description;
         this.offender_id = offender_id;
@@ -23,12 +23,12 @@ public class Warning {
         this.offender_id = offender_id;
     }
 
-    public int getWarning_id() {
-        return warning_id;
+    public int getId() {
+        return id;
     }
 
-    public void setWarning_id(int warning_id) {
-        this.warning_id = warning_id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getVenue_id() {
