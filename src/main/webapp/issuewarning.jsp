@@ -16,13 +16,15 @@
             <div class="col-md-8 col-sm-12">
                 <div class="card" style="margin-top:2rem;">
                     <h1 class="card-header">Issue Warning</h1>
-                    <form>
+                    <form method="POST" action="IssueWarning" id="warning_form">
                         <div class="card-body">
                             <h5 class="card-title">Offender Type</h5>
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-outline-primary" onclick="toggleView('new')">New</button>
-                                <button type="button" class="btn btn-outline-primary" onclick="toggleView('existing')">Existing</button>
-                            </div>
+                                <input type="radio" class="btn-check" name="offenderType" id="new" value="new" onclick="toggleView('new')" autocomplete="off" checked>
+                                <label class="btn btn-outline-primary" for="new">New</label>
+
+                                <input type="radio" class="btn-check" name="offenderType" id="existing" value="existing" onclick="toggleView('existing')" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="existing">Existing</label></div>
 
                             <!-- REGISTER A NEW OFFENDER -->
                             <div id="newOffender">
@@ -35,7 +37,7 @@
                                     <label for="lastName" class="form-label">Last Name</label>
                                     <input type="text" class="form-control" id="last_name" name="last_name">
                                 </div>
-                                                                <div class="mb-3">
+                                <div class="mb-3">
                                     <label for="gender" class="form-label">Gender</label>
                                     <input type="text" class="form-control" id="gender" name="gender">
                                 </div>
@@ -56,24 +58,64 @@
                             <!-- USE AN EXISTING OFFENDER -->
                             <div id="existingOffender" style="display: none;">
                                 <br>
-                                <select class="form-select">
-                                <c:forEach var="Offender" items="${Offenders}">
-                                    <option value="${Offender.id}">${Offender.firstName} ${Offender.lastName}</option>
-                                </c:forEach>
+                                <select class="form-select" name="offender_id">
+                                    <c:forEach var="Offender" items="${Offenders}">
+                                        <option value="${Offender.id}">${Offender.firstName} ${Offender.lastName}</option>
+                                    </c:forEach>
                                 </select>
                             </div>
 
                             <br>
                             <h5 class="card-title">Warning Message</h5>
                             <div class="mb-3">
-                                <textarea class="form-control" id="message" rows="3"></textarea>
+                                <textarea class="form-control" id="description" name="description" rows="3"></textarea>
                             </div>
+                            <h5 class="card-title">Venue</h5>
+                            <select class="form-select" name="venue_id">
+                                <c:forEach var="Venue" items="${Venues}">
+                                    <option value="${Venue.id}">${Venue.name}</option>
+                                </c:forEach>
+                            </select>
+                            <a href="javascript:void()"
+							onclick="sendWarning(); "
+							class="btn btn-primary">Submit</a>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
+        
+        	<!-- Modal -->
+	<div class="modal" id="sending" tabindex="-1" role="dialog"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title" id="exampleModalLabel">Submitting Warning</h2>
+				</div>
+				<div class="modal-body">
+					<div class="text-center">
+
+						<div class="spinner-border spinner-border-lg text-info" style="width: 5rem; height: 5rem;"
+							role="status">
+						</div>
+
+					</div>
+					<br>
+					<p>Please don't navigate away. We are sending an email to the offender.</p>
+				</div>
+
+			</div>
+		</div>
+	</div>
+                
         <script>
+            function sendWarning() {
+                var myModal = new bootstrap.Modal(document.getElementById('sending'), {});
+                myModal.show();
+                document.getElementById('warning_form').submit();
+            }
+            
             function toggleView(view) {
                 var newOffender = document.getElementById("newOffender");
                 var existingOffender = document.getElementById("existingOffender");
