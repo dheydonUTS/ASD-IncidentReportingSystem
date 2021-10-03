@@ -24,7 +24,9 @@ import javax.activation.*;
  */
 @WebServlet(name = "TestEmailServlet", urlPatterns = {"/TestEmailServlet"})
 public class TestEmailServlet extends HttpServlet {
-
+    //public void doPost()
+    
+    
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //Look to defining these in a keychain.
@@ -64,7 +66,6 @@ public class TestEmailServlet extends HttpServlet {
             message.setSubject("Warning from Incident Report System.");
             message.setContent(generateHTML(), "text/html");
             Transport.send(message);
-            System.out.println("Done");
         } catch (MessagingException e) {
             e.printStackTrace();
         }

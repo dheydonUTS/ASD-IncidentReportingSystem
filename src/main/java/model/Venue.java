@@ -17,23 +17,14 @@ public class Venue implements Serializable{
     private String name;
     private double lat;
     private double lon;
-    private String suburb;
     private String address;
-    private LinkedList<Incident> incidents;
-
-    public Venue() {
-    }
-
+    //OLD FIELDS, TRY TO REMOVE
+        private String suburb;
+            private LinkedList<Incident> incidents;
     
-    
-    public Venue(int id, String name, double lat, double lon) {
-        this.id = id;
-        this.name = name;
-        this.lat = lat;
-        this.lon = lon;
-    }
 
-    public Venue(int id, String name, double lat, double lon, String address) {
+    //Post SQL Insertion
+    public Venue(int id, String name, String address, double lat, double lon) {
         this.id = id;
         this.name = name;
         this.lat = lat;
@@ -41,14 +32,30 @@ public class Venue implements Serializable{
         this.address = address;
     }
     
-    public Venue(int id, String name, String suburb, String address, LinkedList<Incident> incidents) {
+    //Pre SQL Insertion
+        public Venue(String name, String address, double lat, double lon) {
+        this.name = name;
+        this.lat = lat;
+        this.lon = lon;
+        this.address = address;
+    }
+    
+    //OLD CONSTRUCTORS -> Move to new ones    
+        public Venue(int id, String name, double lat, double lon, String address) {
+        this.id = id;
+        this.name = name;
+        this.lat = lat;
+        this.lon = lon;
+        this.address = address;
+    }
+        public Venue(int id, String name, String suburb, String address, LinkedList<Incident> incidents) {
         this.id = id;
         this.name = name;
         this.suburb = suburb;
         this.address = address;
         this.incidents = incidents;
     }
-    
+
     public Venue(int id, String name, String suburb, String address) {
         this.id = id;
         this.name = name;
@@ -56,17 +63,38 @@ public class Venue implements Serializable{
         this.address = address;
     }
 
-
+    public Venue(int id, String name, double lat, double lon) {
+        this.id = id;
+        this.name = name;
+        this.lat = lat;
+        this.lon = lon;
+    }
+        
+        
+    //OLD GETTERS AND SETTERS -> Move to new ones
+        public void setSuburb(String suburb){
+        this.suburb = suburb;
+    }
+    public String getSuburb(){
+        return suburb;
+    }
+    
+    public LinkedList<Incident> getIncidents() {
+        return incidents;
+    }
+    public void setIncidents(LinkedList<Incident> incidents) {
+        this.incidents = incidents;
+    }
     @Override
     public String toString() {
         return "Venue{" + "name=" + name + '}';
     }
 
-    public int getID() {
+    public int getId() {
         return id;
     }
 
-    public void setID(int id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -94,27 +122,15 @@ public class Venue implements Serializable{
         this.lon = lon;
     }
 
-
-    public void setSuburb(String suburb){
-        this.suburb = suburb;
-    }
-    public String getSuburb(){
-        return suburb;
-    }
-    
-    public void setAddress(String address){
-        this.address = address;
-    }
-    
-    public String getAddress(){
+    public String getAddress() {
         return address;
     }
-    public LinkedList<Incident> getIncidents() {
-        return incidents;
+
+    public void setAddress(String address) {
+        this.address = address;
     }
-    public void setIncidents(LinkedList<Incident> incidents) {
-        this.incidents = incidents;
-    }
+
+    
 }
 
 

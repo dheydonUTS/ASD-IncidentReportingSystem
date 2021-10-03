@@ -50,3 +50,12 @@ CREATE TABLE "Incident" (
 	PRIMARY KEY (incident_id),
 	FOREIGN KEY (venue_id) REFERENCES "Venue"(venue_id),
 	FOREIGN KEY (offender_id) REFERENCES "Offender" (offender_id));
+
+CREATE TABLE "Warning" (
+	warning_id INT NOT NULL GENERATED ALWAYS AS IDENTITY(START WITH 1, INCREMENT BY 1),
+	venue_id INT NOT NULL,
+	description VARCHAR(1000),
+	offender_id INT,
+	PRIMARY KEY (warning_id),
+	FOREIGN KEY (venue_id) REFERENCES "Venue"(venue_id),
+	FOREIGN KEY (offender_id) REFERENCES "Offender" (offender_id));

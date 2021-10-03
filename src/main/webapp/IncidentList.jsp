@@ -5,6 +5,8 @@
     This page will show the list of incidents
 --%>
 
+<%@page import="java.util.LinkedList"%>
+<%@page import="model.Incident"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -14,6 +16,9 @@
         <title>All Incidents</title>
     </head>
     <body>
+        <%
+            LinkedList<Incident> incidentList = (LinkedList<Incident>)session.getAttribute("incidentList");
+        %>
         <jsp:include page="components/navbar.jsp"/>
         <div class="container-fluid p-5">
             <div class="container p-5">
@@ -34,10 +39,10 @@
                 </form>
                 <table class="table">
                     <tr><td>Incident Id</td><td>Venue</td><td></td></tr>
-                <%for(int i = 1; i <=4; i++){%>
+                <%for(Incident incident: incidentList){%>
                 <tr>
-                    <td><%out.print(i);%></td>
-                    <td>Venue <%out.print(i);%></td>
+                    <td><%out.print(incident.getId());%></td>
+                    <td>Venue <%out.print(incident.getVenue().getID());%></td>
                     <td><button type="button" class="btn btn-dark" onclick="window.location.href='IncidentDetails.jsp'">Details</button></td>
                 </tr>
                 <%}%>

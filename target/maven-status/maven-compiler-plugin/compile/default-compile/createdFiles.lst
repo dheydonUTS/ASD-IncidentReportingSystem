@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 controller\IssueWarning.class
 controller\LoginServlet.class
 controller\IncidentTypeReportServlet.class
@@ -18,6 +19,11 @@ controller\AnalyticsServlet.class
 com\mycompany\asd_incident_reporting_system\JAXRSConfiguration.class
 controller\RegisterServlet.class
 model\DummyVenue.class
+=======
+com\mycompany\asd_incident_reporting_system\resources\JavaEE8Resource.class
+controller\IncidentTypeReportServlet.class
+model\dao\DB.class
+model\Venue.class
+model\Incident.class
+>>>>>>> main
 model\User.class
-controller\EmailServlet.class
-controller\GeneralReportsServlet.class

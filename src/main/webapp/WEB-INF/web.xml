@@ -32,6 +32,14 @@
         <servlet-name>RegisterServlet</servlet-name>
         <servlet-class>controller.RegisterServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ConnServlet</servlet-name>
+        <servlet-class>controller.ConnServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>IncidentListServlet</servlet-name>
+        <servlet-class>controller.IncidentListServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AnalyticsServlet</servlet-name>
         <url-pattern>/Analytics</url-pattern>
@@ -63,6 +71,14 @@
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/RegisterServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ConnServlet</servlet-name>
+        <url-pattern>/ConnServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IncidentListServlet</servlet-name>
+        <url-pattern>/IncidentListServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
