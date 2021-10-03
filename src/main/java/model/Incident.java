@@ -7,6 +7,7 @@ package model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import model.Offender;
 
@@ -18,24 +19,20 @@ public class Incident implements Serializable {
     private int id;
     private Venue venue;
     private String type;
-    private LocalDate date;
-    private LocalTime time;
     private String description;
     private String reporter;
     private String offender;
 // Ticketing System Variables
     private User assignedUser; 
-    private LocalTime createdTime;
-    private LocalTime closedTime;
+    private LocalDateTime createdTime;
+    private LocalDateTime closedTime;
     private String status;
     private int priority;
 
-    public Incident(int id, Venue venue, String type, LocalDate date, LocalTime time, String description, String reporter, String offender,  User assignedUser, LocalTime createdTime, LocalTime closedTime,  int priority) {
+    public Incident(int id, Venue venue, String type, LocalDate date, LocalTime time, String description, String reporter, String offender,  User assignedUser, LocalDateTime createdTime, LocalDateTime closedTime,  int priority) {
         this.id = id;
         this.venue = venue;
         this.type = type;
-        this.date = date;
-        this.time = time;
         this.description = description;
         this.reporter = reporter;
         this.offender = offender;
@@ -46,11 +43,9 @@ public class Incident implements Serializable {
         this.priority = priority;
     }
 
-    public Incident(Venue venue, String type, LocalDate date, LocalTime time, String description, String reporter, String offender, User assignedUser, LocalTime createdTime,  int priority) {
+    public Incident(Venue venue, String type, String description, String reporter, String offender, User assignedUser, LocalDateTime createdTime,  int priority) {
         this.venue = venue;
         this.type = type;
-        this.date = date;
-        this.time = time;
         this.description = description;
         this.reporter = reporter;
         this.offender = offender;
@@ -89,22 +84,6 @@ public class Incident implements Serializable {
         this.type = type;
     }
 
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public LocalTime getTime() {
-        return time;
-    }
-
-    public void setTime(LocalTime time) {
-        this.time = time;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -137,19 +116,19 @@ public class Incident implements Serializable {
         this.assignedUser = assignedUser;
     }
 
-    public LocalTime getCreatedTime() {
+    public LocalDateTime getCreatedTime() {
         return createdTime;
     }
 
-    public void setCreatedTime(LocalTime createdTime) {
+    public void setCreatedTime(LocalDateTime createdTime) {
         this.createdTime = createdTime;
     }
 
-    public LocalTime getClosedTime() {
+    public LocalDateTime getClosedTime() {
         return closedTime;
     }
 
-    public void setClosedTime(LocalTime closedTime) {
+    public void setClosedTime(LocalDateTime closedTime) {
         this.closedTime = closedTime;
     }
 

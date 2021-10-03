@@ -1,5 +1,6 @@
 model\dao\DBConnector.class
 controller\test\TestIncidentReports.class
+model\dao\testDBManager.class
 controller\OffenderReportServlet.class
 model\dao\DBManager.class
 controller\IncidentLocationReportServlet.class

@@ -187,15 +187,13 @@ public class DBManager {
             incident.setVenue(getVenue(venueId));
             incident.setType(result.getString("TYPE"));
             incident.setDescription(result.getString("DESCRIPTION"));
-            incident.setDate(result.getDate("DATE").toLocalDate());
-            incident.setTime(result.getTime("TIME").toLocalTime());
             incident.setReporter(result.getString("REPORTER"));
             int offenderId = result.getInt("OFFENDER_ID");
             // Have to retrieve object, Incident uses string "offenderName"
             int userId = result.getInt("ASSIGNED_USER");
             incident.setAssignedUser(getUser(userId));
-            incident.setCreatedTime(result.getTime("TICKET_CREATED_TIME").toLocalTime());
-            incident.setClosedTime(result.getTime("TICKET_CLOSED_TIME").toLocalTime());
+            incident.setCreatedTime(result.getTimestamp("TICKET_CREATED_TIME").toLocalDateTime());
+            incident.setClosedTime(result.getTimestamp("TICKET_CLOSED_TIME").toLocalDateTime());
             incident.setStatus(result.getString("STATUS"));
             incident.setPriority(result.getInt("PRIORITY"));
             incidentList.add(incident);
@@ -212,15 +210,13 @@ public class DBManager {
             incident.setVenue(getVenue(venueId));
             incident.setType(result.getString("TYPE"));
             incident.setDescription(result.getString("DESCRIPTION"));
-            incident.setDate(result.getDate("DATE").toLocalDate());
-            incident.setTime(result.getTime("TIME").toLocalTime());
             incident.setReporter(result.getString("REPORTER"));
             int offenderId = result.getInt("OFFENDER_ID");
             // Have to retrieve object, Incident uses string "offenderName"
             int userId = result.getInt("ASSIGNED_USER");
             incident.setAssignedUser(getUser(userId));
-            incident.setCreatedTime(result.getTime("TICKET_CREATED_TIME").toLocalTime());
-            incident.setClosedTime(result.getTime("TICKET_CLOSED_TIME").toLocalTime());
+            incident.setCreatedTime(result.getTimestamp("TICKET_CREATED_TIME").toLocalDateTime());
+            incident.setClosedTime(result.getTimestamp("TICKET_CLOSED_TIME").toLocalDateTime());
             incident.setStatus(result.getString("STATUS"));
             incident.setPriority(result.getInt("PRIORITY"));
         }
