@@ -11,6 +11,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import model.Incident;
@@ -43,7 +47,29 @@ public class DBManager {
         System.out.println(user.toString());
         return user;
     }
-
+    
+    
+    
+    /*----------------- Incident Creation  -----------------*/
+    /* --- Create --- */
+    public void addIncident(int venueid, String type, LocalDate date,
+            LocalTime time, String description, int reporterId, int offenderId,
+            int assignedUserId, LocalDateTime createdTime,  int priority) 
+            throws SQLException{
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formatDateTime = createdTime.format(formatter);
+        st.executeUpdate("INSERT INTO \"Incident\"(venue_id,type,description,reporter_id,offender_id,assigned_user, ticket_created_time,status,priority)\n" +
+"VALUES\n" +
+"("+venueid+",'"+type+"', '"+description+"', "+reporterId+","+offenderId+","+assignedUserId+",'"+formatDateTime+"','open',"+priority+")");
+    }
+    /* --- Read --- */
+    public Incident getCreatedIncident(int id) throws SQLException{
+    return new Incident() ;
+    }
+    /* --- Update --- */
+    
+    /* --- Delete --- */
+    
     /*-----------------Venue -----------------*/
 
     // !! Havent tested !!
