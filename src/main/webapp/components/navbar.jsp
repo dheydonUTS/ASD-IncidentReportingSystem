@@ -28,7 +28,7 @@
 									Analytics</a></li>
 							<li><a class="dropdown-item" href="GeneralReports">General Report
 									Generation</a></li>
-							<li><a class="dropdown-item" href="IncidentList.jsp">Incident Report
+							<li><a class="dropdown-item" href="IncidentListServlet">Incident Report
 									Generation</a></li>
 							<li><a class="dropdown-item" href="VenueList.jsp">Venue Report
 									Generation</a></li>
