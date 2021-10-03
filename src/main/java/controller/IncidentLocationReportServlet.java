@@ -52,7 +52,7 @@ protected void doGet(HttpServletRequest request,
         
         
         
-        rrInc.push(new Incident(war, "Shoplift",  "Stole something", "Jeff", "Rachel",AssignedUser,LocalDateTime.now(),1));
+       // rrInc.push(new Incident(war, "Shoplift",  "Stole something", "Jeff", "Rachel",AssignedUser,LocalDateTime.now(),1));
         /*
         wmInc.push(new Incident("Arson", "Lit something on fire", "Jeff", "Adam"));
         wmInc.push(new Incident("Public Urination", "Peed on a Lady", "Jeff", "Adam"));

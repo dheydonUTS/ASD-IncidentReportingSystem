@@ -187,7 +187,7 @@ public class DBManager {
             incident.setVenue(getVenue(venueId));
             incident.setType(result.getString("TYPE"));
             incident.setDescription(result.getString("DESCRIPTION"));
-            incident.setReporter(result.getString("REPORTER"));
+            //incident.setReporter(result.getString("REPORTER"));
             int offenderId = result.getInt("OFFENDER_ID");
             // Have to retrieve object, Incident uses string "offenderName"
             int userId = result.getInt("ASSIGNED_USER");
@@ -210,7 +210,7 @@ public class DBManager {
             incident.setVenue(getVenue(venueId));
             incident.setType(result.getString("TYPE"));
             incident.setDescription(result.getString("DESCRIPTION"));
-            incident.setReporter(result.getString("REPORTER"));
+            //incident.setReporter(result.getString("REPORTER"));
             int offenderId = result.getInt("OFFENDER_ID");
             // Have to retrieve object, Incident uses string "offenderName"
             int userId = result.getInt("ASSIGNED_USER");

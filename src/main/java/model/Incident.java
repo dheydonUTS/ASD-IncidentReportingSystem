@@ -20,8 +20,8 @@ public class Incident implements Serializable {
     private Venue venue;
     private String type;
     private String description;
-    private String reporter;
-    private String offender;
+    private User reporter;
+    private Offender offender;
 // Ticketing System Variables
     private User assignedUser; 
     private LocalDateTime createdTime;
@@ -29,7 +29,7 @@ public class Incident implements Serializable {
     private String status;
     private int priority;
 
-    public Incident(int id, Venue venue, String type, LocalDate date, LocalTime time, String description, String reporter, String offender,  User assignedUser, LocalDateTime createdTime, LocalDateTime closedTime,  int priority) {
+    public Incident(int id, Venue venue, String type, LocalDate date, LocalTime time, String description, User reporter, Offender offender,  User assignedUser, LocalDateTime createdTime, LocalDateTime closedTime,  int priority) {
         this.id = id;
         this.venue = venue;
         this.type = type;
@@ -43,7 +43,7 @@ public class Incident implements Serializable {
         this.priority = priority;
     }
 
-    public Incident(Venue venue, String type, String description, String reporter, String offender, User assignedUser, LocalDateTime createdTime,  int priority) {
+    public Incident(Venue venue, String type, String description, User reporter, Offender offender, User assignedUser, LocalDateTime createdTime,  int priority) {
         this.venue = venue;
         this.type = type;
         this.description = description;
@@ -92,19 +92,19 @@ public class Incident implements Serializable {
         this.description = description;
     }
 
-    public String getReporter() {
+    public User getReporter() {
         return reporter;
     }
 
-    public void setReporter(String reporter) {
+    public void setReporter(User reporter) {
         this.reporter = reporter;
     }
 
-    public String getOffender() {
+    public Offender getOffender() {
         return offender;
     }
 
-    public void setOffender(String offender) {
+    public void setOffender(Offender offender) {
         this.offender = offender;
     }
 

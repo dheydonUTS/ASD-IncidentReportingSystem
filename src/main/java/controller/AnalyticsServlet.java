@@ -51,7 +51,7 @@ protected void doGet(HttpServletRequest request,
         Venue par = new Venue(3, "Parramatta", -33.817805, 151.0020877);
         // GET RID OF THIS ONLY HERE SO IT BUILDS
         User AssignedUser = new User("assignedUserEmail","Password");
-
+/*
         DummyList.push(new Incident(war, "Shoplift",  "Stole something", "Jeff", "Rachel",AssignedUser,LocalDateTime.now(),1));
         DummyList.push(new Incident(bon, "Shoplift",  "Stole something again", "Caitlin", "Rachel",AssignedUser,LocalDateTime.now(),1));
         DummyList.push(new Incident(par, "Fall",  "Someone fell", "Robert", "James",AssignedUser,LocalDateTime.now(),1));
@@ -59,7 +59,7 @@ protected void doGet(HttpServletRequest request,
         DummyList.push(new Incident(bon, "Robbery",  "Someone robbed a store", "Robert", "Brendan",AssignedUser,LocalDateTime.now(),1));
         DummyList.push(new Incident(bon, "Crash",  "Someone crashed", "Susie", "Ned",AssignedUser,LocalDateTime.now(),1));
         DummyList.push(new Incident(bon, "Shoplift",  "Another steal", "Ahmed", "Alex",AssignedUser,LocalDateTime.now(),1));
-
+*/
         return DummyList;
     }
     

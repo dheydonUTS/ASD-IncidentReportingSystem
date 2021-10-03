@@ -39,14 +39,14 @@ public class IncidentServlet extends HttpServlet {
        LocalDate date = LocalDate.parse(request.getParameter("date"));
        LocalTime time = LocalTime.parse(request.getParameter("time"));
        String desc = request.getParameter("desc");
-       String reporter = request.getParameter("reporter");
-       String offender = request.getParameter("offender");
+      // String reporter = request.getParameter("reporter");
+       //String offender = request.getParameter("offender");
        Venue venue = currentVenue;
        User assignUser = new User("assignedUserEmail","password");
        // Add some validation
        
-       Incident incident = new Incident(venue,type,desc,reporter,offender,assignUser,LocalDateTime.now(),1);
-       session.setAttribute("incident", incident);
+       //Incident incident = new Incident(venue,type,desc,reporter,offender,assignUser,LocalDateTime.now(),1);
+      // session.setAttribute("incident", incident);
        session.setAttribute("venue", venue);
        request.getRequestDispatcher("ViewIncident.jsp").include(request,response);
    }
