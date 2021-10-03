@@ -18,6 +18,10 @@ public class Venue implements Serializable{
     private double lat;
     private double lon;
     private String address;
+    //OLD FIELDS, TRY TO REMOVE
+        private String suburb;
+            private LinkedList<Incident> incidents;
+    
 
     //Post SQL Insertion
     public Venue(int id, String name, String address, double lat, double lon) {
@@ -36,7 +40,51 @@ public class Venue implements Serializable{
         this.address = address;
     }
     
+    //OLD CONSTRUCTORS -> Move to new ones    
+        public Venue(int id, String name, double lat, double lon, String address) {
+        this.id = id;
+        this.name = name;
+        this.lat = lat;
+        this.lon = lon;
+        this.address = address;
+    }
+        public Venue(int id, String name, String suburb, String address, LinkedList<Incident> incidents) {
+        this.id = id;
+        this.name = name;
+        this.suburb = suburb;
+        this.address = address;
+        this.incidents = incidents;
+    }
 
+    public Venue(int id, String name, String suburb, String address) {
+        this.id = id;
+        this.name = name;
+        this.suburb = suburb;
+        this.address = address;
+    }
+
+    public Venue(int id, String name, double lat, double lon) {
+        this.id = id;
+        this.name = name;
+        this.lat = lat;
+        this.lon = lon;
+    }
+        
+        
+    //OLD GETTERS AND SETTERS -> Move to new ones
+        public void setSuburb(String suburb){
+        this.suburb = suburb;
+    }
+    public String getSuburb(){
+        return suburb;
+    }
+    
+    public LinkedList<Incident> getIncidents() {
+        return incidents;
+    }
+    public void setIncidents(LinkedList<Incident> incidents) {
+        this.incidents = incidents;
+    }
     @Override
     public String toString() {
         return "Venue{" + "name=" + name + '}';

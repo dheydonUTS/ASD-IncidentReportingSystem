@@ -8,6 +8,7 @@ package controller;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -47,7 +48,7 @@ public class listOffenderServlet {
         HttpSession session = request.getSession();
         
         try {
-            ArrayList<Offender> offenders = manager.listOffenders();
+            LinkedList<Offender> offenders = manager.getOffenders();
             if (offenders != null) {
                 session.setAttribute("offenders", offenders);
                 request.getRequestDispatcher("offenderDashboard.jsp").include(request, response);
