@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import model.Incident;
 import model.Offender;
@@ -59,6 +60,53 @@ public class DBManager {
         System.out.println(venue.toString());
         return venue;
     }
+    
+    // List all of the venues
+    public ArrayList<Venue> listVenues() throws SQLException {
+        String query = "SELECT * FROM INCIDENTRS.\"Venue\"";
+        ResultSet rs = st.executeQuery(query);
+        ArrayList<Venue> venues = new ArrayList();
+        
+        while (rs.next()) {
+            int venueID = rs.getInt(1);
+            String venueName = rs.getString(2);
+            String venueAddress = rs.getString(3);
+            Double venueLat = rs.getDouble(4);
+            Double venueLon = rs.getDouble(5);
+            
+            venues.add(new Venue(venueID, venueName, venueAddress, venueLat, venueLon));
+        }
+        return venues;
+    }
+    
+    // Add venue
+    
+    public void addVenue(String venueName, String venueAddress, double venueLat, double venueLon) throws SQLException{
+        int temp = 0;
+    String query = "INSERT INTO INCIDENTRS.\"Venue\" VALUES ("+temp+",'"+venueName+"', '"+venueAddress+"', "+venueLat+", "+venueLon+"')";
+    st.executeUpdate(query);
+
+    String getid = "UPDATE INCIDENTRS.\"Venue\" SET Venue_ID = (SELECT MAX(Venue_ID) FROM INCIDENTRS.\"Venue\") + 1 WHERE Venue_ID = 0";
+    st.executeUpdate(getid);
+    }
+    
+    // Update Venue
+    
+   
+   public void updateVenue(int venueID, String venueName, String venueAddress, double venueLat, double venueLon) throws SQLException {
+       String query = "UPDATE INCIDENTRS.\"Venue\" SET VENUE_ID='" + venueID + "', VENUE_NAME='" + venueName + "', VENUE_ADDRESS='" + venueAddress + 
+               "', VENUE_LAT='" + venueLat + "', VENUE_LON='" + venueLon + "'";
+       
+       st.executeUpdate(query);
+   }
+    //Delete venue
+   
+   public void deleteVenue (int venueID) throws SQLException {
+       String query = "DELETE FROM INCIDENTRS.\"VENUE\" WHERE VENUE_ID ='" + venueID + "'";
+       st.executeUpdate(query);
+   }
+   
+   // Check User
 
     /*----------------- Offender -----------------*/
     //Return Offender Object, alternatively null if not found
@@ -91,6 +139,26 @@ public class DBManager {
             result.getString("GENDER"),
             result.getBoolean("ISBANNED")
             ));
+        }
+        return offenders;
+    }
+    
+    // List all of the offenders
+    public ArrayList<Offender> listOffenders() throws SQLException {
+        String query = "SELECT * FROM INCIDENTRS.\"Offender\"";
+        ResultSet rs = st.executeQuery(query);
+        ArrayList<Offender> offenders = new ArrayList();
+        
+        while (rs.next()) {
+            String offenderID = rs.getString(1);
+            String firstName = rs.getString(2);
+            String lastName = rs.getString(3); 
+            String gender = rs.getString(4);
+            String email = rs.getString(5);
+            String phone = rs.getString(6);
+            Boolean isBanned = rs.getBoolean(7);
+            
+            offenders.add(new Offender(offenderID, firstName, lastName, gender, email, phone, isBanned));
         }
         return offenders;
     }
