@@ -18,6 +18,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import javafx.util.Pair;
 import model.Incident;
 import model.Offender;
 import model.User;
@@ -66,13 +67,24 @@ public class DBManager {
 "VALUES\n" +
 "("+venueid+",'"+type+"', '"+description+"', "+reporterId+","+offenderId+","+assignedUserId+",'"+formatDateTime+"','open',"+priority+")");
     }
-    /* --- Read --- */
-    public Incident getCreatedIncident(int id) throws SQLException{
-    return new Incident() ;
-    }
-    /* --- Update --- */
     
-    /* --- Delete --- */
+    /* --- Get all members of staff and how many tickets they have  --- */
+    public ArrayList<int[]> getStaff() throws SQLException{
+        ArrayList<int[]> Staff = new ArrayList<int[]>();
+        ResultSet result = st.executeQuery("SELECT \n" +
+    "ASSIGNED_USER AS UserID,Count(ASSIGNED_USER) AS num \n" +
+    "FROM INCIDENTRS.\"Incident\" T1\n" +
+    "where STATUS <> 'closed'\n" +
+    "group by ASSIGNED_USER\n" +
+    "UNION ALL\n" +
+    "SELECT User_ID AS UserID,0 AS num  FROM INCIDENTRS.\"User\" T2 \n" +
+    "where IS_Staff AND User_ID NOT IN \n" +
+    "    (SELECT distinct ASSIGNED_USER FROM INCIDENTRS.\"Incident\")\n");
+        while(result.next()){
+            Staff.add(new int[]{result.getInt("UserID"),result.getInt("num")} );
+        }
+        return Staff;
+    }
     
     /*-----------------Venue -----------------*/
 
