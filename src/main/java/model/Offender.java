@@ -1,43 +1,35 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
-
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
 
-/**
- *
- * @author adam
- */
 public class Offender implements Serializable{
-    private String id;
+    private int id;
     private String firstName;
-    private String surname;
+    private String lastName;
     private String email;
     private String phone;
     private String gender;
     private boolean isBanned;
-    private LinkedList<Incident> incidents;
-    
-    public Offender(String firstName, String surname, String gender, LinkedList<Incident> incidents){
-        this.firstName = firstName;
-        this.surname = surname;
-        this.gender = gender;
-        this.incidents = incidents;
-        this.id = "1000001";
-    }
-    
-    public Offender(String id, String firstName, String surname, String gender){
+
+    //Construct from SQL (With ID)
+    public Offender(int id, String firstName, String lastName, String email, String phone, String gender, boolean isBanned) {
         this.id = id;
         this.firstName = firstName;
-        this.surname = surname;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
         this.gender = gender;
+        this.isBanned = isBanned;
+    }
+    
+    //Construct new Offender (before SQL Entry)
+    public Offender(String firstName, String lastName, String email, String phone, String gender, boolean isBanned) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+        this.gender = gender;
+        this.isBanned = isBanned;
     }
     
      public Offender(String id, String firstName, String surname, String gender, String email, String phone, Boolean isBanned){
@@ -50,7 +42,52 @@ public class Offender implements Serializable{
         this.isBanned = isBanned;
     }
 
-    public Offender() {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public boolean isIsBanned() {
@@ -60,55 +97,6 @@ public class Offender implements Serializable{
     public void setIsBanned(boolean isBanned) {
         this.isBanned = isBanned;
     }
-    
-    public String getEmail() {
-        return email;
-    }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-    
-    
-    
-    public String getID(){
-        return this.id;
-    }
-    public void setID(String id){
-        this.id = id;
-    }
-    public String getFirstName(){
-        return this.firstName;
-    }
-
-    public void setFirstName(String firstName){
-        this.firstName = firstName;
-    }
-    public String getSurname(){
-        return this.surname;
-    }
-
-    public void setSurname(String surname){
-        this.surname = surname;
-    }
-    public String getGender(){
-        return this.gender;
-    }
-
-    public void setGender(String gender){
-        this.firstName = gender;
-    }
-    public LinkedList<Incident> getIncidents(String id){
-        return this.incidents;
-    }
-    
     
 }
