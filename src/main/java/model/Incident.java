@@ -47,6 +47,23 @@ public class Incident implements Serializable {
 
     public Incident() {
     }
+
+    public Incident(int id, Venue venue, String type, String description, User reporter, Offender offender, LocalDate incidentDate, LocalTime incidentTime, User assignedUser, LocalDateTime createdTime, LocalDateTime closedTime, int priority) {
+        this.id = id;
+        this.venue = venue;
+        this.type = type;
+        this.description = description;
+        this.reporter = reporter;
+        this.offender = offender;
+        this.incidentDate = incidentDate;
+        this.incidentTime = incidentTime;
+        this.assignedUser = assignedUser;
+        this.createdTime = createdTime;
+        this.status = "open";
+        this.priority = priority;
+    }
+    
+    
  
     
     

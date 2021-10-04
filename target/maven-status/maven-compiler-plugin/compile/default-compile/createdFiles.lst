@@ -3,7 +3,6 @@ model\dao\DBConnector.class
 controller\editAccountServlet.class
 controller\test\TestIncidentReports.class
 controller\OffenderReportServlet.class
-controller\validator.class
 controller\IncidentDetailServlet.class
 model\dao\DBManager.class
 controller\IncidentLocationReportServlet.class
@@ -15,6 +14,7 @@ model\Warning.class
 controller\allocateTicket.class
 model\User.class
 controller\EmailServlet.class
+controller\Validator.class
 controller\IncidentListServlet.class
 controller\listOffenderServlet.class
 controller\LoginServlet.class

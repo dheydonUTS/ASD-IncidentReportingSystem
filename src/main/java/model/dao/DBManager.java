@@ -89,17 +89,17 @@ public class DBManager {
     /*----------------- Incident Creation  -----------------*/
     /* --- Create --- */
     public void addIncident(int venueid, String type, String description, 
-            int reporterId, int offenderId,LocalTime time, LocalDate date, int assignedUserId, 
+            int reporterId, int offenderId,String time, String date, int assignedUserId, 
             LocalDateTime createdTime,  int priority) throws SQLException{
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String formatDateTime = createdTime.format(formatter);
         st.executeUpdate("INSERT INTO \"Incident\"(venue_id,type,description,"
                 + "reporter_id,offender_id,assigned_user, ticket_created_time,"
-                + "status,priority)\n" +
+                + "status,priority,INCIDENT_DATE, INCIDENT_TIME)\n" +
                 "VALUES\n" +
                 "("+venueid+",'"+type+"', '"+description+"', "+reporterId+","
                 + ""+offenderId+","+assignedUserId+",'"+formatDateTime+
-                "','open',"+priority+")");
+                "','open',"+priority+", '" +time +"', '"+ date+ "' )");
     }
     
     /* --- Get all members of staff and how many tickets they have  --- */
@@ -132,6 +132,20 @@ public class DBManager {
         }
     return 0;
     }
+    public Venue getVenueByName(String name) throws SQLException{
+    ResultSet result = st.executeQuery("SELECT * FROM \"Venue\" WHERE VENUE_NAME = '"+name+"'");
+    while(result.next()){
+        return new Venue(
+            result.getInt("VENUE_ID"),
+            result.getString("VENUE_NAME"),
+            result.getString("VENUE_ADDRESS"),
+            result.getDouble("VENUE_LAT"),
+            result.getDouble("VENUE_LON")        
+            );
+        }
+    return null;
+    }
+    
     
     /*-----------------Venue -----------------*/
 
