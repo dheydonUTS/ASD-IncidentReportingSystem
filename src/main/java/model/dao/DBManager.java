@@ -88,7 +88,11 @@ public class DBManager {
         }
         return Staff;
     }
-
+    
+    public void addOffenderIncindent(String Fname, String Lname) throws SQLException {
+    st.executeUpdate("INSERT INTO INCIDENTRS.\"Offender\"(first_name,last_name,is_banned)"
+            +"VALUES ('" + Fname + "','" + Lname + "', " + "false" +")");
+    }
     /*-----------------Venue -----------------*/
 
     // !! Havent tested !!
