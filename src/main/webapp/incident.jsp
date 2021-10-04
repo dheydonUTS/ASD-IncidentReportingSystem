@@ -27,8 +27,8 @@
                     <div class="form-group row">
                       <label class="col-sm-2 control-label text-right" for="venueName">Venue:</label>
                       <div class="col-sm-10">
-                      <select class="form-control" name="venueName" id="type">
-                                <%
+                        <select class="form-control" name="venueName" id="type">
+                            <%
                                      DBManager manager = (DBManager)session.getAttribute("manager");
                                      LinkedList<Venue> Venues = manager.getVenues();
                                      request.setAttribute("Venues", Venues);
@@ -43,29 +43,28 @@
                                      descError = false;
                                      offenderErr = false;
                                      }
-                                %>
-                        <c:forEach items="${Venues}" var="Venue">
-                          <option value="${Venue.name}">${Venue.name}</option>
-                        </c:forEach>
-                      </select>
+                                %> <c:forEach items="${Venues}" var="Venue">
+                            <option value="${Venue.name}">${Venue.name}</option>
+                          </c:forEach>
+                        </select>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label class="col-sm-2 control-label text-right" for="type">Incident Type:</label>
                       <div class="col-sm-10">
-                      <select class="form-control" name="type" id="type">
-                        <option value="Theft/Attempted theft">Theft/Attempted theft</option>
-                        <option value="Altercation">Altercation</option>
-                        <option value="Safety hazard">Safety hazard</option>
-                        <option value="Medical Emergency">Medical emergency</option>
-                      </select>
+                        <select class="form-control" name="type" id="type">
+                          <option value="Theft/Attempted theft">Theft/Attempted theft</option>
+                          <option value="Altercation">Altercation</option>
+                          <option value="Safety hazard">Safety hazard</option>
+                          <option value="Medical Emergency">Medical emergency</option>
+                        </select>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label class="col-sm-2 control-label text-right" for="time">Time:</label>
-                       <div class="col-sm-10">
+                      <div class="col-sm-10">
                         <input class="form-control" type="time" name="time">
-                       </div>
+                      </div>
                     </div>
                     <div class="form-group row">
                       <label class="col-sm-2 control-label text-right" for="date">Date:</label>
@@ -76,40 +75,41 @@
                     <div class="form-group row ">
                       <label class="col-sm-2 control-label text-right" for="desc">Description:</label>
                       <div class="col-sm-10">
-                          <textarea class="form-control 
-                                    <% if(descError){ %>
-                                    is-invalid
-                                    <%}%>
-                                    " id="desc" name="desc" rows="3"></textarea>
-                          <% if(descError){%>
-                              <div class="invalid-feedback">
-                                Please enter a valid description.
-                              </div>
-                          <%}%>
+                        <textarea class="form-control <% if(descError){ %>is-invalid<%}%>" id="desc" placeholder="Please provide a description of events" name="desc" rows="3"></textarea>
+                        <% if(descError){%>
+                            <div class=" invalid-feedback">
+                            Please enter a valid description.
+                            </div><%}%>
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label class="col-sm-2 control-label text-right" for="offender">Offender: </label>
-                      <div class="col-sm-10">
-                      <input class="form-control" type="text" name="offender">
-                      </div>
-                    </div>
-                        <div class="form-group row">
-                            <div class="form-group row">
-                      <label class="col-sm-2 control-label text-right" for=""> </label>
-                      <div class="col-sm-10">
-                                <input type="submit" value="Submit" class="btn btn-primary">
+                        <label class="col-sm-2 control-label text-right" for="offender">Offender: </label>
+                        <div class="col-auto">
+                            <input class="form-control" placeholder="First Name" type="text" name="offenderFname">
                         </div>
-                  </div>
-                  <br>
+                        <div class="col-auto">
+                            <input class="form-control" placeholder="Last Name"type="text" name="offenderLname">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group row">
+                            <label class="col-sm-2 control-label text-right" for=""></label>
+                            <div class="col-sm-10">
+                                <input type="submit" value="Submit" class="btn btn-primary">
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                    </div>
                 </form>
                 <br>
-              </div>
+                    
+                </div>
             </div>
-          </div>
         </div>
         <hr>
-      </div>
+        </div>
     </div>
-  </body>
+    </div>
+    </body>
 </html>
