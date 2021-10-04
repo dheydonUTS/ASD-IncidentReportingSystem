@@ -39,11 +39,13 @@ public class RegisterServlet extends HttpServlet {
             String password = request.getParameter("password");
             String repassword = request.getParameter("repassword");
             DBManager manager = (DBManager) session.getAttribute("manager");
-            response.sendRedirect("Login.jsp");
             if (password.equals(repassword)) {
                 manager.createUser(email, password, fname, lname);
+                response.sendRedirect("Login.jsp");
+            } else {
+                response.sendRedirect("Register.jsp");
             }
-        
+            
             }      catch (SQLException ex) {
                 Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
        }
