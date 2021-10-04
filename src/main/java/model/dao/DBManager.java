@@ -18,7 +18,6 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.LinkedList;
-import javafx.util.Pair;
 import model.Incident;
 import model.Offender;
 import model.User;
