@@ -4,13 +4,14 @@ C:\Users\vince\Desktop\GitHub Repos\ASD-IncidentReportingSystem\src\main\java\co
 C:\Users\vince\Desktop\GitHub Repos\ASD-IncidentReportingSystem\src\main\java\model\User.java
 C:\Users\vince\Desktop\GitHub Repos\ASD-IncidentReportingSystem\src\main\java\com\mycompany\asd_incident_reporting_system\resources\JavaEE8Resource.java
 C:\Users\vince\Desktop\GitHub Repos\ASD-IncidentReportingSystem\src\main\java\controller\IssueWarningServlet.java
+C:\Users\vince\Desktop\GitHub Repos\ASD-IncidentReportingSystem\src\main\java\controller\IncidentReportServlet.java
 C:\Users\vince\Desktop\GitHub Repos\ASD-IncidentReportingSystem\src\main\java\controller\IncidentServlet.java
 C:\Users\vince\Desktop\GitHub Repos\ASD-IncidentReportingSystem\src\main\java\controller\RegisterServlet.java
 C:\Users\vince\Desktop\GitHub Repos\ASD-IncidentReportingSystem\src\main\java\com\mycompany\asd_incident_reporting_system\JAXRSConfiguration.java
 C:\Users\vince\Desktop\GitHub Repos\ASD-IncidentReportingSystem\src\main\java\controller\EmailServlet.java
 C:\Users\vince\Desktop\GitHub Repos\ASD-IncidentReportingSystem\src\main\java\controller\GeneralReportsServlet.java
 C:\Users\vince\Desktop\GitHub Repos\ASD-IncidentReportingSystem\src\main\java\controller\listOffenderServlet.java
-C:\Users\vince\Desktop\GitHub Repos\ASD-IncidentReportingSystem\src\main\java\controller\validator.java
+C:\Users\vince\Desktop\GitHub Repos\ASD-IncidentReportingSystem\src\main\java\controller\Validator.java
 C:\Users\vince\Desktop\GitHub Repos\ASD-IncidentReportingSystem\src\main\java\model\dao\DB.java
 C:\Users\vince\Desktop\GitHub Repos\ASD-IncidentReportingSystem\src\main\java\model\Venue.java
 C:\Users\vince\Desktop\GitHub Repos\ASD-IncidentReportingSystem\src\main\java\model\Offender.java

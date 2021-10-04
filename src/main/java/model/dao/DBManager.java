@@ -290,6 +290,7 @@ public class DBManager {
         return getVenueForIncident(incidentList);
     }
      
+    // Retrieve Venue objects for list of Incidents
      public LinkedList<Incident> getVenueForIncident(LinkedList<Incident> incidentList){
         try{
             for(Incident incident : incidentList){
@@ -302,6 +303,7 @@ public class DBManager {
         return incidentList;
     }
     
+    // Retrieve incident object from database
     public Incident getIncident(int id) throws SQLException{
         Incident incident = new Incident();
         ResultSet result = st.executeQuery("SELECT * FROM \"Incident\" WHERE INCIDENT_ID = "+id+"");

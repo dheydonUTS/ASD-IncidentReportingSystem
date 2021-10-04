@@ -48,6 +48,10 @@
         <servlet-name>IncidentDetailServlet</servlet-name>
         <servlet-class>controller.IncidentDetailServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>IncidentReportServlet</servlet-name>
+        <servlet-class>controller.IncidentReportServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AnalyticsServlet</servlet-name>
         <url-pattern>/Analytics</url-pattern>
@@ -95,6 +99,10 @@
     <servlet-mapping>
         <servlet-name>IncidentDetailServlet</servlet-name>
         <url-pattern>/IncidentDetailServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IncidentReportServlet</servlet-name>
+        <url-pattern>/IncidentReportServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
