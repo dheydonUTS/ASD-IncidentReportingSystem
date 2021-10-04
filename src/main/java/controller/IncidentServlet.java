@@ -32,47 +32,80 @@ public class IncidentServlet extends HttpServlet {
             throws ServletException, IOException {       
        HttpSession session = request.getSession();
        DBManager manager = (DBManager)session.getAttribute("manager");
-       Venue currentVenue = new Venue(1,request.getParameter("venueName"),12,12); // Fix to add current venue (get from session)
+       User user = new User();
+    try {
+        user = manager.getUser(1);
+    } catch (SQLException ex) {
+        Logger.getLogger(IncidentServlet.class.getName()).log(Level.SEVERE, null, ex);
+    }
        String type = request.getParameter("type");
        LocalDate date = LocalDate.parse(request.getParameter("date"));
        LocalTime time = LocalTime.parse(request.getParameter("time"));
+       String venueName = (String)request.getParameter("venueName");
+       Venue venue = new Venue();
+       System.out.println(venueName);
+        try {
+            venue = manager.getVenueByName(venueName);
+        } catch (SQLException ex) {
+            Logger.getLogger(IncidentServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
        String desc = request.getParameter("desc");
        User reporter = (User)session.getAttribute("user");
        
        /* --- Validation & Initialisation --- */
        Validator valid = new Validator();
-       String oFirstName="";
-       String oLastName="";
-       
-       if(valid.validateName((String)session.getAttribute("offenderFname")) & 
-               valid.validateName((String)session.getAttribute("offenderLname"))){
-            oFirstName = (String)session.getAttribute("offenderFname");
-            oLastName = (String)session.getAttribute("offenderLname");
-       }
-       
-       
-       int offenderId;
-       if(oFirstName!= null & oLastName != null){
-            try{
+       String oFirstName;
+       String oLastName;
+       int offenderId = 0;/*
+       if(valid.validateName((String)request.getParameter("offenderFname")) &       // Check offender first & last name are valid
+               valid.validateName((String)request.getParameter("offenderLname"))){
+            oFirstName = (String)request.getParameter("offenderFname");
+            oLastName = (String)request.getParameter("offenderLname");
+            try{                                                                    // Check for offender in DB
                 offenderId = manager.getOffenderIDByName(oFirstName,oLastName);
             }
             catch(Exception e){
-                try {
+                try {                                                               // Create Offender if not in DB
                     manager.addOffenderIncindent(oFirstName, oLastName);
                     offenderId = manager.getOffenderIDByName(oFirstName,oLastName);
-                } catch (SQLException ex) {
+                } catch (Exception x) {
                     System.out.println("Query Failure");
                 }
             }
        }
-       //String offender = request.getParameter("offender");
-       Venue venue = currentVenue;
-       User assignUser = new User("assignedUserEmail","password");
-       // Add some validation
-       
-       //Incident incident = new Incident(venue,type,desc,reporter,offender,assignUser,LocalDateTime.now(),1);
-      // session.setAttribute("incident", incident);
-       session.setAttribute("venue", venue);
+       Offender offender = new Offender();
+    try {
+        offender = manager.getOffender(offenderId);
+    } catch (SQLException ex) {
+        Logger.getLogger(IncidentServlet.class.getName()).log(Level.SEVERE, null, ex);
+    }
+       //String offender = request.getParameter("offender");*/
+       Offender offender = new Offender();
+    try {
+        offender = manager.getOffender(1);
+    } catch (SQLException ex) {
+        Logger.getLogger(IncidentServlet.class.getName()).log(Level.SEVERE, null, ex);
+    }
+       allocateTicket al = new allocateTicket();
+       int assignedUserId =0;
+    try {
+        assignedUserId = al.nextFreeStaff(manager.getStaff());
+    } catch (SQLException ex) {
+        Logger.getLogger(IncidentServlet.class.getName()).log(Level.SEVERE, null, ex);
+    }
+       User assignUser = new User();
+    try {
+        assignUser = manager.getUser(assignedUserId);
+    } catch (SQLException ex) {
+        Logger.getLogger(IncidentServlet.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    try {
+        manager.addIncident(venue.getId(),type,desc,user.getId(),offender.getId(),date.toString(),time.toString(),assignedUserId,LocalDateTime.now(),1);
+    } catch (SQLException ex) {
+        Logger.getLogger(IncidentServlet.class.getName()).log(Level.SEVERE, null, ex);
+    }
+       Incident incident = new Incident(venue,type,date,time,desc,reporter,offender,assignUser,LocalDateTime.now(),1);
+       session.setAttribute("incident", incident);
        request.getRequestDispatcher("ViewIncident.jsp").include(request,response);
    }
 
