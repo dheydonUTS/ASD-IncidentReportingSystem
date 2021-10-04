@@ -4,13 +4,14 @@
     Author     : dheydon
 --%>
 
+<%@page import="model.Offender"%>
 <%@page import="model.Venue"%>
 <%@page import="model.Incident"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
 Incident incident = (Incident)session.getAttribute("incident");
-Venue venue = (Venue)session.getAttribute("venue"); // Get venue from incident in future
+Venue venue = incident.getVenue();
 %>
 <!DOCTYPE html>
 <html>
@@ -39,11 +40,11 @@ Venue venue = (Venue)session.getAttribute("venue"); // Get venue from incident i
 				</tr>
 				<tr>
                     <td>Incident Date</td>
-					<td><%=incident.getDate()%></td>
+					<td><%=incident.getIncidentDate()%></td>
 				</tr>
 				<tr>
                     <td>Incident Time</td>
-					<td><%=incident.getTime()%></td>
+					<td><%=incident.getIncidentTime()%></td>
 					
 				</tr>
 				<tr>
@@ -57,7 +58,8 @@ Venue venue = (Venue)session.getAttribute("venue"); // Get venue from incident i
 				</tr>
 				<tr>
                     <td>Offender Details</td>
-                    <td><%=incident.getOffender()%></td>
+                    <% Offender offender = incident.getOffender();%>
+                    <td><%=offender.getFirstName()%> <%=offender.getLastName()%></td>
                 </tr>            
         </table>
                   </div>
