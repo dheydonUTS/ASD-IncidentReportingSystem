@@ -88,7 +88,7 @@ public class DBManager {
         }
         return Staff;
     }
-    
+
     /*-----------------Venue -----------------*/
 
     // !! Havent tested !!
