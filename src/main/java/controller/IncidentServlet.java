@@ -42,6 +42,7 @@ public class IncidentServlet extends HttpServlet {
        /* --- Validation & Initialisation --- */
        Validator valid = new Validator();
        String oFirstName="";
+       String oLastName="";
        
        if(valid.validateName((String)session.getAttribute("offenderFname")) & 
                valid.validateName((String)session.getAttribute("offenderLname"))){
@@ -50,7 +51,6 @@ public class IncidentServlet extends HttpServlet {
        }
        
        
-       String 
        int offenderId;
        if(oFirstName!= null & oLastName != null){
             try{

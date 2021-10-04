@@ -22,7 +22,7 @@
                 <button type="button" class="btn btn primary" onclick="history.back()">< Back</button>
                 <h1 class="display-4">Incident #<%=incident.getId()%> Details</h1>
                 <hr>
-                <button type="button" class="btn btn-dark">Generate Report</button>
+                <button type="button" class="btn btn-dark" onclick="window.location.href='IncidentReportServlet'">Generate Report</button>
                 <table class="table">
                     <tr><td>Incident Id:</td><td><%=incident.getId()%></td></tr>
                     <tr><td>Venue:</td><td><%=(incident.getVenue() != null ? incident.getVenue().getName() : "not specified")%></td></tr>
