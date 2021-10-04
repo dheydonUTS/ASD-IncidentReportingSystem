@@ -53,6 +53,32 @@ public class DBManager {
         return user;
     }
     
+    public void createUser(String email, String password, String fname, String lname) throws SQLException {
+        st.executeUpdate("INSERT INTO INCIDENTRS.\"User\" (EMAIL, \"FIRST_NAME\", \"LAST_NAME\", PASSWORD, IS_STAFF) " 
+                + "VALUES ('"+email+"', '"+fname+"', '"+lname+"', '"+password+"', 'false')");
+    }
+    
+    public User findUser(String email, String password) throws SQLException {
+        String fetch = "SELECT * FROM INCIDENTRS.\"User\" WHERE EMAIL='" + email + "' AND PASSWORD='" + password + "'";
+        ResultSet result = st.executeQuery(fetch);
+        User user = new User(email, password);
+        if(result.next()){
+            String currEmail = result.getString(2);
+            String currPassword = result.getString(5);
+            if (currEmail.equals(email) && currPassword.equals(password)) {
+                return user;
+            }
+        }
+        return null;
+    }
+    
+    public void deleteUser(String email) throws SQLException {
+        st.executeUpdate("DELETE FROM INCIDENTRS.\"User\" WHERE EMAIL = '" + email + "'");
+    }
+    
+    public void updateUser(String newEmail, String newPassword, String oldEmail) throws SQLException {
+        st.executeUpdate("UPDATE INCIDENTRS.\"User\" SET EMAIL= '" + newEmail + "', PASSWORD='"+newPassword+"' WHERE EMAIL='"+oldEmail+"'");
+    }
     
     
     /*----------------- Incident Creation  -----------------*/
