@@ -137,6 +137,22 @@ public class Incident implements Serializable {
     public void setPriority(int priority) {
         this.priority = priority;
     }
+
+    public LocalDate getIncidentDate() {
+        return incidentDate;
+    }
+
+    public void setIncidentDate(LocalDate incidentDate) {
+        this.incidentDate = incidentDate;
+    }
+
+    public LocalTime getIncidentTime() {
+        return incidentTime;
+    }
+
+    public void setIncidentTime(LocalTime incidentTime) {
+        this.incidentTime = incidentTime;
+    }
     
     
 
