@@ -52,6 +52,14 @@
         <servlet-name>IncidentReportServlet</servlet-name>
         <servlet-class>controller.IncidentReportServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>VenueListServlet</servlet-name>
+        <servlet-class>controller.VenueListServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>VenueDetailServlet</servlet-name>
+        <servlet-class>controller.VenueDetailServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AnalyticsServlet</servlet-name>
         <url-pattern>/Analytics</url-pattern>
@@ -103,6 +111,14 @@
     <servlet-mapping>
         <servlet-name>IncidentReportServlet</servlet-name>
         <url-pattern>/IncidentReportServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VenueListServlet</servlet-name>
+        <url-pattern>/VenueListServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VenueDetailServlet</servlet-name>
+        <url-pattern>/VenueDetailServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
