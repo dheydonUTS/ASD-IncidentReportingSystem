@@ -9,6 +9,26 @@
         <servlet-class>controller.IncidentServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>listOffenderServlet</servlet-name>
+        <servlet-class>controller.listOffenderServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>listVenueServlet</servlet-name>
+        <servlet-class>controller.listVenueServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>editVenueServlet</servlet-name>
+        <servlet-class>controller.editVenueServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>updateVenueServlet</servlet-name>
+        <servlet-class>controller.updateVenueServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>deleteVenueServlet</servlet-name>
+        <servlet-class>controller.deleteVenueServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>GeneralReportsServlet</servlet-name>
         <servlet-class>controller.GeneralReportsServlet</servlet-class>
     </servlet>
@@ -71,6 +91,26 @@
     <servlet-mapping>
         <servlet-name>IncidentDetailServlet</servlet-name>
         <url-pattern>/IncidentDetailServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>listOffenderServlet</servlet-name>
+        <url-pattern>/listOffenderServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>listVenueServlet</servlet-name>
+        <url-pattern>/listVenueServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>editVenueServlet</servlet-name>
+        <url-pattern>/editVenueServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updateVenueServlet</servlet-name>
+        <url-pattern>/updateVenueServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleteVenueServlet</servlet-name>
+        <url-pattern>/deleteVenueServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -136,20 +136,50 @@ public class DBManager {
     
    
    public void updateVenue(int venueID, String venueName, String venueAddress, double venueLat, double venueLon) throws SQLException {
-       String query = "UPDATE INCIDENTRS.\"Venue\" SET VENUE_ID='" + venueID + "', VENUE_NAME='" + venueName + "', VENUE_ADDRESS='" + venueAddress + 
-               "', VENUE_LAT='" + venueLat + "', VENUE_LON='" + venueLon + "'";
+       String query = "UPDATE INCIDENTRS.\"Venue\" SET VENUE_NAME='" + venueName + "', VENUE_ADDRESS='" + venueAddress + 
+               "', VENUE_LAT=" + venueLat + ", VENUE_LON=" + venueLon + " WHERE VENUE_ID=" + venueID + "";
        
        st.executeUpdate(query);
    }
     //Delete venue
    
-   public void deleteVenue (int venueID) throws SQLException {
-       String query = "DELETE FROM INCIDENTRS.\"VENUE\" WHERE VENUE_ID ='" + venueID + "'";
+   public void deleteVenue(int venueID) throws SQLException {
+       String query = "DELETE FROM INCIDENTRS.\"Venue\" WHERE VENUE_ID =" + venueID + "";
        st.executeUpdate(query);
    }
    
-   // Check User
+   // Check Venue
+   
+   public boolean checkVenue(int venueID) throws SQLException {
+       String fetch = "SELECT * FROM INCIDENTRS.\"Venue\" WHERE VENUE_ID =" + venueID + "";
+       ResultSet rs = st.executeQuery(fetch);
+       
+       while (rs.next()) {
+           int venue_id = rs.getInt(1);
+           
+           if (venue_id == venueID) {
+               return true;
+           }
+       } return false;
+   }
 
+   public Venue findVenue(int venueID) throws SQLException {
+       String fetch = "SELECT * FROM INCIDENTRS.\"Venue\" WHERE VENUE_ID =" + venueID + "";
+       ResultSet rs = st.executeQuery(fetch);
+       
+       while (rs.next()) {
+           int venue_id = rs.getInt(1);
+           if (venue_id == venueID) {
+               String venueName = rs.getString(2);
+               String venueAddress = rs.getString(3);
+               Double venueLat = rs.getDouble(4);
+               Double venueLon = rs.getDouble(5);
+               return new Venue(venueID, venueName, venueAddress, venueLat, venueLon);
+               
+           }
+       }
+       return null;
+   }
 
     /*----------------- Offender -----------------*/
     //Return Offender Object, alternatively null if not found
@@ -186,7 +216,7 @@ public class DBManager {
         }
         return offenders;
     }
-        
+           
         public Offender addOffender(String firstName, String lastName, String email, String phone, String gender, boolean isBanned) throws SQLException {
         String sql = "INSERT INTO INCIDENTRS.\"Offender\"(first_name,last_name,gender,email,phone,is_banned) "
                 + "VALUES ('" + firstName + "','" + lastName + "', '" + gender + "', '" + email + "', '" + phone + "'," + isBanned + ")";

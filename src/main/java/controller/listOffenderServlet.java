@@ -12,9 +12,11 @@ import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Incident;
 import model.Offender;
 import model.dao.*;
 
@@ -22,11 +24,12 @@ import model.dao.*;
  *
  * @author christianlopez
  */
-public class listOffenderServlet {
+public class listOffenderServlet extends HttpServlet {
     
     private DBManager manager;
     private DBConnector connector;
     
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     
@@ -52,7 +55,7 @@ public class listOffenderServlet {
             if (offenders != null) {
                 session.setAttribute("offenders", offenders);
                 request.getRequestDispatcher("offenderDashboard.jsp").include(request, response);
-                session.setAttribute("show", "OffenderDashboard");
+                session.setAttribute("show", "offenderDashboard");
                 response.sendRedirect("offenderDashboard.jsp");
             }
             else {
@@ -68,3 +71,24 @@ public class listOffenderServlet {
     
 }
 
+
+/*
+public class listOffenderServlet extends HttpServlet {
+    
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)  // Loads the list of incidents from the database
+            throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        DBManager manager = (DBManager)session.getAttribute("manager");
+        
+        LinkedList<Offender> offenders = null;
+        try{
+            offenders = manager.getOffenders(); // Loads the list of incidents
+        }catch(SQLException e){
+            Logger.getLogger(listOffenderServlet.class.getName()).log(Level.SEVERE, null, e);
+        }
+        session.setAttribute("offenders", offenders); // Set list of incidents into session
+        request.getRequestDispatcher("offenderDashboard.jsp").forward(request, response); // Dispatch request and response to webpage
+    }
+}
+*/
