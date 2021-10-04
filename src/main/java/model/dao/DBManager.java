@@ -93,6 +93,15 @@ public class DBManager {
     st.executeUpdate("INSERT INTO INCIDENTRS.\"Offender\"(first_name,last_name,is_banned)"
             +"VALUES ('" + Fname + "','" + Lname + "', " + "false" +")");
     }
+    
+    public int getOffenderIDByName(String Fname, String Lname) throws SQLException{
+    ResultSet result = st.executeQuery("SELECT OFFENDER_ID FROM INCIDENTRS.\"Offender\" where FIRST_NAME = '"+Fname+"' AND LAST_NAME = '"+Lname+"'");
+    while(result.next()){
+           return result.getInt("OFFENDER_ID");
+        }
+    return 0;
+    }
+    
     /*-----------------Venue -----------------*/
 
     // !! Havent tested !!

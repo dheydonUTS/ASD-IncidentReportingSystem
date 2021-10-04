@@ -36,7 +36,7 @@ public class validatorTest {
         System.out.println("validate");
         Pattern pattern = Pattern.compile("([a-zA-Z0-9._-]+)(@)([a-zA-Z0-9]+)(.)([a-zA-Z0-9._-]+)");
         String in = "email@email.com";
-        validator instance = new validator();
+        Validator instance = new Validator();
         boolean expResult = true;
         boolean result = instance.validate(pattern, in);
         assertEquals(expResult, result);
@@ -49,7 +49,7 @@ public class validatorTest {
     public void testValidateEmail() {
         System.out.println("validateEmail");
         String email = "";
-        validator instance = new validator();
+        Validator instance = new Validator();
         boolean expResult = false;
         boolean result = instance.validateEmail(email);
         assertEquals(expResult, result);
@@ -62,7 +62,7 @@ public class validatorTest {
     public void testValidatePassword() {
         System.out.println("validatePassword");
         String password = "";
-        validator instance = new validator();
+        Validator instance = new Validator();
         boolean expResult = false;
         boolean result = instance.validatePassword(password);
         assertEquals(expResult, result);
@@ -75,7 +75,7 @@ public class validatorTest {
     public void testValidateName() {
         System.out.println("validateName");
         String name = "";
-        validator instance = new validator();
+        Validator instance = new Validator();
         boolean expResult = false;
         boolean result = instance.validateName(name);
         assertEquals(expResult, result);
