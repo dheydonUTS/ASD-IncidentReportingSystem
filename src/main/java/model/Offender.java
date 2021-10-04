@@ -32,6 +32,11 @@ public class Offender implements Serializable{
         this.isBanned = isBanned;
     }
 
+    public Offender() {
+    }
+    
+    
+    
     public int getId() {
         return id;
     }

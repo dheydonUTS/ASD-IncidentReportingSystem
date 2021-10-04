@@ -34,7 +34,7 @@ public class ConnServlet extends HttpServlet {
         try {
             db = new DBConnector();
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE, null, ex);
+             System.out.println("DB connection failure");
         }
     }
 
@@ -59,7 +59,7 @@ public class ConnServlet extends HttpServlet {
         try {
             db.closeConnection();
         } catch (SQLException ex) {
-            Logger.getLogger(ConnServlet.class.getName()).log(Level.SEVERE, null, ex);
+             System.out.println("DB closure failure");
         }
     }
 }

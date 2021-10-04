@@ -124,6 +124,7 @@
         <servlet-name>IncidentReportServlet</servlet-name>
         <url-pattern>/IncidentReportServlet</url-pattern>
     </servlet-mapping>
+
     <servlet-mapping>	
         <servlet-name>ConnServlet</servlet-name>	
         <url-pattern>/ConnServlet</url-pattern>	
@@ -156,6 +157,7 @@
         <servlet-name>deleteVenueServlet</servlet-name>	
         <url-pattern>/deleteVenueServlet</url-pattern>	
     </servlet-mapping>
+
     <session-config>
         <session-timeout>
             30
