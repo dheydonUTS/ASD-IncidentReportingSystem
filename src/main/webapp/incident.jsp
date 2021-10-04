@@ -32,6 +32,17 @@
                                      DBManager manager = (DBManager)session.getAttribute("manager");
                                      LinkedList<Venue> Venues = manager.getVenues();
                                      request.setAttribute("Venues", Venues);
+                                     boolean descError;
+                                     boolean offenderErr;
+                                     // Get errors
+                                     try{
+                                     descError = (Boolean)session.getAttribute("descError");
+                                     offenderErr = (Boolean)session.getAttribute("offenderErr");
+                                     }
+                                     catch(Exception e){ 
+                                     descError = false;
+                                     offenderErr = false;
+                                     }
                                 %>
                         <c:forEach items="${Venues}" var="Venue">
                           <option value="${Venue.name}">${Venue.name}</option>
@@ -62,16 +73,19 @@
                         <input class="form-control" type="date" name="date">
                       </div>
                     </div>
-                    <div class="form-group row">
+                    <div class="form-group row ">
                       <label class="col-sm-2 control-label text-right" for="desc">Description:</label>
                       <div class="col-sm-10">
-                      <input class="form-control" type="text" name="desc" rows="3">
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label class="col-sm-2 control-label text-right" for="reporter">Your Email:</label>
-                      <div class="col-sm-10">
-                      <input class="form-control" type="text" name="reporter">
+                          <textarea class="form-control 
+                                    <% if(descError){ %>
+                                    is-invalid
+                                    <%}%>
+                                    " id="desc" name="desc" rows="3"></textarea>
+                          <% if(descError){%>
+                              <div class="invalid-feedback">
+                                Please enter a valid description.
+                              </div>
+                          <%}%>
                       </div>
                     </div>
                     <div class="form-group row">
