@@ -53,7 +53,6 @@ public class DBManager {
         return user;
     }
     
-<<<<<<< HEAD
     public void createUser(String email, String password, String fname, String lname) throws SQLException {
         st.executeUpdate("INSERT INTO INCIDENTRS.\"User\" (EMAIL, \"FIRST_NAME\", \"LAST_NAME\", PASSWORD, IS_STAFF) " 
                 + "VALUES ('"+email+"', '"+fname+"', '"+lname+"', '"+password+"', 'false')");
@@ -79,7 +78,7 @@ public class DBManager {
     
     public void updateUser(String newEmail, String newPassword, String oldEmail) throws SQLException {
         st.executeUpdate("UPDATE INCIDENTRS.\"User\" SET EMAIL= '" + newEmail + "', PASSWORD='"+newPassword+"' WHERE EMAIL='"+oldEmail+"'");
-=======
+    }
     
     
     /*----------------- Incident Creation  -----------------*/
@@ -114,7 +113,6 @@ public class DBManager {
             Staff.add(new int[]{result.getInt("UserID"),result.getInt("num")} );
         }
         return Staff;
->>>>>>> main
     }
 
     /*-----------------Venue -----------------*/
