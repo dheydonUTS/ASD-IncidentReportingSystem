@@ -3,6 +3,10 @@
    Created on : 05/09/2021, 5:06:19 PM
    Author     : dom_h
    --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="java.util.LinkedList"%>
+<%@page import="model.Venue"%>
+<%@page import="model.dao.DBManager"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -27,19 +31,23 @@
                                <div class="form-group row">
                               <label class="col-sm-2 col-form-label" for="venueName">Venue:</label>
                               <select class="form-control" name="venueName" id="type">
-                                 <option value="Rhodes">Rhodes</option>
-                                 <option value="Meadowbank">Meadowbank</option>
-                                 <option value="Broadway">Broadway</option>
-                                 <option value="Macquarie Park">Macquarie Park</option>
+                                 <%
+                                     DBManager manager = (DBManager)session.getAttribute("manager");
+                                     LinkedList<Venue> Venues = manager.getVenues();
+                                     request.setAttribute("Venues", Venues);
+                                 %>
+                                 <c:forEach items="${Venues}" var="Venue"> 
+                                     <option value="${Venue.name}">${Venue.name}</option>
+                                 </c:forEach>
                               </select>
                               </div>
                               <div class="form-group row">
                               <label class="col-sm-2 col-form-label" for="type">Incident Type:</label>
                               <select class="form-control" name="type" id="type">
-                                 <option value="Shoplifting">Shoplifting</option>
-                                 <option value="Stabbing">Stabbing</option>
-                                 <option value="Fight">Fight</option>
-                                 <option value="Spill">Spill</option>
+                                 <option value="Theft/Attempted theft">Theft/Attempted theft</option>
+                                 <option value="Altercation">Altercation</option>
+                                 <option value="Safety hazard">Safety hazard</option>
+                                 <option value="Medical Emergency">Medical emergency</option>
                               </select>
                               </div>
                               <div class="form-group row">
@@ -52,7 +60,7 @@
                               </div>
                               <div class="form-group row">
                               <label class="col-sm-2 col-form-label" for="desc">Description:</label>
-                               <input class="form-control"type="text" name="desc" >
+                               <input class="form-control"type="text" name="desc" rows="3" >
                               </div>
                               <div class="form-group row">
                               <label class="col-sm-2 col-form-label" for="reporter">Your Email:</label>
