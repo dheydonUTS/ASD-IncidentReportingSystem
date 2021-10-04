@@ -379,6 +379,23 @@ public class DBManager {
         return incident;
     }
 
+    /*-----------------Venue Report Generation-----------------*/
+    
+    public LinkedList<Venue> getVenueList() throws SQLException{
+        LinkedList<Venue> venueList = new LinkedList<Venue>();
+        ResultSet result = st.executeQuery("SELECT * FROM \"Venue\"");
+        while(result.next()){
+            Venue venue = new Venue();
+            venue.setId(result.getInt("VENUE_ID"));
+            venue.setName(result.getString("VENUE_NAME"));
+            venue.setAddress(result.getString("VENUE_ADDRESS"));
+            venue.setLat(result.getDouble("VENUE_LAT"));
+            venue.setLon(result.getDouble("VENUE_LON"));
+            venueList.add(venue);
+        }
+        return venueList;
+    }
+    
         /*-----------------Warning-----------------*/
 
         public Warning addWarning(int venue_id, String description, int offender_id) throws SQLException {

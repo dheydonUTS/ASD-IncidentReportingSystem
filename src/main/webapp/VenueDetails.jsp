@@ -4,6 +4,7 @@
     Author     : vince
 --%>
 
+<%@page import="model.Venue"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,17 +13,20 @@
         <title>Venue Details</title>
     </head>
     <body>
+        <%
+            Venue venue = (Venue)session.getAttribute("venue");
+        %>
         <jsp:include page="components/navbar.jsp"/>
         <div class="container-fluid p-5">
             <div class="container p-5">
                 <button type="button" class="btn btn primary" onclick="history.back()">< Back</button>
-                <h1 class="display-4">Venue #1 Details</h1>
+                <h1 class="display-4">Venue #<%=venue.getId()%> Details</h1>
                 <hr>
                 <button type="button" class="btn btn-dark">Generate Report</button>
                 <table class="table">
-                    <tr><td>Venue Id:</td><td>1</td></tr>
-                    <tr><td>Venue Name:</td><td>Venue 1</td></tr>
-                    <tr><td>Address</td><td>1, Martin Place</td></tr>
+                    <tr><td>Venue Id:</td><td><%=venue.getId()%></td></tr>
+                    <tr><td>Venue Name:</td><td><%=venue.getName()%></td></tr>
+                    <tr><td>Address:</td><td><%=venue.getAddress()%></td></tr>
                     <tr><td>No. of Incidents</td><td>1</td></tr>
                     </tr>
                 </table>

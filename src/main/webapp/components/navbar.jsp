@@ -32,7 +32,7 @@
 									Generation</a></li>
 							<li><a class="dropdown-item" href="IncidentListServlet">Incident Report
 									Generation</a></li>
-							<li><a class="dropdown-item" href="VenueList.jsp">Venue Report
+							<li><a class="dropdown-item" href="VenueListServlet">Venue Report
 									Generation</a></li>
 
 						</ul></li>
