@@ -80,7 +80,7 @@
                                     <% if(descError){ %>
                                     is-invalid
                                     <%}%>
-                                    " id="desc" name="desc" rows="3"></textarea>
+                                    " id="desc" placeholder="Please provide a description of events"name="desc" rows="3"></textarea>
                           <% if(descError){%>
                               <div class="invalid-feedback">
                                 Please enter a valid description.
@@ -90,16 +90,19 @@
                     </div>
                     <div class="form-group row">
                       <label class="col-sm-2 control-label text-right" for="offender">Offender: </label>
-                      <div class="col-sm-10">
-                      <input class="form-control" type="text" name="offender">
+                      <div class="col-auto">
+                      <input class="form-control" placeholder="First Name" type="text" name="offenderFname">
+                      </div>
+                      <div class="col-auto">
+                      <input class="form-control" placeholder="Last Name"type="text" name="offenderLname">
                       </div>
                     </div>
                         <div class="form-group row">
                             <div class="form-group row">
                       <label class="col-sm-2 control-label text-right" for=""> </label>
                       <div class="col-sm-10">
-                                <input type="submit" value="Submit" class="btn btn-primary">
-                        </div>
+                        <input type="submit" value="Submit" class="btn btn-primary">
+                      </div>
                   </div>
                   <br>
                 </form>
