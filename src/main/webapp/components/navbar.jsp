@@ -36,14 +36,14 @@
 									Generation</a></li>
 
 						</ul></li>
-					<li class="nav-item"><a class="nav-link" href="offenderDashboard.jsp">Offender
+					<li class="nav-item"><a class="nav-link" href="listOffenderServlet">Offender
 							Dashboard</a></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#"
 						id="navbarDropdownMenuLink" role="button"
 						data-bs-toggle="dropdown" aria-expanded="false"> Venues </a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-							<li><a class="dropdown-item" href="manageVenues.jsp">Manage Venues</a></li>
+							<li><a class="dropdown-item" href="listVenueServlet">Manage Venues</a></li>
 							<li><a class="dropdown-item" href="#">View Venue Info</a></li>
 						</ul></li>
 					<li class="nav-item"><a class="nav-link" href="IssueWarning">Issue
