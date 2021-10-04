@@ -3,7 +3,6 @@ model\dao\DBConnector.class
 controller\editAccountServlet.class
 controller\test\TestIncidentReports.class
 controller\OffenderReportServlet.class
-controller\validator.class
 controller\IncidentDetailServlet.class
 model\dao\DBManager.class
 controller\IncidentLocationReportServlet.class

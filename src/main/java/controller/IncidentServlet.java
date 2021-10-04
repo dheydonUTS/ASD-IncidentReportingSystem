@@ -40,10 +40,10 @@ public class IncidentServlet extends HttpServlet {
        User reporter = (User)session.getAttribute("user");
        
        /* --- Validation & Initialisation --- */
-       Validator valid = new Validator();
+      // Validator valid = new Validator();
        String oFirstName="";
        
-       if(valid.validateName((String)session.getAttribute("offenderFname")) & 
+    /*   if(valid.validateName((String)session.getAttribute("offenderFname")) & 
                valid.validateName((String)session.getAttribute("offenderLname"))){
             oFirstName = (String)session.getAttribute("offenderFname");
             oLastName = (String)session.getAttribute("offenderLname");
@@ -73,7 +73,7 @@ public class IncidentServlet extends HttpServlet {
        //Incident incident = new Incident(venue,type,desc,reporter,offender,assignUser,LocalDateTime.now(),1);
       // session.setAttribute("incident", incident);
        session.setAttribute("venue", venue);
-       request.getRequestDispatcher("ViewIncident.jsp").include(request,response);
+       request.getRequestDispatcher("ViewIncident.jsp").include(request,response);*/
    }
 
 }
