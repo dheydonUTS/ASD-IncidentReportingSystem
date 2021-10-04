@@ -1,9 +1,11 @@
+<%@page import="model.User"%>
 <!DOCTYPE html>
 <html>
 <head>
 </head>
 <body>
 	<jsp:include page="imports.jsp" />
+        <% User user = (User) session.getAttribute("user");%>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="index.jsp">Incident RS</a>
@@ -51,9 +53,16 @@
 
 				</ul>
 				<ul class="navbar-nav">
-					<a class="btn btn-outline-secondary" style="margin-right: 10px"
+				<% if(user == null) {%>
+                                    <a class="btn btn-outline-secondary" style="margin-right: 10px"
 						href="Login.jsp">Login</a>
 					<a class="btn btn-info" href="Register.jsp">Register</a>
+                               <%} else {%>
+                               <li class="nav-item"><a class="nav-link" href="Account.jsp">User: <%= user.getEmail() %></a></li>    
+                               <a class="btn btn-outline-secondary" style="margin-right: 10px"
+						href="Logout.jsp">Logout</a>
+					<a class="btn btn-info" href="Register.jsp">Register</a>
+                               <%}%>
 			</div>
 		</div>
 	</nav>

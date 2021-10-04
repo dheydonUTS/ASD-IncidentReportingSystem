@@ -25,12 +25,24 @@
         <servlet-class>controller.IncidentTypeReportServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>controller.LoginServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>controller.RegisterServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>ConnServlet</servlet-name>
         <servlet-class>controller.ConnServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>IncidentListServlet</servlet-name>
         <servlet-class>controller.IncidentListServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>editAccountServlet</servlet-name>
+        <servlet-class>controller.editAccountServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>IncidentDetailServlet</servlet-name>
@@ -61,12 +73,24 @@
         <url-pattern>/IncidentTypeReport</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/RegisterServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ConnServlet</servlet-name>
         <url-pattern>/ConnServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>IncidentListServlet</servlet-name>
         <url-pattern>/IncidentListServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>editAccountServlet</servlet-name>
+        <url-pattern>/editAccountServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>IncidentDetailServlet</servlet-name>

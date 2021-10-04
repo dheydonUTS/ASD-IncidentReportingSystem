@@ -28,6 +28,8 @@
                     <tr><td>Venue:</td><td><%=(incident.getVenue() != null ? incident.getVenue().getName() : "not specified")%></td></tr>
                     <tr><td>Incident Type:</td><td><%=(incident.getType() != null ? incident.getType() : "not specified")%></td></tr>
                     <tr><td>Description:</td><td><%=(incident.getDescription() != null ? incident.getDescription() : "not specified")%></td></tr>
+                    <tr><td>Date:</td><td><%=(incident.getIncidentDate() != null ? incident.getIncidentDate() : "not specified")%></td></tr>
+                    <tr><td>Time:</td><td><%=(incident.getIncidentTime() != null ? incident.getIncidentTime() : "not specified")%></td></tr>
                     <tr>
                         <td>Reporter:</td>
                         <td><%=(incident.getReporter() != null ? incident.getReporter().getFirstName()+" "+incident.getReporter().getLastName(): "not specified")%></td>
