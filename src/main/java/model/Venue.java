@@ -32,6 +32,10 @@ public class Venue implements Serializable{
         this.address = address;
     }
     
+    public Venue(){
+        
+    }
+    
     //Pre SQL Insertion
         public Venue(String name, String address, double lat, double lon) {
         this.name = name;

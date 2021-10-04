@@ -18,6 +18,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import javafx.util.Pair;
 import model.Incident;
 import model.Offender;
 import model.User;
@@ -40,44 +41,92 @@ public class DBManager {
 
     /*----------------- User -----------------*/
 
-    // !! Havent tested !!
+    // Updated by "Zwe" to get User object from database
     // Return venue object with id, returns null if not found
     public User getUser(int id) throws SQLException {
-        ResultSet result = st.executeQuery("SELECT * FROM \"Venue\" WHERE VENUE_ID = "+id+"");
-        User user = new User("email","password");
+        ResultSet result = st.executeQuery("SELECT * FROM \"User\" WHERE USER_ID = "+id+"");
+        User user = new User();
         while(result.next()){
-            // Retrieve user attributes
+            user.setId(result.getInt("USER_ID"));
+            user.setEmail(result.getString("EMAIL"));
+            user.setFirstName(result.getString("FIRST_NAME"));
+            user.setLastName(result.getString("LAST_NAME"));
+            user.setPassword(result.getString("PASSWORD"));
+            user.setIsStaff(result.getBoolean("IS_STAFF"));
         }
         System.out.println(user.toString());
         return user;
     }
     
+    public void createUser(String email, String password, String fname, String lname) throws SQLException {
+        st.executeUpdate("INSERT INTO INCIDENTRS.\"User\" (EMAIL, \"FIRST_NAME\", \"LAST_NAME\", PASSWORD, IS_STAFF) " 
+                + "VALUES ('"+email+"', '"+fname+"', '"+lname+"', '"+password+"', 'false')");
+    }
+    
+    public User findUser(String email, String password) throws SQLException {
+        String fetch = "SELECT * FROM INCIDENTRS.\"User\" WHERE EMAIL='" + email + "' AND PASSWORD='" + password + "'";
+        ResultSet result = st.executeQuery(fetch);
+        User user = new User(email, password);
+        if(result.next()){
+            String currEmail = result.getString(2);
+            String currPassword = result.getString(5);
+            if (currEmail.equals(email) && currPassword.equals(password)) {
+                return user;
+            }
+        }
+        return null;
+    }
+    
+    public void deleteUser(String email) throws SQLException {
+        st.executeUpdate("DELETE FROM INCIDENTRS.\"User\" WHERE EMAIL = '" + email + "'");
+    }
+    
+    public void updateUser(String newEmail, String newPassword, String oldEmail) throws SQLException {
+        st.executeUpdate("UPDATE INCIDENTRS.\"User\" SET EMAIL= '" + newEmail + "', PASSWORD='"+newPassword+"' WHERE EMAIL='"+oldEmail+"'");
+    }
     
     
     /*----------------- Incident Creation  -----------------*/
     /* --- Create --- */
-    public void addIncident(int venueid, String type, LocalDate date,
-            LocalTime time, String description, int reporterId, int offenderId,
-            int assignedUserId, LocalDateTime createdTime,  int priority) 
-            throws SQLException{
+    public void addIncident(int venueid, String type, String description, 
+            int reporterId, int offenderId,LocalTime time, LocalDate date, int assignedUserId, 
+            LocalDateTime createdTime,  int priority) throws SQLException{
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String formatDateTime = createdTime.format(formatter);
-        st.executeUpdate("INSERT INTO \"Incident\"(venue_id,type,description,reporter_id,offender_id,assigned_user, ticket_created_time,status,priority)\n" +
-"VALUES\n" +
-"("+venueid+",'"+type+"', '"+description+"', "+reporterId+","+offenderId+","+assignedUserId+",'"+formatDateTime+"','open',"+priority+")");
+        st.executeUpdate("INSERT INTO \"Incident\"(venue_id,type,description,"
+                + "reporter_id,offender_id,assigned_user, ticket_created_time,"
+                + "status,priority)\n" +
+                "VALUES\n" +
+                "("+venueid+",'"+type+"', '"+description+"', "+reporterId+","
+                + ""+offenderId+","+assignedUserId+",'"+formatDateTime+
+                "','open',"+priority+")");
     }
-    /* --- Read --- */
-    public Incident getCreatedIncident(int id) throws SQLException{
-    return new Incident() ;
+    
+    /* --- Get all members of staff and how many tickets they have  --- */
+    public ArrayList<int[]> getStaff() throws SQLException{
+        ArrayList<int[]> Staff = new ArrayList<int[]>();
+        ResultSet result = st.executeQuery("SELECT \n" +
+    "ASSIGNED_USER AS UserID,Count(ASSIGNED_USER) AS num \n" +
+    "FROM INCIDENTRS.\"Incident\" T1\n" +
+    "where STATUS <> 'closed'\n" +
+    "group by ASSIGNED_USER\n" +
+    "UNION ALL\n" +
+    "SELECT User_ID AS UserID,0 AS num  FROM INCIDENTRS.\"User\" T2 \n" +
+    "where IS_Staff AND User_ID NOT IN \n" +
+    "    (SELECT distinct ASSIGNED_USER FROM INCIDENTRS.\"Incident\")\n");
+        while(result.next()){
+            Staff.add(new int[]{result.getInt("UserID"),result.getInt("num")} );
+        }
+        return Staff;
     }
-    /* --- Update --- */
     
-    /* --- Delete --- */
-    
+    public void addOffenderIncindent(String Fname, String Lname) throws SQLException {
+    st.executeUpdate("INSERT INTO INCIDENTRS.\"Offender\"(first_name,last_name,is_banned)"
+            +"VALUES ('" + Fname + "','" + Lname + "', " + "false" +")");
+    }
     /*-----------------Venue -----------------*/
 
-    // !! Havent tested !!
-    // Return venue object with id, returns null if not found
+    // Return venue object with id, returns null if not found (!!** Working **!!)
     public Venue getVenue(int id) throws SQLException {
         ResultSet result = st.executeQuery("SELECT * FROM \"Venue\" WHERE VENUE_ID = "+id+"");
         while(result.next()){
@@ -213,28 +262,33 @@ public class DBManager {
         return offenders;
     }    */
         
-    // !! Not complete !!
     //Read all incidents from Incident table in Database
-        
-    public LinkedList<Incident> getIncidentList() throws SQLException{
-        LinkedList<Incident> incidentList = new LinkedList<>();ResultSet result = st.executeQuery("SELECT * FROM INCIDENTRS.\"Incident\"");
+     public LinkedList<Incident> getIncidentList() throws SQLException{
+        LinkedList<Incident> incidentList = new LinkedList<>();
+        ResultSet result = st.executeQuery("SELECT * FROM INCIDENTRS.\"Incident\"");
         while(result.next()){
             Incident incident = new Incident();
             incident.setId(result.getInt("INCIDENT_ID"));
-            int venueId = result.getInt("VENUE_ID"); // Have to retrieve object
-            incident.setVenue(getVenue(venueId));
+            Venue venue = new Venue();
+            venue.setId(result.getInt("VENUE_ID"));
+            incident.setVenue(venue);
             incident.setType(result.getString("TYPE"));
-            incident.setDescription(result.getString("DESCRIPTION"));
-            //incident.setReporter(result.getString("REPORTER"));
-            int offenderId = result.getInt("OFFENDER_ID");
-            // Have to retrieve object, Incident uses string "offenderName"
-            int userId = result.getInt("ASSIGNED_USER");
-            incident.setAssignedUser(getUser(userId));
-            incident.setCreatedTime(result.getTimestamp("TICKET_CREATED_TIME").toLocalDateTime());
-            incident.setClosedTime(result.getTimestamp("TICKET_CLOSED_TIME").toLocalDateTime());
-            incident.setStatus(result.getString("STATUS"));
-            incident.setPriority(result.getInt("PRIORITY"));
+            incident.setIncidentDate(result.getDate("INCIDENT_DATE").toLocalDate());
+            incident.setIncidentTime(result.getTime("INCIDENT_TIME").toLocalTime());
             incidentList.add(incident);
+            System.out.println("Added: "+incident.toString());
+        }
+        return getVenueForIncident(incidentList);
+    }
+     
+     public LinkedList<Incident> getVenueForIncident(LinkedList<Incident> incidentList){
+        try{
+            for(Incident incident : incidentList){
+                int venueId = incident.getVenue().getId();
+                incident.setVenue(getVenue(venueId));
+            }
+        }catch(SQLException e){
+            
         }
         return incidentList;
     }
@@ -242,35 +296,33 @@ public class DBManager {
     public Incident getIncident(int id) throws SQLException{
         Incident incident = new Incident();
         ResultSet result = st.executeQuery("SELECT * FROM \"Incident\" WHERE INCIDENT_ID = "+id+"");
+        int venueId = 0, reporterId = 0, offenderId = 0, assignedUserId = 0;
         while(result.next()){
             incident.setId(result.getInt("INCIDENT_ID"));
-            int venueId = result.getInt("VENUE_ID"); // Have to retrieve object
-            incident.setVenue(getVenue(venueId));
+            venueId = result.getInt("VENUE_ID");
             incident.setType(result.getString("TYPE"));
             incident.setDescription(result.getString("DESCRIPTION"));
-            //incident.setReporter(result.getString("REPORTER"));
-            int offenderId = result.getInt("OFFENDER_ID");
-            // Have to retrieve object, Incident uses string "offenderName"
-            int userId = result.getInt("ASSIGNED_USER");
-            incident.setAssignedUser(getUser(userId));
+            incident.setIncidentDate(result.getDate("INCIDENT_DATE").toLocalDate());
+            incident.setIncidentTime(result.getTime("INCIDENT_TIME").toLocalTime());
+            reporterId = result.getInt("REPORTER_ID");
+            offenderId = result.getInt("OFFENDER_ID");
+            assignedUserId = result.getInt("ASSIGNED_USER");
             incident.setCreatedTime(result.getTimestamp("TICKET_CREATED_TIME").toLocalDateTime());
-            incident.setClosedTime(result.getTimestamp("TICKET_CLOSED_TIME").toLocalDateTime());
+            try{
+                incident.setClosedTime(result.getTimestamp("TICKET_CLOSED_TIME").toLocalDateTime());
+            }catch(Exception e){
+                System.out.println("Closed time is not set!");
+            }
             incident.setStatus(result.getString("STATUS"));
             incident.setPriority(result.getInt("PRIORITY"));
         }
+        //Retrieve foreign key attributes from other methods
+        incident.setVenue(getVenue(venueId));
+        incident.setReporter(getUser(reporterId));
+        incident.setOffender(getOffender(offenderId));
+        incident.setAssignedUser(getUser(assignedUserId));
         return incident;
     }
-    
-    public int getIncidentId(int id) throws SQLException{
-        ResultSet result = st.executeQuery("SELECT * FROM \"Incident\" WHERE INCIDENT_ID = "+id+"");
-        int incidentId = 0;
-        while(result.next()){
-            incidentId = result.getInt("INCIDENT_ID");
-            System.out.println("Found: " + incidentId);
-        }
-        return incidentId;
-    }
-
 
         /*-----------------Warning-----------------*/
 
