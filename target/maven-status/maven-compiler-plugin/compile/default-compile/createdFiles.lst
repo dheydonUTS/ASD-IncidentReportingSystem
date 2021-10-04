@@ -1,7 +1,6 @@
 controller\EmailServlet$1.class
 model\dao\DBConnector.class
 controller\test\TestIncidentReports.class
-model\dao\testDBManager.class
 controller\OffenderReportServlet.class
 controller\IncidentDetailServlet.class
 model\dao\DBManager.class
@@ -11,6 +10,7 @@ model\Offender.class
 model\Venue.class
 controller\AnalyticsServlet.class
 model\Warning.class
+controller\allocateTicket.class
 model\User.class
 controller\EmailServlet.class
 controller\IncidentListServlet.class

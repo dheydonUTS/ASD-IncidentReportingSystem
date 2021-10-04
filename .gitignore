@@ -1,5 +1,10 @@
 /target/
 */target/** 
+*/target/*
 target/ASD_Incident_Reporting_System-1.0-SNAPSHOT.war
 target/maven-archiver/pom.properties
 /nbproject/
+*.class
+*.class
+target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst

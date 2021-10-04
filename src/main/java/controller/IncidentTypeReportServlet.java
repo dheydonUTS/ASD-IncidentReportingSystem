@@ -47,8 +47,10 @@ protected void doGet(HttpServletRequest request,
         User AssignedUser = new User("assignedUserEmail","Password");
         Offender offender = new Offender("Big", "Stooge", "bigChungus@stooge.com", "0449024223", "stooge", true);
         Venue war = new Venue(1, "Warringah", -33.754350, 151.266890);
-                
-        DummyList.push(new Incident(war, "Shoplift", "Stole something", AssignedUser, offender,AssignedUser,LocalDateTime.now(),1));/*
+        LocalDate date = LocalDate.now();
+        LocalTime time = LocalTime.now();
+   
+        DummyList.push(new Incident(war, "Shoplift",date,time, "Stole something", AssignedUser, offender,AssignedUser,LocalDateTime.now(),1));/*
         DummyList.push(new Incident("Arson", "Lit something on fire", "Jeff", "Adam"));
         DummyList.push(new Incident("Arson", "Lit something on fire", "Jeff", "Adam"));
         DummyList.push(new Incident("Broke the Escalators", "Jammed a trolly in the escalator", "Jeff", "Adam"));

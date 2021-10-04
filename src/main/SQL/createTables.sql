@@ -37,6 +37,8 @@ CREATE TABLE "Incident" (
 	incident_id INT NOT NULL GENERATED ALWAYS AS IDENTITY(START WITH 1, INCREMENT BY 1),
 	venue_id INT NOT NULL,
 	type VARCHAR(100),
+        incident_date VARCHAR(50),
+        incident_time VARCHAR(50),
 	description VARCHAR(1000),
 	reporter_id INT,
 	offender_id INT,

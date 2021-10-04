@@ -57,15 +57,18 @@ public class DBManager {
     
     /*----------------- Incident Creation  -----------------*/
     /* --- Create --- */
-    public void addIncident(int venueid, String type, LocalDate date,
-            LocalTime time, String description, int reporterId, int offenderId,
-            int assignedUserId, LocalDateTime createdTime,  int priority) 
-            throws SQLException{
+    public void addIncident(int venueid, String type, String description, 
+            int reporterId, int offenderId,LocalTime time, LocalDate date, int assignedUserId, 
+            LocalDateTime createdTime,  int priority) throws SQLException{
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String formatDateTime = createdTime.format(formatter);
-        st.executeUpdate("INSERT INTO \"Incident\"(venue_id,type,description,reporter_id,offender_id,assigned_user, ticket_created_time,status,priority)\n" +
-"VALUES\n" +
-"("+venueid+",'"+type+"', '"+description+"', "+reporterId+","+offenderId+","+assignedUserId+",'"+formatDateTime+"','open',"+priority+")");
+        st.executeUpdate("INSERT INTO \"Incident\"(venue_id,type,description,"
+                + "reporter_id,offender_id,assigned_user, ticket_created_time,"
+                + "status,priority)\n" +
+                "VALUES\n" +
+                "("+venueid+",'"+type+"', '"+description+"', "+reporterId+","
+                + ""+offenderId+","+assignedUserId+",'"+formatDateTime+
+                "','open',"+priority+")");
     }
     
     /* --- Get all members of staff and how many tickets they have  --- */
