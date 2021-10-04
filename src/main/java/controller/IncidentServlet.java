@@ -7,23 +7,15 @@ package controller;
 
 import java.io.IOException;
 
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.Date;
-import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import java.time.LocalDateTime;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Incident;
-import model.User;
-import model.Venue;
-
+import model.*;
 /**
  *
  * @author dom_h
@@ -35,17 +27,17 @@ public class IncidentServlet extends HttpServlet {
        HttpSession session = request.getSession();  
        Venue currentVenue = new Venue(1,request.getParameter("venueName"),12,12); // Fix to add current venue (get from session)
        String type = request.getParameter("type");
-       LocalDate date = LocalDate.parse(request.getParameter("date"));
-       LocalTime time = LocalTime.parse(request.getParameter("time"));
+       //LocalDate date = LocalDate.parse(request.getParameter("date"));
+       //LocalTime time = LocalTime.parse(request.getParameter("time"));
        String desc = request.getParameter("desc");
-       String reporter = request.getParameter("reporter");
-       String offender = request.getParameter("offender");
+      // String reporter = request.getParameter("reporter");
+       //String offender = request.getParameter("offender");
        Venue venue = currentVenue;
        User assignUser = new User("assignedUserEmail","password");
        // Add some validation
        
-       Incident incident = new Incident(venue,type,date,time,desc,reporter,offender,assignUser,LocalTime.now(),1);
-       session.setAttribute("incident", incident);
+       //Incident incident = new Incident(venue,type,desc,reporter,offender,assignUser,LocalDateTime.now(),1);
+      // session.setAttribute("incident", incident);
        session.setAttribute("venue", venue);
        request.getRequestDispatcher("ViewIncident.jsp").include(request,response);
    }

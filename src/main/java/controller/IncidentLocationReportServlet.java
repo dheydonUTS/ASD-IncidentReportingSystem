@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Array;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.HashMap;
@@ -51,7 +52,7 @@ protected void doGet(HttpServletRequest request,
         
         
         
-        rrInc.push(new Incident(war, "Shoplift", LocalDate.now(), LocalTime.now(), "Stole something", "Jeff", "Rachel",AssignedUser,LocalTime.now(),1));
+       // rrInc.push(new Incident(war, "Shoplift",  "Stole something", "Jeff", "Rachel",AssignedUser,LocalDateTime.now(),1));
         /*
         wmInc.push(new Incident("Arson", "Lit something on fire", "Jeff", "Adam"));
         wmInc.push(new Incident("Public Urination", "Peed on a Lady", "Jeff", "Adam"));

@@ -28,16 +28,13 @@ public class TestIncidentReports {
     }
 
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
-        int incident = 0;
-
         TestIncidentReports test = new TestIncidentReports();
         System.out.println("TestIncidentReports running!");
-        incident = test.testGetIncident(1);
-        System.out.println("In code: " + incident);
-
+        Incident incident = test.testGetIncident(1);
+        System.out.println("In code: " + incident.toString());
     }
 
-    public int testGetIncident(int id) throws SQLException {
-        return manager.getIncidentId(id);
+    public Incident testGetIncident(int id) throws SQLException {
+        return manager.getIncident(id);
     }
 }

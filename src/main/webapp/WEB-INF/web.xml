@@ -41,8 +41,13 @@
         <servlet-class>controller.IncidentListServlet</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< HEAD
         <servlet-name>editAccountServlet</servlet-name>
         <servlet-class>controller.editAccountServlet</servlet-class>
+=======
+        <servlet-name>IncidentDetailServlet</servlet-name>
+        <servlet-class>controller.IncidentDetailServlet</servlet-class>
+>>>>>>> main
     </servlet>
     <servlet-mapping>
         <servlet-name>AnalyticsServlet</servlet-name>
@@ -85,8 +90,13 @@
         <url-pattern>/IncidentListServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
         <servlet-name>editAccountServlet</servlet-name>
         <url-pattern>/editAccountServlet</url-pattern>
+=======
+        <servlet-name>IncidentDetailServlet</servlet-name>
+        <url-pattern>/IncidentDetailServlet</url-pattern>
+>>>>>>> main
     </servlet-mapping>
     <session-config>
         <session-timeout>

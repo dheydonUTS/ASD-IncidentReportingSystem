@@ -38,12 +38,21 @@
                     </div>
                 </form>
                 <table class="table">
-                    <tr><td>Incident Id</td><td>Venue</td><td></td></tr>
+                    <tr>
+                        <td>Incident Id</td>
+                        <td>Venue</td>
+                        <td>Type</td>
+                        <td>Description</td>
+                        <td></td>
+                    </tr>
                 <%for(Incident incident: incidentList){%>
                 <tr>
-                    <td><%out.print(incident.getId());%></td>
-                    <td>Venue <%out.print(incident.getVenue().getID());%></td>
-                    <td><button type="button" class="btn btn-dark" onclick="window.location.href='IncidentDetails.jsp'">Details</button></td>
+                    <td><%=incident.getId()%></td>
+                    <td><%=(incident.getVenue() != null ? incident.getVenue().getName() : "not specified")%></td>
+                    <td><%=(incident.getType() != null ? incident.getType() : "not specified")%></td>
+                    <td><%=(incident.getDescription() != null ? incident.getDescription() : "not specified")%></td>
+
+                    <td><button type="button" class="btn btn-dark" onclick="window.location.href='IncidentDetailServlet?incidentId=<%=incident.getId()%>'">Details</button></td>
                 </tr>
                 <%}%>
                 </table>
