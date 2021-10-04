@@ -61,7 +61,7 @@ public class listOffenderServlet extends HttpServlet {
             else {
                 request.getRequestDispatcher("offenderDashboard.jsp").include(request, response);
                 session.setAttribute("show", "There are no offenders");
-                response.sendRedirect("index.jsp");
+             //   response.sendRedirect("index.jsp");
             }
             
             } catch (SQLException ex){
