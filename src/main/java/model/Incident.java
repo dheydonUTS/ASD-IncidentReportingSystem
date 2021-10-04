@@ -22,6 +22,8 @@ public class Incident implements Serializable {
     private String description;
     private User reporter;
     private Offender offender;
+    private LocalDate incidentDate;
+    private LocalTime incidentTime;
 // Ticketing System Variables
     private User assignedUser; 
     private LocalDateTime createdTime;
@@ -29,26 +31,14 @@ public class Incident implements Serializable {
     private String status;
     private int priority;
 
-    public Incident(int id, Venue venue, String type, LocalDate date, LocalTime time, String description, User reporter, Offender offender,  User assignedUser, LocalDateTime createdTime, LocalDateTime closedTime,  int priority) {
-        this.id = id;
+    public Incident(Venue venue, String type,LocalDate date, LocalTime time, String description, User reporter, Offender offender, User assignedUser, LocalDateTime createdTime,  int priority) { //Default constructor
         this.venue = venue;
         this.type = type;
         this.description = description;
         this.reporter = reporter;
         this.offender = offender;
-        this.assignedUser = assignedUser;
-        this.createdTime = createdTime;
-        this.closedTime = closedTime;
-        this.status = status;
-        this.priority = priority;
-    }
-
-    public Incident(Venue venue, String type, String description, User reporter, Offender offender, User assignedUser, LocalDateTime createdTime,  int priority) {
-        this.venue = venue;
-        this.type = type;
-        this.description = description;
-        this.reporter = reporter;
-        this.offender = offender;
+        incidentDate=date;
+        incidentTime=time;
         this.assignedUser = assignedUser;
         this.createdTime = createdTime;
         this.status = "open";
