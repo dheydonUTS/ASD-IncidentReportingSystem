@@ -4,6 +4,7 @@
     Author     : dom_h
 --%>
 
+<%@page import="model.dao.DBManager"%>
 <%@page import="model.User"%>
 <%@page import="model.Offender"%>
 <%@page import="model.Venue"%>
@@ -14,6 +15,8 @@ Incident incident = (Incident)session.getAttribute("incident");
 Venue venue = incident.getVenue();
 Offender offender = incident.getOffender();
 User reporter = incident.getReporter();
+DBManager manager = (DBManager)session.getAttribute("manager");
+User assU = incident.getAssignedUser();
 %>
 <!DOCTYPE html>
 <html>
@@ -35,6 +38,10 @@ User reporter = incident.getReporter();
                           <tr>
                     <td>Ticket ID:</td>
 					<td><%=incident.getId()%></td>
+				</tr>
+                                <tr>
+                    <td>Assigned User:</td>
+					<td><%=assU.getFirstName()%> <%=assU.getLastName()%></td>
 				</tr>
                             <tr>
                     <td>Status:</td>
