@@ -56,7 +56,7 @@ public class RegisterServlet extends HttpServlet {
                 session.setAttribute("lnameError", "The Name entered is not valid");
                 errorFound = true;
             }
-            if (!password.equals(repassword)) { // Check passwords match
+            if (!passwordMatch(password, repassword)) { // Check passwords match
                 session.setAttribute("passwordMatchError", "Passwords did not Match");
                 errorFound = true;
             }
@@ -75,5 +75,11 @@ public class RegisterServlet extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public Boolean passwordMatch(String p1, String p2) {
+        if (p1.equals(p2)) {
+            return true;
+        } else {return false;}
     }
 }
