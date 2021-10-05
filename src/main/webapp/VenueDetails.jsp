@@ -4,6 +4,7 @@
     Author     : vince
 --%>
 
+<%@page import="model.Incident"%>
 <%@page import="model.Venue"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -22,23 +23,31 @@
                 <button type="button" class="btn btn primary" onclick="history.back()">< Back</button>
                 <h1 class="display-4">Venue #<%=venue.getId()%> Details</h1>
                 <hr>
-                <button type="button" class="btn btn-dark">Generate Report</button>
+                <button type="button" class="btn btn-dark" onclick="window.location.href='VenueReportServlet'">Generate Report</button>
                 <table class="table">
                     <tr><td>Venue Id:</td><td><%=venue.getId()%></td></tr>
                     <tr><td>Venue Name:</td><td><%=venue.getName()%></td></tr>
                     <tr><td>Address:</td><td><%=venue.getAddress()%></td></tr>
-                    <tr><td>No. of Incidents</td><td>1</td></tr>
+                    <tr><td>No. of Incidents</td><td><%=venue.getIncidents().size()%></td></tr>
                     </tr>
                 </table>
                 <hr>
                 <h2 class="display-7">Incidents in this Venue</h2>
                 <table class="table">
-                    <tr><td>Incident Id</td><td>Venue</td><td></td></tr>
-                <%for(int i = 1; i <=1; i++){%>
+                    <tr>
+                        <td>Incident Id</td>
+                        <td>Type</td>
+                        <td>Date</td>
+                        <td>Time</td>
+                        <td></td>
+                    </tr>
+                <%for(Incident incident : venue.getIncidents()){%>
                 <tr class="table-secondary">
-                    <td><%out.print(i);%></td>
-                    <td>Venue <%out.print(i);%></td>
-                    <td><button type="button" class="btn btn-dark" onclick="window.location.href='IncidentDetails.jsp'">Details</button></td>
+                    <td><%=incident.getId()%></td>
+                    <td><%=incident.getType()%></td>
+                    <td><%=incident.getIncidentDate()%></td>
+                    <td><%=incident.getIncidentTime()%></td>
+                    <td><button type="button" class="btn btn-dark" onclick="window.location.href='IncidentDetailServlet?incidentId=<%=incident.getId()%>'">Details</button></td>
                 </tr>
                 <%}%>
                 </table>

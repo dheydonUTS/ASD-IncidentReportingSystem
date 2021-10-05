@@ -151,8 +151,9 @@ public class DBManager {
     // Return venue object with id, returns null if not found (!!** Working **!!)
     public Venue getVenue(int id) throws SQLException {
         ResultSet result = st.executeQuery("SELECT * FROM \"Venue\" WHERE VENUE_ID = "+id+"");
+        Venue venue = null;
         while(result.next()){
-            return new Venue(
+            venue = new Venue(
             result.getInt("VENUE_ID"),
             result.getString("VENUE_NAME"),
             result.getString("VENUE_ADDRESS"),
@@ -160,7 +161,8 @@ public class DBManager {
             result.getDouble("VENUE_LON")        
             );
         }
-        return null;
+        venue.setIncidents(getIncidentFromVenue(id));
+        return venue;
     }
     
     // List all of the venues
@@ -380,6 +382,7 @@ public class DBManager {
 
     /*-----------------Venue Report Generation-----------------*/
     
+    // Retrieve list of Venues from database
     public LinkedList<Venue> getVenueList() throws SQLException{
         LinkedList<Venue> venueList = new LinkedList<Venue>();
         ResultSet result = st.executeQuery("SELECT * FROM \"Venue\"");
@@ -393,6 +396,22 @@ public class DBManager {
             venueList.add(venue);
         }
         return venueList;
+    }
+    
+    public LinkedList<Incident> getIncidentFromVenue(int venueId) throws SQLException{
+        ResultSet result = st.executeQuery("SELECT * FROM \"Incident\" WHERE VENUE_ID="+venueId+"");
+        LinkedList<Incident> incidentList = new LinkedList<Incident>();
+        while(result.next()){
+            Incident incident = new Incident();
+            incident.setId(result.getInt("INCIDENT_ID"));
+            incident.setType(result.getString("TYPE"));
+            incident.setDescription(result.getString("DESCRIPTION"));
+            incident.setIncidentDate(result.getDate("INCIDENT_DATE").toLocalDate());
+            incident.setIncidentTime(result.getTime("INCIDENT_TIME").toLocalTime());
+            incidentList.add(incident);
+            System.out.println("Added: "+incident.toString());
+        }
+        return incidentList;
     }
     
         /*-----------------Warning-----------------*/

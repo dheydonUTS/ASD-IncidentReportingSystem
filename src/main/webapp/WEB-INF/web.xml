@@ -59,6 +59,7 @@
     <servlet>
         <servlet-name>VenueDetailServlet</servlet-name>
         <servlet-class>controller.VenueDetailServlet</servlet-class>
+    </servlet>	
     <servlet>	
         <servlet-name>listOffenderServlet</servlet-name>	
         <servlet-class>controller.listOffenderServlet</servlet-class>	
@@ -78,6 +79,10 @@
     <servlet>	
         <servlet-name>deleteVenueServlet</servlet-name>	
         <servlet-class>controller.deleteVenueServlet</servlet-class>
+    </servlet>
+    <servlet>	
+        <servlet-name>VenueReportServlet</servlet-name>	
+        <servlet-class>controller.VenueReportServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AnalyticsServlet</servlet-name>
@@ -170,6 +175,10 @@
     <servlet-mapping>	
         <servlet-name>deleteVenueServlet</servlet-name>	
         <url-pattern>/deleteVenueServlet</url-pattern>	
+    </servlet-mapping>
+    <servlet-mapping>	
+        <servlet-name>VenueReportServlet</servlet-name>	
+        <url-pattern>/VenueReportServlet</url-pattern>	
     </servlet-mapping>
     <session-config>
         <session-timeout>
