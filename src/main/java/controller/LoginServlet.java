@@ -40,19 +40,20 @@ public class LoginServlet extends HttpServlet {
         HttpSession session = request.getSession();
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        System.out.println("Servlet Reached");
         DBManager manager = (DBManager) session.getAttribute("manager");
         User user = null;
+        // Use entered details to search database for matching user
         try {
             user = manager.findUser(email, password);
         } catch (SQLException ex) {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
+        // If found, return to the home page with the session set for the user, otherwise report an error
         if (user != null) {
             session.setAttribute("user", user);
             request.getRequestDispatcher("index.jsp").include(request, response);
         } else {
-            session.getAttribute("existErr");
+            session.setAttribute("existError", "Unable to Find User, Please Try Again");
             request.getRequestDispatcher("Login.jsp").include(request, response);
         }
 

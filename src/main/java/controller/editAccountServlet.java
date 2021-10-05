@@ -41,11 +41,15 @@ public class editAccountServlet extends HttpServlet {
         String password = request.getParameter("password");
         User user = (User) session.getAttribute("user");
         DBManager manager = (DBManager) session.getAttribute("manager");
+        // If matching user is found then update the user details in the database
         try {
             manager.updateUser(email, password, user.getEmail());
+            user.setEmail(email);
+            user.setPassword(password);
         } catch (SQLException ex) {
             Logger.getLogger(editAccountServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
+        session.setAttribute("userChanged", "Details have been Successfully Changed");
         request.getRequestDispatcher("Account.jsp").include(request, response);
     }
 }

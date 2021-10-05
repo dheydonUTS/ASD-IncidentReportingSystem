@@ -16,7 +16,10 @@
         <jsp:include page="components/navbar.jsp"/>
         <div class="container-fluid p-5">
             <div class="container p-5" >
-                <h1 class="display-4">Register User</h1>
+                <%
+                    String passwordError = (String) session.getAttribute("passwordError");
+                %>
+                <h1 class="display-4">Register User: <span class="message"> <%=(passwordError != null ? passwordError : "")%></span></h1>
                 <hr>
                 <div class="card" style="width:80rem; margin: auto; margin-top: 2rem;  ">
                     <div class="card-body">

@@ -33,16 +33,19 @@ public class RegisterServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
         try (PrintWriter out = response.getWriter()) {
+            // Obtain entered user details
             String email = request.getParameter("email");
             String fname = request.getParameter("fname");
             String lname = request.getParameter("lname");
             String password = request.getParameter("password");
             String repassword = request.getParameter("repassword");
             DBManager manager = (DBManager) session.getAttribute("manager");
+            // If passwords from both fields match then create the user, otherwise report an error
             if (password.equals(repassword)) {
                 manager.createUser(email, password, fname, lname);
                 response.sendRedirect("Login.jsp");
-            } else {
+            } else { // Sends back error reporting that the passwords did not match
+                session.setAttribute("passwordError", "Passwords did not Match, Please Try Again");
                 response.sendRedirect("Register.jsp");
             }
             

@@ -14,11 +14,13 @@
         <title>User Details</title>
     </head>
     <body>  
-        <% User user = (User) session.getAttribute("user"); %>
+        <% User user = (User) session.getAttribute("user"); 
+            String userChanged = (String) session.getAttribute("userChanged");
+        %>
         <jsp:include page="components/navbar.jsp"/>
         <div class="container-fluid p-5">
             <div class="container p-5" >
-                <h1 class="display-4">Account Details</h1>
+                <h1 class="display-4">Account Details: <span class="message"> <%=(userChanged != null ? userChanged : "")%></span></h1>
                 <hr>
                 <div class="card" style="width:80rem; margin: auto; margin-top: 2rem;  ">
                     <div class="card-body">

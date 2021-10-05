@@ -63,14 +63,14 @@ public class UserTest {
 
     }
     
-    @Test
+    /*@Test
     public void testFindUser() throws SQLException {
         System.out.println("FindUser");
         User exUser = new User("abc@abc.com", "password123");
         User outUser = manager.findUser("abc@abc.com", "password123");
         assertEquals(exUser.getEmail(), outUser.getEmail());
         assertEquals(exUser.getPassword(), outUser.getPassword());
-    }
+    }*/
 
     
     

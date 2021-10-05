@@ -14,13 +14,14 @@
     </head>
     <body>  
         <%
-            String existErr = (String) session.getAttribute("existErr");
+            String existError = (String) session.getAttribute("existError");
+           
         %>
         <jsp:include page="components/navbar.jsp"/>
         <div class="container-fluid p-5">
     <div class="container p-5" >
         <h1 class="display-4">User Login</h1>
-        <h2>Enter User Details <span class="message"> <%=(existErr != null ? existErr : "")%></span></h2>
+        <h2>Enter User Details:<span class="message"> <%=(existError != null ? existError : "")%></span></h2>
         <hr>
                 <div class="card" style="width:20rem; margin: auto; margin-top: 2rem;  ">
             <div class="card-body">
