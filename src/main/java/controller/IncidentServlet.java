@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import java.io.IOException;
@@ -45,7 +40,7 @@ public class IncidentServlet extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(IncidentServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-       String desc = request.getParameter("desc");
+       String desc = "";
        User reporter = (User)session.getAttribute("user");
        
        /* --- Validation & Initialisation --- */
@@ -63,10 +58,19 @@ public class IncidentServlet extends HttpServlet {
        else{
        session.setAttribute("offenderErr","true");
        }
+       if(valid.validateDesc((String)request.getParameter("desc"))){
+           desc = (String)request.getParameter("desc");
+           session.setAttribute("descErr","false");
+       }
+       else{
+       session.setAttribute("descErr","true");
+       }
        
-       if( Boolean.parseBoolean((String)session.getAttribute("offenderErr")) || Boolean.parseBoolean((String)session.getAttribute("descErr")) ){
+       if( Boolean.parseBoolean((String)session.getAttribute("offenderErr")) || 
+           Boolean.parseBoolean((String)session.getAttribute("descErr")) ){
             request.getRequestDispatcher("incident.jsp").include(request,response);
             }
+       else{
        /*
        if(valid.validateName((String)request.getParameter("offenderFname")) &       // Check offender first & last name are valid
                valid.validateName((String)request.getParameter("offenderLname"))){
@@ -121,5 +125,6 @@ public class IncidentServlet extends HttpServlet {
        request.getRequestDispatcher("ViewIncident.jsp").include(request,response);
     }
    }
+  }
 
 }
