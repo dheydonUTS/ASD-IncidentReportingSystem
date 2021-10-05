@@ -35,7 +35,7 @@ public class IncidentReportServlet extends HttpServlet {
         if(user!=null){
             userName = user.getFirstName() + " " + user.getLastName(); 
         }else{
-            userName = "No user in session!";
+            userName = "no user in session";
         }
         response.setContentType("text/plain");
         // Declared file attachment with specified name to be exported upon servlet activation

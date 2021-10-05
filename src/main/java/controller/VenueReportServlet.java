@@ -25,19 +25,18 @@ import model.Venue;
  * @author vince
  */
 public class VenueReportServlet extends HttpServlet {
+    HttpSession session;
+    Venue venue;
+    User user;
+    String userName;
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        Venue venue = (Venue)session.getAttribute("venue");
-        User user = (User)session.getAttribute("user");
-        String userName = "";
-        if(user!=null){
-            userName = user.getFirstName() + " " + user.getLastName(); 
-        }else{
-            userName = "No user in session!";
-        }
+        session = request.getSession();
+        venue = (Venue)session.getAttribute("venue");
+        user = (User)session.getAttribute("user");
+        userName = getUsername(user);
         response.setContentType("text/plain");
         // Declared file attachment with specified name to be exported upon servlet activation
         response.setHeader("Content-Disposition", "attachment; filename=\"Venue #"+venue.getId()+" Detailed Report.txt\"");
@@ -70,5 +69,15 @@ public class VenueReportServlet extends HttpServlet {
             System.out.println("File Export Error");
             Logger.getLogger(IncidentListServlet.class.getName()).log(Level.SEVERE, null, e);
         }
+    }
+    
+    public String getUsername(User user){
+        String userName = "";
+        try{
+            userName = user.getFirstName() + " " + user.getLastName();
+        }catch(Exception e){
+            userName = "no user in session";
+        }
+        return userName;
     }
 }
