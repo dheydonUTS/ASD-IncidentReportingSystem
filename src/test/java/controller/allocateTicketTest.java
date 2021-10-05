@@ -39,7 +39,6 @@ public class allocateTicketTest {
         int expResult = 0;
         int result = instance.nextFreeStaff(staff);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
     }
     
 }
