@@ -107,7 +107,7 @@ public class IncidentServlet extends HttpServlet {
             Offender offender = manager.getOffender(offenderId);
             return offender;
             }
-        manager.addOffenderIncindent(Fname,Lname);
+        manager.addOffender(Fname, Lname, "N/a", "N/a", "Undisclosed", false);
         offenderId = manager.getOffenderIDByName(Fname,Lname);
         return manager.getOffender(offenderId);
     }

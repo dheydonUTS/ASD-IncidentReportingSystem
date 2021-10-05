@@ -44,6 +44,7 @@
                         <td>Type</td>
                         <td>Date</td>
                         <td>Time</td>
+                        <td>Reporter</td>
                         <td></td>
                     </tr>
                 <%for(Incident incident: incidentList){%>
@@ -53,6 +54,7 @@
                     <td><%=(incident.getType() != null ? incident.getType() : "not specified")%></td>
                     <td><%=(incident.getIncidentDate()!= null ? incident.getIncidentDate() : "not specified")%></td>
                     <td><%=(incident.getIncidentTime() != null ? incident.getIncidentTime() : "not specified")%></td>
+                    <td><%=(incident.getReporter() != null ? incident.getReporter().getFirstName() +" " +incident.getReporter().getLastName() : "not specified")%></td>
                     <td><button type="button" class="btn btn-dark" onclick="window.location.href='IncidentDetailServlet?incidentId=<%=incident.getId()%>'">Details</button></td>
                 </tr>
                 <%}%>
