@@ -3,8 +3,6 @@ package controller;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
-
-
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.logging.Level;
@@ -96,8 +94,6 @@ public class IncidentServlet extends HttpServlet {
             Boolean.parseBoolean((String)session.getAttribute("descErr")))){
        Incident incident = new 
         Incident(ticketId,venue,type,desc ,reporter,offender,date,time,assignUser,LocalDateTime.now(),1);
-       
-       //id, venue, type, description, reporter, offender, incidentDate, incidentTime, assignedUser, createdTime, closedTime, priority
        session.setAttribute("incident", incident);
        request.getRequestDispatcher("ViewIncident.jsp").include(request,response);
        

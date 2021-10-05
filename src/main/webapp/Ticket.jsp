@@ -76,6 +76,10 @@ User reporter = incident.getReporter();
                 </tr>            
                 </table>
                   </div>
+                <form action="ViewIncident.jsp" method="post">
+                        <input type="submit" value="View Incident" class="btn btn-primary">
+                    </form>
+                
                </div>
             </div>
          </div>

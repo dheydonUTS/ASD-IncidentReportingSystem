@@ -42,12 +42,19 @@ public class LoginServlet extends HttpServlet {
     } 
     else if (validator.validateEmail(email) && validator.validatePassword(password)) {
          try {                                                                  // Try login user
-             user = manager.findUser(email,password);                           // If the use does not exist NPE is thrown
-                session.setAttribute("user", user);
-                session.removeAttribute("noSuchUserError");
-                session.removeAttribute("passwordError");
-                session.removeAttribute("emailError");
-                request.getRequestDispatcher("index.jsp").include(request,response);
+                if(manager.findUser(email,password)!=null){
+                    user = manager.findUser(email,password);                     // If the use does not exist NPE is thrown
+                    session.setAttribute("user", user);
+                    session.removeAttribute("noSuchUserError");
+                    session.removeAttribute("passwordError");
+                    session.removeAttribute("emailError");
+                    request.getRequestDispatcher("index.jsp").include(request,response);
+                }
+                else{
+                    session.setAttribute("noSuchUserError",                            
+                    "No such user exists for the details you have entered. Please try again"); 
+                    request.getRequestDispatcher("Login.jsp").include(request,response);
+                }
             }
          catch (Exception ex ){                                                 // No such user case            
              session.setAttribute("noSuchUserError",                            // NPE thrown if account doesn't exist this catches.

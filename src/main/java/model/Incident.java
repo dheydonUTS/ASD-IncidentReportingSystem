@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import model.Offender;
 
 /**
  *
@@ -79,10 +78,7 @@ public class Incident implements Serializable {
         this.status = "open";
         this.priority = priority;
     }
-    
-    
- 
-    
+
     
     public int getId() {
         return id;

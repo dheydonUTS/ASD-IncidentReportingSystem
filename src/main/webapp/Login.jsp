@@ -23,13 +23,16 @@
         <div class="container-fluid p-5">
     <div class="container p-5" >
         <h1 class="display-4">User Login</h1>
-        <h2>Enter User Details <span class="message"> <%=(noSuchUserError != null ? noSuchUserError : "")%></span></h2>
+        <h2>Enter User Details </h2>
         <hr>
                 <div class="card" style="width:20rem; margin: auto; margin-top: 2rem;  ">
             <div class="card-body">
                 <form action="LoginServlet" method="post" name="loginForm">
                     <div class="form-group">
                         <div class="card-body">
+                            <div class="mb-3">
+                                <span class="message"> <%=(noSuchUserError != null ? noSuchUserError : "")%></span>
+                            </div>
                             <div class="mb-3">
                                 <label for="email">Email Address:</label>
                                 <input type="text" name="email" placeholder="<%=(emailError != null ? emailError : "john.smith@email.com")%>"><br><br>
