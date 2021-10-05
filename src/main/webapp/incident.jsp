@@ -31,6 +31,7 @@
                             <%
                                      DBManager manager = (DBManager)session.getAttribute("manager");
                                      LinkedList<Venue> Venues = manager.getVenues();
+                                     request.removeAttribute("incident");
                                      request.setAttribute("Venues", Venues);
                                      boolean descErr;
                                      boolean offenderErr;

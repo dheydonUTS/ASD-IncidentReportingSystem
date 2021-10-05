@@ -4,6 +4,7 @@
     Author     : dom_h
 --%>
 
+<%@page import="model.User"%>
 <%@page import="model.Offender"%>
 <%@page import="model.Venue"%>
 <%@page import="model.Incident"%>
@@ -12,6 +13,7 @@
 Incident incident = (Incident)session.getAttribute("incident");
 Venue venue = incident.getVenue();
 Offender offender = incident.getOffender();
+User reporter = incident.getReporter();
 %>
 <!DOCTYPE html>
 <html>
@@ -66,7 +68,7 @@ Offender offender = incident.getOffender();
 				</tr>
 				<tr>
                     <td>Reported By</td>
-					<td>Test</td>
+					<td><%=reporter.getFirstName()%> <%=reporter.getLastName()%></td>
 				</tr>
 				<tr>
                     <td>Offender Details</td>
