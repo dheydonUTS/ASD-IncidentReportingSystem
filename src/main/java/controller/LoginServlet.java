@@ -26,24 +26,31 @@ import model.dao.DBManager;
 public class LoginServlet extends HttpServlet {
     
         protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        System.out.println("Servlet Reached");
-        DBManager manager = (DBManager) session.getAttribute("manager");
-        User user = null;
-        try {
-            user = manager.findUser(email, password);
-        } catch (SQLException ex) {
-            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        if (user != null) {
-            session.setAttribute("user", user);
-            request.getRequestDispatcher("index.jsp").include(request, response);
-        } else {
-            session.getAttribute("existErr");
-            request.getRequestDispatcher("Login.jsp").include(request, response);
-        }
-
-    }
+    HttpSession session = request.getSession();  
+    Validator validator = new Validator();     
+    String email = request.getParameter("email");
+    String password = request.getParameter("password");
+    DBManager manager = (DBManager)session.getAttribute("manager");
+    User user = null;
+    if (!validator.validateEmail(email)) {                                      //Check email
+        session.setAttribute("emailError","The email entered is invalid.");
+        request.getRequestDispatcher("login.jsp").include(request,response); 
+    } 
+    else if (!validator.validatePassword(password)) {                           // Check PW
+        session.setAttribute("passwordError","The pasword entered is invalid.");
+        request.getRequestDispatcher("login.jsp").include(request,response);
+    } 
+    else if (validator.validateEmail(email) && validator.validatePassword(password)) {
+         try {                                                                  // Try login user
+             user = manager.findUser(email,password);                           // If the use does not exist NPE is thrown
+                session.setAttribute("user", user);
+                request.getRequestDispatcher("main.jsp").include(request,response);
+            }
+         catch (Exception ex ){                                                 // No such user case            
+             session.setAttribute("noSuchUserError",                            // NPE thrown if account doesn't exist this catches.
+                        "No such user exists for the details you have entered. Please try again"); 
+            request.getRequestDispatcher("login.jsp").include(request,response);
+             }
+         }
+    }  
 }
