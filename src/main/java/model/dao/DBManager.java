@@ -336,12 +336,15 @@ public class DBManager {
             venue.setId(result.getInt("VENUE_ID"));
             incident.setVenue(venue);
             incident.setType(result.getString("TYPE"));
+            User reporter = new User();
+            reporter.setId(result.getInt("REPORTER_ID"));
+            incident.setReporter(reporter);
             incident.setIncidentDate(LocalDate.parse(result.getString("INCIDENT_DATE")));
             incident.setIncidentTime(LocalTime.parse(result.getString("INCIDENT_TIME")));
             incidentList.add(incident);
             System.out.println("Added: "+incident.toString());
         }
-        return getVenueForIncident(incidentList);
+        return getReporterForIncident(getVenueForIncident(incidentList));
     }
      
     // Retrieve Venue objects for list of Incidents
@@ -350,6 +353,19 @@ public class DBManager {
             for(Incident incident : incidentList){
                 int venueId = incident.getVenue().getId();
                 incident.setVenue(getVenue(venueId));
+            }
+        }catch(SQLException e){
+            
+        }
+        return incidentList;
+    }
+    
+    // Retrieve Venue objects for list of Incidents
+     public LinkedList<Incident> getReporterForIncident(LinkedList<Incident> incidentList){
+        try{
+            for(Incident incident : incidentList){
+                int reporterId = incident.getReporter().getId();
+                incident.setReporter(getUser(reporterId));
             }
         }catch(SQLException e){
             
