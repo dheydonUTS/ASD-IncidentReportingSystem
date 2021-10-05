@@ -33,23 +33,26 @@ public class LoginServlet extends HttpServlet {
     DBManager manager = (DBManager)session.getAttribute("manager");
     User user = null;
     if (!validator.validateEmail(email)) {                                      //Check email
-        session.setAttribute("emailError","The email entered is invalid.");
-        request.getRequestDispatcher("login.jsp").include(request,response); 
+        session.setAttribute("emailError","email invalid.");
+        request.getRequestDispatcher("Login.jsp").include(request,response); 
     } 
     else if (!validator.validatePassword(password)) {                           // Check PW
         session.setAttribute("passwordError","The pasword entered is invalid.");
-        request.getRequestDispatcher("login.jsp").include(request,response);
+        request.getRequestDispatcher("Login.jsp").include(request,response);
     } 
     else if (validator.validateEmail(email) && validator.validatePassword(password)) {
          try {                                                                  // Try login user
              user = manager.findUser(email,password);                           // If the use does not exist NPE is thrown
                 session.setAttribute("user", user);
-                request.getRequestDispatcher("main.jsp").include(request,response);
+                session.removeAttribute("noSuchUserError");
+                session.removeAttribute("passwordError");
+                session.removeAttribute("emailError");
+                request.getRequestDispatcher("index.jsp").include(request,response);
             }
          catch (Exception ex ){                                                 // No such user case            
              session.setAttribute("noSuchUserError",                            // NPE thrown if account doesn't exist this catches.
                         "No such user exists for the details you have entered. Please try again"); 
-            request.getRequestDispatcher("login.jsp").include(request,response);
+            request.getRequestDispatcher("Login.jsp").include(request,response);
              }
          }
     }  
