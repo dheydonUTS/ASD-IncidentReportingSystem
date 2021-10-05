@@ -61,16 +61,20 @@ public class DBManager {
         st.executeUpdate("INSERT INTO INCIDENTRS.\"User\" (EMAIL, \"FIRST_NAME\", \"LAST_NAME\", PASSWORD, IS_STAFF) " 
                 + "VALUES ('"+email+"', '"+fname+"', '"+lname+"', '"+password+"', 'false')");
     }
-    
-    public User findUser(String email, String password) throws SQLException {
-        String fetch = "SELECT * FROM INCIDENTRS.\"User\" WHERE EMAIL='" + email + "' AND PASSWORD='" + password + "'";
-        ResultSet result = st.executeQuery(fetch);
-        User user = new User(email, password);
-        if(result.next()){
-            String currEmail = result.getString(2);
-            String currPassword = result.getString(5);
-            if (currEmail.equals(email) && currPassword.equals(password)) {
-                return user;
+    //AUTHOR: DHEYDON
+    public User findUser(String address, String pass) throws SQLException {
+        ResultSet result = st.executeQuery(
+            "SELECT * FROM INCIDENTRS.\"User\" WHERE email = '"+address+ "' ");
+        while(result.next()){
+            String email = result.getString("EMAIL");
+            String password = result.getString("PASSWORD");
+            if(pass.equals(password)){
+                int user_id = result.getInt("USER_ID");
+                String first_name = result.getString("FIRST_NAME");
+                String last_name = result.getString("LAST_NAME");
+                boolean is_staff = result.getBoolean("IS_STAFF");
+                return new User(user_id,email,password,first_name,last_name,
+                        is_staff);
             }
         }
         return null;
