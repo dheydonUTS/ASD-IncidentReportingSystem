@@ -14,7 +14,9 @@
     </head>
     <body>  
         <%
-            String existError = (String) session.getAttribute("existError");
+            String existError = (String) session.getAttribute("existErr");
+            String emailErr = (String) session.getAttribute("emailErr");
+            String passwordErr = (String) session.getAttribute("passwordErr");
            
         %>
         <jsp:include page="components/navbar.jsp"/>

@@ -18,8 +18,13 @@
             <div class="container p-5" >
                 <%
                     String passwordError = (String) session.getAttribute("passwordError");
+                    String emailError = (String) session.getAttribute("emailError");
+                    String passwordMatchError = (String) session.getAttribute("passwordMatchError");
                 %>
-                <h1 class="display-4">Register User: <span class="message"> <%=(passwordError != null ? passwordError : "")%></span></h1>
+                <h1 class="display-4">Register User: <span class="message"> 
+                        <%=(passwordError != null ? passwordError : "")%>
+                        <%=(passwordError != null ? emailError : "")%>
+                        <%=(passwordError != null ? passwordMatchError : "")%></span></h1>
                 <hr>
                 <div class="card" style="width:80rem; margin: auto; margin-top: 2rem;  ">
                     <div class="card-body">

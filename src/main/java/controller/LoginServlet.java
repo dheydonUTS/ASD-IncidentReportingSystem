@@ -39,6 +39,7 @@ public class LoginServlet extends HttpServlet {
         protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         String email = request.getParameter("email");
+        validator validator = new validator();
         String password = request.getParameter("password");
         DBManager manager = (DBManager) session.getAttribute("manager");
         User user = null;
@@ -49,7 +50,13 @@ public class LoginServlet extends HttpServlet {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         // If found, return to the home page with the session set for the user, otherwise report an error
-        if (user != null) {
+        if (!validator.validateEmail(email)) {
+            session.getAttribute("emailError");
+            request.getRequestDispatcher("Login.jsp").include(request, response);
+        } else if (!validator.validatePassword(password)) {
+            session.getAttribute("passwordError");
+            request.getRequestDispatcher("Login.jsp").include(request, response);
+        } else if (user != null) {
             session.setAttribute("user", user);
             request.getRequestDispatcher("index.jsp").include(request, response);
         } else {

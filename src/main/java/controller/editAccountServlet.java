@@ -36,6 +36,7 @@ public class editAccountServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
+        validator validator = new validator();
         response.setContentType("text/html;charset=UTF-8");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
@@ -43,6 +44,12 @@ public class editAccountServlet extends HttpServlet {
         DBManager manager = (DBManager) session.getAttribute("manager");
         // If matching user is found then update the user details in the database
         try {
+            if (!validator.validateEmail(email)) {
+                session.setAttribute("emailError", "New Email is Invalid");
+            }
+            if (!validator.validatePassword(password)) {
+               session.setAttribute("passwordError", "New Password is Invalid");
+            }
             manager.updateUser(email, password, user.getEmail());
             user.setEmail(email);
             user.setPassword(password);

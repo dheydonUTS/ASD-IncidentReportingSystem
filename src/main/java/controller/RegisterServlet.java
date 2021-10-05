@@ -31,6 +31,7 @@ public class RegisterServlet extends HttpServlet {
    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        validator validator = new validator();
         HttpSession session = request.getSession();
         try (PrintWriter out = response.getWriter()) {
             // Obtain entered user details
@@ -40,13 +41,44 @@ public class RegisterServlet extends HttpServlet {
             String password = request.getParameter("password");
             String repassword = request.getParameter("repassword");
             DBManager manager = (DBManager) session.getAttribute("manager");
-            // If passwords from both fields match then create the user, otherwise report an error
-            if (password.equals(repassword)) {
+            /*if (!validator.validateEmail(email)) {
+                session.setAttribute("emailError", "The Email entered is not valid");
+                request.getRequestDispatcher("Register.jsp").include(request, response);
+            } else if (!validator.validatePassword(password) || !validator.validatePassword(repassword)) {
+                session.setAttribute("passwordError", "The Password entered is not valid");
+                request.getRequestDispatcher("Register.jsp").include(request, response);
+            } else if (!validator.validateName(fname) || (!validator.validateName(lname))) {
+                session.setAttribute("nameError", "The Name entered is not valid");
+                request.getRequestDispatcher("Register.jsp").include(request, response);
+            } else if (password.equals(repassword)) {
                 manager.createUser(email, password, fname, lname);
                 response.sendRedirect("Login.jsp");
-            } else { // Sends back error reporting that the passwords did not match
-                session.setAttribute("passwordError", "Passwords did not Match, Please Try Again");
+            } else {
+                session.setAttribute("passwordMatchError", "Passwords did not Match");
                 response.sendRedirect("Register.jsp");
+            }
+            
+            }      catch (SQLException ex) {
+                Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
+       }*/
+            Boolean errorFound = false;
+            if (!validator.validateEmail(email)) {
+                session.setAttribute("emailError", "The Email entered is not valid");
+                errorFound = true;
+            } if (!validator.validatePassword(password) || !validator.validatePassword(repassword)) {
+                session.setAttribute("passwordError", "The Password entered is not valid");
+                errorFound = true;
+            } if (!validator.validateName(fname) || (!validator.validateName(lname))) {
+                session.setAttribute("nameError", "The Name entered is not valid");
+                errorFound = true;
+            } if (!password.equals(repassword)) {
+                session.setAttribute("passwordMatchError", "Passwords did not Match");
+                errorFound = true;
+            } if (password.equals(repassword) && errorFound == false) {
+                manager.createUser(email, password, fname, lname);
+                response.sendRedirect("Login.jsp");
+            } else if (errorFound == true) {
+                request.getRequestDispatcher("Register.jsp").include(request, response);
             }
             
             }      catch (SQLException ex) {
