@@ -7,6 +7,7 @@ package model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 /**
@@ -17,24 +18,67 @@ public class Incident implements Serializable {
     private int id;
     private Venue venue;
     private String type;
-    private LocalDate date;
-    private LocalTime time;
     private String description;
-    private String reporter;
-    private String offender;
+    private User reporter;
+    private Offender offender;
+    private LocalDate incidentDate;
+    private LocalTime incidentTime;
+// Ticketing System Variables
+    private User assignedUser; 
+    private LocalDateTime createdTime;
+    private LocalDateTime closedTime;
+    private String status;
+    private int priority;
 
-    public Incident(Venue venue, String type, LocalDate date, LocalTime time, String description, String reporter, String offender) {
+    public Incident(Venue venue, String type,LocalDate date, LocalTime time, String description, User reporter, Offender offender, User assignedUser, LocalDateTime createdTime,  int priority) { //Default constructor
         this.venue = venue;
         this.type = type;
-        this.date = date;
-        this.time = time;
         this.description = description;
         this.reporter = reporter;
         this.offender = offender;
+        incidentDate=date;
+        incidentTime=time;
+        this.assignedUser = assignedUser;
+        this.createdTime = createdTime;
+        this.status = "open";
+        this.priority = priority;
     }
 
     public Incident() {
     }
+
+    public Incident(int id, Venue venue, String type, String description, User reporter, Offender offender, LocalDate incidentDate, LocalTime incidentTime, User assignedUser, LocalDateTime createdTime, int priority) {
+        this.id = id;
+        this.venue = venue;
+        this.type = type;
+        this.description = description;
+        this.reporter = reporter;
+        this.offender = offender;
+        this.incidentDate = incidentDate;
+        this.incidentTime = incidentTime;
+        this.assignedUser = assignedUser;
+        this.createdTime = createdTime;
+        this.priority = priority;
+        status = "open";
+    }
+
+    
+    
+    public Incident(int id, Venue venue, String type, String description, User reporter, Offender offender, LocalDate incidentDate, LocalTime incidentTime, User assignedUser, LocalDateTime createdTime, LocalDateTime closedTime, int priority) {
+        this.id = id;
+        this.venue = venue;
+        this.type = type;
+        this.description = description;
+        this.reporter = reporter;
+        this.offender = offender;
+        this.incidentDate = incidentDate;
+        this.incidentTime = incidentTime;
+        this.assignedUser = assignedUser;
+        this.createdTime = createdTime;
+        this.status = "open";
+        this.priority = priority;
+    }
+
     
     public int getId() {
         return id;
@@ -60,24 +104,6 @@ public class Incident implements Serializable {
         this.type = type;
     }
 
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public LocalTime getTime() {
-        return time;
-    }
-
-    public void setTime(LocalTime time) {
-        this.time = time;
-    }
-
-    
-    
     public String getDescription() {
         return description;
     }
@@ -86,21 +112,78 @@ public class Incident implements Serializable {
         this.description = description;
     }
 
-    public String getReporter() {
+    public User getReporter() {
         return reporter;
     }
 
-    public void setReporter(String reporter) {
+    public void setReporter(User reporter) {
         this.reporter = reporter;
     }
 
-    public String getOffender() {
+    public Offender getOffender() {
         return offender;
     }
 
-    public void setOffender(String offender) {
+    public void setOffender(Offender offender) {
         this.offender = offender;
+    }
+
+    public User getAssignedUser() {
+        return assignedUser;
+    }
+
+    public void setAssignedUser(User assignedUser) {
+        this.assignedUser = assignedUser;
+    }
+
+    public LocalDateTime getCreatedTime() {
+        return createdTime;
+    }
+
+    public void setCreatedTime(LocalDateTime createdTime) {
+        this.createdTime = createdTime;
+    }
+
+    public LocalDateTime getClosedTime() {
+        return closedTime;
+    }
+
+    public void setClosedTime(LocalDateTime closedTime) {
+        this.closedTime = closedTime;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
+
+    public LocalDate getIncidentDate() {
+        return incidentDate;
+    }
+
+    public void setIncidentDate(LocalDate incidentDate) {
+        this.incidentDate = incidentDate;
+    }
+
+    public LocalTime getIncidentTime() {
+        return incidentTime;
+    }
+
+    public void setIncidentTime(LocalTime incidentTime) {
+        this.incidentTime = incidentTime;
     }
     
     
+
 }

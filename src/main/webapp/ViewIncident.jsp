@@ -4,13 +4,16 @@
     Author     : dheydon
 --%>
 
+<%@page import="model.User"%>
+<%@page import="model.Offender"%>
 <%@page import="model.Venue"%>
 <%@page import="model.Incident"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
 Incident incident = (Incident)session.getAttribute("incident");
-Venue venue = (Venue)session.getAttribute("venue"); // Get venue from incident in future
+Venue venue = incident.getVenue();
+User reporter = incident.getReporter();
 %>
 <!DOCTYPE html>
 <html>
@@ -39,11 +42,11 @@ Venue venue = (Venue)session.getAttribute("venue"); // Get venue from incident i
 				</tr>
 				<tr>
                     <td>Incident Date</td>
-					<td><%=incident.getDate()%></td>
+					<td><%=incident.getIncidentDate()%></td>
 				</tr>
 				<tr>
                     <td>Incident Time</td>
-					<td><%=incident.getTime()%></td>
+					<td><%=incident.getIncidentTime()%></td>
 					
 				</tr>
 				<tr>
@@ -53,19 +56,23 @@ Venue venue = (Venue)session.getAttribute("venue"); // Get venue from incident i
 				</tr>
 				<tr>
                     <td>Reported By</td>
-					<td><%=incident.getReporter()%></td>
+					<td><%=reporter.getFirstName()%> <%=reporter.getLastName()%></td>
 				</tr>
 				<tr>
                     <td>Offender Details</td>
-                    <td><%=incident.getOffender()%></td>
+                    <% Offender offender = incident.getOffender();%>
+                    <td><%=offender.getFirstName()%> <%=offender.getLastName()%></td>
                 </tr>            
         </table>
                   </div>
+                                <div>
+                    <form action="Ticket.jsp" method="post">
+                        <input type="submit" value="View Ticket" class="btn btn-primary">
+                    </form>
+                </div>
                </div>
             </div>
          </div>
       </div>
-        
-           
     </body>
 </html>
