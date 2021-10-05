@@ -32,15 +32,19 @@
 </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label" for="desc">Name:</label>
-                               <input class="form-control"type="text" name="desc" >
+                            <input class="form-control"type="text" id="venueName" name="venueName" >
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label" for="desc">Address</label>
+                            <input class="form-control"type="text" id="venueAddress" name="venueAddress" >
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label" for="desc">Longitude:</label>
-                               <input class="form-control"type="text" name="desc" >
+                            <input class="form-control"type="text" id="venueLon" name="venueLon" >
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label" for="desc">Latitude:</label>
-                               <input class="form-control"type="text" name="desc" >
+                            <input class="form-control"type="text" id="venueLat" name="venueLat" >
                         </div>
                         <a href="./manageVenues.jsp" class="btn btn-primary delete-btn">Confirm new Venue</a>
                 </div>
