@@ -68,14 +68,12 @@ public class DBManager {
         while(result.next()){
             String email = result.getString("EMAIL");
             String password = result.getString("PASSWORD");
-            if(pass.equals(password)){
                 int user_id = result.getInt("USER_ID");
                 String first_name = result.getString("FIRST_NAME");
                 String last_name = result.getString("LAST_NAME");
                 boolean is_staff = result.getBoolean("IS_STAFF");
                 return new User(user_id,email,password,first_name,last_name,
                         is_staff);
-            }
         }
         return null;
     }

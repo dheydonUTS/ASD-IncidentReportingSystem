@@ -27,7 +27,7 @@
                     <div class="form-group row">
                       <label class="col-sm-2 control-label text-right" for="venueName">Venue:</label>
                       <div class="col-sm-10">
-                        <select class="form-control" name="venueName" id="type">
+                        <select class="form-control" name="venueName" value="<%=(request.getParameter("venueName") != null ? request.getParameter("venueName") : "")%>" id="type">
                             <%
                                      DBManager manager = (DBManager)session.getAttribute("manager");
                                      LinkedList<Venue> Venues = manager.getVenues();
@@ -82,8 +82,7 @@
                       <div class="col-sm-10">
                         <textarea class="form-control <% if(descErr){ %>is-invalid<%}%>" 
                                   id="desc" placeholder="Please provide a description of events" 
-                                  name="desc" rows="3" 
-                                  value="<%=(request.getParameter("desc") != null ? request.getParameter("desc") : "")%>"></textarea>
+                                  name="desc" rows="3" ><%=(request.getParameter("desc") != null ? request.getParameter("desc") : "")%></textarea>
                         <% if(descErr){%>
                             <div class=" invalid-feedback">
                             Please enter a valid description.
