@@ -55,28 +55,6 @@ protected void doGet(HttpServletRequest request,
         request.getRequestDispatcher("analytics.jsp").include(request, response);
     }
 
-/*
-    public LinkedList<Incident> dummyData() {
-        LinkedList<Incident> DummyList = new LinkedList();
-        Venue war = new Venue(1, "Warringah", -33.754350, 151.266890);
-        Venue bon = new Venue(2, "Bondi", -33.8923427, 151.2508617);
-        Venue par = new Venue(3, "Parramatta", -33.817805, 151.0020877);
-        // GET RID OF THIS ONLY HERE SO IT BUILDS
-        User AssignedUser = new User("assignedUserEmail","Password");
-/*
-        DummyList.push(new Incident(war, "Shoplift",  "Stole something", "Jeff", "Rachel",AssignedUser,LocalDateTime.now(),1));
-        DummyList.push(new Incident(bon, "Shoplift",  "Stole something again", "Caitlin", "Rachel",AssignedUser,LocalDateTime.now(),1));
-        DummyList.push(new Incident(par, "Fall",  "Someone fell", "Robert", "James",AssignedUser,LocalDateTime.now(),1));
-        DummyList.push(new Incident(war, "Fall",  "Someone also fell", "Melinda", "Tom",AssignedUser,LocalDateTime.now(),1));
-        DummyList.push(new Incident(bon, "Robbery",  "Someone robbed a store", "Robert", "Brendan",AssignedUser,LocalDateTime.now(),1));
-        DummyList.push(new Incident(bon, "Crash",  "Someone crashed", "Susie", "Ned",AssignedUser,LocalDateTime.now(),1));
-        DummyList.push(new Incident(bon, "Shoplift",  "Another steal", "Ahmed", "Alex",AssignedUser,LocalDateTime.now(),1));
-*/
-/*
-        return DummyList;
-    }
-    */
-
     public HashMap<String, Integer> incidentTypeCount(LinkedList<Incident> IncidentList) {
         
         HashMap<String, Integer> IncidentCount = new HashMap();
