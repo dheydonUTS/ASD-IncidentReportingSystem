@@ -56,7 +56,17 @@ public class IncidentServlet extends HttpServlet {
        Validator valid = new Validator();
        String oFirstName;
        String oLastName;
-       int offenderId = 0;/*
+       int offenderId = 0;
+       // Validate Offender Names
+       if(valid.validateName((String)request.getParameter("offenderFname")) 
+            &valid.validateName((String)request.getParameter("offenderLname"))){
+           oFirstName = (String)request.getParameter("offenderFname");
+           oLastName = (String)request.getParameter("offenderLname");
+       }
+       else{
+       session.setAttribute("offenderErr",true);
+       }
+       /*
        if(valid.validateName((String)request.getParameter("offenderFname")) &       // Check offender first & last name are valid
                valid.validateName((String)request.getParameter("offenderLname"))){
             oFirstName = (String)request.getParameter("offenderFname");
