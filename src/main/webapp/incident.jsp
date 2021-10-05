@@ -27,21 +27,22 @@
                     <div class="form-group row">
                       <label class="col-sm-2 control-label text-right" for="venueName">Venue:</label>
                       <div class="col-sm-10">
-                        <select class="form-control" name="venueName" id="type">
+                        <select class="form-control" name="venueName" value="<%=(request.getParameter("venueName") != null ? request.getParameter("venueName") : "")%>" id="type">
                             <%
                                      DBManager manager = (DBManager)session.getAttribute("manager");
                                      LinkedList<Venue> Venues = manager.getVenues();
+                                     request.removeAttribute("incident");
                                      request.setAttribute("Venues", Venues);
-                                     boolean descError;
+                                     boolean descErr;
                                      boolean offenderErr;
                                      // Get errors
                                      try{
-                                     descError = Boolean.parseBoolean((String)session.getAttribute("descError"));
+                                     descErr = Boolean.parseBoolean((String)session.getAttribute("descErr"));
                                      offenderErr = Boolean.parseBoolean((String)session.getAttribute("offenderErr"));
                                      }
                                      catch(Exception e){ 
-                                     descError = false;
-                                     session.setAttribute("descError","false");
+                                     descErr = false;
+                                     session.setAttribute("descErr","false");
                                      offenderErr = false;
                                      session.setAttribute("offenderErr","false");
                                      }
@@ -63,22 +64,26 @@
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label class="col-sm-2 control-label text-right" for="time">Time:</label>
+                      <label class="col-sm-2 control-label text-right" for="time" >Time:</label>
                       <div class="col-sm-10">
-                        <input class="form-control" type="time" name="time">
+                        <input class="form-control" type="time" name="time"
+                               value="<%=(request.getParameter("time") != null ? request.getParameter("time") : "")%>" required>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label class="col-sm-2 control-label text-right" for="date">Date:</label>
                       <div class="col-sm-10">
-                        <input class="form-control" type="date" name="date">
+                        <input class="form-control" type="date" name="date" 
+                               value="<%=(request.getParameter("date") != null ? request.getParameter("date") : "")%>" required>
                       </div>
                     </div>
                     <div class="form-group row ">
                       <label class="col-sm-2 control-label text-right" for="desc">Description:</label>
                       <div class="col-sm-10">
-                        <textarea class="form-control <% if(descError){ %>is-invalid<%}%>" id="desc" placeholder="Please provide a description of events" name="desc" rows="3"></textarea>
-                        <% if(descError){%>
+                        <textarea class="form-control <% if(descErr){ %>is-invalid<%}%>" 
+                                  id="desc" placeholder="Please provide a description of events" 
+                                  name="desc" rows="3" ><%=(request.getParameter("desc") != null ? request.getParameter("desc") : "")%></textarea>
+                        <% if(descErr){%>
                             <div class=" invalid-feedback">
                             Please enter a valid description.
                             </div><%}%>
@@ -87,14 +92,18 @@
                     <div class="form-group row">
                         <label class="col-sm-2 control-label text-right" for="offender">Offender: </label>
                         <div class="col-auto">
-                            <input class="form-control <% if(offenderErr){ %>is-invalid<%}%>" placeholder="First Name" type="text" name="offenderFname" >
+                            <input class="form-control <% if(offenderErr){ %>is-invalid<%}%>" 
+                                   placeholder="First Name" type="text" name="offenderFname" 
+                                   value="<%=(request.getParameter("offenderFname") != null ? request.getParameter("offenderFname") : "")%>" >
                             <% if(offenderErr){%>
                             <div class=" invalid-feedback">
                             Please enter a valid Name.
                             </div><%}%>
                         </div>
                         <div class="col-auto">
-                            <input class="form-control <% if(offenderErr){ %>is-invalid<%}%>" placeholder="Last Name"type="text" name="offenderLname">
+                            <input class="form-control <% if(offenderErr){ %>is-invalid<%}%>" 
+                                   placeholder="Last Name"type="text" name="offenderLname" 
+                                   value="<%=(request.getParameter("offenderLname") != null ? request.getParameter("offenderLname") : "")%>">
                         </div>
                     </div>
                     <div class="form-group row">

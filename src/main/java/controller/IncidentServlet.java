@@ -1,15 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
-
-
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.logging.Level;
@@ -45,13 +38,13 @@ public class IncidentServlet extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(IncidentServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-       String desc = request.getParameter("desc");
+       String desc = "";
        User reporter = (User)session.getAttribute("user");
        
        /* --- Validation & Initialisation --- */
        Validator valid = new Validator();
-       String oFirstName;
-       String oLastName;
+       String oFirstName = "";
+       String oLastName ="";
        int offenderId = 0;
        // Validate Offender Names
        if(valid.validateName((String)request.getParameter("offenderFname"))&& 
@@ -63,63 +56,60 @@ public class IncidentServlet extends HttpServlet {
        else{
        session.setAttribute("offenderErr","true");
        }
+       if(valid.validateDesc((String)request.getParameter("desc"))){
+           desc = (String)request.getParameter("desc");
+           session.setAttribute("descErr","false");
+       }
+       else{
+       session.setAttribute("descErr","true");
+       }
        
-       if( Boolean.parseBoolean((String)session.getAttribute("offenderErr")) || Boolean.parseBoolean((String)session.getAttribute("descErr")) ){
+       if( Boolean.parseBoolean((String)session.getAttribute("offenderErr")) || 
+           Boolean.parseBoolean((String)session.getAttribute("descErr")) ){
             request.getRequestDispatcher("incident.jsp").include(request,response);
             }
-       /*
-       if(valid.validateName((String)request.getParameter("offenderFname")) &       // Check offender first & last name are valid
-               valid.validateName((String)request.getParameter("offenderLname"))){
-            oFirstName = (String)request.getParameter("offenderFname");
-            oLastName = (String)request.getParameter("offenderLname");
-            try{                                                                    // Check for offender in DB
-                offenderId = manager.getOffenderIDByName(oFirstName,oLastName);
-            }
-            catch(Exception e){
-                try {                                                               // Create Offender if not in DB
-                    manager.addOffenderIncindent(oFirstName, oLastName);
-                    offenderId = manager.getOffenderIDByName(oFirstName,oLastName);
-                } catch (Exception x) {
-                    System.out.println("Query Failure");
-                }
-            }
-       }
+       else{
+           
        Offender offender = new Offender();
-    try {
-        offender = manager.getOffender(offenderId);
-    } catch (SQLException ex) {
-        Logger.getLogger(IncidentServlet.class.getName()).log(Level.SEVERE, null, ex);
-    }
-       //String offender = request.getParameter("offender");*/
-       Offender offender = new Offender();
-    try {
-        offender = manager.getOffender(1);
-    } catch (SQLException ex) {
-        Logger.getLogger(IncidentServlet.class.getName()).log(Level.SEVERE, null, ex);
-    }
+           try {
+               offender = findOffender(oFirstName,oLastName,manager);
+           } catch (SQLException ex) {
+               
+           }
        allocateTicket al = new allocateTicket();
        int assignedUserId =0;
+       int ticketId=0;
     try {
         assignedUserId = al.nextFreeStaff(manager.getStaff());
-    } catch (SQLException ex) {
-        Logger.getLogger(IncidentServlet.class.getName()).log(Level.SEVERE, null, ex);
-    }
+    } catch (SQLException ex) {}
        User assignUser = new User();
     try {
         assignUser = manager.getUser(assignedUserId);
-    } catch (SQLException ex) {
-        Logger.getLogger(IncidentServlet.class.getName()).log(Level.SEVERE, null, ex);
-    }
+    } catch (SQLException ex) {}
     try {
-        manager.addIncident(venue.getId(),type,desc,user.getId(),offender.getId(),date.toString(),time.toString(),assignedUserId,LocalDateTime.now(),1);
-    } catch (SQLException ex) {
-        Logger.getLogger(IncidentServlet.class.getName()).log(Level.SEVERE, null, ex);
-    }
-    if(!( Boolean.parseBoolean((String)session.getAttribute("offenderErr")) || Boolean.parseBoolean((String)session.getAttribute("descErr")))){
-       Incident incident = new Incident(venue,type,date,time,desc,reporter,offender,assignUser,LocalDateTime.now(),1);
+        ticketId = manager.addIncident(venue.getId(),type,desc,user.getId(),offender.getId(),date.toString(),time.toString(),assignedUserId,LocalDateTime.now(),1);
+    } catch (SQLException ex) {}
+    
+    if(!( Boolean.parseBoolean((String)session.getAttribute("offenderErr")) || 
+            Boolean.parseBoolean((String)session.getAttribute("descErr")))){
+       Incident incident = new 
+        Incident(ticketId,venue,type,desc ,reporter,offender,date,time,assignUser,LocalDateTime.now(),1);
        session.setAttribute("incident", incident);
        request.getRequestDispatcher("ViewIncident.jsp").include(request,response);
+       
     }
    }
+  }
 
+    public Offender findOffender(String Fname, String Lname, DBManager manager) throws SQLException{
+        int offenderId = manager.getOffenderIDByName(Fname,Lname);
+        if (manager.getOffender(offenderId)!= null ){
+            Offender offender = manager.getOffender(offenderId);
+            return offender;
+            }
+        manager.addOffenderIncindent(Fname,Lname);
+        offenderId = manager.getOffenderIDByName(Fname,Lname);
+        return manager.getOffender(offenderId);
+    }
+    
 }

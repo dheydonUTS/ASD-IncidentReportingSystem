@@ -68,14 +68,12 @@ public class DBManager {
         while(result.next()){
             String email = result.getString("EMAIL");
             String password = result.getString("PASSWORD");
-            if(pass.equals(password)){
                 int user_id = result.getInt("USER_ID");
                 String first_name = result.getString("FIRST_NAME");
                 String last_name = result.getString("LAST_NAME");
                 boolean is_staff = result.getBoolean("IS_STAFF");
                 return new User(user_id,email,password,first_name,last_name,
                         is_staff);
-            }
         }
         return null;
     }
@@ -91,7 +89,7 @@ public class DBManager {
     
     /*----------------- Incident Creation  -----------------*/
     /* --- Create --- */
-    public void addIncident(int venueid, String type, String description, 
+    public int addIncident(int venueid, String type, String description, 
             int reporterId, int offenderId,String time, String date, int assignedUserId, 
             LocalDateTime createdTime,  int priority) throws SQLException{
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -103,6 +101,13 @@ public class DBManager {
                 "("+venueid+",'"+type+"', '"+description+"', "+reporterId+","
                 + ""+offenderId+","+assignedUserId+",'"+formatDateTime+
                 "','open',"+priority+", '" +time +"', '"+ date+ "' )");
+        ResultSet result = st.executeQuery(
+                "SELECT * FROM INCIDENTRS.\"Incident\" order by incident_id desc");
+        int id = 0;
+        while(result.next()){
+            return result.getInt("incident_id");
+        }
+        return id;
     }
     
     /* --- Get all members of staff and how many tickets they have  --- */
