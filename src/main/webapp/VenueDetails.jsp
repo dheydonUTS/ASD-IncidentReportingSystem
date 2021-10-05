@@ -23,7 +23,7 @@
                 <button type="button" class="btn btn primary" onclick="history.back()">< Back</button>
                 <h1 class="display-4">Venue #<%=venue.getId()%> Details</h1>
                 <hr>
-                <button type="button" class="btn btn-dark">Generate Report</button>
+                <button type="button" class="btn btn-dark" onclick="window.location.href='VenueReportServlet'">Generate Report</button>
                 <table class="table">
                     <tr><td>Venue Id:</td><td><%=venue.getId()%></td></tr>
                     <tr><td>Venue Name:</td><td><%=venue.getName()%></td></tr>

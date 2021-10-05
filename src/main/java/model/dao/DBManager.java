@@ -406,6 +406,7 @@ public class DBManager {
             Incident incident = new Incident();
             incident.setId(result.getInt("INCIDENT_ID"));
             incident.setType(result.getString("TYPE"));
+            incident.setDescription(result.getString("DESCRIPTION"));
             incident.setIncidentDate(result.getDate("INCIDENT_DATE").toLocalDate());
             incident.setIncidentTime(result.getTime("INCIDENT_TIME").toLocalTime());
             incidentList.add(incident);
