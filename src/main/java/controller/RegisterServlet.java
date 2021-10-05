@@ -20,18 +20,16 @@ import javax.servlet.http.HttpSession;
 import model.dao.DBConnector;
 import model.dao.DBManager;
 
-
 /**
  *
  * @author User
  */
-
 public class RegisterServlet extends HttpServlet {
-    
-   protected void doPost(HttpServletRequest request, HttpServletResponse response)
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        validator validator = new validator();
+        Validator validator = new Validator();
         HttpSession session = request.getSession();
         try (PrintWriter out = response.getWriter()) {
             // Obtain entered user details
@@ -41,48 +39,41 @@ public class RegisterServlet extends HttpServlet {
             String password = request.getParameter("password");
             String repassword = request.getParameter("repassword");
             DBManager manager = (DBManager) session.getAttribute("manager");
-            /*if (!validator.validateEmail(email)) {
-                session.setAttribute("emailError", "The Email entered is not valid");
-                request.getRequestDispatcher("Register.jsp").include(request, response);
-            } else if (!validator.validatePassword(password) || !validator.validatePassword(repassword)) {
-                session.setAttribute("passwordError", "The Password entered is not valid");
-                request.getRequestDispatcher("Register.jsp").include(request, response);
-            } else if (!validator.validateName(fname) || (!validator.validateName(lname))) {
-                session.setAttribute("nameError", "The Name entered is not valid");
-                request.getRequestDispatcher("Register.jsp").include(request, response);
-            } else if (password.equals(repassword)) {
-                manager.createUser(email, password, fname, lname);
-                response.sendRedirect("Login.jsp");
-            } else {
-                session.setAttribute("passwordMatchError", "Passwords did not Match");
-                response.sendRedirect("Register.jsp");
-            }
-            
-            }      catch (SQLException ex) {
-                Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
-       }*/
             Boolean errorFound = false;
-            if (!validator.validateEmail(email)) {
+            if (!validator.validateEmail(email)) { // Validate Email
                 session.setAttribute("emailError", "The Email entered is not valid");
                 errorFound = true;
-            } if (!validator.validatePassword(password) || !validator.validatePassword(repassword)) {
+            }
+            if (!validator.validatePassword(password)) { // Validate Password
                 session.setAttribute("passwordError", "The Password entered is not valid");
                 errorFound = true;
-            } if (!validator.validateName(fname) || (!validator.validateName(lname))) {
-                session.setAttribute("nameError", "The Name entered is not valid");
+            }
+            if (!validator.validateName(fname)) { // Validate First Name
+                session.setAttribute("fnameError", "The Name entered is not valid");
                 errorFound = true;
-            } if (!password.equals(repassword)) {
+            }
+            if (!validator.validateName(lname)) { // Validate Last Name
+                session.setAttribute("lnameError", "The Name entered is not valid");
+                errorFound = true;
+            }
+            if (!password.equals(repassword)) { // Check passwords match
                 session.setAttribute("passwordMatchError", "Passwords did not Match");
                 errorFound = true;
-            } if (password.equals(repassword) && errorFound == false) {
+            }
+            if (password.equals(repassword) && errorFound == false) { // Create user if no errors found
                 manager.createUser(email, password, fname, lname);
                 response.sendRedirect("Login.jsp");
-            } else if (errorFound == true) {
+                session.removeAttribute("fnameError");
+                session.removeAttribute("lnameError");
+                session.removeAttribute("passwordError");
+                session.removeAttribute("passwordMatchError");
+                session.removeAttribute("emailError");
+            } else if (errorFound == true) { // Return to page if error(s) found
                 request.getRequestDispatcher("Register.jsp").include(request, response);
             }
-            
-            }      catch (SQLException ex) {
-                Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
-       }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

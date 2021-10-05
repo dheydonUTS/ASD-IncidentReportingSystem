@@ -84,8 +84,8 @@ public class DBManager {
         st.executeUpdate("DELETE FROM INCIDENTRS.\"User\" WHERE EMAIL = '" + email + "'");
     }
     
-    public void updateUser(String newEmail, String newPassword, String oldEmail) throws SQLException {
-        st.executeUpdate("UPDATE INCIDENTRS.\"User\" SET EMAIL= '" + newEmail + "', PASSWORD='"+newPassword+"' WHERE EMAIL='"+oldEmail+"'");
+    public void updateUser(String newEmail, String newPassword, String fname, String lname, String oldEmail) throws SQLException {
+        st.executeUpdate("UPDATE INCIDENTRS.\"User\" SET EMAIL= '" + newEmail + "', PASSWORD='"+newPassword+"', FIRST_NAME='"+fname+"', LAST_NAME='"+lname+"' WHERE EMAIL='"+oldEmail+"'");
     }
     
     

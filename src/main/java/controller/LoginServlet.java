@@ -26,44 +26,6 @@ import model.dao.DBManager;
 public class LoginServlet extends HttpServlet {
     
         protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-<<<<<<< HEAD
-        HttpSession session = request.getSession();
-        String email = request.getParameter("email");
-        validator validator = new validator();
-        String password = request.getParameter("password");
-        DBManager manager = (DBManager) session.getAttribute("manager");
-        User user = null;
-        // Use entered details to search database for matching user
-        try {
-            user = manager.findUser(email, password);
-        } catch (SQLException ex) {
-            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        // If found, return to the home page with the session set for the user, otherwise report an error
-        if (!validator.validateEmail(email)) {
-            session.getAttribute("emailError");
-            request.getRequestDispatcher("Login.jsp").include(request, response);
-        } else if (!validator.validatePassword(password)) {
-            session.getAttribute("passwordError");
-            request.getRequestDispatcher("Login.jsp").include(request, response);
-        } else if (user != null) {
-            session.setAttribute("user", user);
-            request.getRequestDispatcher("index.jsp").include(request, response);
-        } else {
-            session.setAttribute("existError", "Unable to Find User, Please Try Again");
-            request.getRequestDispatcher("Login.jsp").include(request, response);
-        }
-
-    }
-    
-
-   
-  
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
-=======
     HttpSession session = request.getSession();  
     Validator validator = new Validator();     
     String email = request.getParameter("email");
@@ -94,5 +56,4 @@ public class LoginServlet extends HttpServlet {
              }
          }
     }  
->>>>>>> main
 }

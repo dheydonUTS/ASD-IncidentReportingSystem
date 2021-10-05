@@ -14,27 +14,15 @@
     </head>
     <body>  
         <%
-<<<<<<< HEAD
-            String existError = (String) session.getAttribute("existErr");
-            String emailErr = (String) session.getAttribute("emailErr");
-            String passwordErr = (String) session.getAttribute("passwordErr");
-           
-=======
-            String existErr = (String) session.getAttribute("existErr");
             String emailError = (String) session.getAttribute("emailError");
             String noSuchUserError = (String) session.getAttribute("noSuchUserError");
             String passwordError = (String) session.getAttribute("passwordError");
->>>>>>> main
         %>
         <jsp:include page="components/navbar.jsp"/>
         <div class="container-fluid p-5">
     <div class="container p-5" >
         <h1 class="display-4">User Login</h1>
-<<<<<<< HEAD
-        <h2>Enter User Details:<span class="message"> <%=(existError != null ? existError : "")%></span></h2>
-=======
         <h2>Enter User Details <span class="message"> <%=(noSuchUserError != null ? noSuchUserError : "")%></span></h2>
->>>>>>> main
         <hr>
                 <div class="card" style="width:20rem; margin: auto; margin-top: 2rem;  ">
             <div class="card-body">
@@ -50,7 +38,7 @@
                                 <label for="password">Password:</label>
                                 <input type="password" name="password">
                                 <br>
-                                <span class="message"> <%=(passwordError != null ? passwordError : "")%></span>
+                                <span class="message" style="color: tomato"> <%=(passwordError != null ? passwordError : "")%></span>
                                 <br><br>
                             </div>
                              <input type="submit" value="Submit" class="btn btn-primary">

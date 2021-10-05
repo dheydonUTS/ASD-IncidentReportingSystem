@@ -36,27 +36,55 @@ public class editAccountServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        validator validator = new validator();
+        Validator validator = new Validator();
         response.setContentType("text/html;charset=UTF-8");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        String fname = request.getParameter("fname");
+        String lname = request.getParameter("lname");
+        String repassword = request.getParameter("repassword");
         User user = (User) session.getAttribute("user");
         DBManager manager = (DBManager) session.getAttribute("manager");
         // If matching user is found then update the user details in the database
         try {
+            Boolean errorFound = false;
             if (!validator.validateEmail(email)) {
                 session.setAttribute("emailError", "New Email is Invalid");
+                errorFound = true;
             }
             if (!validator.validatePassword(password)) {
-               session.setAttribute("passwordError", "New Password is Invalid");
+                session.setAttribute("passwordError", "New Password is Invalid");
+                errorFound = true;
             }
-            manager.updateUser(email, password, user.getEmail());
-            user.setEmail(email);
-            user.setPassword(password);
+            if (!validator.validateName(fname)) {
+                session.setAttribute("fnameError", "New Name is Invalid");
+                errorFound = true;
+            }
+            if (!validator.validateName(lname)) {
+                session.setAttribute("lnameError", "New Name is Invalid");
+                errorFound = true;
+            }
+            if (!password.equals(repassword)) {
+                session.setAttribute("passwordMatchError", "Passwords did not Match");
+                errorFound = true;
+            }
+            if (errorFound == false) {
+                manager.updateUser(email, password, fname, lname, user.getEmail());
+                user.setEmail(email);
+                user.setPassword(password);
+                user.setFirstName(fname);
+                user.setLastName(lname);
+                session.removeAttribute("fnameError");
+                session.removeAttribute("lnameError");
+                session.removeAttribute("passwordError");
+                session.removeAttribute("passwordMatchError");
+                session.removeAttribute("emailError");
+                session.setAttribute("userChanged", "Details have been Successfully Changed");
+            }
         } catch (SQLException ex) {
             Logger.getLogger(editAccountServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        session.setAttribute("userChanged", "Details have been Successfully Changed");
+        } 
         request.getRequestDispatcher("Account.jsp").include(request, response);
+        session.removeAttribute("userChanged");
     }
 }
