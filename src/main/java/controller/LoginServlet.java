@@ -44,11 +44,17 @@ public class LoginServlet extends HttpServlet {
          try {                                                                  // Try login user
                 if(manager.findUser(email,password)!=null){
                     user = manager.findUser(email,password);                     // If the use does not exist NPE is thrown
-                    session.setAttribute("user", user);
-                    session.removeAttribute("noSuchUserError");
-                    session.removeAttribute("passwordError");
-                    session.removeAttribute("emailError");
-                    request.getRequestDispatcher("index.jsp").include(request,response);
+                    if(user.getPassword().equals(password) ){
+                        session.setAttribute("user", user);
+                        session.removeAttribute("noSuchUserError");
+                        session.removeAttribute("passwordError");
+                        session.removeAttribute("emailError");
+                        request.getRequestDispatcher("index.jsp").include(request,response);
+                    }else{
+                    session.setAttribute("passwordError","The pasword entered is incorrect.");
+                    request.getRequestDispatcher("Login.jsp").include(request,response);
+                    }
+                    
                 }
                 else{
                     session.setAttribute("noSuchUserError",                            

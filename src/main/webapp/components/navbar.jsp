@@ -19,8 +19,9 @@
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="index.jsp">Home</a></li>
+                                                <%if(user != null){ %>
 					<li class="nav-item"><a class="nav-link" href="incident.jsp">Report
-							Incident</a></li>
+							Incident</a></li><%}%>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#"
 						id="navbarDropdownMenuLink" role="button"
