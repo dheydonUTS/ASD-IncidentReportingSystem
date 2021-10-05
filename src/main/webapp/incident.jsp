@@ -36,12 +36,14 @@
                                      boolean offenderErr;
                                      // Get errors
                                      try{
-                                     descError = (Boolean)session.getAttribute("descError");
-                                     offenderErr = (Boolean)session.getAttribute("offenderErr");
+                                     descError = Boolean.parseBoolean((String)session.getAttribute("descError"));
+                                     offenderErr = Boolean.parseBoolean((String)session.getAttribute("offenderErr"));
                                      }
                                      catch(Exception e){ 
                                      descError = false;
+                                     session.setAttribute("descError","false");
                                      offenderErr = false;
+                                     session.setAttribute("offenderErr","false");
                                      }
                                 %> <c:forEach items="${Venues}" var="Venue">
                             <option value="${Venue.name}">${Venue.name}</option>
@@ -85,10 +87,14 @@
                     <div class="form-group row">
                         <label class="col-sm-2 control-label text-right" for="offender">Offender: </label>
                         <div class="col-auto">
-                            <input class="form-control" placeholder="First Name" type="text" name="offenderFname">
+                            <input class="form-control <% if(offenderErr){ %>is-invalid<%}%>" placeholder="First Name" type="text" name="offenderFname" >
+                            <% if(offenderErr){%>
+                            <div class=" invalid-feedback">
+                            Please enter a valid Name.
+                            </div><%}%>
                         </div>
                         <div class="col-auto">
-                            <input class="form-control" placeholder="Last Name"type="text" name="offenderLname">
+                            <input class="form-control <% if(offenderErr){ %>is-invalid<%}%>" placeholder="Last Name"type="text" name="offenderLname">
                         </div>
                     </div>
                     <div class="form-group row">

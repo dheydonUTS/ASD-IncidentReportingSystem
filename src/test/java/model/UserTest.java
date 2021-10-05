@@ -40,7 +40,7 @@ public class UserTest {
     }
 
     /**
-     * Test of getPassword method, of class User.
+     * test of getPassword method, of class User.
      */
     @Test
     public void testGetPassword() {

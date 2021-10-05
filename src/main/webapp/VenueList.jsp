@@ -4,6 +4,8 @@
     Author     : vince
 --%>
 
+<%@page import="model.Venue"%>
+<%@page import="java.util.LinkedList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,6 +14,9 @@
         <title>Venue List</title>
     </head>
     <body>
+        <%
+            LinkedList<Venue> venueList = (LinkedList<Venue>)session.getAttribute("venueList");
+        %>
         <jsp:include page="components/navbar.jsp"/>
         <div class="container-fluid p-5">
             <div class="container p-5">
@@ -19,12 +24,18 @@
                 <h1 class="display-4">List of Venues</h1>
                 <hr>
                 <table class="table">
-                    <tr><td>Venue Id</td><td>Venue Name</td><td></td></tr>
-                <%for(int i = 1; i <=4; i++){%>
+                    <tr>
+                        <td>Venue Id</td>
+                        <td>Venue Name</td>
+                        <td>Venue Address</td>
+                        <td></td>
+                    </tr>
+                <%for(Venue venue : venueList){%>
                 <tr>
-                    <td><%out.print(i);%></td>
-                    <td>Venue <%out.print(i);%></td>
-                    <td><button type="button" class="btn btn-dark" onclick="window.location.href='VenueDetails.jsp'">Details</button></td>
+                    <td><%=venue.getId()%></td>
+                    <td><%=venue.getName()%></td>
+                    <td><%=venue.getAddress()%></td>
+                    <td><button type="button" class="btn btn-dark" onclick="window.location.href='VenueDetailServlet?venueId=<%=venue.getId()%>'">Details</button></td>
                 </tr>
                 <%}%>
                 </table>

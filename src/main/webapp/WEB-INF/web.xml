@@ -48,6 +48,42 @@
         <servlet-name>IncidentDetailServlet</servlet-name>
         <servlet-class>controller.IncidentDetailServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>IncidentReportServlet</servlet-name>
+        <servlet-class>controller.IncidentReportServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>VenueListServlet</servlet-name>
+        <servlet-class>controller.VenueListServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>VenueDetailServlet</servlet-name>
+        <servlet-class>controller.VenueDetailServlet</servlet-class>
+    </servlet>	
+    <servlet>	
+        <servlet-name>listOffenderServlet</servlet-name>	
+        <servlet-class>controller.listOffenderServlet</servlet-class>	
+    </servlet>	
+    <servlet>	
+        <servlet-name>listVenueServlet</servlet-name>	
+        <servlet-class>controller.listVenueServlet</servlet-class>	
+    </servlet>	
+    <servlet>	
+        <servlet-name>editVenueServlet</servlet-name>	
+        <servlet-class>controller.editVenueServlet</servlet-class>	
+    </servlet>	
+    <servlet>	
+        <servlet-name>updateVenueServlet</servlet-name>	
+        <servlet-class>controller.updateVenueServlet</servlet-class>	
+    </servlet>	
+    <servlet>	
+        <servlet-name>deleteVenueServlet</servlet-name>	
+        <servlet-class>controller.deleteVenueServlet</servlet-class>
+    </servlet>
+    <servlet>	
+        <servlet-name>VenueReportServlet</servlet-name>	
+        <servlet-class>controller.VenueReportServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AnalyticsServlet</servlet-name>
         <url-pattern>/Analytics</url-pattern>
@@ -95,6 +131,54 @@
     <servlet-mapping>
         <servlet-name>IncidentDetailServlet</servlet-name>
         <url-pattern>/IncidentDetailServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IncidentReportServlet</servlet-name>
+        <url-pattern>/IncidentReportServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VenueListServlet</servlet-name>
+        <url-pattern>/VenueListServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VenueDetailServlet</servlet-name>
+        <url-pattern>/VenueDetailServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>	
+        <servlet-name>ConnServlet</servlet-name>	
+        <url-pattern>/ConnServlet</url-pattern>	
+    </servlet-mapping>	
+    <servlet-mapping>	
+        <servlet-name>IncidentListServlet</servlet-name>	
+        <url-pattern>/IncidentListServlet</url-pattern>	
+    </servlet-mapping>	
+    <servlet-mapping>	
+        <servlet-name>IncidentDetailServlet</servlet-name>	
+        <url-pattern>/IncidentDetailServlet</url-pattern>	
+    </servlet-mapping>	
+    <servlet-mapping>	
+        <servlet-name>listOffenderServlet</servlet-name>	
+        <url-pattern>/listOffenderServlet</url-pattern>	
+    </servlet-mapping>	
+    <servlet-mapping>	
+        <servlet-name>listVenueServlet</servlet-name>	
+        <url-pattern>/listVenueServlet</url-pattern>	
+    </servlet-mapping>	
+    <servlet-mapping>	
+        <servlet-name>editVenueServlet</servlet-name>	
+        <url-pattern>/editVenueServlet</url-pattern>	
+    </servlet-mapping>	
+    <servlet-mapping>	
+        <servlet-name>updateVenueServlet</servlet-name>	
+        <url-pattern>/updateVenueServlet</url-pattern>	
+    </servlet-mapping>	
+    <servlet-mapping>	
+        <servlet-name>deleteVenueServlet</servlet-name>	
+        <url-pattern>/deleteVenueServlet</url-pattern>	
+    </servlet-mapping>
+    <servlet-mapping>	
+        <servlet-name>VenueReportServlet</servlet-name>	
+        <url-pattern>/VenueReportServlet</url-pattern>	
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -33,11 +33,7 @@ public class IncidentServlet extends HttpServlet {
        HttpSession session = request.getSession();
        DBManager manager = (DBManager)session.getAttribute("manager");
        User user = new User();
-    try {
-        user = manager.getUser(1);
-    } catch (SQLException ex) {
-        Logger.getLogger(IncidentServlet.class.getName()).log(Level.SEVERE, null, ex);
-    }
+       user = (User)session.getAttribute("user");
        String type = request.getParameter("type");
        LocalDate date = LocalDate.parse(request.getParameter("date"));
        LocalTime time = LocalTime.parse(request.getParameter("time"));
@@ -56,7 +52,22 @@ public class IncidentServlet extends HttpServlet {
        Validator valid = new Validator();
        String oFirstName;
        String oLastName;
-       int offenderId = 0;/*
+       int offenderId = 0;
+       // Validate Offender Names
+       if(valid.validateName((String)request.getParameter("offenderFname"))&& 
+            valid.validateName((String)request.getParameter("offenderLname"))){
+           oFirstName = (String)request.getParameter("offenderFname");
+           oLastName = (String)request.getParameter("offenderLname");
+           session.setAttribute("offenderErr","false");
+       }
+       else{
+       session.setAttribute("offenderErr","true");
+       }
+       
+       if( Boolean.parseBoolean((String)session.getAttribute("offenderErr")) || Boolean.parseBoolean((String)session.getAttribute("descErr")) ){
+            request.getRequestDispatcher("incident.jsp").include(request,response);
+            }
+       /*
        if(valid.validateName((String)request.getParameter("offenderFname")) &       // Check offender first & last name are valid
                valid.validateName((String)request.getParameter("offenderLname"))){
             oFirstName = (String)request.getParameter("offenderFname");
@@ -104,9 +115,11 @@ public class IncidentServlet extends HttpServlet {
     } catch (SQLException ex) {
         Logger.getLogger(IncidentServlet.class.getName()).log(Level.SEVERE, null, ex);
     }
+    if(!( Boolean.parseBoolean((String)session.getAttribute("offenderErr")) || Boolean.parseBoolean((String)session.getAttribute("descErr")))){
        Incident incident = new Incident(venue,type,date,time,desc,reporter,offender,assignUser,LocalDateTime.now(),1);
        session.setAttribute("incident", incident);
        request.getRequestDispatcher("ViewIncident.jsp").include(request,response);
+    }
    }
 
 }
