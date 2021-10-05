@@ -52,13 +52,13 @@ public class VenueReportServlet extends HttpServlet {
             String incidentRowFormat = "|%-12s|%-12s|%-62s|%n";
             String incidentList = "";
             for(Incident incident : venue.getIncidents()){
-                incidentList.concat(String.format(incidentRowFormat, incident.getId(), incident.getType(), incident.getDescription()));
+                incidentList+=(String.format(incidentRowFormat, incident.getId(), incident.getType(), incident.getDescription()));
             }
             String outputResult = reportDetails+reportGrid+reportHeader+reportGrid+
                     String.format(venueRowFormat, "Venue ID:", venue.getId())+
                     String.format(venueRowFormat, "Name:", venue.getName())+
                     String.format(venueRowFormat, "Address:", venue.getName())+
-                    reportGrid+
+                    reportGrid+reportSubheader+reportGrid+
                     String.format(incidentRowFormat, "Incident Id", "Type", "Description")+
                     reportGrid+incidentList+reportGrid;
                     
