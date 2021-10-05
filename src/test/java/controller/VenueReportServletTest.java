@@ -42,7 +42,7 @@ public class VenueReportServletTest {
     
     @Test
     public void testGetUsername() throws Exception {
-        System.out.println("\nTest getUserName");
+        System.out.println("\nTest VenueReportServlet");
         User user = new User(1, "email", "password", "first", "last", true);
         String expUsername = "first last";
         VenueReportServlet instance = new VenueReportServlet();
