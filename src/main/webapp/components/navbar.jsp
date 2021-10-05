@@ -21,7 +21,9 @@
 						aria-current="page" href="index.jsp">Home</a></li>
                                                 <%if(user != null){ %>
 					<li class="nav-item"><a class="nav-link" href="incident.jsp">Report
-							Incident</a></li><%}%>
+							Incident</a></li>
+                                                        <li class="nav-item"><a class="nav-link" href="ViewIncidentsAndTickets.jsp">My 
+							Incidents</a></li><%}%>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#"
 						id="navbarDropdownMenuLink" role="button"
@@ -62,7 +64,6 @@
                                <li class="nav-item"><a class="nav-link" href="Account.jsp">User: <%= user.getEmail() %></a></li>    
                                <a class="btn btn-outline-secondary" style="margin-right: 10px"
 						href="Logout.jsp">Logout</a>
-					<a class="btn btn-info" href="Register.jsp">Register</a>
                                <%}%>
 			</div>
 		</div>

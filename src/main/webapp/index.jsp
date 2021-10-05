@@ -14,7 +14,7 @@
     <div class="container p-5">
         <h1 class="display-4">Incident Reporting System</h1>
         <hr>
-        <p>Prototype R0</p>
+        <p>Prototype R1</p>
     </div>
 </div>
 <jsp:include page="/ConnServlet" flush="true" />

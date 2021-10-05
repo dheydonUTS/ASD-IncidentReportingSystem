@@ -336,8 +336,8 @@ public class DBManager {
             venue.setId(result.getInt("VENUE_ID"));
             incident.setVenue(venue);
             incident.setType(result.getString("TYPE"));
-            incident.setIncidentDate(result.getDate("INCIDENT_DATE").toLocalDate());
-            incident.setIncidentTime(result.getTime("INCIDENT_TIME").toLocalTime());
+            incident.setIncidentDate(LocalDate.parse(result.getString("INCIDENT_DATE")));
+            incident.setIncidentTime(LocalTime.parse(result.getString("INCIDENT_TIME")));
             incidentList.add(incident);
             System.out.println("Added: "+incident.toString());
         }
@@ -367,8 +367,8 @@ public class DBManager {
             venueId = result.getInt("VENUE_ID");
             incident.setType(result.getString("TYPE"));
             incident.setDescription(result.getString("DESCRIPTION"));
-            incident.setIncidentDate(result.getDate("INCIDENT_DATE").toLocalDate());
-            incident.setIncidentTime(result.getTime("INCIDENT_TIME").toLocalTime());
+            incident.setIncidentDate(LocalDate.parse(result.getString("INCIDENT_DATE")));
+            incident.setIncidentTime(LocalTime.parse(result.getString("INCIDENT_TIME")));
             reporterId = result.getInt("REPORTER_ID");
             offenderId = result.getInt("OFFENDER_ID");
             assignedUserId = result.getInt("ASSIGNED_USER");
@@ -415,8 +415,8 @@ public class DBManager {
             incident.setId(result.getInt("INCIDENT_ID"));
             incident.setType(result.getString("TYPE"));
             incident.setDescription(result.getString("DESCRIPTION"));
-            incident.setIncidentDate(result.getDate("INCIDENT_DATE").toLocalDate());
-            incident.setIncidentTime(result.getTime("INCIDENT_TIME").toLocalTime());
+            incident.setIncidentDate(LocalDate.parse(result.getString("INCIDENT_DATE")));
+            incident.setIncidentTime(LocalTime.parse(result.getString("INCIDENT_TIME")));
             incidentList.add(incident);
             System.out.println("Added: "+incident.toString());
         }
