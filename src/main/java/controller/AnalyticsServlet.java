@@ -43,15 +43,15 @@ protected void doGet(HttpServletRequest request,
     {
        initialiseDB();
 
-
+       LinkedList<Incident> IncidentList = new LinkedList();
         try {
-            LinkedList<Incident> IncidentList = manager.getIncidentList();
+            IncidentList = manager.getIncidentList();
         } catch (SQLException ex) {
             Logger.getLogger(AnalyticsServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        /*
+        
         request.setAttribute("IncidentTypeCount", incidentTypeCount(IncidentList));
-        request.setAttribute("VenueIncidentCount", venueIncidentCount(IncidentList));*/
+        request.setAttribute("VenueIncidentCount", venueIncidentCount(IncidentList));
         request.getRequestDispatcher("analytics.jsp").include(request, response);
     }
 
