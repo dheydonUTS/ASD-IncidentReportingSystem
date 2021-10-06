@@ -9,6 +9,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+        <!-- Mapbox imports -->
         <link href="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.css" rel="stylesheet">
         <script src="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.js"></script>
         <style>
@@ -16,10 +17,10 @@
             #map { height: 400px; width: 100%; }
         </style>
         <title>Incident Reporting System</title>
-        <!--Load the AJAX API-->
+        <!--Load the AJAX API for Google Charts-->
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script type="text/javascript">
-            // Load the Visualization API and the corechart package.
+            // Load the Google Visualization API and the corechart package.
             google.charts.load('current', {'packages': ['corechart']});
 
             // Set a callback to run when the Google Visualization API is loaded.
@@ -35,9 +36,10 @@
                 data.addColumn('string', 'Incident Type');
                 data.addColumn('number', 'Occurances');
                 data.addRows([
-            <c:forEach var="IncidentType" items="${IncidentTypeCount}">
-                    ['${IncidentType.key}', ${IncidentType.value} ],
-            </c:forEach>
+                    //For each incident type, register the incident type and number of times it occured
+                    <c:forEach var="IncidentType" items="${IncidentTypeCount}">
+                            ['${IncidentType.key}', ${IncidentType.value} ],
+                    </c:forEach>
                 ]);
 
                 // Set chart options
@@ -45,7 +47,7 @@
                     'width': 800,
                     'height': 500};
 
-                // Instantiate and draw our chart, passing in some options.
+                // Instantiate and draw our chart, passing in our options.
                 var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
                 chart.draw(data, options);
             }
@@ -55,7 +57,6 @@
     <body>
         <!-- Include the following page for Navbar and Global Style Imports -->
         <jsp:include page="components/navbar.jsp" />
-        <!-- Card for Demo Purposes, feel free to copy for pages -->
         <div class="row">
             <div class="col-md-2 col-sm-0"></div>
             <div class="col-md-8 col-sm-12">
@@ -63,17 +64,21 @@
                     <h1 class="card-header">Analytics</h1>
                     <div class="card-body">
                         <h5 class="card-title">Incident Types</h5>
+                        <!-- Div filled by charts Javascript at top of page -->
                         <div id="chart_div"></div>
                         <br>
                         <h5 class="card-title">Incident Map</h5>
+                        <!-- Div filled by maps Javascript at bottom of page -->
                         <div id="map"></div>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- Import mapbox SDK for Geocoding -->
         <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
 
         <script>
+            //Create map
             mapboxgl.accessToken = 'pk.eyJ1Ijoiam9zZXBoamRyZXciLCJhIjoiY2t0NDQwbzAyMG9wcTJ3cGdqdzFyNDFyZiJ9.UImioRYUuYdHqXu0oU3ibw';
             const mapboxClient = mapboxSdk({accessToken: mapboxgl.accessToken});
             const map = new mapboxgl.Map({
@@ -83,8 +88,9 @@
                 zoom: 9
             });
 
-            // Create a default Marker and add it to the map.
+            // Create a marker for each venue and add it to the map.
             <c:forEach var="Venue" items="${VenueIncidentCount}">
+            //If we don't have a latitude or longitude, use Geocode API to look up address then add a marker
             if ('${Venue.key.lat}' == '0.0' || '${Venue.key.lon}' == '0.0') {
                 mapboxClient.geocoding
                         .forwardGeocode({
@@ -112,7 +118,9 @@
 
 
                         })
-            } else {
+            }
+            //Else if we have a longitude and latitude, just add the marker to the map            
+            else {
                 new mapboxgl.Marker({color: 'red'})
                         .setLngLat([${Venue.key.lon}, ${Venue.key.lat}])
                         .setPopup(new mapboxgl.Popup({offset: 25})
@@ -121,8 +129,6 @@
             }
 
             </c:forEach>
-
-
         </script>
     </body>
 </html>
