@@ -33,6 +33,12 @@ public class User implements Serializable{
         this.isStaff = isStaff;
     }
     
+    public User(int id, String firstName, String lastName, boolean isStaff) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.isStaff = isStaff;
+    }
     
     
     public User(){
