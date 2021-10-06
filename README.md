@@ -35,7 +35,7 @@
   * Test Packages: Model: WarningTest.java
   * Assigned Features: Issue Warning, Graphical Report Generation (Analytics)
 
-### Arun Mohindra (13538208)
+### Arun Mohindra (13538208):
   * View: Login.jsp, Register.jsp, AnonReport.jsp, Logout.jsp, Account.jsp, components/navbar.jsp
   * Controller: AnonIncidentServlet.java, LoginServlet.java, RegisterServlet.java, editAccountServlet.java
   * Model.DAO: DBManager.java
