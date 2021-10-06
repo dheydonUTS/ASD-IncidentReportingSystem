@@ -16,3 +16,12 @@
 1. Click the 'play' button in Netbeans to run the porject and start glassfish server
 2. Wait for your browser to open the project alternatively navigate to (http://localhost:8080/ASD-IncidentReportingSystem/) or whatever port is set in your glassfish server
 3. Login to navigate the site fully
+
+## Contributions
+Joseph Drew (13212206): 
+  Model: Offender.java, Warning.java, Venue.java (Not Complete)
+  View: index.jsp, analytics.jsp, issuewarning.jsp, components/imports.jsp, components/navbar.jsp, success.jsp, error.jsp, democard.jsp
+  Controller: IssueWaringServlet.java, EmailServlet.java, AnalyticsServlet.java
+  Model.DAO: DBManager.java
+  Test Packages: Model: WarningTest.java
+  Assigned Features: Issue Warning, Graphical Report Generation (Analytics)
