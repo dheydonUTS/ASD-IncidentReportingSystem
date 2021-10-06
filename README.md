@@ -47,6 +47,6 @@
   * View: addVenue.jsp editVenue.jsp manageVenues.jsp offenderDashboard.jsp offender.jsp components/navbar.jsp
   * Controller: Validator.java, addVenueServlet, deleteVenueServlet, listVenueServlet, listOffenderServlet, updateVenueServlet
   * Model.DAO: DBManager.java
-  * TestPackages: IncidentTest.java
+  * TestPackages: OffenderTest.java
   * SQL: Populate Script
   * Assigned Features: Offender Dashboard, Manage Venues
