@@ -1,3 +1,4 @@
+<%@page import="model.User"%>
 <%@page import="model.Incident"%>
 <%@page import="model.Offender"%>
 <%@page import="java.util.LinkedList"%>
@@ -12,6 +13,7 @@
         <%
             LinkedList<Incident> incidents = (LinkedList<Incident>) session.getAttribute("incidents");
                         String show = (String) session.getAttribute("show");
+                        User user = (User) session.getAttribute("user");
         %>
         
         <!-- Include the following page for Navbar and Global Style Imports -->
@@ -22,7 +24,7 @@
                 <div class="card" style="margin-top:2rem;">
                     <h1 class="card-header">My Incidents</h1>
         <div class="card-body">
-        <table>
+        <table align="center" width="100%" height="100%" cellpadding="0" cellspacing="0" border="0">
 
             <tr>
                 <th>
@@ -57,7 +59,8 @@
             
             <%
                 if (incidents != null) {
-                    for (Incident o: incidents){    
+                    for (Incident o: incidents){   
+                        if (o.getAssignedUser().getId() == user.getId()){
             %>
             
             
@@ -75,7 +78,7 @@
                 <%}%>   
 
             </table>
-        <br> <% } else { %>
+        <br> <% }} else { %>
                 <span><%=(show != null ? show : "This is not working")%></span>
         <%}%>
                                 </div>

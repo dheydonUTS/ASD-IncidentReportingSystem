@@ -326,14 +326,30 @@ public class DBManager {
       User reporter = new User();
       reporter.setId(result.getInt("REPORTER_ID"));
       incident.setReporter(reporter);
+      User assigned = new User();
+      assigned.setId(result.getInt("ASSIGNED_USER"));
+      incident.setAssignedUser(assigned);
+      incident.setStatus(result.getString("STATUS"));
+      incident.setPriority(result.getInt("PRIORITY"));
       incident.setIncidentDate(LocalDate.parse(result.getString("INCIDENT_DATE")));
       incident.setIncidentTime(LocalTime.parse(result.getString("INCIDENT_TIME")));
       incidentList.add(incident);
       System.out.println("Added: " + incident.toString());
     }
-    return getReporterForIncident(getVenueForIncident(incidentList));
+    return getAssignedUser(getReporterForIncident(getVenueForIncident(incidentList)));
   }
 
+  public LinkedList < Incident > getAssignedUser(LinkedList < Incident > incidentList) {
+    try {
+      for (Incident incident: incidentList) {
+        int assignedID = incident.getAssignedUser().getId();
+        incident.setAssignedUser(getUser(assignedID));
+      }
+    } catch (SQLException e) {
+
+    }
+    return incidentList;
+  }
   // Retrieve Venue objects for list of Incidents
   public LinkedList < Incident > getVenueForIncident(LinkedList < Incident > incidentList) {
     try {

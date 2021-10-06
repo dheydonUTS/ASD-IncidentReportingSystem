@@ -110,7 +110,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MyIncidentsServlet</servlet-name>
-        <url-pattern>/MyIncidents</url-pattern>
+        <url-pattern>/MyIncidentsServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>GeneralReportsServlet</servlet-name>
