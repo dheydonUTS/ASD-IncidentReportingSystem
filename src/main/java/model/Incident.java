@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * This class does not have detailed comments as it is entirely getters/setters and constructors
  */
 package model;
 
@@ -44,7 +42,7 @@ public class Incident implements Serializable {
         this.priority = priority;
     }
 
-    public Incident() {
+    public Incident() {                                                         // Blank constructor
     }
 
     public Incident(int id, Venue venue, String type, String description, User reporter, Offender offender, LocalDate incidentDate, LocalTime incidentTime, User assignedUser, LocalDateTime createdTime, int priority) {
