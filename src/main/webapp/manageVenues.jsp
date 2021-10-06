@@ -29,7 +29,7 @@
             <div class="col-md-8 col-sm-12">
                 <div class="card" style="margin-top:2rem;">
                     <h1 class="card-header">Manage Venues <span class="message"> <%=(deleteMessage != null ? deleteMessage : "")%></h1>
-                    <div class="card-body">
+                    <div class="card-body" style="align-content: center">
                         
                                 <table>
 
@@ -53,9 +53,6 @@
                 <th>
                     <b>Edit Venue</b>
                 </th>
-                <th>
-                    <b>Remove Venue</b>
-                </th>
             </tr>
 
 
@@ -73,11 +70,13 @@
                 <td><p><%=v.getLat()%></p></td>
                 <td><p><%=v.getLon()%></p></td>
                 <td><a class="button" href="editVenueServlet?venueID=<%= v.getId()%>">Edit</a></td>
-                <td><a class="button" href="deleteVenueServlet?venueID=<%= v.getId()%>">Remove</a></td>
 
                 <%}%>   
 
                                 </table>
+                    </div>
+                    <a href="./addVenue.jsp" class="btn btn-dark">Add New Venue</a>
+                </div>  
                                 <br> <% } else {%>
                                 <span><%=(show != null ? show : "This is not working")%></span>
                                 <%}%>

@@ -12,11 +12,15 @@
         <!-- Include the following page for Navbar and Global Style Imports -->
         <jsp:include page="components/navbar.jsp" />
         <div class="row">
+
+
             <div class="col-md-2 col-sm-0"></div>
             <div class="col-md-8 col-sm-12">
                 <div class="card" style="margin-top:2rem;">
                     <h1 class="card-header">Issue Warning</h1>
-                    <form method="POST" action="IssueWarning" id="warning_form">
+                    <!--  <form method="POST" action="IssueWarning" id="warning_form">-->
+                    <form class="row g-3 needs-validation" method="POST" action="IssueWarning" id="warning_form" novalidate>
+
                         <div class="card-body">
                             <h5 class="card-title">Offender Type</h5>
                             <div class="btn-group" role="group">
@@ -28,26 +32,44 @@
 
                             <!-- REGISTER A NEW OFFENDER -->
                             <div id="newOffender">
-                                <br>
+
                                 <div class="mb-3">
-                                    <label for="firstName" class="form-label">First Name</label>
-                                    <input type="text" class="form-control" id="first_name" name="first_name">
+                                    <label for="validationCustom01" class="form-label">First Name</label>
+                                    <input type="text" class="form-control" id="first_name" name="first_name" required>
+                                    <div class="invalid-feedback">
+                                        Please enter first name.
+                                    </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="lastName" class="form-label">Last Name</label>
-                                    <input type="text" class="form-control" id="last_name" name="last_name">
+                                    <label for="validationCustom02" class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" id="last_name" name="last_name" required>
+                                    <div class="invalid-feedback">
+                                        Please enter last name.
+                                    </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="gender" class="form-label">Gender</label>
-                                    <input type="text" class="form-control" id="gender" name="gender">
+                                    <label for="validationCustom02" class="form-label">Gender</label>
+                                    <input type="text" class="form-control" id="gender" name="gender" required>
+                                    <div class="invalid-feedback">
+                                        Please enter a gender.
+                                    </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="email" class="form-label">Email (if known)</label>
-                                    <input type="email" class="form-control" id="email" name="email">
+                                    <label for="validationCustomUsername" class="form-label">Phone Number (if known)</label>
+                                    <div class="input-group has-validation">
+                                        <span class="input-group-text" id="inputGroupPrepend">+61</span>
+                                        <input type="number" class="form-control" id="phone" name="phone">
+                                        <div class="invalid-feedback">
+                                            Please enter a phone number.
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="phone" class="form-label">Phone Number (if known)</label>
-                                    <input type="text" class="form-control" id="phone" name="phone">
+                                    <label for="validationCustom03" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                    <div class="invalid-feedback">
+                                        Please provide a valid email.
+                                    </div>
                                 </div>
                                 <div class="mb-3 form-check">
                                     <input type="checkbox" class="form-check-input" id="is_banned" name="is_banned">
@@ -67,8 +89,12 @@
 
                             <br>
                             <h5 class="card-title">Warning Message</h5>
+
                             <div class="mb-3">
-                                <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                                <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+                                <div class="invalid-feedback">
+                                    Please enter a message.
+                                </div>
                             </div>
                             <h5 class="card-title">Venue</h5>
                             <select class="form-select" name="venue_id">
@@ -76,46 +102,70 @@
                                     <option value="${Venue.id}">${Venue.name}</option>
                                 </c:forEach>
                             </select>
-                            <a href="javascript:void()"
-							onclick="sendWarning(); "
-							class="btn btn-primary">Submit</a>
+
+                            <div class="col-12">
+                                <button class="btn btn-primary" type="submit">Send Warning</button>
+                            </div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-        
-        	<!-- Modal -->
-	<div class="modal" id="sending" tabindex="-1" role="dialog"
-		aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h2 class="modal-title" id="exampleModalLabel">Submitting Warning</h2>
-				</div>
-				<div class="modal-body">
-					<div class="text-center">
 
-						<div class="spinner-border spinner-border-lg text-info" style="width: 5rem; height: 5rem;"
-							role="status">
-						</div>
+        <!-- Modal -->
+        <div class="modal" id="sending" tabindex="-1" role="dialog"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title" id="exampleModalLabel">Submitting Warning</h2>
+                    </div>
+                    <div class="modal-body">
+                        <div class="text-center">
 
-					</div>
-					<br>
-					<p>Please don't navigate away. We are sending an email to the offender.</p>
-				</div>
+                            <div class="spinner-border spinner-border-lg text-info" style="width: 5rem; height: 5rem;"
+                                 role="status">
+                            </div>
 
-			</div>
-		</div>
-	</div>
-                
+                        </div>
+                        <br>
+                        <p>Please don't navigate away. We are sending an email to the offender.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
         <script>
+            // Example starter JavaScript for disabling form submissions if there are invalid fields
+            (function () {
+                'use strict'
+
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.querySelectorAll('.needs-validation')
+
+                // Loop over them and prevent submission
+                Array.prototype.slice.call(forms)
+                        .forEach(function (form) {
+                            form.addEventListener('submit', function (event) {
+                                if (!form.checkValidity()) {
+                                    event.preventDefault()
+                                    event.stopPropagation()
+                                } else {
+                                    sendWarning()
+                                }
+
+                                form.classList.add('was-validated')
+                            }, false)
+                        })
+            })()
+
             function sendWarning() {
                 var myModal = new bootstrap.Modal(document.getElementById('sending'), {});
                 myModal.show();
-                document.getElementById('warning_form').submit();
+                //document.getElementById('warning_form').submit();
             }
-            
+
             function toggleView(view) {
                 var newOffender = document.getElementById("newOffender");
                 var existingOffender = document.getElementById("existingOffender");
