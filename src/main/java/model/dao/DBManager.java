@@ -193,15 +193,28 @@ public class DBManager {
     
     // Add venue
     
-    public void addVenue(String venueName, String venueAddress, double venueLat, double venueLon) throws SQLException{
-        int temp = 0;
-    String query = "INSERT INTO INCIDENTRS.\"Venue\" VALUES ("+temp+",'"+venueName+"', '"+venueAddress+"', "+venueLat+", "+venueLon+"')";
-    st.executeUpdate(query);
+    public Venue addVenue(String venueName, String venueAddress, double venueLat, double venueLon) throws SQLException{
+        
+        String sql = "INSERT INTO INCIDENTRS.\"Venue\"(venue_name,venue_address,venue_lat,venue_lon) "
+                + "VALUES ('" + venueName + "','" + venueAddress + "', " + venueLat + ", " + venueLon + ")";
+        String[] returnId = {"venue_id"};
+        PreparedStatement stmtInsert = con.prepareStatement(sql, returnId);
+        int affectedRows = stmtInsert.executeUpdate();
+        try (ResultSet rs = stmtInsert.getGeneratedKeys()) {
+            if (rs.next()) {
+                return (getVenue(rs.getInt(1)));
+            }
+            rs.close();
+        }
+        return null;
+        
+    //String query = "INSERT INTO INCIDENTRS.\"Venue\" VALUES (" + venueID + ", '"+venueName+"', '"+venueAddress+"', "+venueLat+", "+venueLon+")";
+    //st.executeUpdate(query);
 
-    String getid = "UPDATE INCIDENTRS.\"Venue\" SET Venue_ID = (SELECT MAX(Venue_ID) FROM INCIDENTRS.\"Venue\") + 1 WHERE Venue_ID = 0";
-    st.executeUpdate(getid);
+    //String getid = "UPDATE INCIDENTRS.\"Venue\" SET Venue_ID = (SELECT MAX(Venue_ID) FROM INCIDENTRS.\"Venue\") + 1 WHERE Venue_ID = 0";
+    //st.executeUpdate(getid);
     }
-    
+
     // Update Venue
     
    

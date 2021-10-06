@@ -81,6 +81,10 @@
         <servlet-class>controller.deleteVenueServlet</servlet-class>
     </servlet>
     <servlet>	
+        <servlet-name>createVenueServlet</servlet-name>	
+        <servlet-class>controller.createVenueServlet</servlet-class>
+    </servlet>
+    <servlet>	
         <servlet-name>VenueReportServlet</servlet-name>	
         <servlet-class>controller.VenueReportServlet</servlet-class>
     </servlet>
@@ -175,6 +179,10 @@
     <servlet-mapping>	
         <servlet-name>deleteVenueServlet</servlet-name>	
         <url-pattern>/deleteVenueServlet</url-pattern>	
+    </servlet-mapping>
+    <servlet-mapping>	
+        <servlet-name>createVenueServlet</servlet-name>	
+        <url-pattern>/createVenueServlet</url-pattern>	
     </servlet-mapping>
     <servlet-mapping>	
         <servlet-name>VenueReportServlet</servlet-name>	
