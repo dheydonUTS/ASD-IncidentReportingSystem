@@ -47,15 +47,6 @@ public class DBManager {
       user.setPassword(result.getString("PASSWORD"));
       user.setIsStaff(result.getBoolean("IS_STAFF"));
     }
-<<<<<<< HEAD
-    
-    public void deleteUser(String email) throws SQLException {
-        st.executeUpdate("DELETE FROM INCIDENTRS.\"User\" WHERE EMAIL = '" + email + "'");
-    }
-    
-    public void updateUser(String newEmail, String newPassword, String fname, String lname, String oldEmail) throws SQLException {
-        st.executeUpdate("UPDATE INCIDENTRS.\"User\" SET EMAIL= '" + newEmail + "', PASSWORD='"+newPassword+"', FIRST_NAME='"+fname+"', LAST_NAME='"+lname+"' WHERE EMAIL='"+oldEmail+"'");
-=======
     System.out.println(user.toString());
     return user;
   }
@@ -77,19 +68,16 @@ public class DBManager {
       boolean is_staff = result.getBoolean("IS_STAFF");
       return new User(user_id, email, password, first_name, last_name,
         is_staff);
->>>>>>> main
     }
     return null;
   }
-
   public void deleteUser(String email) throws SQLException {
-    st.executeUpdate("DELETE FROM INCIDENTRS.\"User\" WHERE EMAIL = '" + email + "'");
-  }
-
-  public void updateUser(String newEmail, String newPassword, String oldEmail) throws SQLException {
-    st.executeUpdate("UPDATE INCIDENTRS.\"User\" SET EMAIL= '" + newEmail + "', PASSWORD='" + newPassword + "' WHERE EMAIL='" + oldEmail + "'");
-  }
-
+        st.executeUpdate("DELETE FROM INCIDENTRS.\"User\" WHERE EMAIL = '" + email + "'");
+    }
+    
+    public void updateUser(String newEmail, String newPassword, String fname, String lname, String oldEmail) throws SQLException {
+        st.executeUpdate("UPDATE INCIDENTRS.\"User\" SET EMAIL= '" + newEmail + "', PASSWORD='"+newPassword+"', FIRST_NAME='"+fname+"', LAST_NAME='"+lname+"' WHERE EMAIL='"+oldEmail+"'");
+    }
   /*----------------- Incident Creation  -----------------*/
   /* --- Create --- */
   public int addIncident(int venueid, String type, String description,
