@@ -22,8 +22,7 @@
                                                 <%if(user != null){ %>
 					<li class="nav-item"><a class="nav-link" href="incident.jsp">Report
 							Incident</a></li>
-                                                        <li class="nav-item"><a class="nav-link" href="ViewIncidentsAndTickets.jsp">My 
-							Incidents</a></li><%}%>
+                                                        <%}%>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#"
 						id="navbarDropdownMenuLink" role="button"
