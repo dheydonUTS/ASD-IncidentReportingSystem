@@ -20,34 +20,66 @@ import javax.servlet.http.HttpSession;
 import model.dao.DBConnector;
 import model.dao.DBManager;
 
-
 /**
  *
  * @author User
  */
-
 public class RegisterServlet extends HttpServlet {
-    
-   protected void doPost(HttpServletRequest request, HttpServletResponse response)
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        Validator validator = new Validator();
         HttpSession session = request.getSession();
         try (PrintWriter out = response.getWriter()) {
+            // Obtain entered user details
             String email = request.getParameter("email");
             String fname = request.getParameter("fname");
             String lname = request.getParameter("lname");
             String password = request.getParameter("password");
             String repassword = request.getParameter("repassword");
             DBManager manager = (DBManager) session.getAttribute("manager");
-            if (password.equals(repassword)) {
+            Boolean errorFound = false;
+            if (!validator.validateEmail(email)) { // Validate Email
+                session.setAttribute("emailError", "The Email entered is not valid");
+                errorFound = true;
+            }
+            if (!validator.validatePassword(password)) { // Validate Password
+                session.setAttribute("passwordError", "The Password entered is not valid");
+                errorFound = true;
+            }
+            if (!validator.validateName(fname)) { // Validate First Name
+                session.setAttribute("fnameError", "The Name entered is not valid");
+                errorFound = true;
+            }
+            if (!validator.validateName(lname)) { // Validate Last Name
+                session.setAttribute("lnameError", "The Name entered is not valid");
+                errorFound = true;
+            }
+            if (!passwordMatch(password, repassword)) { // Check passwords match
+                session.setAttribute("passwordMatchError", "Passwords did not Match");
+                errorFound = true;
+            }
+            if (password.equals(repassword) && errorFound == false) { // Create user if no errors found
                 manager.createUser(email, password, fname, lname);
                 response.sendRedirect("Login.jsp");
-            } else {
-                response.sendRedirect("Register.jsp");
+                session.removeAttribute("fnameError");
+                session.removeAttribute("lnameError");
+                session.removeAttribute("passwordError");
+                session.removeAttribute("passwordMatchError");
+                session.removeAttribute("emailError");
+            } else if (errorFound == true) { // Return to page if error(s) found
+                request.getRequestDispatcher("Register.jsp").include(request, response);
             }
-            
-            }      catch (SQLException ex) {
-                Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
-       }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public Boolean passwordMatch(String p1, String p2) {
+        if (p1.equals(p2)) {
+            return true;
+        } else {return false;}
     }
 }
