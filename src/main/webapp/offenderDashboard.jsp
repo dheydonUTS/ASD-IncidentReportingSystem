@@ -19,9 +19,9 @@
             <div class="col-md-2 col-sm-0"></div>
             <div class="col-md-8 col-sm-12">
                 <div class="card" style="margin-top:2rem;">
-                    <h1 class="card-header">Offender Dashboard</h1>
-        <div class="card-body">
-        <table>
+                    <h1 class="card-header" style="text-align: center">Offender Dashboard</h1>
+        <div class="card-body" style="text-align: center" border="1" >
+        <table align="center" width="100%" height="100%" cellpadding="0" cellspacing="0" border="0">
 
             <tr>
                 <th>
@@ -44,7 +44,7 @@
                     <b>Gender</b>
                 </th>
                 <th>
-                    <b>Status</b>
+                    <b>Banned</b>
                     
                 </th>
             </tr>

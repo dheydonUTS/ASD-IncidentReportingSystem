@@ -26,7 +26,7 @@ public class editVenueServlet extends HttpServlet {
     private DBManager manager;
     private DBConnector Connector;
     
-    @Override
+    @Override //Create and instance of DBConnector for the deployment session
      protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
@@ -52,10 +52,10 @@ public class editVenueServlet extends HttpServlet {
         Venue venue = null;
         
         try {
-            venue = manager.findVenue(venueID);
+            venue = manager.findVenue(venueID); // Check if venue exists
             
-            if (venue != null) {
-                session.setAttribute("venue", venue);
+            if (venue != null) { // If venue exists
+                session.setAttribute("venue", venue);                   // Set attribute to venue, for updateVenueServlet to pick up 
                 request.getRequestDispatcher("editVenue.jsp").include(request, response);
             } else {
                 session.setAttribute("existErr", "Venue does not exist in the Database!");
