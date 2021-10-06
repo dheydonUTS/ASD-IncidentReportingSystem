@@ -1,7 +1,7 @@
 # ASD-IncidentReportingSystem RUNS ON NETBEANS 12 AND UP
 ## Install instructions
-1. Download zip file from repo
-2. Open project in Netbeans
+1. Clone repo to local drive
+2. Open cloned repo as project in Netbeans
 3. Create JavaDB with the following details;
   - DB URL: jdbc:derby://localhost:1527/
   - DB Name: incidentrs
