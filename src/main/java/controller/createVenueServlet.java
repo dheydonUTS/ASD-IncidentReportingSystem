@@ -58,12 +58,12 @@ public class createVenueServlet extends HttpServlet {
         
         try {
         if (venueName != null) {
-            manager.addVenue(venueName, venueAddress, venueLat, venueLon); //call addNewItem and use the inputted values from admin user method in manager
+            manager.addVenue(venueName, venueAddress, venueLat, venueLon); //call addVenue and use the inputted values from admin user method in manager
             session.setAttribute("added", "Venue has been added"); //set the attribute as successful (no error message)
 
  
 
-            request.getRequestDispatcher("addVenue.jsp").include(request, response); //request comes from the addNewItem.jsp
+            request.getRequestDispatcher("addVenue.jsp").include(request, response); //request comes from the addVenue.jsp
             response.sendRedirect("addVenue.jsp"); //the user is redirected back to this page with the success message
         } else {
             session.setAttribute("added", "Item has NOT been added to Inventory");//if form is completed incorrectly, display error message

@@ -47,19 +47,31 @@ public class addVenueServlet {
 
         //session
         HttpSession session = request.getSession();
+        Validator validator = new Validator();    
         
         // Collect parameters from addVenue.jsp
         String venueName = request.getParameter("venueName");
         String venueAddress = request.getParameter("venueAddress");
-        double lat = Double.parseDouble(request.getParameter("venueLat"));
-        double lon = Double.parseDouble(request.getParameter("venueLon"));
-    
+        //double lat = Double.parseDouble(request.getParameter("venueLat"));
+        //double lon = Double.parseDouble(request.getParameter("venueLon"));
+        String latString = request.getParameter("venueLat");
+        String lonString = request.getParameter("venueLon");
+
+        
+         if (!validator.validateLonLat(latString)) {                                      // Check Latitude
+            session.setAttribute("latError", "Latitude invalid.");
+            request.getRequestDispatcher("addVenue.jsp").include(request, response);
+        } else if (!validator.validateLonLat(lonString)) {
+            session.setAttribute("lonError", "Longitude invalid.");                         // Check Longitude
+            request.getRequestDispatcher("addVenue.jsp").include(request, response);
+        } else if (validator.validateLonLat(latString) && validator.validateLonLat(lonString))
+        {
         try {
             if (venueName != null) {
-                manager.addVenue(venueName, venueAddress, lat, lon);
+                manager.addVenue(venueName, venueAddress, Double.valueOf(latString), Double.valueOf(lonString));
                 session.setAttribute("added", "Venue has been added");
                 
-                request.getRequestDispatcher("addVennue.jsp").include(request, response);
+                request.getRequestDispatcher("addVenue.jsp").include(request, response);
                 response.sendRedirect("addVenue.jsp");
             } else {
                 session.setAttribute("added", "Item has not been added to inventory");
@@ -68,6 +80,7 @@ public class addVenueServlet {
             
         } catch (SQLException ex) {
             Logger.getLogger(addVenueServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
         }
 }
 }

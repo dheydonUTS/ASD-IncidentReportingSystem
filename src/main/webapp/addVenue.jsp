@@ -14,6 +14,8 @@
 <body>
     <%
         String added = (String) session.getAttribute("added");
+        String lonError = (String) session.getAttribute("lonError");
+        String latError = (String) session.getAttribute("latError");
     %>
 	<!-- Include the following page for Navbar and Global Style Imports -->
 	<jsp:include page="components/navbar.jsp" />
@@ -36,11 +38,11 @@
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label" for="desc">Latitude</label>
-                            <input class="form-control"type="text" id="venueLat" name="venueLat" >
+                            <input class="form-control"type="text" id="venueLat" name="venueLat"  placeholder="<%=(latError != null ? latError : "Enter Latitude: (0-9).(0.9)")%>" >
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label" for="desc">Longitude</label>
-                            <input class="form-control"type="text" id="venueLon" name="venueLon" >
+                            <input class="form-control"type="text" id="venueLon" name="venueLon" placeholder="<%=(lonError != null ? latError : "Enter Longitude: (0-9).(0.9)")%>" >
                         </div>
                         <input type="submit" value="Add New Item">
                         </form>

@@ -29,7 +29,7 @@ public class listOffenderServlet extends HttpServlet {
     private DBManager manager;
     private DBConnector connector;
     
-    @Override
+    @Override //Create and instance of DBConnector for the deployment session
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     
@@ -51,7 +51,7 @@ public class listOffenderServlet extends HttpServlet {
         HttpSession session = request.getSession();
         
         try {
-            LinkedList<Offender> offenders = manager.getOffenders();
+            LinkedList<Offender> offenders = manager.getOffenders(); // List of offenders using getOffenders from DBManager
             if (offenders != null) {
                 session.setAttribute("offenders", offenders);
                 request.getRequestDispatcher("offenderDashboard.jsp").include(request, response);
@@ -59,7 +59,7 @@ public class listOffenderServlet extends HttpServlet {
                 response.sendRedirect("offenderDashboard.jsp");
             }
             else {
-                request.getRequestDispatcher("offenderDashboard.jsp").include(request, response);
+                request.getRequestDispatcher("offenderDashboard.jsp").include(request, response);   // If no offenders are found
                 session.setAttribute("show", "There are no offenders");
              //   response.sendRedirect("index.jsp");
             }
