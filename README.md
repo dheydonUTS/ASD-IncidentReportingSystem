@@ -19,9 +19,9 @@
 
 ## Contributions
 Joseph Drew (13212206): 
-  Model: Offender.java, Warning.java, Venue.java (Not Complete)
-  View: index.jsp, analytics.jsp, issuewarning.jsp, components/imports.jsp, components/navbar.jsp, success.jsp, error.jsp, democard.jsp
-  Controller: IssueWaringServlet.java, EmailServlet.java, AnalyticsServlet.java
-  Model.DAO: DBManager.java
-  Test Packages: Model: WarningTest.java
-  Assigned Features: Issue Warning, Graphical Report Generation (Analytics)
+  * Model: Offender.java, Warning.java, Venue.java (Not Complete)
+  * View: index.jsp, analytics.jsp, issuewarning.jsp, components/imports.jsp, components/navbar.jsp, success.jsp, error.jsp, democard.jsp
+  * Controller: IssueWaringServlet.java, EmailServlet.java, AnalyticsServlet.java
+  * Model.DAO: DBManager.java
+  * Test Packages: Model: WarningTest.java
+  * Assigned Features: Issue Warning, Graphical Report Generation (Analytics)
