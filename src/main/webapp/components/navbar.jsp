@@ -30,8 +30,6 @@
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 							<li><a class="dropdown-item" href="Analytics">Graphs, Maps and
 									Analytics</a></li>
-							<li><a class="dropdown-item" href="GeneralReports">General Report
-									Generation</a></li>
 							<li><a class="dropdown-item" href="IncidentListServlet">Incident Report
 									Generation</a></li>
 							<li><a class="dropdown-item" href="VenueListServlet">Venue Report
