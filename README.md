@@ -58,3 +58,10 @@
   * Model.DAO: DBManager.java, DBConnector.java, DB.jaca
   * SQL: Create & Populate & Delete Scripts
   * Assigned Features: Incident report Generation, Venue Report generation
+
+### Adam McCaffery (12946265):
+  * Model: Offender.java
+  * View:  components/navbar.jsp, ViewIncidentsAndTickets.jsp, genReports.jsp.
+  * Controller: MyIncidentsServlet, IncidentsLocationReportServlet, GeneralReportsServlet
+  * Model.DAO: DBManager.java
+  * Assigned Features: General Report Generation, My Tickets and Incidents
