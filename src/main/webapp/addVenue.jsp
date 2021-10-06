@@ -25,7 +25,7 @@
 	<div class="col-md-2 col-sm-0"></div>
 	<div class="col-md-8 col-sm-12">
 	<div class="card" style="margin-top:2rem;">
-		<h1 class="card-header">Add Venue <span class="message"> <%=(added != null ? added : "")%></h1>
+		<h1 class="card-header"> <span class="message"> <%=(added != null ? added : "Add Venue")%></h1>
 		<div class="card-body">
                     <form action= "createVenueServlet" method="post" autocomplete="off">
                         <div class="form-group row">
