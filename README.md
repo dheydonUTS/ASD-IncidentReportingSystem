@@ -16,3 +16,29 @@
 1. Click the 'play' button in Netbeans to run the porject and start glassfish server
 2. Wait for your browser to open the project alternatively navigate to (http://localhost:8080/ASD-IncidentReportingSystem/) or whatever port is set in your glassfish server
 3. Login to navigate the site fully
+
+## Contributions
+### Dominic Heydon (13270071):
+  * Model: Incident.java, User.java, Offender.java
+  * View: Incident.jsp, Ticket.jsp, Login.jsp, ViewIncident.jsp, components/navbar.jsp
+  * Controller: IncidentServlet, AllocateTicket, LoginServlet,Validator
+  * Model.DAO: DBManager.java
+  * TestPackages: validatorTest.java, allocateTicketTest.java, IncidentTest.java,UserTest.java
+  * SQL: Create & Populate Scripts
+  * Assigned Features: Incident Record Creation, Ticket Creation and Staff Ticket allocation
+
+### Joseph Drew (13212206): 
+  * Model: Offender.java, Warning.java, Venue.java (Not Complete)
+  * View: index.jsp, analytics.jsp, issuewarning.jsp, components/imports.jsp, components/navbar.jsp, success.jsp, error.jsp, democard.jsp
+  * Controller: IssueWaringServlet.java, EmailServlet.java, AnalyticsServlet.java
+  * Model.DAO: DBManager.java
+  * Test Packages: Model: WarningTest.java
+  * Assigned Features: Issue Warning, Graphical Report Generation (Analytics)
+
+### Arun Mohindra (13538208):
+  * View: Login.jsp, Register.jsp, AnonReport.jsp, Logout.jsp, Account.jsp, components/navbar.jsp
+  * Controller: AnonIncidentServlet.java, LoginServlet.java, RegisterServlet.java, editAccountServlet.java
+  * Model.DAO: DBManager.java
+  * TestPackages: RegisterServletTest.java
+  * SQL: Populate Script
+  * Assigned Features: User Access Management, Anonymous Reporting
