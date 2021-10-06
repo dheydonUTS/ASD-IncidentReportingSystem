@@ -63,15 +63,20 @@ public class AnonIncidentServlet extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(IncidentServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        /*try {
-            manager.addIncident(venue.getId(), type, desc, 0, 0, date.toString(), time.toString(), assignedUserId, LocalDateTime.now(), 1);
+        int ticketId = 0;
+        User anonymous = null;
+        try {
+            anonymous = manager.getUser(1);
         } catch (SQLException ex) {
             Logger.getLogger(AnonIncidentServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
-        User anonymous = new User(0, "N/A", "N/A", "Anonymous", "Anonymous", false);
-        Offender tempOffender = new Offender(0, "N/A", "N/A", "N/A", "N/A", "N/A", false);
+        }
+        Offender tempOffender = new Offender(1, "N/A", "N/A", "N/A", "N/A", "N/A", false);
+        try {
+        ticketId = manager.addIncident(venue.getId(),type,desc,anonymous.getId(),tempOffender.getId(),date.toString(),time.toString(),assignedUserId,LocalDateTime.now(),3);
+        } catch (SQLException ex) {}
+        
         if (!Boolean.parseBoolean((String)session.getAttribute("descError"))) {
-            Incident incident = new Incident(venue,type,date,time,desc,anonymous,tempOffender,assignUser,LocalDateTime.now(),1);
+            Incident incident = new Incident(ticketId,venue,type,desc ,anonymous,tempOffender,date,time,assignUser,LocalDateTime.now(),3);
             session.setAttribute("incident", incident);
             request.getRequestDispatcher("ViewIncident.jsp").include(request,response);
         }
