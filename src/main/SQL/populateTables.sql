@@ -27,3 +27,5 @@ VALUES
 (1,'Stop stealing',1),
 (2,'Stop smoking', 1),
 (3,'Avoid leaving your tools lying around', 3);
+
+UPDATE "User" SET EMAIL='anonymous@', FIRST_NAME='anonymous', LAST_NAME='' WHERE ID=1

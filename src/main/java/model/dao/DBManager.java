@@ -71,15 +71,13 @@ public class DBManager {
     }
     return null;
   }
-
   public void deleteUser(String email) throws SQLException {
-    st.executeUpdate("DELETE FROM INCIDENTRS.\"User\" WHERE EMAIL = '" + email + "'");
-  }
-
-  public void updateUser(String newEmail, String newPassword, String oldEmail) throws SQLException {
-    st.executeUpdate("UPDATE INCIDENTRS.\"User\" SET EMAIL= '" + newEmail + "', PASSWORD='" + newPassword + "' WHERE EMAIL='" + oldEmail + "'");
-  }
-
+        st.executeUpdate("DELETE FROM INCIDENTRS.\"User\" WHERE EMAIL = '" + email + "'");
+    }
+    
+    public void updateUser(String newEmail, String newPassword, String fname, String lname, String oldEmail) throws SQLException {
+        st.executeUpdate("UPDATE INCIDENTRS.\"User\" SET EMAIL= '" + newEmail + "', PASSWORD='"+newPassword+"', FIRST_NAME='"+fname+"', LAST_NAME='"+lname+"' WHERE EMAIL='"+oldEmail+"'");
+    }
   /*----------------- Incident Creation  -----------------*/
   /* --- Create --- */
   public int addIncident(int venueid, String type, String description,
