@@ -273,6 +273,7 @@ public class DBManager {
     return null;
   }
 
+
   //Return all recorded offenders
   public LinkedList < Offender > getOffenders() throws SQLException {
     LinkedList < Offender > offenders = new LinkedList();
@@ -405,6 +406,7 @@ public class DBManager {
       venue.setLon(result.getDouble("VENUE_LON"));
       venueList.add(venue);
     }
+
     return venueList;
   }
 

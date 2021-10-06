@@ -9,6 +9,10 @@
         <servlet-class>controller.IncidentServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>MyIncidentsServlet</servlet-name>
+        <servlet-class>controller.MyIncidentsServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>GeneralReportsServlet</servlet-name>
         <servlet-class>controller.GeneralReportsServlet</servlet-class>
     </servlet>
@@ -103,6 +107,10 @@
     <servlet-mapping>
         <servlet-name>IncidentServlet</servlet-name>
         <url-pattern>/IncidentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MyIncidentsServlet</servlet-name>
+        <url-pattern>/MyIncidents</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>GeneralReportsServlet</servlet-name>
