@@ -83,22 +83,23 @@ public class DBManager {
   public int addIncident(int venueid, String type, String description,
     int reporterId, int offenderId, String time, String date, int assignedUserId,
     LocalDateTime createdTime, int priority) throws SQLException {
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-    String formatDateTime = createdTime.format(formatter);
-    st.executeUpdate("INSERT INTO \"Incident\"(venue_id,type,description," +
-      "reporter_id,offender_id,assigned_user, ticket_created_time," +
-      "status,priority,INCIDENT_DATE, INCIDENT_TIME)\n" +
-      "VALUES\n" +
-      "(" + venueid + ",'" + type + "', '" + description + "', " + reporterId + "," +
-      "" + offenderId + "," + assignedUserId + ",'" + formatDateTime +
-      "','open'," + priority + ", '" + time + "', '" + date + "' )");
-    ResultSet result = st.executeQuery(
-      "SELECT * FROM INCIDENTRS.\"Incident\" order by incident_id desc");
-    int id = 0;
-    while (result.next()) {
-      return result.getInt("incident_id");
-    }
-    return id;
+      
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");   //Set formatting for timestamp
+        String formatDateTime = createdTime.format(formatter);                              // Create formatted time
+        st.executeUpdate("INSERT INTO \"Incident\"(venue_id,type,description," +
+          "reporter_id,offender_id,assigned_user, ticket_created_time," +
+          "status,priority,INCIDENT_DATE, INCIDENT_TIME)\n" +
+          "VALUES\n" +
+          "(" + venueid + ",'" + type + "', '" + description + "', " + reporterId + "," +
+          "" + offenderId + "," + assignedUserId + ",'" + formatDateTime +
+          "','open'," + priority + ", '" + time + "', '" + date + "' )");                   // SQL Insert Statement to create incident
+        ResultSet result = st.executeQuery(
+          "SELECT * FROM INCIDENTRS.\"Incident\" order by incident_id desc");
+        int id = 0;
+        while (result.next()) {
+          return result.getInt("incident_id");                                              // Return the incident ID to populate model. 
+        }
+        return id;
   }
 
   /* --- Get all members of staff and how many tickets they have  --- */
