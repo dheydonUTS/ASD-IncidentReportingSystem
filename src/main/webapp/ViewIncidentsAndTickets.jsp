@@ -74,9 +74,9 @@
                 <td><p><%=o.getPriority()%></p></td>
                 <td><p><%=o.getIncidentDate()%></p></td>
                 <td><p><%=o.getIncidentTime().toString()%></p></td>
-                
+              </tr>  
                 <%}%>   
-
+            
             </table>
         <br> <% }} else { %>
                 <span><%=(show != null ? show : "This is not working")%></span>
