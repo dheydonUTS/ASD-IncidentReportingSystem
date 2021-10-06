@@ -41,7 +41,7 @@ public class testVenues {
         help();
         while((c=readChar("Command [c/r/u/d/g/o/x]")) != 'x'){
             switch(c){
-                //case 'c': testAdd();break;
+                case 'c': testAdd();break;
                 case 'r': testRead(); break;
                 case 'u': testUpdate(); break;
                 case 'd': testDelete();break;
@@ -117,6 +117,15 @@ public class testVenues {
     }
     
     */  
+        
+        private void testAdd() throws SQLException {
+            String venueName = read("venue name");
+            String address = read("address");
+            double venueLat = Double.parseDouble(read("venue lat"));
+            double venueLon = Double.parseDouble(read("venue lon"));
+            manager.addVenue(venueName, address, venueLat, venueLon);
+            System.out.print("Hey it worked");
+        }
         
         private void testDelete() throws SQLException{
     Integer venueID = Integer.parseInt(read("venue id"));
