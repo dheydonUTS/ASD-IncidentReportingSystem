@@ -40,7 +40,7 @@ public class RegisterServletTest {
     public void tearDown() {
     }
     
-    @Test
+    @Test // Testing PasswordMatch method in Register Servlet
     public void testPasswordMatch() throws Exception {
          System.out.println("Test PasswordMatch Method\n");
         String pass1 = "Test";
