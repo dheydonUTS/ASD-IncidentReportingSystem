@@ -5,11 +5,6 @@
  */
 package model;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import javax.servlet.http.HttpSession;
-import model.dao.DBConnector;
-import model.dao.DBManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -20,14 +15,8 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author dom_h
  */
 public class UserTest {
-    private DBConnector connector;
-    private Connection conn;
-    private DBManager manager;
-        
-    public UserTest() throws ClassNotFoundException, SQLException {
-        connector = new DBConnector();
-        conn = connector.connection();
-        manager = new DBManager(conn);
+    
+    public UserTest() {
     }
     
     @BeforeAll
@@ -62,15 +51,6 @@ public class UserTest {
         assertEquals(expResult, result);
 
     }
-    
-    /*@Test
-    public void testFindUser() throws SQLException {
-        System.out.println("FindUser");
-        User exUser = new User("abc@abc.com", "password123");
-        User outUser = manager.findUser("abc@abc.com", "password123");
-        assertEquals(exUser.getEmail(), outUser.getEmail());
-        assertEquals(exUser.getPassword(), outUser.getPassword());
-    }*/
 
     
     
