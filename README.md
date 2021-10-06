@@ -24,6 +24,7 @@
   * Controller: IncidentServlet, AllocateTicket, LoginServlet,Validator
   * Model.DAO: DBManager.java
   * TestPackages: validatorTest.java, allocateTicketTest.java, IncidentTest.java,UserTest.java
+  * SQL: Create & Populate Scripts
   * Assigned Features: Incident Record Creation, Ticket Creation and Staff Ticket allocation
 
 ### Joseph Drew (13212206): 
