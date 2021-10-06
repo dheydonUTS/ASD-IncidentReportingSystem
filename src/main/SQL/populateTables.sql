@@ -1,5 +1,6 @@
 INSERT INTO "User" (email,first_name,last_name,password,is_staff)
 VALUES
+('anonymous@irs.com','Anonymous','report','password123',FALSE),
 ('abc@abc.com','Jeff','Brown','password123',TRUE),
 ('test@abc.com','Lauren','Brown','password123',FALSE),
 ('james@abc.com', 'Steve','Brown','password123',FALSE);
@@ -18,9 +19,9 @@ VALUES
 
 INSERT INTO "Incident"(venue_id,type,incident_date,incident_time,description,reporter_id,offender_id,assigned_user, ticket_created_time,status,priority)
 VALUES
-(1,'Fall','2021-08-16','10:15:30', 'Elderly lady shoved in back', 1,1,1,CURRENT_TIMESTAMP,'resolved',1),
-(2,'Shoplift','2021-08-16','10:15:30', 'Stole a fridge',   2,2,2,CURRENT_TIMESTAMP,'in progress',5),
-(3,'Robbery','2021-08-16','10:15:30', 'Stole money',   3,3,2,CURRENT_TIMESTAMP, 'created', 3);
+(1,'Safety hazard','2021-08-16','10:15:30', 'Elderly lady shoved in back', 1,1,2,CURRENT_TIMESTAMP,'Open',1),
+(2,'Theft/Attempted theft','2021-08-16','10:15:30', 'Stole a fridge',   2,2,2,CURRENT_TIMESTAMP,'In progress',5),
+(3,'Theft/Attempted theft','2021-08-16','10:15:30', 'Stole money',   3,3,2,CURRENT_TIMESTAMP, 'Open', 3);
 
 INSERT INTO "Warning"(venue_id,description,offender_id)
 VALUES

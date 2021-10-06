@@ -59,25 +59,25 @@
     <servlet>
         <servlet-name>VenueDetailServlet</servlet-name>
         <servlet-class>controller.VenueDetailServlet</servlet-class>
-    </servlet>	
-    <servlet>	
-        <servlet-name>listOffenderServlet</servlet-name>	
-        <servlet-class>controller.listOffenderServlet</servlet-class>	
-    </servlet>	
-    <servlet>	
-        <servlet-name>listVenueServlet</servlet-name>	
-        <servlet-class>controller.listVenueServlet</servlet-class>	
-    </servlet>	
-    <servlet>	
-        <servlet-name>editVenueServlet</servlet-name>	
-        <servlet-class>controller.editVenueServlet</servlet-class>	
-    </servlet>	
-    <servlet>	
-        <servlet-name>updateVenueServlet</servlet-name>	
-        <servlet-class>controller.updateVenueServlet</servlet-class>	
-    </servlet>	
-    <servlet>	
-        <servlet-name>deleteVenueServlet</servlet-name>	
+    </servlet>
+    <servlet>
+        <servlet-name>listOffenderServlet</servlet-name>
+        <servlet-class>controller.listOffenderServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>listVenueServlet</servlet-name>
+        <servlet-class>controller.listVenueServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>editVenueServlet</servlet-name>
+        <servlet-class>controller.editVenueServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>updateVenueServlet</servlet-name>
+        <servlet-class>controller.updateVenueServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>deleteVenueServlet</servlet-name>
         <servlet-class>controller.deleteVenueServlet</servlet-class>
     </servlet>
     <servlet>	
@@ -91,6 +91,10 @@
     <servlet>	
         <servlet-name>VenueReportServlet</servlet-name>	
         <servlet-class>controller.VenueReportServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AnonIncidentServlet</servlet-name>
+        <servlet-class>controller.AnonIncidentServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AnalyticsServlet</servlet-name>
@@ -195,6 +199,10 @@
     <servlet-mapping>	
         <servlet-name>VenueReportServlet</servlet-name>	
         <url-pattern>/VenueReportServlet</url-pattern>	
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AnonIncidentServlet</servlet-name>
+        <url-pattern>/AnonIncidentServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

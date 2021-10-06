@@ -14,7 +14,6 @@
     </head>
     <body>  
         <%
-            String existErr = (String) session.getAttribute("existErr");
             String emailError = (String) session.getAttribute("emailError");
             String noSuchUserError = (String) session.getAttribute("noSuchUserError");
             String passwordError = (String) session.getAttribute("passwordError");
@@ -42,7 +41,7 @@
                                 <label for="password">Password:</label>
                                 <input type="password" name="password">
                                 <br>
-                                <span class="message"> <%=(passwordError != null ? passwordError : "")%></span>
+                                <span class="message" style="color: tomato"> <%=(passwordError != null ? passwordError : "")%></span>
                                 <br><br>
                             </div>
                              <input type="submit" value="Submit" class="btn btn-primary">

@@ -29,17 +29,17 @@
                       <div class="col-sm-10">
                         <select class="form-control" name="venueName" value="<%=(request.getParameter("venueName") != null ? request.getParameter("venueName") : "")%>" id="type">
                             <%
-                                     DBManager manager = (DBManager)session.getAttribute("manager");
-                                     LinkedList<Venue> Venues = manager.getVenues();
-                                     request.removeAttribute("incident");
-                                     request.setAttribute("Venues", Venues);
+                                     DBManager manager = (DBManager)session.getAttribute("manager");        // Get Manager from session
+                                     LinkedList<Venue> Venues = manager.getVenues();                        // Get Venues from DB
+                                     request.removeAttribute("incident");                                   // Remove the incident if it exists from session
+                                     request.setAttribute("Venues", Venues);                                
                                      boolean descErr;
                                      boolean offenderErr;
                                      // Get errors
                                      try{
                                      descErr = Boolean.parseBoolean((String)session.getAttribute("descErr"));
                                      offenderErr = Boolean.parseBoolean((String)session.getAttribute("offenderErr"));
-                                     }
+                                     }                                                                      // Catch exception and set errors to false (errors dont exist)
                                      catch(Exception e){ 
                                      descErr = false;
                                      session.setAttribute("descErr","false");

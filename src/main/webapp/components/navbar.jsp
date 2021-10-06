@@ -22,8 +22,7 @@
                                                 <%if(user != null){ %>
 					<li class="nav-item"><a class="nav-link" href="incident.jsp">Report
 							Incident</a></li>
-                                                        <li class="nav-item"><a class="nav-link" href="ViewIncidentsAndTickets.jsp">My 
-							Incidents</a></li><%}%>
+                                                        <%}%>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#"
 						id="navbarDropdownMenuLink" role="button"
@@ -31,8 +30,6 @@
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 							<li><a class="dropdown-item" href="Analytics">Graphs, Maps and
 									Analytics</a></li>
-							<li><a class="dropdown-item" href="GeneralReports">General Report
-									Generation</a></li>
 							<li><a class="dropdown-item" href="IncidentListServlet">Incident Report
 									Generation</a></li>
 							<li><a class="dropdown-item" href="VenueListServlet">Venue Report

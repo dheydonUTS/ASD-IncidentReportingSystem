@@ -32,18 +32,18 @@ public class LoginServlet extends HttpServlet {
     String password = request.getParameter("password");
     DBManager manager = (DBManager)session.getAttribute("manager");
     User user = null;
-    if (!validator.validateEmail(email)) {                                      //Check email
+    if (!validator.validateEmail(email)) {                                                  // Validate email
         session.setAttribute("emailError","email invalid.");
         request.getRequestDispatcher("Login.jsp").include(request,response); 
     } 
-    else if (!validator.validatePassword(password)) {                           // Check PW
+    else if (!validator.validatePassword(password)) {                                       // Validate PW
         session.setAttribute("passwordError","The pasword entered is invalid.");
         request.getRequestDispatcher("Login.jsp").include(request,response);
     } 
     else if (validator.validateEmail(email) && validator.validatePassword(password)) {
-         try {                                                                  // Try login user
+         try {                                                                              // Try login user
                 if(manager.findUser(email,password)!=null){
-                    user = manager.findUser(email,password);                     // If the use does not exist NPE is thrown
+                    user = manager.findUser(email,password);                                // If the use does not exist NPE is thrown
                     if(user.getPassword().equals(password) ){
                         session.setAttribute("user", user);
                         session.removeAttribute("noSuchUserError");
@@ -51,7 +51,7 @@ public class LoginServlet extends HttpServlet {
                         session.removeAttribute("emailError");
                         request.getRequestDispatcher("index.jsp").include(request,response);
                     }else{
-                    session.setAttribute("passwordError","The pasword entered is incorrect.");
+                    session.setAttribute("passwordError","The pasword entered is incorrect.");  //Catch Incorrect Password Error
                     request.getRequestDispatcher("Login.jsp").include(request,response);
                     }
                     
@@ -62,8 +62,8 @@ public class LoginServlet extends HttpServlet {
                     request.getRequestDispatcher("Login.jsp").include(request,response);
                 }
             }
-         catch (Exception ex ){                                                 // No such user case            
-             session.setAttribute("noSuchUserError",                            // NPE thrown if account doesn't exist this catches.
+         catch (Exception ex ){                                                               // No such user case            
+             session.setAttribute("noSuchUserError",                                          // NPE thrown if account doesn't exist this catches.
                         "No such user exists for the details you have entered. Please try again"); 
             request.getRequestDispatcher("Login.jsp").include(request,response);
              }
