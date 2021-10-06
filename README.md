@@ -18,10 +18,18 @@
 3. Login to navigate the site fully
 
 ## Contributions
-Joseph Drew (13212206): 
-  Model: Offender.java, Warning.java, Venue.java (Not Complete)
-  View: index.jsp, analytics.jsp, issuewarning.jsp, components/imports.jsp, components/navbar.jsp, success.jsp, error.jsp, democard.jsp
-  Controller: IssueWaringServlet.java, EmailServlet.java, AnalyticsServlet.java
-  Model.DAO: DBManager.java
-  Test Packages: Model: WarningTest.java
-  Assigned Features: Issue Warning, Graphical Report Generation (Analytics)
+### Dominic Heydon (13270071):
+  * Model: Incident.java, User.java, Offender.java
+  * View: Incident.jsp, Ticket.jsp, Login.jsp, ViewIncident.jsp, components/navbar.jsp
+  * Controller: IncidentServlet, AllocateTicket, LoginServlet,Validator
+  * Model.DAO: DBManager.java
+  * TestPackages: validatorTest.java, allocateTicketTest.java, IncidentTest.java,UserTest.java
+  * Assigned Features: Incident Record Creation, Ticket Creation and Staff Ticket allocation
+
+### Joseph Drew (13212206): 
+  * Model: Offender.java, Warning.java, Venue.java (Not Complete)
+  * View: index.jsp, analytics.jsp, issuewarning.jsp, components/imports.jsp, components/navbar.jsp, success.jsp, error.jsp, democard.jsp
+  * Controller: IssueWaringServlet.java, EmailServlet.java, AnalyticsServlet.java
+  * Model.DAO: DBManager.java
+  * Test Packages: Model: WarningTest.java
+  * Assigned Features: Issue Warning, Graphical Report Generation (Analytics)
