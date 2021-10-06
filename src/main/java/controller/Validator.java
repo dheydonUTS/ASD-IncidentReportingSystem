@@ -11,7 +11,7 @@ public class Validator {
     private Pattern passwordPattern = Pattern.compile("([a-zA-Z0-9#&*<>/,.%()^?@_!$]{6,32}+)");//6-32 reg characters with at least 1 special char
     private Pattern namePattern = Pattern.compile("([a-zA-Z]{1,50})");          // Letters only  1 to 50 characters
     private Pattern descPattern = Pattern.compile("([a-zA-Z0-9\\s]{1,1000})");  // Letters number and whitespaces - 1 to 1000 characters
-    private Pattern lonLatPattern = Pattern.compile("([0-9]+)(.)([0-9]+)");     // Numbers wotj a decimal point in between 
+    private Pattern lonLatPattern = Pattern.compile("([0-9]+)(.)([0-9]+)");     // Numbers with a decimal point in between 
 
     
     public boolean validate(Pattern pattern, String in){                        // Matches predefined pattern to string, returns boolean match
