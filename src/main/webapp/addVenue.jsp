@@ -30,19 +30,19 @@
                     <form action= "createVenueServlet" method="post" autocomplete="off">
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label" for="desc">Name:</label>
-                            <input class="form-control"type="text" id="venueName" name="venueName" >
+                            <input class="form-control"type="text" id="venueName" name="venueName" required="true" placeholder="Enter Venue Name" >
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label" for="desc">Address</label>
-                            <input class="form-control"type="text" id="venueAddress" name="venueAddress" >
+                            <input class="form-control"type="text" id="venueAddress" name="venueAddress" required="true" placeholder="Enter Venue Address" >
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label" for="desc">Latitude</label>
-                            <input class="form-control"type="text" id="venueLat" name="venueLat"  placeholder="<%=(latError != null ? latError : "Enter Latitude: (0-9).(0.9)")%>" >
+                            <input class="form-control"type="text" id="venueLat" name="venueLat" required="true"  placeholder="<%=(latError != null ? latError : "Enter Latitude: (0-9).(0.9)")%>" >
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label" for="desc">Longitude</label>
-                            <input class="form-control"type="text" id="venueLon" name="venueLon" placeholder="<%=(lonError != null ? latError : "Enter Longitude: (0-9).(0.9)")%>" >
+                            <input class="form-control"type="text" id="venueLon" name="venueLon" required="true" placeholder="<%=(lonError != null ? latError : "Enter Longitude: (0-9).(0.9)")%>" >
                         </div>
                         <input type="submit" value="Add New Item">
                         </form>
