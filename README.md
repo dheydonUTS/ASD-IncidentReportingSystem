@@ -50,3 +50,11 @@
   * TestPackages: OffenderTest.java
   * SQL: Populate Script
   * Assigned Features: Offender Dashboard, Manage Venues
+
+### Zwe Htin Aung (13485673):
+  * Model: Incident.java, User.java, Offender.java, Venue.java
+  * View:  components/navbar.jsp
+  * Controller: IncidentServlet, AllocateTicket, LoginServlet,Validator
+  * Model.DAO: DBManager.java, DBConnector.java, DB.jaca
+  * SQL: Create & Populate & Delete Scripts
+  * Assigned Features: Incident report Generation, Venue Report generation
