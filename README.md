@@ -33,7 +33,7 @@
   * Controller: IssueWaringServlet.java, EmailServlet.java, AnalyticsServlet.java
   * Model.DAO: DBManager.java
   * Test Packages: Model: WarningTest.java
-  * Assigned Features: Issue Warning, Graphical Report Generation (Analytics)
+  * Assigned Features: Issue Warning, Graphs Reports and Analytics
 
 ### Arun Mohindra (13538208):
   * View: Login.jsp, Register.jsp, AnonReport.jsp, Logout.jsp, Account.jsp, components/navbar.jsp
