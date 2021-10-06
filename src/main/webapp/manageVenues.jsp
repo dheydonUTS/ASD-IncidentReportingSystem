@@ -30,8 +30,8 @@
                 <div class="card" style="margin-top:2rem;">
                     <h1 class="card-header">Manage Venues <span class="message"> <%=(deleteMessage != null ? deleteMessage : "")%></h1>
                     <div class="card-body" style="align-content: center">
-                        
-                                <table>
+
+                        <table align="center" width="100%" height="100%" cellpadding="0" cellspacing="0" border="0">
 
             <tr>
                 <th>

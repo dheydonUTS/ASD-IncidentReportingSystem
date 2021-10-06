@@ -26,7 +26,7 @@ public class updateVenueServlet extends HttpServlet {
  private DBManager manager;
     private DBConnector Connector;
     
-    @Override
+    @Override //Create and instance of DBConnector for the deployment session
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
@@ -46,19 +46,19 @@ public class updateVenueServlet extends HttpServlet {
         
         HttpSession session = request.getSession();
         
-        int venueID = Integer.parseInt(request.getParameter("venueID"));
+        int venueID = Integer.parseInt(request.getParameter("venueID"));                        // Parameters gathered 
         String venueName = request.getParameter("venueName");
         String venueAddress = request.getParameter("venueAddress");
         double venueLat = Double.parseDouble(request.getParameter("venueLat"));
         double venueLon = Double.parseDouble(request.getParameter("venueLon"));
         
-        Venue venue = new Venue(venueID, venueName, venueAddress, venueLat, venueLon);
+        Venue venue = new Venue(venueID, venueName, venueAddress, venueLat, venueLon); // new instance of venue
         
         try {
             if (venue != null) {
-                if (manager.checkVenue(venueID)) {
+                if (manager.checkVenue(venueID)) {           // check venue exists
                 session.setAttribute("venue", venue);
-                manager.updateVenue(venueID, venueName, venueAddress, venueLat, venueLon);
+                manager.updateVenue(venueID, venueName, venueAddress, venueLat, venueLon);      //update the venue
                 session.setAttribute("updated", "Update was successful");
                 request.getRequestDispatcher("editVenue.jsp").include(request, response);
             } else {

@@ -37,9 +37,9 @@
                 data.addColumn('number', 'Occurances');
                 data.addRows([
                     //For each incident type, register the incident type and number of times it occured
-                    <c:forEach var="IncidentType" items="${IncidentTypeCount}">
-                            ['${IncidentType.key}', ${IncidentType.value} ],
-                    </c:forEach>
+            <c:forEach var="IncidentType" items="${IncidentTypeCount}">
+                    ['${IncidentType.key}', ${IncidentType.value} ],
+            </c:forEach>
                 ]);
 
                 // Set chart options
@@ -57,19 +57,21 @@
     <body>
         <!-- Include the following page for Navbar and Global Style Imports -->
         <jsp:include page="components/navbar.jsp" />
-        <div class="row">
-            <div class="col-md-2 col-sm-0"></div>
-            <div class="col-md-8 col-sm-12">
-                <div class="card" style="margin-top:2rem;">
-                    <h1 class="card-header">Analytics</h1>
-                    <div class="card-body">
-                        <h5 class="card-title">Incident Types</h5>
-                        <!-- Div filled by charts Javascript at top of page -->
-                        <div id="chart_div"></div>
-                        <br>
-                        <h5 class="card-title">Incident Map</h5>
-                        <!-- Div filled by maps Javascript at bottom of page -->
-                        <div id="map"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2 col-sm-0"></div>
+                <div class="col-md-8 col-sm-12">
+                    <div class="card" style="margin-top:2rem;">
+                        <h1 class="card-header">Analytics</h1>
+                        <div class="card-body">
+                            <h5 class="card-title">Incident Types</h5>
+                            <!-- Div filled by charts Javascript at top of page -->
+                            <div id="chart_div"></div>
+                            <br>
+                            <h5 class="card-title">Incident Map</h5>
+                            <!-- Div filled by maps Javascript at bottom of page -->
+                            <div id="map"></div>
+                        </div>
                     </div>
                 </div>
             </div>
