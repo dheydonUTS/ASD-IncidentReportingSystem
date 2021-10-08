@@ -62,7 +62,7 @@
                 <div class="col-md-2 col-sm-0"></div>
                 <div class="col-md-8 col-sm-12">
                     <div class="card" style="margin-top:2rem;">
-                        <h1 class="card-header">Analytics</h1>
+                        <h1 class="card-header">Graphs and Maps</h1>
                         <div class="card-body">
                             <h5 class="card-title">Incident Types</h5>
                             <!-- Div filled by charts Javascript at top of page -->

@@ -25,7 +25,7 @@ import model.dao.DBManager;
  *
  * @author joe
  */
-public class AnalyticsServlet extends HttpServlet {
+public class GraphsMapsServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private DBConnector conn;
@@ -41,7 +41,7 @@ public class AnalyticsServlet extends HttpServlet {
         try {
             IncidentList = manager.getIncidentList();
         } catch (SQLException ex) {
-            Logger.getLogger(AnalyticsServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GraphsMapsServlet.class.getName()).log(Level.SEVERE, null, ex);
             request.getRequestDispatcher("error.jsp").include(request, response);
         }
         //Calculate the counts of incident types and add to request
@@ -49,7 +49,7 @@ public class AnalyticsServlet extends HttpServlet {
         //Calculate the counts of incidents at venues and add to request
         request.setAttribute("VenueIncidentCount", venueIncidentCount(IncidentList));
         //Send data to display
-        request.getRequestDispatcher("analytics.jsp").include(request, response);
+        request.getRequestDispatcher("GraphsMaps.jsp").include(request, response);
     }
 
     public HashMap<String, Integer> incidentTypeCount(LinkedList<Incident> IncidentList) {
