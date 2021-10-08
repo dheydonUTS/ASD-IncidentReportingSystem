@@ -37,7 +37,7 @@ public class WarningTest {
     public void tearDown() {
     }
 
-    /**
+    /**T10-1
      * Test of getId method, of class Warning.
      */
     @Test
@@ -49,7 +49,7 @@ public class WarningTest {
         assertEquals(expResult, result);
     }
 
-    /**
+    /**T10-2
      * Test of setId method, of class Warning.
      */
     @Test
@@ -61,7 +61,7 @@ public class WarningTest {
 
     }
 
-    /**
+    /**T10-3
      * Test of getVenue_id method, of class Warning.
      */
     @Test
@@ -74,7 +74,7 @@ public class WarningTest {
 
     }
 
-    /**
+    /**T10-4
      * Test of setVenue_id method, of class Warning.
      */
     @Test
@@ -86,7 +86,7 @@ public class WarningTest {
 
     }
 
-    /**
+    /**T10-5
      * Test of getDescription method, of class Warning.
      */
     @Test
@@ -99,7 +99,7 @@ public class WarningTest {
 
     }
 
-    /**
+    /**T10-6
      * Test of setDescription method, of class Warning.
      */
     @Test
@@ -111,7 +111,7 @@ public class WarningTest {
 
     }
 
-    /**
+    /**T10-7
      * Test of getOffender_id method, of class Warning.
      */
     @Test
@@ -124,7 +124,7 @@ public class WarningTest {
 
     }
 
-    /**
+    /**T10-8
      * Test of setOffender_id method, of class Warning.
      */
     @Test
