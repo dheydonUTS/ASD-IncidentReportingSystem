@@ -10,7 +10,7 @@
 <%@page import="model.Incident"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<%
+<% 
 Incident incident = (Incident)session.getAttribute("incident");
 Venue venue = incident.getVenue();
 User reporter = incident.getReporter();
