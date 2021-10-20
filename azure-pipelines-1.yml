@@ -28,3 +28,17 @@ steps:
     TargetFolder: $(Build.ArtifactStagingDirectory)
 - upload: $(Build.ArtifactStagingDirectory)
   artifact: drop
+
+jobs:
+- deployment: VMDeploy
+  displayName: web
+  pool:
+    vmImage: 'ubuntu-latest'
+  environment:
+    name: DigitalOcean
+    resourceType: VirtualMachine
+  strategy:
+    runOnce:
+      deploy:
+        steps:
+        - script: echo my first deployment
