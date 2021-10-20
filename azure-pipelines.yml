@@ -22,15 +22,3 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package' 
     
-- task: SendEmail@1
-  inputs:
-    To: 'domheydon1@gmail.com'
-    From: 'asdemailuts@gmail.com'
-    Subject: 'Test'
-    Body: 'Test'
-    BodyAsHtml: false
-    AddAttachment: true
-    Attachment: '/home/vsts/work/1/s/target/ASD_Incident_Reporting_System-1.0-SNAPSHOT.war'
-    SmtpServer: 'smtp.gmail.com'
-    SmtpUsername: 'asdemailuts@gmail.com'
-    SmtpPassword: 'asdEmailUTS123!'
