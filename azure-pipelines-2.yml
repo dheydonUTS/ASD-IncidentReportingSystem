@@ -24,6 +24,6 @@ steps:
   inputs:
     sshEndpoint: 'DropletSSHConnection'
     sourceFolder: '$(System.DefaultWorkingDirectory)'
-    contents: '**'
-    targetFolder: '/Build'
+    contents: '*.war'
+    targetFolder: '/build'
     readyTimeout: '20000'
