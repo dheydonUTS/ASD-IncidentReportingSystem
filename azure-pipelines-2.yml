@@ -23,7 +23,7 @@ steps:
 - task: CopyFilesOverSSH@0
   inputs:
     sshEndpoint: 'DropletSSHConnection'
-    sourceFolder: '$(System.DefaultWorkingDirectory)'
+    sourceFolder: '$(System.DefaultWorkingDirectory)/target'
     contents: '/**/*.war'
-    targetFolder: '/build'
+    targetFolder: '/var/lib/tomcat9/webapps'
     readyTimeout: '20000'
