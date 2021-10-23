@@ -149,10 +149,6 @@
         <url-pattern>/editAccountServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>IncidentDetailServlet</servlet-name>
-        <url-pattern>/IncidentDetailServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>IncidentReportServlet</servlet-name>
         <url-pattern>/IncidentReportServlet</url-pattern>
     </servlet-mapping>
@@ -163,14 +159,6 @@
     <servlet-mapping>
         <servlet-name>VenueDetailServlet</servlet-name>
         <url-pattern>/VenueDetailServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ConnServlet</servlet-name>
-        <url-pattern>/ConnServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>IncidentListServlet</servlet-name>
-        <url-pattern>/IncidentListServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>IncidentDetailServlet</servlet-name>
