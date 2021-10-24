@@ -73,6 +73,16 @@ public class IssueWarningServlet extends HttpServlet {
             }
         }
         
+        //Server side validation
+            WarningValidator validator = new WarningValidator();
+            LinkedList<String> errors = validator.checkInputs(request.getParameter("venue_id"), request.getParameter("description"), Integer.toString(offenderID));
+            if (!errors.isEmpty()) {
+                //If theres errors, reload page and show them to user
+                request.setAttribute("errors", errors);
+                request.getRequestDispatcher("error.jsp").include(request, response);
+                return;
+            }
+        
         //Create a warning
         String description = request.getParameter("description");
         int venueID = Integer.parseInt(request.getParameter("venue_id"));
