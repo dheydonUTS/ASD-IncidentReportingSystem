@@ -9,10 +9,17 @@
         <title>Incident Reporting System</title>
     </head>
     <body>
-        <!-- Include the following page for Navbar and Global Style Imports -->
-        <jsp:include page="components/navbar.jsp" />
-        <div class="container">
+        <c:choose>
+            <c:when test="${empty sessionScope.user}">
+                        <jsp:include page="error.jsp" />
 
+            </c:when>
+            <c:otherwise>
+                        <!-- Include the following page for Navbar and Global Style Imports -->
+        <jsp:include page="components/navbar.jsp" />
+
+        <div class="container">
+            
             <div class="row">
                 <div class="col-md-2 col-sm-0"></div>
                 <div class="col-md-8 col-sm-12">
@@ -140,6 +147,9 @@
                 </div>
             </div>
         </div>
+            </c:otherwise>
+        </c:choose>
+
 
         <script>
             //Function for default Bootstrap input validation
