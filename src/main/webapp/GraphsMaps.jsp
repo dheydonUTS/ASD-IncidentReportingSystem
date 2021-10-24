@@ -62,24 +62,65 @@
                 <div class="col-md-2 col-sm-0"></div>
                 <div class="col-md-8 col-sm-12">
                     <div class="card" style="margin-top:2rem;">
-                        <h1 class="card-header">Graphs and Maps</h1>
-                        <div class="card-body">
-                            <h5 class="card-title">Incident Types</h5>
-                            <!-- Div filled by charts Javascript at top of page -->
-                            <div id="chart_div"></div>
-                            <br>
-                            <h5 class="card-title">Incident Map</h5>
-                            <!-- Div filled by maps Javascript at bottom of page -->
-                            <div id="map"></div>
+                        <nav>
+
+                            <h1 class="card-header">Graphs and Maps</h1>
+                            <div class="card-body">
+                                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                    <button class="nav-link active" id="nav-maps-tab" data-bs-toggle="tab" data-bs-target="#nav-maps" type="button" role="tab" aria-controls="nav-maps" aria-selected="true">Maps</button>
+                                    <button class="nav-link" id="nav-graphs-tab" data-bs-toggle="tab" data-bs-target="#nav-graphs" type="button" role="tab" aria-controls="nav-graphs" aria-selected="false">Graphs</button>
+                                </div>
+                        </nav>
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="nav-maps" role="tabpanel" aria-labelledby="nav-maps-tab">
+                                <!-- Div filled by maps Javascript at bottom of page -->
+                                <form action="GraphsMaps" method="GET">
+                                    <p>Choose Map Type: </p>
+                                    <div class="mb-3">
+                                        <select class="form-select" name="map_type">
+                                            <option value="" selected>Reset to default map</option>
+                <c:forEach var="IncidentType" items="${IncidentTypeCount}">
+                     <option value="${IncidentType.key}">Only ${IncidentType.key} Incidents</option>
+                </c:forEach>                                           
+
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">View</button>
+                                    <br>
+                                </form>
+                                <p strong>Currently viewing: ${MapType} map</p>
+                                <div id="map"></div>
+                            </div>
+                            <div class="tab-pane fade" id="nav-graphs" role="tabpanel" aria-labelledby="nav-graphs-tab">
+                                <form action="/GraphsMaps" method="GET">
+                                    <p>Choose Graph Type: </p>
+                                    <div class="mb-3">
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected>Choose a graph to display</option>
+                                            <option value="Shoplift">Only Shoplift Incidents</option>
+                                            <option value="Fall">Only Fall Incidents</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">View</button>
+                                    <br>
+                                </form>
+                                <!-- Div filled by charts Javascript at top of page -->
+                                <div id="chart_div"></div>
+
+                            </div>
                         </div>
+
+
+
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Import mapbox SDK for Geocoding -->
-        <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
+    </div>
+    <!-- Import mapbox SDK for Geocoding -->
+    <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
 
-        <script>
+    <script>
             //Create map
             mapboxgl.accessToken = 'pk.eyJ1Ijoiam9zZXBoamRyZXciLCJhIjoiY2t0NDQwbzAyMG9wcTJ3cGdqdzFyNDFyZiJ9.UImioRYUuYdHqXu0oU3ibw';
             const mapboxClient = mapboxSdk({accessToken: mapboxgl.accessToken});
@@ -91,7 +132,7 @@
             });
 
             // Create a marker for each venue and add it to the map.
-            <c:forEach var="Venue" items="${VenueIncidentCount}">
+        <c:forEach var="Venue" items="${MapData}">
             //If we don't have a latitude or longitude, use Geocode API to look up address then add a marker
             if ('${Venue.key.lat}' == '0.0' || '${Venue.key.lon}' == '0.0') {
                 mapboxClient.geocoding
@@ -130,7 +171,7 @@
                         .addTo(map);
             }
 
-            </c:forEach>
-        </script>
-    </body>
+        </c:forEach>
+    </script>
+</body>
 </html>

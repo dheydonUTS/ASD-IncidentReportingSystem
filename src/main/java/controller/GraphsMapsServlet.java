@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Incident;
+import model.Offender;
 import model.User;
 import model.Venue;
 import model.dao.DBConnector;
@@ -37,9 +38,15 @@ public class GraphsMapsServlet extends HttpServlet {
             throws ServletException, IOException {
         initialiseDB();
         LinkedList<Incident> IncidentList = new LinkedList();
+        LinkedList<Offender> OffenderList = new LinkedList();
+        LinkedList<Venue> VenueList = new LinkedList();
+
         //Try and get all incidents from DB 
         try {
             IncidentList = manager.getIncidentList();
+            VenueList = manager.getVenues();
+            OffenderList = manager.getOffenders();
+
         } catch (SQLException ex) {
             Logger.getLogger(GraphsMapsServlet.class.getName()).log(Level.SEVERE, null, ex);
             request.getRequestDispatcher("error.jsp").include(request, response);
@@ -47,7 +54,19 @@ public class GraphsMapsServlet extends HttpServlet {
         //Calculate the counts of incident types and add to request
         request.setAttribute("IncidentTypeCount", incidentTypeCount(IncidentList));
         //Calculate the counts of incidents at venues and add to request
-        request.setAttribute("VenueIncidentCount", venueIncidentCount(IncidentList));
+        
+        String mapType = request.getParameter("map_type");
+        if(mapType != "" && mapType != null){
+            request.setAttribute("MapData", venueSpecificIncidentCount(mapType, IncidentList));
+            request.setAttribute("MapType", mapType);
+        }
+        else {
+            request.setAttribute("MapData", venueIncidentCount(IncidentList));
+                        request.setAttribute("MapType", "Default");
+
+        }
+
+
         //Send data to display
         request.getRequestDispatcher("GraphsMaps.jsp").include(request, response);
     }
@@ -93,4 +112,19 @@ public class GraphsMapsServlet extends HttpServlet {
             Logger.getLogger(IssueWarningServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    private HashMap<Venue, Integer> venueSpecificIncidentCount(String mapType, LinkedList<Incident> IncidentList) {
+//Store the venue as our key, and then the number of incidents at that venue as an integer
+        HashMap<Venue, Integer> VenueIncidentCount = new HashMap();
+        IncidentList.forEach(incident -> {
+            //If we already have this venue in our list
+            if (VenueIncidentCount.containsKey(incident.getVenue()) && incident.getType().equals(mapType)) {
+                //Increment the count of incidents at that venue
+                VenueIncidentCount.put(incident.getVenue(), VenueIncidentCount.get(incident.getVenue()) + 1);
+            } else if (!VenueIncidentCount.containsKey(incident.getVenue()) && incident.getType().equals(mapType)) {
+                //Otherwise start the count for that venue
+                VenueIncidentCount.put(incident.getVenue(), 1);
+            }
+        });
+        return VenueIncidentCount;    }
 }
