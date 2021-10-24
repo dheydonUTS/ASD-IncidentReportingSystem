@@ -31,15 +31,17 @@ public class GraphsMapsServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private DBConnector conn;
     private DBManager manager;
+    
+            LinkedList<Incident> IncidentList = new LinkedList();
+        LinkedList<Offender> OffenderList = new LinkedList();
+        LinkedList<Venue> VenueList = new LinkedList();
 
     @Override
     protected void doGet(HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
         initialiseDB();
-        LinkedList<Incident> IncidentList = new LinkedList();
-        LinkedList<Offender> OffenderList = new LinkedList();
-        LinkedList<Venue> VenueList = new LinkedList();
+
 
         //Try and get all incidents from DB 
         try {
@@ -53,19 +55,31 @@ public class GraphsMapsServlet extends HttpServlet {
         }
         //Calculate the counts of incident types and add to request
         request.setAttribute("IncidentTypeCount", incidentTypeCount(IncidentList));
-        //Calculate the counts of incidents at venues and add to request
-        
+
+        //Set all known offender in request
+        request.setAttribute("Venues", VenueList);
+
+        //Set all known venues in request
+        request.setAttribute("Offenders", OffenderList);
+
+        //Calculate the counts of incidents at venues of specified type and add to request
         String mapType = request.getParameter("map_type");
-        if(mapType != "" && mapType != null){
+        if (mapType != "" && mapType != null) {
             request.setAttribute("MapData", venueSpecificIncidentCount(mapType, IncidentList));
             request.setAttribute("MapType", mapType);
-        }
-        else {
+        } else {
             request.setAttribute("MapData", venueIncidentCount(IncidentList));
-                        request.setAttribute("MapType", "Default");
-
+            request.setAttribute("MapType", "Default");
         }
 
+        String graphType = request.getParameter("graph_type");
+        if (graphType != "" && graphType != null) {
+            request.setAttribute("GraphData", graphFilter(graphType, IncidentList));
+            // request.setAttribute("GraphType", graphType);
+        } else {
+            request.setAttribute("GraphData", venueIncidentCount(IncidentList));
+
+        }
 
         //Send data to display
         request.getRequestDispatcher("GraphsMaps.jsp").include(request, response);
@@ -85,6 +99,25 @@ public class GraphsMapsServlet extends HttpServlet {
             }
         });
         return IncidentCount;
+    }
+
+    public HashMap<String, Integer> graphFilter(String graphType, LinkedList<Incident> IncidentList) {
+        //Store Incident Type as key, and count of that type as an integer
+        HashMap<String, Integer> Count = new HashMap();
+        char type = graphType.charAt(0);
+        if(type == 'v'){
+            return venueIncidentTypeCount(graphType.charAt(1), IncidentList);
+        }
+        
+        if(type == 'o') {
+            return offenderIncidentTypeCount(graphType.charAt(1), IncidentList);
+        }
+        
+        //For breakdown by Incident Type (What venues it occured at)
+        if(type == '@'){
+            return incidentTypeByVenueCount(graphType.substring(1), IncidentList);
+        }
+        return null;
     }
 
     public HashMap<Venue, Integer> venueIncidentCount(LinkedList<Incident> IncidentList) {
@@ -126,5 +159,41 @@ public class GraphsMapsServlet extends HttpServlet {
                 VenueIncidentCount.put(incident.getVenue(), 1);
             }
         });
-        return VenueIncidentCount;    }
+        return VenueIncidentCount;
+    }
+
+    private HashMap<String, Integer> venueIncidentTypeCount(char id, LinkedList<Incident> IncidentList) {
+        //Store Incident Type as key, and count of that type as an integer
+        HashMap<String, Integer> IncidentCount = new HashMap();
+        IncidentList.forEach(incident -> {
+            //If we already have the incident type in list
+            if (IncidentCount.containsKey(incident.getType()) && incident.getVenue().getId() == Integer.parseInt(id + "")) {
+                //Increment the count of that incident type
+                IncidentCount.put(incident.getType(), IncidentCount.get(incident.getType()) + 1);
+            } else if (!IncidentCount.containsKey(incident.getType()) && incident.getVenue().getId() == Integer.parseInt(id + "")){
+                //Otherwise start the count for that type
+                IncidentCount.put(incident.getType(), 1);
+            }
+        });
+        return IncidentCount;
+    }
+
+    private HashMap<String, Integer> offenderIncidentTypeCount(char id, LinkedList<Incident> IncidentList) {
+        //Store Incident Type as key, and count of that type as an integer
+        HashMap<String, Integer> IncidentCount = new HashMap();
+        IncidentList.forEach(incident -> {
+            //If we already have the incident type in list
+            if (IncidentCount.containsKey(incident.getType()) && incident.getOffender().getId() == Integer.parseInt(id + "")) {
+                //Increment the count of that incident type
+                IncidentCount.put(incident.getType(), IncidentCount.get(incident.getType()) + 1);
+            } else if (!IncidentCount.containsKey(incident.getType()) && incident.getOffender().getId() == Integer.parseInt(id + "")){
+                //Otherwise start the count for that type
+                IncidentCount.put(incident.getType(), 1);
+            }
+        });
+        return IncidentCount;    }
+
+    private HashMap<String, Integer> incidentTypeByVenueCount(String substring, LinkedList<Incident> IncidentList) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

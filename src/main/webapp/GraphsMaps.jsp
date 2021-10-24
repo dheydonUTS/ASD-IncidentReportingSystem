@@ -37,8 +37,8 @@
                 data.addColumn('number', 'Occurances');
                 data.addRows([
                     //For each incident type, register the incident type and number of times it occured
-            <c:forEach var="IncidentType" items="${IncidentTypeCount}">
-                    ['${IncidentType.key}', ${IncidentType.value} ],
+            <c:forEach var="Section" items="${GraphData}">
+                    ['${Section.key}', ${Section.value} ],
             </c:forEach>
                 ]);
 
@@ -75,13 +75,13 @@
                             <div class="tab-pane fade show active" id="nav-maps" role="tabpanel" aria-labelledby="nav-maps-tab">
                                 <!-- Div filled by maps Javascript at bottom of page -->
                                 <form action="GraphsMaps" method="GET">
-                                    <p>Choose Map Type: </p>
+                                    <p>Filter map by incident type: </p>
                                     <div class="mb-3">
                                         <select class="form-select" name="map_type">
-                                            <option value="" selected>Reset to default map</option>
-                <c:forEach var="IncidentType" items="${IncidentTypeCount}">
-                     <option value="${IncidentType.key}">Only ${IncidentType.key} Incidents</option>
-                </c:forEach>                                           
+                                            <option value="" selected>Reset to Default Map</option>
+                                            <c:forEach var="IncidentType" items="${IncidentTypeCount}">
+                                                <option value="${IncidentType.key}">Only ${IncidentType.key} Incidents</option>
+                                            </c:forEach>                                           
 
                                         </select>
                                     </div>
@@ -92,13 +92,20 @@
                                 <div id="map"></div>
                             </div>
                             <div class="tab-pane fade" id="nav-graphs" role="tabpanel" aria-labelledby="nav-graphs-tab">
-                                <form action="/GraphsMaps" method="GET">
+                                <form action="GraphsMaps" method="GET">
                                     <p>Choose Graph Type: </p>
                                     <div class="mb-3">
-                                        <select class="form-select" aria-label="Default select example">
+                                        <select class="form-select" aria-label="Default select example" name="graph_type">
                                             <option selected>Choose a graph to display</option>
-                                            <option value="Shoplift">Only Shoplift Incidents</option>
-                                            <option value="Fall">Only Fall Incidents</option>
+                                             <c:forEach var="IncidentType" items="${IncidentTypeCount}">
+                                                <option value="@${IncidentType.key}">${IncidentType.key} Count by Venue </option>
+                                            </c:forEach>    
+                                            <c:forEach var="Offender" items="${Offenders}">
+                                                <option value="o${Offender.id}">${Offender.firstName} ${Offender.lastName} Offence Types </option>
+                                            </c:forEach>
+                                            <c:forEach var="Venue" items="${Venues}">
+                                                <option value="v${Venue.id}">${Venue.name} Breakdown by Offence Types </option>
+                                            </c:forEach>
                                         </select>
                                     </div>
                                     <button type="submit" class="btn btn-primary">View</button>
