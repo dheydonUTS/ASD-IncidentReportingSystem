@@ -321,7 +321,7 @@ public class DBManager {
       incident.setId(result.getInt("INCIDENT_ID"));
       Venue venue = new Venue();
       venue.setId(result.getInt("VENUE_ID"));
-      incident.setVenue(venue);
+      incident.setVenue(venue);      
       incident.setType(result.getString("TYPE"));
       User reporter = new User();
       reporter.setId(result.getInt("REPORTER_ID"));

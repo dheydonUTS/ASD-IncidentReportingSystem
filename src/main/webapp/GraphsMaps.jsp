@@ -100,9 +100,9 @@
                                              <c:forEach var="IncidentType" items="${IncidentTypeCount}">
                                                 <option value="@${IncidentType.key}">${IncidentType.key} Count by Venue </option>
                                             </c:forEach>    
-                                            <c:forEach var="Offender" items="${Offenders}">
+                                           <!-- <c:forEach var="Offender" items="${Offenders}">
                                                 <option value="o${Offender.id}">${Offender.firstName} ${Offender.lastName} Offence Types </option>
-                                            </c:forEach>
+                                            </c:forEach> -->
                                             <c:forEach var="Venue" items="${Venues}">
                                                 <option value="v${Venue.id}">${Venue.name} Breakdown by Offence Types </option>
                                             </c:forEach>

@@ -77,7 +77,7 @@ public class GraphsMapsServlet extends HttpServlet {
             request.setAttribute("GraphData", graphFilter(graphType, IncidentList));
             // request.setAttribute("GraphType", graphType);
         } else {
-            request.setAttribute("GraphData", venueIncidentCount(IncidentList));
+            request.setAttribute("GraphData", incidentTypeCount(IncidentList));
 
         }
 
@@ -178,6 +178,7 @@ public class GraphsMapsServlet extends HttpServlet {
         return IncidentCount;
     }
 
+    
     private HashMap<String, Integer> offenderIncidentTypeCount(char id, LinkedList<Incident> IncidentList) {
         //Store Incident Type as key, and count of that type as an integer
         HashMap<String, Integer> IncidentCount = new HashMap();
@@ -193,7 +194,19 @@ public class GraphsMapsServlet extends HttpServlet {
         });
         return IncidentCount;    }
 
-    private HashMap<String, Integer> incidentTypeByVenueCount(String substring, LinkedList<Incident> IncidentList) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private HashMap<String, Integer> incidentTypeByVenueCount(String type, LinkedList<Incident> IncidentList) {
+        //Store Incident Type as key, and count of that type as an integer
+        HashMap<String, Integer> IncidentCount = new HashMap();
+        IncidentList.forEach(incident -> {
+            //If we already have the incident type in list
+            if (IncidentCount.containsKey(incident.getVenue().getName()) && incident.getType().equals(type)) {
+                //Increment the count of that incident type
+                IncidentCount.put(incident.getVenue().getName(), IncidentCount.get(incident.getVenue().getName()) + 1);
+            } else if (!IncidentCount.containsKey(incident.getVenue().getName()) && incident.getType().equals(type)){
+                //Otherwise start the count for that type
+                IncidentCount.put(incident.getVenue().getName(), 1);
+            }
+        });
+        return IncidentCount;
     }
 }
