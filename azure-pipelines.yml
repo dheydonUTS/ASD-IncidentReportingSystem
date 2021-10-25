@@ -6,7 +6,6 @@
 
 trigger:
 - main
-- Production
 
 pool:
   vmImage: ubuntu-latest
