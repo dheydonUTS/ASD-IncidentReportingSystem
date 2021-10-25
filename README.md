@@ -20,7 +20,7 @@
 ## Contributions
 ### Dominic Heydon (13270071):
   * Model: Incident.java, User.java, Offender.java
-  * View: Incident.jsp, Ticket.jsp, Login.jsp, ViewIncident.jsp, components/navbar.jsp
+  * View: Incident.jsp, Ticket.jsp, Login.jsp, ViewIncident.jsp, EditIncident.jsp, components/navbar.jsp
   * Controller: IncidentServlet, AllocateTicket, LoginServlet,Validator
   * Model.DAO: DBManager.java
   * TestPackages: validatorTest.java, allocateTicketTest.java, IncidentTest.java,UserTest.java
