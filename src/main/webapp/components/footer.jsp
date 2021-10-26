@@ -19,9 +19,7 @@
                 background-color: white;
                 color: black;
                 text-align: center;
-            }
-            
-            
+            }     
         </style>
     </head>
     <body>
