@@ -101,6 +101,12 @@ public class DBManager {
         }
         return id;
   }
+  
+  public void editIncident(int venueID,String type, String time, String date,String description,int offenderId,int incidentID) throws SQLException{
+      st.executeUpdate("Update INCIDENTRS.\"Incident\"\n" +
+        "Set \"VENUE_ID\" = "+venueID+",\"TYPE\" = '"+type+"',\"INCIDENT_TIME\" = '"+time+"',\"INCIDENT_DATE\" = '"+date+"', \"DESCRIPTION\" = '"+description+"',\"OFFENDER_ID\"="+offenderId+"\n" +
+        "where INCIDENT_ID = "+incidentID);
+  }
 
   /* --- Get all members of staff and how many tickets they have  --- */
   public ArrayList < int[] > getStaff() throws SQLException {                   // Returns a list of staff ID's and the number of tickets
@@ -342,7 +348,7 @@ public class DBManager {
       incident.setId(result.getInt("INCIDENT_ID"));
       Venue venue = new Venue();
       venue.setId(result.getInt("VENUE_ID"));
-      incident.setVenue(venue);
+      incident.setVenue(venue);      
       incident.setType(result.getString("TYPE"));
       User reporter = new User();
       reporter.setId(result.getInt("REPORTER_ID"));
