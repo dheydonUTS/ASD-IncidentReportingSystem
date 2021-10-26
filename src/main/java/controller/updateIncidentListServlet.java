@@ -24,7 +24,7 @@ import model.dao.*;
  *
  * @author adam
  */
-public class updateIncidentServlet extends HttpServlet {
+public class updateIncidentListServlet extends HttpServlet {
     
  private DBManager manager;
     private DBConnector Connector;
@@ -37,39 +37,33 @@ public class updateIncidentServlet extends HttpServlet {
         {
             Connector = new DBConnector();
         }catch (ClassNotFoundException | SQLException ex){
-            java.util.logging.Logger.getLogger(updateIncidentServlet.class.getName()).log(Level.SEVERE,null,ex);
+            java.util.logging.Logger.getLogger(updateIncidentListServlet.class.getName()).log(Level.SEVERE,null,ex);
         }
         
         try
         {       
             manager = new DBManager(Connector.connection());  
         }catch (SQLException ex){
-            java.util.logging.Logger.getLogger(updateIncidentServlet.class.getName()).log(Level.SEVERE,null,ex);
+            java.util.logging.Logger.getLogger(updateIncidentListServlet.class.getName()).log(Level.SEVERE,null,ex);
         }
         
         HttpSession session = request.getSession();
-        
-        String status = request.getParameter("IncidentStatus");
-        int id = Integer.parseInt(request.getParameter("incidentID"));
-        int priority = Integer.parseInt(request.getParameter("IncidentPriority"));
-        int assID = Integer.parseInt(request.getParameter("IncidentAssigned"));
+
+        User showUser = new User(Integer.parseInt(request.getParameter("showUser")));
         
         //Venue venue = new Venue(venueID, venueName, venueAddress, venueLat, venueLon); // new instance of venue
         
-        try {
-                manager.setStatusIncident(id, status, priority, assID);
-                LinkedList<Incident> incidentList = null;
-                    try{
-                        incidentList = manager.getIncidentList(); // Loads the list of incidents
-                    }catch(SQLException e){
-                        Logger.getLogger(updateIncidentServlet.class.getName()).log(Level.SEVERE, null, e);
-                    }
-                session.setAttribute("incidents", incidentList); // Set list of incidents into session
-                request.getRequestDispatcher("ViewIncidentsAndTickets.jsp").forward(request, response); // Dispatch request and response to webpage
-            
-        } catch (SQLException ex) {
-         Logger.getLogger(updateIncidentServlet.class.getName()).log(Level.SEVERE, null, ex);
-     } 
+        
+        LinkedList<Incident> incidentList = null;
+        try{
+            incidentList=manager.getIncidentList();
+        }catch(SQLException e){
+            session.setAttribute("updated", "Update was not successful");
+            Logger.getLogger(updateIncidentListServlet.class.getName()).log(Level.SEVERE, null, e);
+        }
+        session.setAttribute("incidents", incidentList);
+        session.setAttribute("showUser", showUser);
+        request.getRequestDispatcher("ViewIncidentsAndTickets.jsp").forward(request, response);   
     }
     
 }

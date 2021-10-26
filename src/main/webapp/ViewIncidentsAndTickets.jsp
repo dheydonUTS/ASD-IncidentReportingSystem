@@ -14,9 +14,15 @@
     <body>
         <%
             LinkedList<Incident> incidents = (LinkedList<Incident>) session.getAttribute("incidents");
+            LinkedList<User> userList = (LinkedList<User>) session.getAttribute("users");
                         String show = (String) session.getAttribute("show");
                         User user = (User) session.getAttribute("user");
+                        User showUser = (User) session.getAttribute("showUser");
                         DBManager manager = (DBManager)session.getAttribute("manager");
+                        
+                        if (showUser == null){
+                            showUser = user;
+                        }
         %>
         
         <!-- Include the following page for Navbar and Global Style Imports -->
@@ -26,6 +32,15 @@
         <div class="col-md-8 col-sm-12">
             <div class="card" style="margin-top:2rem;">
                 <h1 class="card-header">My Incidents</h1>
+                <form name="showUserForm" method="post" action="updateIncidentListServlet">
+                <select name="showUser" onchange="javascript:document.showUserForm.submit();">
+                <% if (userList != null){
+                        for (User u: userList){%>                      
+                            <option value=<%=u.getId()%> <%if (showUser.getId()== u.getId()) {%> selected="selected" <% } %>><%=u.getFirstName()+" "+u.getLastName()%></option>
+                        <%}
+                    }%>                  
+                </select>
+                </form>
                     <div class="card-body">
                         
                         <table align="center" width="100%" height="100%" cellpadding="0" cellspacing="0" border="0">
@@ -60,54 +75,41 @@
                             </tr>     
                                 <%if (incidents != null) {
                                         for (Incident o: incidents){   
-                                            if (o.getAssignedUser().getId() == user.getId()){%>
+                                            if (o.getAssignedUser().getId() == showUser.getId() && !(o.getStatus().equals("Resolved") || o.getStatus().equals("Closed"))){%>
                                                 <form name="form<%=o.getId()%>" method="post" action="updateIncidentServlet">
                                                 <tr>    
                                                     <td><p><input type="hidden" name="incidentID" value=<%=o.getId()%>><%=o.getId()%></p></td>
                                                     <td><p><%=o.getVenue().getName()%></p></td>
                                                     <td><p><%=o.getType()%></p></td>
-                                                    <td><p><%=o.getAssignedUser().getFirstName()%></p></td>
+                                                    <td>
+                                                        <select name="IncidentAssigned" onchange="javascript:document.form<%=o.getId()%>.submit();">
+                                                        <% if (userList != null){
+                                                            for (User u: userList){%>                      
+                                                                <option value=<%=u.getId()%> <%if (showUser.getId()== u.getId()) {%> selected="selected" <% } %>><%=u.getFirstName()%></option>
+                                                            <%}
+                                                        }%>                  
+                                                    </select>
+                                                    </td>
                                                     <td>
                                                         <select name="IncidentStatus" onchange="javascript:document.form<%=o.getId()%>.submit();">
-                                                            <% if (o.getStatus().equals("New")){ %>
-                                                                <option value="New" selected="selected">New</option>
-                                                            <%  }else{ %>
-                                                                <option value="New">New</option>
-                                                            <%} 
-                                                            if (o.getStatus().equals("Open")){ %>
-                                                                <option value="Open" selected="selected">Open</option>
-                                                            <%  }else{ %>
-                                                                <option value="Open">Open</option>
-                                                            <%} 
-                                                            if (o.getStatus().equals("In Progress")){ %>
-                                                                <option value="In Progress" selected="selected">In Progress</option>
-                                                            <%  }else{ %>
-                                                                <option value="In Progress" >In Progress</option>
-                                                            <%} 
-                                                            if (o.getStatus().equals("Resolved")){ %>
-                                                                <option value="Resolved" selected="selected">Resolved</option>
-                                                            <%  }
-                                                            else { %>
-                                                                <option value="Resolved" >Resolved</option>
-                                                            <%} 
-                                                            if (o.getStatus().equals("created")){ %>
-                                                                <option value="Created" selected="selected">Created</option>
-                                                            <% }
-                                                            if (o.getStatus().equals("In progress")){ %>
-                                                                <option value="In Progress" selected="selected">In progress</option>
-                                                            <% }
-                                                            if (o.getStatus().equals("Created")){ %>
-                                                                <option value="Created" selected="selected">Created</option>
-                                                            <%  }
-                                                            else { %>
-                                                                <option value="Created" >Created</option>
-                                                            <%}
-                                                            if (o.getStatus().equals("in progress")){ %>
-                                                                <option value="In Progress" selected="selected">In Progress</option>
-                                                            <%  } %>
+                                                                <option value="New" <%if (o.getStatus().equals("New")){%>selected="selected"<%}%>>New</option>
+                                                                <option value="Open" <%if (o.getStatus().equals("Open")){%>selected="selected"<%}%>>Open</option>
+                                                                <option value="In Progress" <%if (o.getStatus().equals("In Progress")){%>selected="selected"<%}%>>In Progress</option>
+                                                                <option value="Resolved" <%if (o.getStatus().equals("Resvoled")){%>selected="selected"<%}%>>Resolved</option>
+                                                                <option value="Created" <%if (o.getStatus().equals("created")){%>selected="selected"<%}%>>Created</option>
+                                                                <option value="In Progress" <%if (o.getStatus().equals("In progress")){%>selected="selected"<%}%>>In Progress</option>
+                                                                <option value="Created" <%if (o.getStatus().equals("Created")){%>selected="selected"<%}%>>Created</option>
+                                                                <option value="In Progress" <%if (o.getStatus().equals("in progress")){%>selected="selected"<%}%>>In Progress</option>
                                                         </select>
                                                     </td>
-                                                    <td><p><%=o.getPriority()%></p></td>
+                                                    <td>
+                                                        <select name="IncidentPriority" onchange="javascript:document.form<%=o.getId()%>.submit();">
+                                                            <option value="1" <%if (o.getPriority() == 1){%>selected="selected"<%}%>>1</option>
+                                                            <option value="2" <%if (o.getPriority() == 2){%>selected="selected"<%}%>>2</option>
+                                                            <option value="3" <%if (o.getPriority() == 3){%>selected="selected"<%}%>>3</option>
+                                                            <option value="4" <%if (o.getPriority() == 4){%>selected="selected"<%}%>>4</option>
+                                                            <option value="5" <%if (o.getPriority() == 5){%>selected="selected"<%}%>>5</option>
+                                                        </td>
                                                     <td><p><%=o.getIncidentDate()%></p></td>
                                                     <td><p><%=o.getIncidentTime().toString()%></p></td>
                                                     <td><button type="button" class="btn btn-dark" onclick="window.location.href='IncidentDetailServlet?incidentId=<%=o.getId()%>'">Details</button></td>

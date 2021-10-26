@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Incident;
+import model.User;
 import model.dao.DBManager;
 
 /**
@@ -38,7 +39,14 @@ public class MyIncidentsServlet extends HttpServlet {
         }catch(SQLException e){
         //    Logger.getLogger(MyIncidentsServlet.class.getName()).log(Level.SEVERE, null, e);
         }
+        LinkedList<User> users = null;
+        try{
+            users = manager.getAllStaff();
+        }catch(SQLException e){
+            
+        }
         session.setAttribute("incidents", incidentList); // Set list of incidents into session
+        session.setAttribute("users", users);
         request.getRequestDispatcher("ViewIncidentsAndTickets.jsp").forward(request, response); // Dispatch request and response to webpage
     }
 }
