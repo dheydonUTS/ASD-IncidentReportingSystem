@@ -90,7 +90,7 @@
                                 </div>
                 </div>
             </div>
-        </div>
+</div> <br><br><br>
 <jsp:include page="components/footer.jsp"/>
           </body>
 </html>
