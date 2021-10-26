@@ -93,6 +93,14 @@
         <servlet-class>controller.addVenueServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>editOffenderServlet</servlet-name>
+        <servlet-class>controller.editOffenderServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>updateOffenderServlet</servlet-name>
+        <servlet-class>controller.updateOffenderServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>VenueReportServlet</servlet-name>
         <servlet-class>controller.VenueReportServlet</servlet-class>
     </servlet>
@@ -191,6 +199,14 @@
     <servlet-mapping>
         <servlet-name>addVenueServlet</servlet-name>
         <url-pattern>/addVenueServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>editOffenderServlet</servlet-name>
+        <url-pattern>/editOffenderServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updateOffenderServlet</servlet-name>
+        <url-pattern>/updateOffenderServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>VenueReportServlet</servlet-name>

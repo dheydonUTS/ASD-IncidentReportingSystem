@@ -5,6 +5,11 @@
 <html>
    <!-- <link rel="stylesheet" href="./css/offenderDashboard.css"> -->
     <head>
+        <style>
+        body {
+            background-image: url('images/background.png');
+        }
+        </style>
         <title>Incident Reporting System</title>
     </head>
     <body>
@@ -47,6 +52,10 @@
                     <b>Banned</b>
                     
                 </th>
+                <th>
+                    <b>Edit</b>
+
+                </th>
             </tr>
             
             
@@ -65,6 +74,7 @@
                 <td><p><%=o.getPhone()%></p></td>
                 <td><p><%=o.getGender()%></p></td>
                 <td><p><%=o.isIsBanned()%></p></td>
+                <td><a class="button" href="editOffenderServlet?offenderID=<%= o.getId()%>">Edit</a></td>
                 
                 <%}%>   
 
@@ -76,7 +86,7 @@
                 </div>
             </div>
         </div>
-
+<jsp:include page="components/footer.jsp"/>
           </body>
 </html>
 
