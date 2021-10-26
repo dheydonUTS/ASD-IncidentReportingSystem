@@ -8,6 +8,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    <style>
+        body {
+            background-image: url('images/background.png');
+        }
+    </style>
     <link rel="stylesheet" href="./css/offenderDashboard.css">
 <head>
 <title>Incident Reporting System</title>
@@ -67,6 +72,6 @@
         </div>
         </div>
 	
-
+<jsp:include page="components/footer.jsp"/>
 </body>
 </html>

@@ -5,6 +5,11 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <style>
+        body {
+            background-image: url('images/background.png');
+        }
+    </style>
         <meta charset="utf-8">
         <title>Incident Reporting System</title>
     </head>
@@ -202,6 +207,7 @@
                     newOffender.style.display = "none";
                 }
             }
-        </script>
+                </script><br><br><br>
+        <jsp:include page="components/footer.jsp"/>
     </body>
 </html>

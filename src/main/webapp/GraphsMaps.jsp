@@ -7,6 +7,11 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <style>
+        body {
+            background-image: url('images/background.png');
+        }
+        </style>
         <meta charset="utf-8">
         <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
         <!-- Mapbox imports -->
@@ -192,5 +197,6 @@
 
         </c:forEach>
     </script>
+    <jsp:include page="components/footer.jsp"/>
 </body>
 </html>

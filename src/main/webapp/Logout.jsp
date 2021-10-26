@@ -8,6 +8,11 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <style>
+        body {
+            background-image: url('images/background.png');
+        }
+        </style>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Logout</title>
     </head>
@@ -18,5 +23,6 @@
         %>
             
         <h1></h1>
+        <jsp:include page="components/footer.jsp"/>
     </body>
 </html>

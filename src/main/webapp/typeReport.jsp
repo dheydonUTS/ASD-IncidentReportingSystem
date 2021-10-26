@@ -10,6 +10,11 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <style>
+        body {
+            background-image: url('images/background.png');
+        }
+    </style>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Incident Type Report</title>
     </head>
@@ -46,5 +51,7 @@
 	</div>
 	</div>
 	</div>
+        <jsp:include page="components/footer.jsp"/>
+
     </body>
 </html>
