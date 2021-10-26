@@ -7,6 +7,22 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <style>
+        body {
+            background-image: url('images/background.png');
+        }
+        footer {
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                height: 2.5rem;   
+                left: 0;
+                width: 100%;
+                background-color: white;
+                color: black;
+                text-align: center;
+            }    
+        </style>
         <meta charset="utf-8">
         <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
         <!-- Mapbox imports -->
@@ -191,6 +207,9 @@
         }
 
         </c:forEach>
-    </script>
+    </script><br><br><br>
+<footer>
+            <p>Copyright &copy; 2021 | Incident Reporting System </p>
+        </footer>
 </body>
 </html>
