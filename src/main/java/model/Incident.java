@@ -76,6 +76,11 @@ public class Incident implements Serializable {
         this.status = "open";
         this.priority = priority;
     }
+    
+    public Incident(int id, String status){
+        this.id = id;
+        this.status = status;
+    }
 
     
     public int getId() {

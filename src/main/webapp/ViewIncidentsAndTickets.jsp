@@ -1,3 +1,4 @@
+<%@page import="model.dao.DBManager"%>
 <%@page import="model.User"%>
 <%@page import="model.Incident"%>
 <%@page import="model.Offender"%>
@@ -8,85 +9,124 @@
 <html>
     <head>
         <title>Incident Reporting System</title>
+        <meta charset="utf-8">
     </head>
     <body>
         <%
             LinkedList<Incident> incidents = (LinkedList<Incident>) session.getAttribute("incidents");
                         String show = (String) session.getAttribute("show");
                         User user = (User) session.getAttribute("user");
+                        DBManager manager = (DBManager)session.getAttribute("manager");
         %>
         
         <!-- Include the following page for Navbar and Global Style Imports -->
-        <jsp:include page="components/navbar.jsp" />
+<jsp:include page="components/navbar.jsp" />
 <div class="row">
-            <div class="col-md-2 col-sm-0"></div>
-            <div class="col-md-8 col-sm-12">
-                <div class="card" style="margin-top:2rem;">
-                    <h1 class="card-header">My Incidents</h1>
-        <div class="card-body">
-        <table align="center" width="100%" height="100%" cellpadding="0" cellspacing="0" border="0">
+    <div class="col-md-2 col-sm-0"></div>
+        <div class="col-md-8 col-sm-12">
+            <div class="card" style="margin-top:2rem;">
+                <h1 class="card-header">My Incidents</h1>
+                    <div class="card-body">
+                        
+                        <table align="center" width="100%" height="100%" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <th>
+                                    <b>Incident ID</b>
+                                </th>
+                                <th>
+                                    <b>Venue</b>
+                                </th>
+                                <th>
+                                    <b>Type</b>
+                                </th>
+                                <th>
+                                    <b>Assigned User</b>
+                                </th>
+                                <th>
+                                    <b>Status</b>   
+                                </th>
+                                <th>
+                                    <b>Priority</b>
+                                </th>
+                                <th>
+                                    <b>Incident Date</b>
+                                </th>
+                                <th>
+                                    <b>Incident Time</b>
+                                </th>
+                                <th>
+                                    <b>View Ticket</b>
+                                </th>
+                            </tr>     
+                                <%if (incidents != null) {
+                                        for (Incident o: incidents){   
+                                            if (o.getAssignedUser().getId() == user.getId()){%>
+                                                <form name="form<%=o.getId()%>" method="post" action="updateIncidentServlet">
+                                                <tr>    
+                                                    <td><p><input type="hidden" name="incidentID" value=<%=o.getId()%>><%=o.getId()%></p></td>
+                                                    <td><p><%=o.getVenue().getName()%></p></td>
+                                                    <td><p><%=o.getType()%></p></td>
+                                                    <td><p><%=o.getAssignedUser().getFirstName()%></p></td>
+                                                    <td>
+                                                        <select name="IncidentStatus" onchange="javascript:document.form<%=o.getId()%>.submit();">
+                                                            <% if (o.getStatus().equals("New")){ %>
+                                                                <option value="New" selected="selected">New</option>
+                                                            <%  }else{ %>
+                                                                <option value="New">New</option>
+                                                            <%} 
+                                                            if (o.getStatus().equals("Open")){ %>
+                                                                <option value="Open" selected="selected">Open</option>
+                                                            <%  }else{ %>
+                                                                <option value="Open">Open</option>
+                                                            <%} 
+                                                            if (o.getStatus().equals("In Progress")){ %>
+                                                                <option value="In Progress" selected="selected">In Progress</option>
+                                                            <%  }else{ %>
+                                                                <option value="In Progress" >In Progress</option>
+                                                            <%} 
+                                                            if (o.getStatus().equals("Resolved")){ %>
+                                                                <option value="Resolved" selected="selected">Resolved</option>
+                                                            <%  }
+                                                            else { %>
+                                                                <option value="Resolved" >Resolved</option>
+                                                            <%} 
+                                                            if (o.getStatus().equals("created")){ %>
+                                                                <option value="Created" selected="selected">Created</option>
+                                                            <% }
+                                                            if (o.getStatus().equals("In progress")){ %>
+                                                                <option value="In Progress" selected="selected">In progress</option>
+                                                            <% }
+                                                            if (o.getStatus().equals("Created")){ %>
+                                                                <option value="Created" selected="selected">Created</option>
+                                                            <%  }
+                                                            else { %>
+                                                                <option value="Created" >Created</option>
+                                                            <%}
+                                                            if (o.getStatus().equals("in progress")){ %>
+                                                                <option value="In Progress" selected="selected">In Progress</option>
+                                                            <%  } %>
+                                                        </select>
+                                                    </td>
+                                                    <td><p><%=o.getPriority()%></p></td>
+                                                    <td><p><%=o.getIncidentDate()%></p></td>
+                                                    <td><p><%=o.getIncidentTime().toString()%></p></td>
+                                                    <td><button type="button" class="btn btn-dark" onclick="window.location.href='IncidentDetailServlet?incidentId=<%=o.getId()%>'">Details</button></td>
+                                                </tr>
+                                            </form>
 
-            <tr>
-                <th>
-                    <b>Incident ID</b>
-                </th>
-                <th>
-                    <b>Venue</b>
-                </th>
-                <th>
-                    <b>Type</b>
-                </th>
-                <th>
-                    <b>Assigned User</b>
-                </th>
-                <th>
-                    <b>Status</b>
-                    
-                </th>
-                <th>
-                    <b>Priority</b>
-                </th>
-                <th>
-                    <b>Incident Date</b>
-                    
-                </th>
-                <th>
-                    <b>Incident Time</b>
-                    
-                </th>
-            </tr>
-            
-            
-            <%
-                if (incidents != null) {
-                    for (Incident o: incidents){   
-                        if (o.getAssignedUser().getId() == user.getId()){
-            %>
-            
-            
-            <tr>
-                
-                <td><p><%=o.getId()%></p></td>
-                <td><p><%=o.getVenue().getName()%></p></td>
-                <td><p><%=o.getType()%></p></td>
-                <td><p><%=o.getAssignedUser().getFirstName()%></p></td>
-                <td><p><%=o.getStatus()%></p></td>
-                <td><p><%=o.getPriority()%></p></td>
-                <td><p><%=o.getIncidentDate()%></p></td>
-                <td><p><%=o.getIncidentTime().toString()%></p></td>
-              </tr>  
-                <%}%>   
-            
-            </table>
-        <br> <% }} else { %>
-                <span><%=(show != null ? show : "This is not working")%></span>
-        <%}%>
-                                </div>
+                                            <% }} %> 
+                                        </table>
+                        <%} 
+                        else { 
+                        %>
+                            <span><%=(show != null ? show : "This is not working")%></span>
+                        <%}%>
                 </div>
             </div>
         </div>
+    </div>
+</body>
 
-          </body>
 </html>
 
 <!--  Card for Demo Purposes, feel free to copy for pages 

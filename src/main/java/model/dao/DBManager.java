@@ -474,5 +474,9 @@ public class DBManager {
     }
     return null;
   }
+  public void setStatusIncident(int id, String status) throws SQLException   {
+    st.executeUpdate("UPDATE INCIDENTRS.\"Incident\" SET STATUS= '" + status + "' WHERE INCIDENT_ID = " + id + "");
+    System.out.println("Changed: " + id + " To: " + status);
+  }
 
 }

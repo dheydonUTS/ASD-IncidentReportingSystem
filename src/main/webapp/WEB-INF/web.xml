@@ -100,6 +100,10 @@
         <servlet-name>AnonIncidentServlet</servlet-name>
         <servlet-class>controller.AnonIncidentServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>updateIncidentServlet</servlet-name>
+        <servlet-class>controller.updateIncidentServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>GraphsMapsServlet</servlet-name>
         <url-pattern>/GraphsMaps</url-pattern>
@@ -199,6 +203,10 @@
     <servlet-mapping>
         <servlet-name>AnonIncidentServlet</servlet-name>
         <url-pattern>/AnonIncidentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updateIncidentServlet</servlet-name>
+        <url-pattern>/updateIncidentServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
