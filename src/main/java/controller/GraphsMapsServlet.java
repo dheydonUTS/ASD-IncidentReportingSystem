@@ -75,10 +75,10 @@ public class GraphsMapsServlet extends HttpServlet {
         String graphType = request.getParameter("graph_type");
         if (graphType != "" && graphType != null) {
             request.setAttribute("GraphData", graphFilter(graphType, IncidentList));
-            // request.setAttribute("GraphType", graphType);
+            request.setAttribute("GraphType", "Filtered");
         } else {
             request.setAttribute("GraphData", incidentTypeCount(IncidentList));
-
+            request.setAttribute("GraphType", "All Incidents");
         }
 
         //Send data to display

@@ -38,7 +38,7 @@ public class Incident implements Serializable {
         incidentTime=time;
         this.assignedUser = assignedUser;
         this.createdTime = createdTime;
-        this.status = "open";
+        this.status = "Open";
         this.priority = priority;
     }
 
@@ -57,7 +57,7 @@ public class Incident implements Serializable {
         this.assignedUser = assignedUser;
         this.createdTime = createdTime;
         this.priority = priority;
-        status = "open";
+        status = "Open";
     }
 
     
@@ -73,7 +73,13 @@ public class Incident implements Serializable {
         this.incidentTime = incidentTime;
         this.assignedUser = assignedUser;
         this.createdTime = createdTime;
-        this.status = "open";
+        this.status = "Open";
+        this.priority = priority;
+    }
+    
+    public Incident(int id, String status, int priority){
+        this.id = id;
+        this.status = status;
         this.priority = priority;
     }
 
