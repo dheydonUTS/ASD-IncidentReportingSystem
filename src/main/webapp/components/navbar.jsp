@@ -38,7 +38,7 @@
 							<li><a class="dropdown-item" href="VenueListServlet">Venue Report
 									Generation</a></li>
 
-						</ul></li>
+						</ul></li><%}%>
 					<li class="nav-item"><a class="nav-link" href="listOffenderServlet">Offender
 							Dashboard</a></li>
 					<li class="nav-item dropdown"><a
@@ -49,8 +49,10 @@
 							<li><a class="dropdown-item" href="listVenueServlet">Manage Venues</a></li>
 							<li><a class="dropdown-item" href="#">View Venue Info</a></li>
 						</ul></li>
+                                                <%if(user != null){ %>
 					<li class="nav-item"><a class="nav-link" href="IssueWarning">Issue
 							Warning</a></li>
+                                                        <%}%>
 					<li class="nav-item"><a class="nav-link" href="AnonReport.jsp">Anon Tip
 							Off</a></li>
 

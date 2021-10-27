@@ -1,7 +1,7 @@
 <%-- 
-    Document   : Logout
-    Created on : 03/10/2021, 3:56:27 PM
-    Author     : User
+    Document   : footer
+    Created on : 26/10/2021, 5:13:16 PM
+    Author     : christianlopez
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -9,10 +9,7 @@
 <html>
     <head>
         <style>
-        body {
-            background-image: url('images/background.png');
-        }
-        footer {
+            footer {
                 position: fixed;
                 bottom: 0;
                 width: 100%;
@@ -22,20 +19,15 @@
                 background-color: white;
                 color: black;
                 text-align: center;
-            }    
+            }     
         </style>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Logout</title>
     </head>
     <body>
-        <% 
-                session.invalidate(); 
-                response.sendRedirect("index.jsp");    
-        %>
-            
-        <h1></h1>
-<footer>
+        <jsp:include page="imports.jsp" />
+
+        <footer>
             <p>Copyright &copy; 2021 | Incident Reporting System </p>
         </footer>
     </body>
+
 </html>

@@ -18,6 +18,22 @@ User reporter = incident.getReporter();
 <!DOCTYPE html>
 <html>
     <head>
+        <style>
+        body {
+            background-image: url('images/background.png');
+        }
+        footer {
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                height: 2.5rem;   
+                left: 0;
+                width: 100%;
+                background-color: white;
+                color: black;
+                text-align: center;
+            }    
+        </style>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>View Incident</title>
     </head>
@@ -27,7 +43,7 @@ User reporter = incident.getReporter();
          <div class="col-md-2 col-sm-0"></div>
          <div class="col-md-8 col-sm-12">
             <div class="card" style="margin-top:2rem;">
-               <h1 class="card-header">View Report</h1>
+               <h1 class="card-header">View Incident</h1>
                <div class="card-body">
                   <h5 class="card-title">Details:</h5>
                   <div>
@@ -65,14 +81,29 @@ User reporter = incident.getReporter();
                 </tr>            
         </table>
                   </div>
-                                <div>
-                    <form action="Ticket.jsp" method="post">
+                
+                <div class="row justify-content-between">
+                    <div class="col-4">
+                      <form action="Ticket.jsp" method="post">
                         <input type="submit" value="View Ticket" class="btn btn-primary">
                     </form>
+                    </div>
+                    <div class="col-4">
+                      <form action="editIncident.jsp" method="post">
+                        <input type="submit" value="Edit Incident" class="btn btn-primary">
+                    </form>
+                    </div>
+                  </div>
+                                <div>
+                    
                 </div>
                </div>
             </div>
          </div>
       </div>
+<footer>
+            <p>Copyright &copy; 2021 | Incident Reporting System </p>
+        </footer>
+
     </body>
 </html>

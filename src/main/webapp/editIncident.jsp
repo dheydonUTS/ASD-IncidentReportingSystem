@@ -2,7 +2,8 @@
    Document   : incident
    Created on : 05/09/2021, 5:06:19 PM
    Author     : dom_h
-   --%><%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %><%@page import="java.util.LinkedList"%><%@page import="model.Venue"%><%@page import="model.dao.DBManager"%><%@page contentType="text/html" pageEncoding="UTF-8"%>
+   --%><%@page import="model.Incident"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %><%@page import="java.util.LinkedList"%><%@page import="model.Venue"%><%@page import="model.dao.DBManager"%><%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -24,8 +25,9 @@
     </style>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Report an incident</title>
+    <title>Edit an incident</title>
   </head>
+  <%Incident incident = (Incident) session.getAttribute("incident"); %>
   <body>
     <jsp:include page="components/navbar.jsp" />
     <div class="container-fluid p-5">
@@ -34,9 +36,9 @@
           <div class="col-md-2 col-sm-0"></div>
           <div class="col-md-8 col-sm-12">
             <div class="card" style="margin-top:2rem;">
-              <h1 class="card-header">Report an incident</h1>
+              <h1 class="card-header">Edit an incident</h1>
               <div class="card-body">
-                <h5 class="card-title">Make a report</h5>
+                <h5 class="card-title">Edit a report</h5>
                 <br>
                 <form action="IncidentServlet" method="post" class="form-horizontal">
                   <div class="form-group">
@@ -47,7 +49,6 @@
                             <%
                                      DBManager manager = (DBManager)session.getAttribute("manager");        // Get Manager from session
                                      LinkedList<Venue> Venues = manager.getVenues();                        // Get Venues from DB
-                                     request.removeAttribute("incident");                                   // Remove the incident if it exists from session
                                      request.setAttribute("Venues", Venues);                                
                                      boolean descErr;
                                      boolean offenderErr;
@@ -83,14 +84,14 @@
                       <label class="col-sm-2 control-label text-right" for="time" >Time:</label>
                       <div class="col-sm-10">
                         <input class="form-control" type="time" name="time"
-                               value="<%=(request.getParameter("time") != null ? request.getParameter("time") : "")%>" required>
+                               value="<%=(request.getParameter("time") != null ? request.getParameter("time") : incident.getIncidentTime())%>" required>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label class="col-sm-2 control-label text-right" for="date">Date:</label>
                       <div class="col-sm-10">
                         <input class="form-control" type="date" name="date" 
-                               value="<%=(request.getParameter("date") != null ? request.getParameter("date") : "")%>" required>
+                               value="<%=(request.getParameter("date") != null ? request.getParameter("date") : incident.getIncidentDate())%>" required>
                       </div>
                     </div>
                     <div class="form-group row ">
@@ -98,7 +99,7 @@
                       <div class="col-sm-10">
                         <textarea class="form-control <% if(descErr){ %>is-invalid<%}%>" 
                                   id="desc" placeholder="Please provide a description of events" 
-                                  name="desc" rows="3" ><%=(request.getParameter("desc") != null ? request.getParameter("desc") : "")%></textarea>
+                                  name="desc" rows="3" ><%=(request.getParameter("desc") != null ? request.getParameter("desc") :  incident.getDescription())%></textarea>
                         <% if(descErr){%>
                             <div class=" invalid-feedback">
                             Please enter a valid description.
@@ -110,7 +111,7 @@
                         <div class="col-auto">
                             <input class="form-control <% if(offenderErr){ %>is-invalid<%}%>" 
                                    placeholder="First Name" type="text" name="offenderFname" 
-                                   value="<%=(request.getParameter("offenderFname") != null ? request.getParameter("offenderFname") : "")%>" >
+                                   value="<%=(request.getParameter("offenderFname") != null ? request.getParameter("offenderFname") :  incident.getOffender().getFirstName())%>" >
                             <% if(offenderErr){%>
                             <div class=" invalid-feedback">
                             Please enter a valid Name.
@@ -119,7 +120,7 @@
                         <div class="col-auto">
                             <input class="form-control <% if(offenderErr){ %>is-invalid<%}%>" 
                                    placeholder="Last Name"type="text" name="offenderLname" 
-                                   value="<%=(request.getParameter("offenderLname") != null ? request.getParameter("offenderLname") : "")%>">
+                                   value="<%=(request.getParameter("offenderLname") != null ? request.getParameter("offenderLname") : incident.getOffender().getLastName())%>">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -145,6 +146,5 @@
 <footer>
             <p>Copyright &copy; 2021 | Incident Reporting System </p>
         </footer>
-
     </body>
 </html>

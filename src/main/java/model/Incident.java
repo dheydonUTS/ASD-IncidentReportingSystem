@@ -83,6 +83,12 @@ public class Incident implements Serializable {
         this.priority = priority;
     }
 
+    @Override
+    public String toString() {
+        return "Incident{" + "id=" + id + ", venue=" + venue + ", type=" + type + ", description=" + description + ", reporter=" + reporter + ", offender=" + offender + ", incidentDate=" + incidentDate + ", incidentTime=" + incidentTime + ", assignedUser=" + assignedUser + ", createdTime=" + createdTime + ", closedTime=" + closedTime + ", status=" + status + ", priority=" + priority + '}';
+    }
+    
+    
     
     public int getId() {
         return id;
