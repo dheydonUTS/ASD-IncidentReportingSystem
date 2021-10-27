@@ -53,8 +53,7 @@ public class updateIncidentServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("incidentID"));
         int priority = Integer.parseInt(request.getParameter("IncidentPriority"));
         int assID = Integer.parseInt(request.getParameter("IncidentAssigned"));
-        
-        //Venue venue = new Venue(venueID, venueName, venueAddress, venueLat, venueLon); // new instance of venue
+
         
         try {
                 manager.setStatusIncident(id, status, priority, assID);

@@ -486,8 +486,10 @@ public class DBManager {
       while(result.next()){
           User user = new User();
           user.setId(result.getInt("USER_ID"));
+          user.setEmail(result.getString("EMAIL"));
           user.setFirstName(result.getString("FIRST_NAME"));
           user.setLastName(result.getString("LAST_NAME"));
+          user.setPassword(result.getString("PASSWORD"));
           user.setIsStaff(result.getBoolean("IS_STAFF"));
           userList.add(user);
           System.out.println("Added: " + user.toString());

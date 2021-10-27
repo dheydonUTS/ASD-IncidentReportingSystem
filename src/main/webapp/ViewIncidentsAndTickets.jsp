@@ -94,8 +94,10 @@
                                                         <select name="IncidentStatus" onchange="javascript:document.form<%=o.getId()%>.submit();">
                                                                 <option value="New" <%if (o.getStatus().equals("New")){%>selected="selected"<%}%>>New</option>
                                                                 <option value="Open" <%if (o.getStatus().equals("Open")){%>selected="selected"<%}%>>Open</option>
+                                                                <option value="Open" <%if (o.getStatus().equals("open")){%>selected="selected"<%}%>>Open</option>
                                                                 <option value="In Progress" <%if (o.getStatus().equals("In Progress")){%>selected="selected"<%}%>>In Progress</option>
                                                                 <option value="Resolved" <%if (o.getStatus().equals("Resvoled")){%>selected="selected"<%}%>>Resolved</option>
+                                                                <option value="Resolved" <%if (o.getStatus().equals("resvoled")){%>selected="selected"<%}%>>Resolved</option>
                                                                 <option value="Created" <%if (o.getStatus().equals("created")){%>selected="selected"<%}%>>Created</option>
                                                                 <option value="In Progress" <%if (o.getStatus().equals("In progress")){%>selected="selected"<%}%>>In Progress</option>
                                                                 <option value="Created" <%if (o.getStatus().equals("Created")){%>selected="selected"<%}%>>Created</option>

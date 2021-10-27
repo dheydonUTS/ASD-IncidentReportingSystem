@@ -108,6 +108,14 @@
         <servlet-name>updateIncidentListServlet</servlet-name>
         <servlet-class>controller.updateIncidentListServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditUsersServlet</servlet-name>
+        <servlet-class>controller.EditUsersServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewUsersServlet</servlet-name>
+        <servlet-class>controller.ViewUsersServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>GraphsMapsServlet</servlet-name>
         <url-pattern>/GraphsMaps</url-pattern>
@@ -215,6 +223,14 @@
     <servlet-mapping>
         <servlet-name>updateIncidentListServlet</servlet-name>
         <url-pattern>/updateIncidentListServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditUsersServlet</servlet-name>
+        <url-pattern>/EditUsersServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewUsersServlet</servlet-name>
+        <url-pattern>/ViewUsersServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
