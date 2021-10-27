@@ -31,7 +31,14 @@
         </div>
     </div>
 </div>
+<footer class="bg-light text-center text-lg-start">
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2021 Copyright:
+    <a class="text-dark" href="http://143.198.89.22:8080/ASD_Incident_Reporting_System-1.0-SNAPSHOT/index.jsp">IncidentReportingSystem.com</a>
+  </div>
+  <!-- Copyright -->
+</footer>
 <jsp:include page="/ConnServlet" flush="true" />
-<jsp:include page="components/footer.jsp"/>
 </body>
 </html>
