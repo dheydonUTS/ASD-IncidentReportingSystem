@@ -37,8 +37,7 @@
 									Generation</a></li>
 							<li><a class="dropdown-item" href="VenueListServlet">Venue Report
 									Generation</a></li>
-
-						</ul></li>
+						</ul>
 					<li class="nav-item"><a class="nav-link" href="listOffenderServlet">Offender
 							Dashboard</a></li>
 					<li class="nav-item dropdown"><a
