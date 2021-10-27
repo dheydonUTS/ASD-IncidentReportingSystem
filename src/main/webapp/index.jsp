@@ -31,11 +31,18 @@
         </div>
     </div>
 </div>
-<footer class="bg-light text-center text-lg-start" style="position: fixed;bottom: 0;">
+<footer class="bg-light text-center text-lg-start" style=" position: fixed;
+                bottom: 0;
+                width: 100%;
+                height: 2.5rem;   
+                left: 0;
+                width: 100%;
+                background-color: white;
+                color: black;
+                text-align: center;">
   <!-- Copyright -->
-  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-    © 2021 Copyright:
-    <a class="text-dark" href="http://143.198.89.22:8080/ASD_Incident_Reporting_System-1.0-SNAPSHOT/index.jsp">IncidentReportingSystem.com</a>
+  <div class="text-center p-3">
+    © 2021 Copyright | <a class="text-dark" href="http://143.198.89.22:8080/ASD_Incident_Reporting_System-1.0-SNAPSHOT/index.jsp">IncidentReportingSystem.com</a>
   </div>
   <!-- Copyright -->
 </footer>
