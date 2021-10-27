@@ -23,8 +23,10 @@
 					<li class="nav-item"><a class="nav-link" href="incident.jsp">Report
 							Incident</a></li>
                                                         <li class="nav-item"><a class="nav-link" href="MyIncidentsServlet">My 
-							Incidents</a></li><%}%>
-                                                <%if(user != null){%>
+							Incidents</a></li><%
+                                                            if (user.isIsStaff()){ %>
+                                                                <li class="nav-item"><a class="nav-link" href="ViewUsersServlet">View/Edit Users</a></li><%
+                                                    }}%>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#"
 						id="navbarDropdownMenuLink" role="button"
@@ -35,8 +37,7 @@
 									Generation</a></li>
 							<li><a class="dropdown-item" href="VenueListServlet">Venue Report
 									Generation</a></li>
-
-						</ul></li><%}%>
+						</ul>
 					<li class="nav-item"><a class="nav-link" href="listOffenderServlet">Offender
 							Dashboard</a></li>
 					<li class="nav-item dropdown"><a
