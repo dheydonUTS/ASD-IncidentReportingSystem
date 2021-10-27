@@ -31,17 +31,16 @@ public class GraphsMapsServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private DBConnector conn;
     private DBManager manager;
-    
-            LinkedList<Incident> IncidentList = new LinkedList();
-        LinkedList<Offender> OffenderList = new LinkedList();
-        LinkedList<Venue> VenueList = new LinkedList();
+
+    LinkedList<Incident> IncidentList = new LinkedList();
+    LinkedList<Offender> OffenderList = new LinkedList();
+    LinkedList<Venue> VenueList = new LinkedList();
 
     @Override
     protected void doGet(HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
         initialiseDB();
-
 
         //Try and get all incidents from DB 
         try {
@@ -105,16 +104,16 @@ public class GraphsMapsServlet extends HttpServlet {
         //Store Incident Type as key, and count of that type as an integer
         HashMap<String, Integer> Count = new HashMap();
         char type = graphType.charAt(0);
-        if(type == 'v'){
+        if (type == 'v') {
             return venueIncidentTypeCount(graphType.charAt(1), IncidentList);
         }
-        
-        if(type == 'o') {
+
+        if (type == 'o') {
             return offenderIncidentTypeCount(graphType.charAt(1), IncidentList);
         }
-        
+
         //For breakdown by Incident Type (What venues it occured at)
-        if(type == '@'){
+        if (type == '@') {
             return incidentTypeByVenueCount(graphType.substring(1), IncidentList);
         }
         return null;
@@ -124,14 +123,30 @@ public class GraphsMapsServlet extends HttpServlet {
         //Store the venue as our key, and then the number of incidents at that venue as an integer
         HashMap<Venue, Integer> VenueIncidentCount = new HashMap();
         IncidentList.forEach(incident -> {
+            System.out.println(incident.getVenue());
+            boolean inserted = false;
+            for (Venue venue : VenueIncidentCount.keySet()) {
+                if (venue.getName().equals(incident.getVenue().getName())) {
+                    VenueIncidentCount.put(venue, VenueIncidentCount.get(venue) + 1);
+                    inserted = true;
+                }
+
+            }
+            if (!inserted) {
+                VenueIncidentCount.put(incident.getVenue(), 1);
+            }
+            /*
             //If we already have this venue in our list
             if (VenueIncidentCount.containsKey(incident.getVenue())) {
                 //Increment the count of incidents at that venue
                 VenueIncidentCount.put(incident.getVenue(), VenueIncidentCount.get(incident.getVenue()) + 1);
+                System.out.println("Existing");
             } else {
                 //Otherwise start the count for that venue
                 VenueIncidentCount.put(incident.getVenue(), 1);
-            }
+                                System.out.println("New");
+
+            }*/
         });
         return VenueIncidentCount;
     }
@@ -170,7 +185,7 @@ public class GraphsMapsServlet extends HttpServlet {
             if (IncidentCount.containsKey(incident.getType()) && incident.getVenue().getId() == Integer.parseInt(id + "")) {
                 //Increment the count of that incident type
                 IncidentCount.put(incident.getType(), IncidentCount.get(incident.getType()) + 1);
-            } else if (!IncidentCount.containsKey(incident.getType()) && incident.getVenue().getId() == Integer.parseInt(id + "")){
+            } else if (!IncidentCount.containsKey(incident.getType()) && incident.getVenue().getId() == Integer.parseInt(id + "")) {
                 //Otherwise start the count for that type
                 IncidentCount.put(incident.getType(), 1);
             }
@@ -178,7 +193,6 @@ public class GraphsMapsServlet extends HttpServlet {
         return IncidentCount;
     }
 
-    
     private HashMap<String, Integer> offenderIncidentTypeCount(char id, LinkedList<Incident> IncidentList) {
         //Store Incident Type as key, and count of that type as an integer
         HashMap<String, Integer> IncidentCount = new HashMap();
@@ -187,12 +201,13 @@ public class GraphsMapsServlet extends HttpServlet {
             if (IncidentCount.containsKey(incident.getType()) && incident.getOffender().getId() == Integer.parseInt(id + "")) {
                 //Increment the count of that incident type
                 IncidentCount.put(incident.getType(), IncidentCount.get(incident.getType()) + 1);
-            } else if (!IncidentCount.containsKey(incident.getType()) && incident.getOffender().getId() == Integer.parseInt(id + "")){
+            } else if (!IncidentCount.containsKey(incident.getType()) && incident.getOffender().getId() == Integer.parseInt(id + "")) {
                 //Otherwise start the count for that type
                 IncidentCount.put(incident.getType(), 1);
             }
         });
-        return IncidentCount;    }
+        return IncidentCount;
+    }
 
     private HashMap<String, Integer> incidentTypeByVenueCount(String type, LinkedList<Incident> IncidentList) {
         //Store Incident Type as key, and count of that type as an integer
@@ -202,7 +217,7 @@ public class GraphsMapsServlet extends HttpServlet {
             if (IncidentCount.containsKey(incident.getVenue().getName()) && incident.getType().equals(type)) {
                 //Increment the count of that incident type
                 IncidentCount.put(incident.getVenue().getName(), IncidentCount.get(incident.getVenue().getName()) + 1);
-            } else if (!IncidentCount.containsKey(incident.getVenue().getName()) && incident.getType().equals(type)){
+            } else if (!IncidentCount.containsKey(incident.getVenue().getName()) && incident.getType().equals(type)) {
                 //Otherwise start the count for that type
                 IncidentCount.put(incident.getVenue().getName(), 1);
             }
