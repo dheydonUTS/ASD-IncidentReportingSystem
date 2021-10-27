@@ -5,6 +5,22 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <style>
+        body {
+            background-image: url('images/background.png');
+        }
+        footer {
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                height: 2.5rem;   
+                left: 0;
+                width: 100%;
+                background-color: white;
+                color: black;
+                text-align: center;
+            }    
+    </style>
         <meta charset="utf-8">
         <title>Incident Reporting System</title>
     </head>
@@ -13,9 +29,9 @@
             <c:when test="${empty sessionScope.user}">
                 <jsp:include page="error.jsp" />
             </c:when>
-            <c:when test="${!user.isStaff}">
+           <%-- <c:when test="${!user.isStaff}">
                 <jsp:include page="error.jsp" />
-            </c:when>
+            </c:when> --%>
             <c:otherwise>
                 <!-- Include the following page for Navbar and Global Style Imports -->
                 <jsp:include page="components/navbar.jsp" />
@@ -39,7 +55,8 @@
                                             <label class="btn btn-outline-primary" for="new">New</label>
                                             <input type="radio" class="btn-check" name="offenderType" id="existing" value="existing" onclick="toggleView('existing')" autocomplete="off">
                                             <label class="btn btn-outline-primary" for="existing">Existing</label></div>
-
+                                            <br>
+                                            <br>
                                         <!-- REGISTER A NEW OFFENDER -->
                                         <div id="newOffender">
                                             <div class="mb-3">
@@ -88,7 +105,8 @@
 
                                         <!-- USE AN EXISTING OFFENDER -->
                                         <div id="existingOffender" style="display: none;">
-                                            <br>
+                                            <label for="" class="form-label">Existing Offender Name</label>
+
                                             <select class="form-select" name="offender_id">
                                                 <!-- For each offender -->
                                                 <c:forEach var="Offender" items="${Offenders}">
@@ -202,6 +220,9 @@
                     newOffender.style.display = "none";
                 }
             }
-        </script>
+                </script><br><br><br>
+<footer>
+            <p>Copyright &copy; 2021 | Incident Reporting System </p>
+        </footer>
     </body>
 </html>

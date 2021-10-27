@@ -5,6 +5,17 @@
         body {
             background-image: url('images/background.png');
         }
+        footer {
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                height: 2.5rem;   
+                left: 0;
+                width: 100%;
+                background-color: white;
+                color: black;
+                text-align: center;
+            }    
     </style>
 <title>Incident Reporting System</title>
 </head>
@@ -42,10 +53,13 @@
                 text-align: center;">
   <!-- Copyright -->
   <div class="text-center p-3">
-    © 2021 Copyright | <a class="text-dark" href="http://143.198.89.22:8080/ASD_Incident_Reporting_System-1.0-SNAPSHOT/index.jsp">IncidentReportingSystem.com</a>
+    Â© 2021 Copyright | <a class="text-dark" href="http://143.198.89.22:8080/ASD_Incident_Reporting_System-1.0-SNAPSHOT/index.jsp">IncidentReportingSystem.com</a>
   </div>
   <!-- Copyright -->
 </footer>
 <jsp:include page="/ConnServlet" flush="true" />
+<footer>
+            <p>Copyright &copy; 2021 | Incident Reporting System </p>
+        </footer>
 </body>
 </html>
