@@ -56,9 +56,18 @@
             </c:forEach>
                 ]);
                 // Set chart options
-                var options = {'title': 'Incidents',
-                    'width': 600,
-                    'height': 500};
+                var options
+                var persistView = localStorage['persistView'];
+                if (persistView == "graphs") {
+                    options = {'title': 'Incidents',
+                        'width': '100%',
+                        'height': 500};
+                } else {
+                    options = {'title': 'Incidents',
+                        'width': 600,
+                        'height': 500};
+
+                }
                 // Instantiate and draw our chart, passing in our options.
                 var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
                 chart.draw(data, options);
@@ -90,14 +99,14 @@
                                             <button class="nav-link" id="nav-graphs-tab" data-bs-toggle="tab" data-bs-target="#nav-graphs" type="button" role="tab" aria-controls="nav-graphs" aria-selected="false" onclick="changePersistView('graphs')">Graphs</button>
                                         </div>
                                 </nav>
-                                <div class="tab-content" id="nav-tabContent">
+                                <div class="tab-content" id="nav-tabContent" style="margin: 1rem;">
                                     <div class="tab-pane fade" id="nav-maps" role="tabpanel" aria-labelledby="nav-maps-tab">
                                         <!-- Div filled by maps Javascript at bottom of page -->
                                         <form action="GraphsMaps" method="GET">
-                                            <p>Filter map by incident type: </p>
+                                            <p>Filter Map by Incident Type: </p>
                                             <div class="mb-3">
                                                 <select class="form-select" name="map_type">
-                                                    <option value="" selected>Reset to Default Map</option>
+                                                    <option value="" selected>Reset to Default Map (Incident Count by Venue)</option>
                                                     <c:forEach var="IncidentType" items="${IncidentTypeCount}">
                                                         <option value="${IncidentType.key}">Only ${IncidentType.key} Incidents</option>
                                                     </c:forEach>                                           
@@ -107,15 +116,16 @@
                                             <button type="submit" class="btn btn-primary">View</button>
                                             <br>
                                         </form>
-                                        <p strong>Currently viewing: ${MapType} map</p>
+                                        <br>
+                                        <p strong>Currently Viewing: ${MapType} Map</p>
                                         <div id="map"></div>
                                     </div>
-                                    <div class="tab-pane fade" id="nav-graphs" role="tabpanel" aria-labelledby="nav-graphs-tab">
+                                    <div class="tab-pane fade" id="nav-graphs" role="tabpanel" aria-labelledby="nav-graphs-tab" style="margin: 1rem;">
                                         <form action="GraphsMaps" method="GET">
                                             <p>Choose Graph Type: </p>
                                             <div class="mb-3">
                                                 <select class="form-select" aria-label="Default select example" name="graph_type">
-                                                    <option selected>Choose a graph to display</option>
+                                                    <option value="" selected>Reset to Default Graph (Number of Incidents by Type)</option>
                                                     <c:forEach var="IncidentType" items="${IncidentTypeCount}">
                                                         <option value="@${IncidentType.key}">${IncidentType.key} Count by Venue </option>
                                                     </c:forEach>    
@@ -130,6 +140,9 @@
                                             <button type="submit" class="btn btn-primary">View</button>
                                             <br>
                                         </form>
+                                        <br>
+                                        <p strong>Currently Viewing: ${GraphType} Graph</p>
+
                                         <!-- Div filled by charts Javascript at top of page -->
                                         <div id="chart_div"></div>
 
@@ -147,25 +160,30 @@
         <!-- Import mapbox SDK for Geocoding -->
         <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
         <script>
-                                            //active
-                                            $(document).ready(function () {
-                                                var persistView = localStorage['persistView'];
-                                                if (persistView == "graphs") {
-                                                    $("#nav-graphs-tab").addClass("active");
+                                                //active
+                                                $(document).ready(function () {
+                                                    var persistView = localStorage['persistView'];
+                                                    if (persistView == "graphs") {
+                                                        $("#nav-graphs-tab").addClass("active");
 
-                                                    $("#nav-graphs").addClass("show active");
-                                                } else {
-                                                    $("#nav-maps-tab").addClass("active");
+                                                        $("#nav-graphs").addClass("show active");
+                                                    } else {
+                                                        $("#nav-maps-tab").addClass("active");
 
-                                                    $("#nav-maps").addClass("show active");
+                                                        $("#nav-maps").addClass("show active");
+                                                    }
+                                                });
+
+                                                function changePersistView(viewType) {
+                                                    localStorage['persistView'] = viewType;
+
+                                                    setTimeout(function () {
+                                                        map.resize();
+
+                                                    }, 500);
+
                                                 }
-                                            });
-
-                                            function changePersistView(viewType) {
-                                                localStorage['persistView'] = viewType;
-                                                map.resize();
-                                            }
-                                            ;
+                                                ;
         </script>
         <script>
             //Create map
@@ -217,8 +235,8 @@
 
             </c:forEach>
             map.on('load', function () {
-    map.resize();
-});
+                map.resize();
+            });
         </script><br><br><br>
         <footer>
             <p>Copyright &copy; 2021 | Incident Reporting System </p>
