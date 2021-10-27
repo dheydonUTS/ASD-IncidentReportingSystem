@@ -20,92 +20,119 @@ import model.dao.DBManager;
  * @author dom_h
  */
 public class IncidentServlet extends HttpServlet {
-  @Override
-  protected void doPost(HttpServletRequest request, HttpServletResponse response)
-  throws ServletException, IOException {
-    HttpSession session = request.getSession();
-    DBManager manager = (DBManager) session.getAttribute("manager");            // Get DBManager from Session
-    /* ---Get Session Variables ---*/
-    User user = new User();
-    user = (User) session.getAttribute("user");
-    String type = request.getParameter("type");
-    LocalDate date = LocalDate.parse(request.getParameter("date"));
-    LocalTime time = LocalTime.parse(request.getParameter("time"));
-    String venueName = (String) request.getParameter("venueName");
-    Venue venue = new Venue();
-    System.out.println(venueName);
-    try {
-      venue = manager.getVenueByName(venueName);                                // Get the venue
-    } catch (SQLException ex) {}
-    String desc = "";
-    User reporter = (User) session.getAttribute("user");                        // Get current user
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        DBManager manager = (DBManager) session.getAttribute("manager");            // Get DBManager from Session
+        /* ---Get Session Variables ---*/
+        User user = new User();
+        user = (User) session.getAttribute("user");
+        String type = request.getParameter("type");
+        LocalDate date = LocalDate.parse(request.getParameter("date"));
 
-    /* --- Validation & Initialisation --- */
-    Validator valid = new Validator();
-    String oFirstName = "";
-    String oLastName = "";
-    int offenderId = 0;
-    // Validate Offender Names
-    if (valid.validateName((String) request.getParameter("offenderFname")) &&   // Validate first and last name together
-      valid.validateName((String) request.getParameter("offenderLname"))) {
-      oFirstName = (String) request.getParameter("offenderFname");              // Set if valid
-      oLastName = (String) request.getParameter("offenderLname");
-      session.setAttribute("offenderErr", "false");                             // Pass offender to session
-    } else {
-      session.setAttribute("offenderErr", "true");                              // If not valid set error to true
+        LocalTime time = LocalTime.parse(request.getParameter("time"));
+
+        String venueName = (String) request.getParameter("venueName");
+        Venue venue = new Venue();
+        System.out.println(venueName);
+        try {
+            venue = manager.getVenueByName(venueName); // Get the venue
+
+        } catch (SQLException ex) {}
+        String desc = "";
+        User reporter = (User) session.getAttribute("user"); // Get current user
+
+        /* --- Validation & Initialisation --- */
+        Validator valid = new Validator();
+        String oFirstName = "";
+        String oLastName = "";
+        int offenderId = 0;
+        // Validate Offender Names
+        if (valid.validateName((String) request.getParameter("offenderFname")) &&   // Validate first and last name together
+            valid.validateName((String) request.getParameter("offenderLname"))) {
+            oFirstName = (String) request.getParameter("offenderFname");            // Set if valid
+            oLastName = (String) request.getParameter("offenderLname");
+
+            session.setAttribute("offenderErr", "false");                           // Pass offender to session
+        } else {
+            session.setAttribute("offenderErr", "true");                            // If not valid set error to true
+        }
+        if (valid.validateDesc((String) request.getParameter("desc"))) {            // Validate the description
+            desc = (String) request.getParameter("desc");
+
+            session.setAttribute("descErr", "false");
+        } else {
+            session.setAttribute("descErr", "true");
+        }
+        // If theres an error in validation 
+        if (Boolean.parseBoolean((String) session.getAttribute("offenderErr")) ||
+            Boolean.parseBoolean((String) session.getAttribute("descErr"))) {
+
+            if (session.getAttribute("incidentId") == null) {
+                request.getRequestDispatcher("incident.jsp").include(request, response);
+            } else {
+                request.getRequestDispatcher("editIncident.jsp").include(request, response);
+            }
+            // Return the user to the incident page with the errors
+        } else {
+
+            Offender offender = new Offender();
+            try {
+
+                offender = findOffender(oFirstName, oLastName, manager);            // Refer to method findOffender
+            } catch (SQLException ex) {
+
+            }
+            int ticketId = 0;
+            try {                                                                   
+                if (session.getAttribute("incidentId") == null) {
+                    allocateTicket al = new allocateTicket();                       // Create an instance of the allocate ticket class
+                    int assignedUserId = 0;
+                    try {
+                        assignedUserId = al.nextFreeStaff(manager.getStaff());      // Get the next free staff user's ID
+                    } catch (SQLException ex) {}
+                    User assignUser = new User();
+                    try {
+                        assignUser = manager.getUser(assignedUserId);               // Get the above staff User
+                    } catch (SQLException ex) {}
+                    ticketId = manager.addIncident(venue.getId(), type, desc, user.getId(), offender.getId(), date.toString(), time.toString(), assignedUserId, LocalDateTime.now(), 1);
+                    session.setAttribute("incidentId", ticketId);
+                } else {
+                    manager.editIncident(venue.getId(), type, time.toString(), date.toString(), desc, offender.getId(), (int) session.getAttribute("incidentId"));
+                    ticketId = (int) session.getAttribute("incidentId");            // Create the incident in SQL, returns the ticket ID
+                }
+
+
+            } catch (SQLException ex) {}
+            User assignedStaff = new User();
+            try {
+                assignedStaff = manager.getUser(manager.getIncident(ticketId).getAssignedUser().getId());
+            } catch (Exception ex) {}
+            if (!(Boolean.parseBoolean((String) session.getAttribute("offenderErr")) ||
+                    Boolean.parseBoolean((String) session.getAttribute("descErr")))) {
+                System.out.println("Incident ID is: " + (int) session.getAttribute("incidentId"));
+                Incident incident;
+                try {
+                    incident = manager.getIncident((int) session.getAttribute("incidentId"));    // Create the incident in the session
+                    session.setAttribute("incident", incident);
+                } catch (SQLException ex) {}
+
+                request.getRequestDispatcher("ViewIncident.jsp").include(request, response);
+                // Redirect user to viewincident page
+            }
+        }
     }
-    if (valid.validateDesc((String) request.getParameter("desc"))) {            // Validate the description
-      desc = (String) request.getParameter("desc");
-      session.setAttribute("descErr", "false");
-    } else {
-      session.setAttribute("descErr", "true");
+
+    public Offender findOffender(String Fname, String Lname, DBManager manager) throws SQLException {
+        int offenderId = manager.getOffenderIDByName(Fname, Lname);
+        if (manager.getOffender(offenderId) != null) { // Check if the offender exists
+            Offender offender = manager.getOffender(offenderId); // create and return the offender if they exist
+            return offender;
+        }
+        manager.addOffender(Fname, Lname, "N/a", "N/a", "Undisclosed", false); // Offender does not exists
+        offenderId = manager.getOffenderIDByName(Fname, Lname); // Create offender and return them
+        return manager.getOffender(offenderId);
     }
-    // If theres an error in validation 
-    if (Boolean.parseBoolean((String) session.getAttribute("offenderErr")) ||
-      Boolean.parseBoolean((String) session.getAttribute("descErr"))) {
-      request.getRequestDispatcher("incident.jsp").include(request, response);  // Return the user to the incident page with the errors
-    } else {
-
-      Offender offender = new Offender();
-      try {
-        offender = findOffender(oFirstName, oLastName, manager);                // Refer to method findOffender
-      } catch (SQLException ex) {
-
-      }
-      allocateTicket al = new allocateTicket();                                 // Create an instance of the allocate ticket class
-      int assignedUserId = 0;   
-      int ticketId = 0;
-      try {
-        assignedUserId = al.nextFreeStaff(manager.getStaff());                  // Get the next free staff user's ID
-      } catch (SQLException ex) {}
-      User assignUser = new User();
-      try {
-        assignUser = manager.getUser(assignedUserId);                           // Get the above staff User
-      } catch (SQLException ex) {}
-      try {                                                                     // Create the incident in SQL, returns the ticket ID
-        ticketId = manager.addIncident(venue.getId(), type, desc, user.getId(), offender.getId(), date.toString(), time.toString(), assignedUserId, LocalDateTime.now(), 1);
-      } catch (SQLException ex) {}
-
-      if (!(Boolean.parseBoolean((String) session.getAttribute("offenderErr")) ||
-          Boolean.parseBoolean((String) session.getAttribute("descErr")))) {
-        Incident incident = new                                                 // Create the incident in the session
-        Incident(ticketId, venue, type, desc, reporter, offender, date, time, assignUser, LocalDateTime.now(), 1);
-        session.setAttribute("incident", incident);
-        request.getRequestDispatcher("ViewIncident.jsp").include(request, response);    
-                                                                                // Redirect user to viewincident page
-      }
-    }
-  }
-
-  public Offender findOffender(String Fname, String Lname, DBManager manager) throws SQLException {
-    int offenderId = manager.getOffenderIDByName(Fname, Lname);
-    if (manager.getOffender(offenderId) != null) {                              // Check if the offender exists
-      Offender offender = manager.getOffender(offenderId);                      // create and return the offender if they exist
-      return offender;
-    }
-    manager.addOffender(Fname, Lname, "N/a", "N/a", "Undisclosed", false);      // Offender does not exists
-    offenderId = manager.getOffenderIDByName(Fname, Lname);                     // Create offender and return them
-    return manager.getOffender(offenderId);
-  }
 
 }

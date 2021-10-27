@@ -5,7 +5,9 @@
     <artifactId>ASD_Incident_Reporting_System</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>ASD_Incident_Reporting_System-1.0-SNAPSHOT</name>
+    <name>IRS</name>
+
+
     
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -17,6 +19,11 @@
     </properties>
     
     <dependencies>
+        <dependency>
+            <groupId>org.glassfish.web</groupId>
+            <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+            <version>1.2.6</version>
+        </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
@@ -61,6 +68,7 @@
     </dependencies>
     
     <build>
+  <finalName>IRS</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

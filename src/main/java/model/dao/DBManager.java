@@ -101,6 +101,12 @@ public class DBManager {
         }
         return id;
   }
+  
+  public void editIncident(int venueID,String type, String time, String date,String description,int offenderId,int incidentID) throws SQLException{
+      st.executeUpdate("Update INCIDENTRS.\"Incident\"\n" +
+        "Set \"VENUE_ID\" = "+venueID+",\"TYPE\" = '"+type+"',\"INCIDENT_TIME\" = '"+time+"',\"INCIDENT_DATE\" = '"+date+"', \"DESCRIPTION\" = '"+description+"',\"OFFENDER_ID\"="+offenderId+"\n" +
+        "where INCIDENT_ID = "+incidentID);
+  }
 
   /* --- Get all members of staff and how many tickets they have  --- */
   public ArrayList < int[] > getStaff() throws SQLException {                   // Returns a list of staff ID's and the number of tickets
@@ -308,6 +314,27 @@ public class DBManager {
       rs.close();
     }
     return null;
+  }
+  
+    public boolean checkOffender(int offenderID) throws SQLException {
+    String fetch = "SELECT * FROM INCIDENTRS.\"Offender\" WHERE OFFENDER_ID =" + offenderID + "";
+    ResultSet rs = st.executeQuery(fetch);
+
+    while (rs.next()) {
+      int offender_ID = rs.getInt(1);
+
+      if (offender_ID == offenderID) {
+        return true;
+      }
+    }
+    return false;
+  }
+    
+    public void updateOffender(int offenderID, String offenderFirstName, String offenderLastName, String offenderEmail, String offenderPhone, String offenderGender, Boolean isBanned) throws SQLException {
+    String query = "UPDATE INCIDENTRS.\"Offender\" SET FIRST_NAME='" + offenderFirstName + "', LAST_NAME='" + offenderLastName +
+      "', EMAIL='" + offenderEmail + "', Phone='" + offenderPhone + "', Gender='" + offenderGender + "', IS_BANNED=" +isBanned+  " WHERE OFFENDER_ID=" + offenderID + "";
+
+    st.executeUpdate(query);
   }
 
   /*-----------------Incident Reporting-----------------*/

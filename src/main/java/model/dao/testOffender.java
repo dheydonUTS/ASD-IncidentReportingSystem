@@ -45,10 +45,10 @@ public class testOffender {
         help();
         while((c=readChar("Command [c/r/u/d/g/o/x]")) != 'x'){
             switch(c){
-                /*case 'c': testAdd();break;
-                case 'r': testRead(); break;
+              //  case 'c': testAdd();break;
+             //   case 'r': testRead(); break;
                 case 'u': testUpdate(); break;
-                case 'd': testDelete();break;*/
+              //  case 'd': testDelete();break;
                 case 'g': testGetAll();break;
                 default: help(); break;
             }
@@ -112,6 +112,23 @@ public class testOffender {
     System.out.println("User deleted");
     }
 */    
+        
+        private void testUpdate() throws SQLException {
+            Integer offenderID = Integer.parseInt(read("Offender ID"));
+            if (manager.checkOffender(offenderID)) {
+            String offenderFirstName = read("First name");
+            String offenderLastName = read("Last Name");
+            String email = read("Email");
+            String phone = read("phone");
+            String gender = read("gender");
+            boolean isBanned = Boolean.parseBoolean(read("Is user banned: (true/false)"));
+            
+            manager.updateOffender(offenderID, offenderFirstName, offenderLastName, email, phone, gender, isBanned);
+            System.out.print("Update was successful");
+            } else {
+                System.out.print("unsuccessfyl bro");
+            }
+        }
     private void testGetAll() throws SQLException{
     LinkedList<Offender> offenders = manager.getOffenders();
     System.out.println("Offender Table:");

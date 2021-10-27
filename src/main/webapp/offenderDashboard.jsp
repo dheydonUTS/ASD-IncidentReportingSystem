@@ -5,6 +5,22 @@
 <html>
    <!-- <link rel="stylesheet" href="./css/offenderDashboard.css"> -->
     <head>
+        <style>
+        body {
+            background-image: url('images/background.png');
+        }
+        footer {
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                height: 2.5rem;   
+                left: 0;
+                width: 100%;
+                background-color: white;
+                color: black;
+                text-align: center;
+            }    
+        </style>
         <title>Incident Reporting System</title>
     </head>
     <body>
@@ -47,6 +63,10 @@
                     <b>Banned</b>
                     
                 </th>
+                <th>
+                    <b>Edit</b>
+
+                </th>
             </tr>
             
             
@@ -65,6 +85,7 @@
                 <td><p><%=o.getPhone()%></p></td>
                 <td><p><%=o.getGender()%></p></td>
                 <td><p><%=o.isIsBanned()%></p></td>
+                <td><a class="button" href="editOffenderServlet?offenderID=<%= o.getId()%>">Edit</a></td>
                 
                 <%}%>   
 
@@ -76,7 +97,9 @@
                 </div>
             </div>
         </div>
-
+<footer>
+            <p>Copyright &copy; 2021 | Incident Reporting System </p>
+        </footer>
           </body>
 </html>
 
