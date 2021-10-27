@@ -24,7 +24,7 @@ import model.dao.DBManager;
  *
  * @author vince
  */
-public class MyIncidentsServlet extends HttpServlet {
+public class ViewUsersServlet extends HttpServlet {
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)  // Loads the list of incidents from the database
@@ -33,21 +33,14 @@ public class MyIncidentsServlet extends HttpServlet {
         session = request.getSession();
         DBManager manager = (DBManager)session.getAttribute("manager");
         
-        LinkedList<Incident> incidentList = null;
-        try{
-            incidentList = manager.getIncidentList(); // Loads the list of incidents
-        }catch(SQLException e){
-        //    Logger.getLogger(MyIncidentsServlet.class.getName()).log(Level.SEVERE, null, e);
-        }
         LinkedList<User> users = null;
         try{
             users = manager.getAllStaff();
         }catch(SQLException e){
             
         }
-        session.setAttribute("incidents", incidentList); // Set list of incidents into session
         session.setAttribute("users", users);
-        request.getRequestDispatcher("ViewIncidentsAndTickets.jsp").forward(request, response); // Dispatch request and response to webpage
+        request.getRequestDispatcher("viewUsers.jsp").forward(request, response); // Dispatch request and response to webpage
     }
 }
 

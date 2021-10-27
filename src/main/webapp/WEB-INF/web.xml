@@ -108,6 +108,22 @@
         <servlet-name>AnonIncidentServlet</servlet-name>
         <servlet-class>controller.AnonIncidentServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>updateIncidentServlet</servlet-name>
+        <servlet-class>controller.updateIncidentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>updateIncidentListServlet</servlet-name>
+        <servlet-class>controller.updateIncidentListServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditUsersServlet</servlet-name>
+        <servlet-class>controller.EditUsersServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewUsersServlet</servlet-name>
+        <servlet-class>controller.ViewUsersServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>GraphsMapsServlet</servlet-name>
         <url-pattern>/GraphsMaps</url-pattern>
@@ -215,6 +231,22 @@
     <servlet-mapping>
         <servlet-name>AnonIncidentServlet</servlet-name>
         <url-pattern>/AnonIncidentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updateIncidentServlet</servlet-name>
+        <url-pattern>/updateIncidentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updateIncidentListServlet</servlet-name>
+        <url-pattern>/updateIncidentListServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditUsersServlet</servlet-name>
+        <url-pattern>/EditUsersServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewUsersServlet</servlet-name>
+        <url-pattern>/ViewUsersServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

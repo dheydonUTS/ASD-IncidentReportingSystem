@@ -501,5 +501,28 @@ public class DBManager {
     }
     return null;
   }
+  
+  public void setStatusIncident(int id, String status, int priority, int assID) throws SQLException   {
+    st.executeUpdate("UPDATE INCIDENTRS.\"Incident\" SET STATUS= '" + status + "', PRIORITY= " + priority + ", ASSIGNED_USER= " + assID + " WHERE INCIDENT_ID = " + id + "");
+    System.out.println("Changed: " + id + " To: " + status + " Priority: " + priority + " AssignedID: " + assID);
+  }
+  
+  public LinkedList<User> getAllStaff() throws SQLException{
+      ResultSet result = st.executeQuery("SELECT * FROM \"User\"");
+      LinkedList<User> userList = new LinkedList<User>();
+      while(result.next()){
+          User user = new User();
+          user.setId(result.getInt("USER_ID"));
+          user.setEmail(result.getString("EMAIL"));
+          user.setFirstName(result.getString("FIRST_NAME"));
+          user.setLastName(result.getString("LAST_NAME"));
+          user.setPassword(result.getString("PASSWORD"));
+          user.setIsStaff(result.getBoolean("IS_STAFF"));
+          userList.add(user);
+          System.out.println("Added: " + user.toString());
+      }
+      return userList;
+      
+  }
 
 }
