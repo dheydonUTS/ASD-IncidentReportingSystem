@@ -17,7 +17,7 @@
                 text-align: center;
             }    
     </style>
-<title>Incident Reporting System</title>
+<title>Incident Reporting System Edited</title>
 </head>
 <body>
 <!-- Include the following page for Navbar and Global Style Imports -->
