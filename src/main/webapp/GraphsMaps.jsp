@@ -76,12 +76,12 @@
         </script>
     </head>
     <body>
-        <c:choose>
+    <%--    <c:choose>
 
             <c:when test="${empty sessionScope.user}">
                 <jsp:include page="error.jsp" />
             </c:when>
-            <c:otherwise>
+            <c:otherwise> --%>
 
                 <!-- Include the following page for Navbar and Global Style Imports -->
                 <jsp:include page="components/navbar.jsp" />
@@ -155,8 +155,8 @@
                         </div>
                     </div>
                 </div>
-            </c:otherwise>
-        </c:choose>
+          <%--  </c:otherwise>
+        </c:choose>--%>
         <!-- Import mapbox SDK for Geocoding -->
         <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
         <script>
