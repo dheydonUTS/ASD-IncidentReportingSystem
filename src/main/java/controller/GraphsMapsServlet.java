@@ -74,7 +74,7 @@ public class GraphsMapsServlet extends HttpServlet {
             request.setAttribute("MapData", venueIncidentCount(IncidentList));
             request.setAttribute("MapType", "Default");
         }
-        
+
         //Determine type of graph requested
         String graphType = request.getParameter("graph_type");
         if (graphType != "" && graphType != null) {
@@ -120,7 +120,7 @@ public class GraphsMapsServlet extends HttpServlet {
         }
         //If the input given is invalid, finally return default graph
         return incidentTypeCount(IncidentList);
-            
+
     }
 
     public HashMap<Venue, Integer> venueIncidentCount(LinkedList<Incident> IncidentList) {
