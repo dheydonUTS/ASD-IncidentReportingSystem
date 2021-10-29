@@ -61,21 +61,28 @@ public class GraphsMapsServlet extends HttpServlet {
         //Set all known venues in request
         request.setAttribute("Offenders", OffenderList);
 
-        //Calculate the counts of incidents at venues of specified type and add to request
+        //Determine type of map requested
         String mapType = request.getParameter("map_type");
+        //If the map is not default (a filter)
         if (mapType != "" && mapType != null) {
+            //Determine the number of this type of incident for all venues
             request.setAttribute("MapData", venueSpecificIncidentCount(mapType, IncidentList));
+            //Retain the type of map requested for labelling
             request.setAttribute("MapType", mapType);
         } else {
+            //Otherwise, do default map
             request.setAttribute("MapData", venueIncidentCount(IncidentList));
             request.setAttribute("MapType", "Default");
         }
 
+        //Determine type of graph requested
         String graphType = request.getParameter("graph_type");
         if (graphType != "" && graphType != null) {
+            //If the graph has a type, pass it to a function to determine what the type is
             request.setAttribute("GraphData", graphFilter(graphType, IncidentList));
             request.setAttribute("GraphType", "Filtered");
         } else {
+            //Otherwise display the default
             request.setAttribute("GraphData", incidentTypeCount(IncidentList));
             request.setAttribute("GraphType", "All Incidents");
         }
@@ -101,52 +108,38 @@ public class GraphsMapsServlet extends HttpServlet {
     }
 
     public HashMap<String, Integer> graphFilter(String graphType, LinkedList<Incident> IncidentList) {
-        //Store Incident Type as key, and count of that type as an integer
-        HashMap<String, Integer> Count = new HashMap();
+        //First character in value POST'ed is the type of filter
         char type = graphType.charAt(0);
+        //If we are looking at the first letter v, it is looking for just incidents at a given venue
         if (type == 'v') {
             return venueIncidentTypeCount(graphType.charAt(1), IncidentList);
         }
-
-        if (type == 'o') {
-            return offenderIncidentTypeCount(graphType.charAt(1), IncidentList);
-        }
-
         //For breakdown by Incident Type (What venues it occured at)
         if (type == '@') {
             return incidentTypeByVenueCount(graphType.substring(1), IncidentList);
         }
-        return null;
+        //If the input given is invalid, finally return default graph
+        return incidentTypeCount(IncidentList);
+
     }
 
     public HashMap<Venue, Integer> venueIncidentCount(LinkedList<Incident> IncidentList) {
         //Store the venue as our key, and then the number of incidents at that venue as an integer
         HashMap<Venue, Integer> VenueIncidentCount = new HashMap();
         IncidentList.forEach(incident -> {
-            System.out.println(incident.getVenue());
             boolean inserted = false;
             for (Venue venue : VenueIncidentCount.keySet()) {
+                //If we already have the venue in the incident count, increment the count and set inserted to true
                 if (venue.getName().equals(incident.getVenue().getName())) {
                     VenueIncidentCount.put(venue, VenueIncidentCount.get(venue) + 1);
                     inserted = true;
                 }
 
             }
+            //If we haven't already inserted, add the venue to the list and set count to one
             if (!inserted) {
                 VenueIncidentCount.put(incident.getVenue(), 1);
             }
-            /*
-            //If we already have this venue in our list
-            if (VenueIncidentCount.containsKey(incident.getVenue())) {
-                //Increment the count of incidents at that venue
-                VenueIncidentCount.put(incident.getVenue(), VenueIncidentCount.get(incident.getVenue()) + 1);
-                System.out.println("Existing");
-            } else {
-                //Otherwise start the count for that venue
-                VenueIncidentCount.put(incident.getVenue(), 1);
-                                System.out.println("New");
-
-            }*/
         });
         return VenueIncidentCount;
     }
@@ -165,7 +158,7 @@ public class GraphsMapsServlet extends HttpServlet {
 //Store the venue as our key, and then the number of incidents at that venue as an integer
         HashMap<Venue, Integer> VenueIncidentCount = new HashMap();
         IncidentList.forEach(incident -> {
-            //If we already have this venue in our list
+            //If we already have this venue in our list, and the type is the one we are looking for
             if (VenueIncidentCount.containsKey(incident.getVenue()) && incident.getType().equals(mapType)) {
                 //Increment the count of incidents at that venue
                 VenueIncidentCount.put(incident.getVenue(), VenueIncidentCount.get(incident.getVenue()) + 1);
@@ -181,27 +174,11 @@ public class GraphsMapsServlet extends HttpServlet {
         //Store Incident Type as key, and count of that type as an integer
         HashMap<String, Integer> IncidentCount = new HashMap();
         IncidentList.forEach(incident -> {
-            //If we already have the incident type in list
+            //If we already have the incident type in list, and the venue has the ID we are looking for
             if (IncidentCount.containsKey(incident.getType()) && incident.getVenue().getId() == Integer.parseInt(id + "")) {
                 //Increment the count of that incident type
                 IncidentCount.put(incident.getType(), IncidentCount.get(incident.getType()) + 1);
             } else if (!IncidentCount.containsKey(incident.getType()) && incident.getVenue().getId() == Integer.parseInt(id + "")) {
-                //Otherwise start the count for that type
-                IncidentCount.put(incident.getType(), 1);
-            }
-        });
-        return IncidentCount;
-    }
-
-    private HashMap<String, Integer> offenderIncidentTypeCount(char id, LinkedList<Incident> IncidentList) {
-        //Store Incident Type as key, and count of that type as an integer
-        HashMap<String, Integer> IncidentCount = new HashMap();
-        IncidentList.forEach(incident -> {
-            //If we already have the incident type in list
-            if (IncidentCount.containsKey(incident.getType()) && incident.getOffender().getId() == Integer.parseInt(id + "")) {
-                //Increment the count of that incident type
-                IncidentCount.put(incident.getType(), IncidentCount.get(incident.getType()) + 1);
-            } else if (!IncidentCount.containsKey(incident.getType()) && incident.getOffender().getId() == Integer.parseInt(id + "")) {
                 //Otherwise start the count for that type
                 IncidentCount.put(incident.getType(), 1);
             }

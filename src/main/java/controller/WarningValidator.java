@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import java.sql.SQLException;
@@ -17,7 +12,7 @@ import model.dao.DBManager;
 
 /**
  *
- * @author joeda
+ * @author joe
  */
 public class WarningValidator {
     
@@ -53,10 +48,11 @@ public class WarningValidator {
 
     private boolean isVenueValid(String venue_id) {
         Venue venue = null;
+        //If the input (ID) is an int
         if(isInt(venue_id)){
             try {
+                //Try and retrieve the venue to see if it exists
                 venue = manager.getVenue(Integer.parseInt(venue_id));
-                System.out.println("Yep validating venue");
             } catch (SQLException ex) {
                 Logger.getLogger(WarningValidator.class.getName()).log(Level.SEVERE, null, ex);
                 return false;
@@ -67,11 +63,11 @@ public class WarningValidator {
 
     private boolean isOffenderValid(String offender_id) {
         Offender offender = null;
+        //If the input (ID) is an int
         if(isInt(offender_id)){
             try {
+                //Try and retrieve the offender to see if it exists
                 offender = manager.getOffender(Integer.parseInt(offender_id));
-                                System.out.println("Yep validating offender");
-
             } catch (SQLException ex) {
                 Logger.getLogger(WarningValidator.class.getName()).log(Level.SEVERE, null, ex);
                 return false;

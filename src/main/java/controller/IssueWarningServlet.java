@@ -29,7 +29,6 @@ public class IssueWarningServlet extends HttpServlet {
     private DBConnector conn;
     private DBManager manager;
 
-    //On page load
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
